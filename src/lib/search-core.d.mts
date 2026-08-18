@@ -24,5 +24,6 @@ export interface SearchFilters {
 
 export function buildSearchIndex(papers: Array<Record<string, unknown>>): { version: 1; records: SearchRecord[] };
 export function searchRecords(records: SearchRecord[], filters?: SearchFilters): SearchRecord[];
+export function trackHeadingId(track: string): string;
 export function filtersFromSearchParams(params: URLSearchParams): SearchFilters;
 export function filtersToSearchParams(filters: SearchFilters): URLSearchParams;

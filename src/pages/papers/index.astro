@@ -1,12 +1,10 @@
 ---
 import { getCollection } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import PaperCard from "../../components/static/PaperCard.astro";
 import PaperExplorer from "../../components/islands/PaperExplorer";
 import { getSearchIndex } from "../../../lib/search-index";
 
 const paperEntries = (await getCollection("papers")).toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
-const tracks = [...new Set(paperEntries.map((paper) => paper.data.track))].sort();
 const searchIndex = getSearchIndex();
 const paperRecords = paperEntries.map((paper) => paper.data);
 ---
@@ -19,18 +17,7 @@ const paperRecords = paperEntries.map((paper) => paper.data);
     </header>
     <div class="page-section page-shell">
       <PaperExplorer client:load papers={paperRecords} index={searchIndex} initialFilters={{}} />
-      <noscript>
-        <section class="paper-noscript" aria-labelledby="complete-paper-list">
-          <h2 id="complete-paper-list">完整论文列表</h2>
-        {tracks.map((track) => {
-          const group = paperEntries.filter((paper) => paper.data.track === track);
-          return <section aria-labelledby={`track-${track.replace(/\W/g, "-")}`}>
-            <div class="group-heading"><h2 id={`track-${track.replace(/\W/g, "-")}`}>{track}</h2><span>{String(group.length).padStart(2, "0")} RECORDS</span></div>
-            <div class="paper-grid">{group.map((paper, index) => <PaperCard paper={paper.data} index={index + 1} />)}</div>
-          </section>;
-        })}
-        </section>
-      </noscript>
+      <noscript><p class="paper-noscript-note">完整论文列表已由页面静态输出。</p></noscript>
     </div>
   </main>
 </SiteLayout>

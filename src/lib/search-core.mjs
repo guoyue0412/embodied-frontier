@@ -35,6 +35,13 @@ export function searchRecords(records, filters = {}) {
   ));
 }
 
+export function trackHeadingId(track) {
+  const codePoints = [...String(track ?? "")]
+    .map((character) => character.codePointAt(0).toString(16))
+    .join("-");
+  return `research-track-${codePoints || "empty"}`;
+}
+
 export function filtersFromSearchParams(params) {
   const filters = {};
   const mapping = { q: "query", query: "query", track: "track", tag: "tag", year: "year", venue: "venue", status: "status" };

@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState, type ChangeEvent } from "react";
 import {
   filtersFromSearchParams,
+  filtersToSearchParams,
   searchRecords,
+  trackHeadingId,
   type SearchFilters,
   type SearchRecord,
 } from "../../lib/search-core.mjs";
@@ -24,7 +26,7 @@ const statusLabels: Record<SearchRecord["status"], string> = {
 };
 
 function replaceUrl(filters: Filters) {
-  const params = new URLSearchParams(Object.entries(filters).filter(([, value]) => value).map(([key, value]) => [key, value!]));
+  const params = filtersToSearchParams(filters);
   history.replaceState(null, "", params.size ? `${location.pathname}?${params}` : location.pathname);
 }
 
@@ -38,11 +40,14 @@ function optionLabel(value: string) {
 
 export default function PaperExplorer({ papers, index, initialFilters = {} }: PaperExplorerProps) {
   const [filters, setFilters] = useState<Filters>(initialFilters);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     const urlFilters = filtersFromSearchParams(new URLSearchParams(window.location.search));
-    if (Object.keys(urlFilters).length === 0) return undefined;
-    const frame = window.requestAnimationFrame(() => setFilters({ ...initialFilters, ...urlFilters }));
+    const frame = window.requestAnimationFrame(() => {
+      if (Object.keys(urlFilters).length > 0) setFilters({ ...initialFilters, ...urlFilters });
+      setHydrated(true);
+    });
     return () => window.cancelAnimationFrame(frame);
   }, [initialFilters]);
 
@@ -88,8 +93,8 @@ export default function PaperExplorer({ papers, index, initialFilters = {} }: Pa
   }
 
   return (
-    <div className="research-console" data-search-island="paper-explorer">
-      <form className="research-console__filters" role="search" onSubmit={(event) => event.preventDefault()}>
+    <div className="research-console" data-search-island="paper-explorer" data-hydrated={hydrated ? "true" : "false"}>
+      <form className="research-console__filters" data-search-controls="true" hidden={!hydrated} role="search" onSubmit={(event) => event.preventDefault()}>
         <label className="research-console__query">
           <span>全文检索</span>
           <input
@@ -144,9 +149,9 @@ export default function PaperExplorer({ papers, index, initialFilters = {} }: Pa
       </p>
 
       {groups.length > 0 ? groups.map(([track, group]) => (
-        <section className="research-console__group" aria-labelledby={`research-track-${track.replace(/\W/g, "-")}`} key={track}>
+        <section className="research-console__group" aria-labelledby={trackHeadingId(track)} key={track}>
           <div className="research-console__heading">
-            <h2 id={`research-track-${track.replace(/\W/g, "-")}`}>{track}</h2>
+            <h2 id={trackHeadingId(track)}>{track}</h2>
             <span>{String(group.length).padStart(2, "0")} RECORDS</span>
           </div>
           <div className="research-console__grid">

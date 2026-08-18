@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildSearchIndex, filtersFromSearchParams, searchRecords } from "../src/lib/search-core.mjs";
+import { buildSearchIndex, filtersFromSearchParams, filtersToSearchParams, searchRecords, trackHeadingId } from "../src/lib/search-core.mjs";
 
 const papers = [
   {
@@ -66,4 +66,15 @@ test("restores known filters from URL parameters and ignores unknown values", ()
     venue: "arXiv 2024",
     status: "verified",
   });
+});
+
+test("canonicalizes query output while accepting the legacy query key", () => {
+  const filters = { query: "robot", track: "VLA" };
+  assert.equal(filtersToSearchParams(filters).toString(), "q=robot&track=VLA");
+  assert.deepEqual(filtersFromSearchParams(new URLSearchParams("query=robot&track=VLA")), filters);
+});
+
+test("keeps Unicode research track heading IDs collision-safe", () => {
+  assert.notEqual(trackHeadingId("视觉"), trackHeadingId("数据"));
+  assert.equal(trackHeadingId(""), "research-track-empty");
 });
