@@ -67,6 +67,7 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
     let observer: IntersectionObserver | null = null;
     let lifecycle: ReturnType<typeof createAnimationLifecycle> | null = null;
     let removeRuntimeListeners: (() => void) | null = null;
+    let removeInteraction = () => {};
 
     const failure = createFailureGate((error) => {
       if (cleanedUp) return;
@@ -232,6 +233,10 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
 
       const handleVisibility = () => lifecycle?.setDocumentVisible(document.visibilityState !== 'hidden');
       document.addEventListener('visibilitychange', handleVisibility);
+      removeRuntimeListeners = () => {
+        document.removeEventListener('visibilitychange', handleVisibility);
+        removeInteraction();
+      };
       lifecycle.setDocumentVisible(document.visibilityState !== 'hidden');
 
       resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(handleResize) : null;
@@ -264,14 +269,10 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
         });
       };
 
-      const removeInteraction = bindScopedInteraction(container, [
+      removeInteraction = bindScopedInteraction(container, [
         { type: 'mousemove', listener: handleMouseMove, options: { passive: true } },
         { type: 'mouseleave', listener: handleMouseLeave }
       ]);
-      removeRuntimeListeners = () => {
-        document.removeEventListener('visibilitychange', handleVisibility);
-        removeInteraction();
-      };
 
       const textureLoader = new THREE.TextureLoader();
       textureLoader.load(
