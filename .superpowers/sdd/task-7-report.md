@@ -3,7 +3,8 @@
 ## Status
 
 DONE. The first-party procedural embodiment is committed in
-`44e7e85e955b85a42c75db7b712ec1fb42c2fd65`.
+`44e7e85e955b85a42c75db7b712ec1fb42c2fd65`; the reviewed failure-path fixes
+are committed in `1f5ce15`.
 
 ## Delivered
 
@@ -31,6 +32,23 @@ DONE. The first-party procedural embodiment is committed in
   the declared lazy consumers; copied branding and runtime research API
   boundaries remain rejected.
 
+## Review hardening
+
+- Added a terminal `createEmbodimentFailureGate` around the optional scene.
+  Initialization, resize, context-loss, and render failures now dispose the
+  current scene before disconnecting the observer, media/pointer/visibility
+  listeners, and capability gates; late import/observer/media callbacks are
+  rejected by the terminal guard, so no detached canvas can restart.
+- Added the browser-independent `createEmbodimentRenderLoop` contract. The
+  scene passes a one-shot `onError` callback, catches `renderer.render`
+  exceptions, stops the RAF, and enters the host fallback deterministically.
+  Context loss uses the same callback path. Cleanup and host callbacks are
+  idempotent and race-safe; a scene returned after synchronous init failure is
+  disposed before it can be attached to the host ref.
+- Added executable runtime tests for terminal failure/no retry, cleanup
+  exceptions, render-error fallback, one-shot error reporting, pending RAF
+  cancellation, and post-failure scheduling suppression.
+
 ## TDD evidence
 
 - RED: `node --test tests/embodiment-gates.test.mjs` failed with the expected
@@ -39,20 +57,22 @@ DONE. The first-party procedural embodiment is committed in
 
 ## Verification evidence
 
-- `ASTRO_TELEMETRY_DISABLED=1 npm test`: passed, 49/49 tests; Astro built 14
+- `ASTRO_TELEMETRY_DISABLED=1 npm test`: passed, 51/51 tests; Astro built 14
   pages and all source/content/rendered/lifecycle tests passed.
 - `ASTRO_TELEMETRY_DISABLED=1 npm run lint`: passed with exit code 0.
 - `ASTRO_TELEMETRY_DISABLED=1 npm run content:validate`: passed with 0 Astro
-  errors; content compiler produced 5 papers, 3 roadmap stages, 3 projects,
-  3 models, 3 datasets, 5 search records, 11 graph nodes, and 16 graph edges.
-- `ASTRO_TELEMETRY_DISABLED=1 BASE_PATH=/embodied-frontier/ SITE_URL=https://example.github.io/embodied-frontier/ npm run build` passed; focused base-path tests passed 5/5 (`astro-shell`, `hero-fallback`, `embodiment-gates`). Built HTML uses `/embodied-frontier/hero-static.webp`, `/embodied-frontier/_astro/...`, and the static `<picture>` fallback.
-- Final root build bundle audit: `HeroExperience` 87,292 bytes / 33,554 gzip;
-  renderer client 184,122 / 57,328 gzip; React 8,036 / 3,113 gzip; shared
-  lifecycle 850 / 458 gzip; site-path 621 / 399 gzip. Initial homepage
-  interactive total is 94,852 gzip, below the 120 KiB budget.
-- Lazy assets are separate: `create-embodiment-scene` 3,438 / 1,769 gzip
-  imports `three.module` 488,987 / 120,957 gzip. `GridDistortion` remains a
-  separate 4,451 / 2,179 gzip lazy chunk. Three.js is not in the initial
+  errors and 66 existing hints; content compiler produced 5 papers, 3 roadmap
+  stages, 3 projects, 3 models, 3 datasets, 5 search records, 11 graph nodes,
+  and 16 graph edges.
+- `ASTRO_TELEMETRY_DISABLED=1 BASE_PATH=/embodied-frontier/ SITE_URL=https://example.github.io/embodied-frontier/ npm run build` passed; focused base-path tests passed 9/9 (`astro-shell`, `hero-fallback`, `embodiment-gates`, `embodiment-runtime`, and source-boundary checks). Built HTML uses `/embodied-frontier/hero-static.webp`, `/embodied-frontier/_astro/...`, and the static `<picture>` fallback.
+- Final root build bundle audit: `HeroExperience` 87,545 bytes / 33,712 gzip;
+  renderer client 184,122 / 57,347 gzip; React 8,036 / 3,131 gzip; shared
+  lifecycle 850 / 490 gzip; site-path 621 / 421 gzip; embodiment runtime 573 /
+  369 gzip. Initial homepage interactive total is 95,221 gzip, below the 120
+  KiB budget.
+- Lazy assets are separate: `create-embodiment-scene` 3,551 / 1,840 gzip
+  imports `three.module` 488,987 / 120,982 gzip. `GridDistortion` remains a
+  separate 4,451 / 2,205 gzip lazy chunk. Three.js is not in the initial
   executable import graph; the HeroExperience dependency map only names the
   lazy edge.
 - `git diff --cached --check` passed before the implementation commit.
