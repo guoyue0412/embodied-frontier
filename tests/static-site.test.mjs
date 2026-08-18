@@ -60,6 +60,19 @@ test("static checker rejects unsafe URLs and duplicate landmarks", async () => {
   }
 });
 
+test("static checker treats target=_BLANK as an external blank link", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "embodied-frontier-static-blank-target-"));
+  try {
+    await writeFile(path.join(root, "index.html"), '<!doctype html><html lang="en"><head><title>fixture</title></head><body><main><h1>Fixture</h1><a href="https://example.com" target="_BLANK">External</a></main></body></html>');
+    await assert.rejects(
+      () => checkStaticSite(root, { basePath: "/" }),
+      (error) => error.report?.errors.some((message) => message.includes("target=_blank link is missing rel=noopener")),
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("static HTML keeps no-JS research fallbacks visible", async () => {
   const papers = await import("node:fs/promises").then(({ readFile }) => readFile("dist/papers/index.html", "utf8"));
   const graph = await import("node:fs/promises").then(({ readFile }) => readFile("dist/graph/index.html", "utf8"));

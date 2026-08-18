@@ -48,11 +48,13 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const lifecycleRef = useRef<ReturnType<typeof createAnimationLifecycle> | null>(null);
   const [failed, setFailed] = useState(false);
+  const [runtimeState, setRuntimeState] = useState<'initializing' | 'ready' | 'fallback'>('initializing');
 
   useEffect(() => {
     if (!containerRef.current || failed) return;
 
     const container = containerRef.current;
+    setRuntimeState('initializing');
     let cleanedUp = false;
     let scene: THREE.Scene | null = null;
     let renderer: THREE.WebGLRenderer | null = null;
@@ -73,6 +75,7 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       if (cleanedUp) return;
       console.warn('[GridDistortion] enhancement disabled; static hero remains active.', error);
       lifecycle?.stop();
+      setRuntimeState('fallback');
       setFailed(true);
     });
 
@@ -294,7 +297,10 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
           loadedTexture = texture;
           uniforms.uTexture.value = texture;
           handleResize();
-          if (!failure.failed) lifecycle?.start();
+          if (!failure.failed) {
+            setRuntimeState('ready');
+            lifecycle?.start();
+          }
         },
         undefined,
         (error) => failure.fail(error)
@@ -314,6 +320,7 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
       ref={containerRef}
       className={`distortion-container ${className}`}
       data-visual-failed={failed ? 'true' : 'false'}
+      data-visual-state={runtimeState}
       style={{
         width: '100%',
         height: '100%',

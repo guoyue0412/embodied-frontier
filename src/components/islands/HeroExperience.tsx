@@ -18,7 +18,7 @@ class VisualErrorBoundary extends React.Component<React.PropsWithChildren, { fai
 
   render() {
     return this.state.failed
-      ? <div className="hero-experience__visual-fallback" data-visual-failed="boundary" aria-hidden="true" />
+      ? <div className="hero-experience__visual-fallback" data-visual-failed="boundary" data-visual-state="fallback" aria-hidden="true" />
       : this.props.children;
   }
 }

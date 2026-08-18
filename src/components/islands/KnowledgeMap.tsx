@@ -106,7 +106,10 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
         const module = await import("cytoscape");
         if (cancelled || !containerRef.current) return;
         const createCytoscape = (module.default ?? module) as unknown as typeof cytoscape;
-        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const positions = Object.fromEntries(graph.nodes.map((node, index) => [
+          node.id,
+          { x: 120 + (index % 4) * 180, y: 100 + Math.floor(index / 4) * 130 },
+        ]));
         instance = createCytoscape({
           container,
           elements: [
@@ -163,7 +166,7 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
             { selector: ".is-selected", style: { "border-width": 5, "border-color": "#ffffff", "overlay-color": "#2fd4e8", "overlay-opacity": 0.2 } },
             { selector: ".is-neighbor", style: { opacity: 1, "border-color": "#ffbb65" } },
           ],
-          layout: { name: "cose", animate: !reducedMotion, padding: 30 },
+          layout: { name: "preset", positions: positions, animate: false, fit: true, padding: 30 },
           minZoom: 0.45,
           maxZoom: 2.5,
         });

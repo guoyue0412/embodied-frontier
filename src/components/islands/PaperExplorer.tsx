@@ -94,7 +94,7 @@ export default function PaperExplorer({ papers, index, initialFilters = {} }: Pa
 
   return (
     <div className="research-console" data-search-island="paper-explorer" data-hydrated={hydrated ? "true" : "false"}>
-      <form className="research-console__filters" data-search-controls="true" hidden={!hydrated} role="search" onSubmit={(event) => event.preventDefault()}>
+      <form className="research-console__filters" data-search-controls="true" data-search-controls-ready={hydrated ? "true" : "false"} hidden={!hydrated} role="search" onSubmit={(event) => event.preventDefault()}>
         <label className="research-console__query">
           <span>全文检索</span>
           <input

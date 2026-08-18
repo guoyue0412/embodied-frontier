@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process";
+import { createServer } from "node:net";
 import { access, mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -17,12 +18,27 @@ const resolvedChrome = await (async () => {
   }
   throw new Error(`No Chrome/Chromium executable found; checked ${chromeCandidates.join(", ")}`);
 })();
-const port = Number(process.env.BROWSER_QA_PORT ?? 9333);
+const requestedPort = Number(process.env.BROWSER_QA_PORT ?? 0);
 const profile = process.env.BROWSER_QA_PROFILE ?? "/tmp/embodied-frontier-browser-qa";
 const artifactsDirectory = path.resolve(process.env.BROWSER_QA_ARTIFACTS ?? "artifacts/browser-qa");
 const siteUrl = new URL(process.env.SITE_URL ?? "http://127.0.0.1:4321/");
 const sitePrefix = siteUrl.pathname.replace(/\/+$/g, "");
 const routes = ["/", "/papers", "/papers?q=视觉语言&status=verified", "/papers/openvla", "/models", "/datasets", "/graph", "/roadmap", "/projects", "/about"];
+
+async function allocatePort() {
+  if (requestedPort > 0) return requestedPort;
+  return new Promise((resolve, reject) => {
+    const probe = createServer();
+    probe.once("error", reject);
+    probe.listen(0, "127.0.0.1", () => {
+      const address = probe.address();
+      const port = typeof address === "object" && address ? address.port : 0;
+      probe.close((error) => error ? reject(error) : resolve(port));
+    });
+  });
+}
+
+const port = await allocatePort();
 
 function trailingSlash(pathname) {
   const normalized = pathname.replace(/^\/+|\/+$/g, "");
@@ -56,6 +72,10 @@ function portablePath(value) {
   return path.relative(process.cwd(), value).replace(/\\/g, "/");
 }
 
+function portableRequests(values) {
+  return values.map(portableUrl).toSorted();
+}
+
 await rm(profile, { recursive: true, force: true });
 await rm(artifactsDirectory, { recursive: true, force: true });
 await mkdir(profile, { recursive: true });
@@ -72,9 +92,10 @@ const child = spawn(resolvedChrome, [
   "about:blank",
 ], { stdio: ["ignore", "ignore", "ignore"] });
 
-async function waitForJson(requestPath) {
+async function waitForJson(requestPath, browserProcess) {
   let lastError;
   for (let attempt = 0; attempt < 80; attempt += 1) {
+    if (browserProcess.exitCode !== null) throw new Error(`Chrome exited before DevTools became ready (${browserProcess.exitCode})`);
     try {
       const response = await fetch(`http://127.0.0.1:${port}${requestPath}`);
       if (response.ok) return response.json();
@@ -84,6 +105,24 @@ async function waitForJson(requestPath) {
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
   throw lastError ?? new Error("Chrome DevTools endpoint did not start");
+}
+
+function waitForExit(processHandle, timeout = 2000) {
+  if (!processHandle || processHandle.exitCode !== null) return Promise.resolve();
+  return new Promise((resolve) => {
+    let timer;
+    const done = () => {
+      clearTimeout(timer);
+      processHandle.removeListener("exit", done);
+      resolve();
+    };
+    processHandle.once("exit", done);
+    timer = setTimeout(() => {
+      if (processHandle.exitCode === null) processHandle.kill("SIGKILL");
+      done();
+    }, timeout);
+    timer.unref();
+  });
 }
 
 const report = {
@@ -102,7 +141,7 @@ const report = {
 
 let socket;
 try {
-  const targets = await waitForJson("/json/list");
+  const targets = await waitForJson("/json/list", child);
   const target = targets.find((candidate) => candidate.type === "page");
   if (!target) throw new Error("No browser page target available");
   socket = new WebSocket(target.webSocketDebuggerUrl);
@@ -113,11 +152,25 @@ try {
 
   let sequence = 0;
   const pending = new Map();
-  let pageErrors = [];
-  let networkRequests = [];
-  let requestUrls = new Map();
-  let resourceFailures = [];
-  let httpErrors = [];
+  let activeCapture = null;
+  function createCapture(route, profileName) {
+    return {
+      route,
+      profileName,
+      loaderId: null,
+      pageErrors: [],
+      requests: [],
+      requestUrls: new Map(),
+      pendingRequests: new Set(),
+      resourceFailures: [],
+      httpErrors: [],
+      lastNetworkEventAt: Date.now(),
+    };
+  }
+  function currentCaptureAccepts(params) {
+    if (!activeCapture) return false;
+    return !activeCapture.loaderId || !params.loaderId || params.loaderId === activeCapture.loaderId;
+  }
   socket.addEventListener("message", ({ data }) => {
     const message = JSON.parse(data);
     if (message.id && pending.has(message.id)) {
@@ -126,18 +179,29 @@ try {
       if (message.error) reject(new Error(message.error.message));
       else resolve(message.result);
     }
-    if (message.method === "Runtime.exceptionThrown") pageErrors.push({ type: "exception", text: message.params.exceptionDetails.text });
+    if (message.method === "Runtime.exceptionThrown" && activeCapture) activeCapture.pageErrors.push({ type: "exception", text: message.params.exceptionDetails.text });
     if (message.method === "Log.entryAdded" && message.params.entry.level === "error") {
       const { text, url } = message.params.entry;
-      if (!url?.includes("/.well-known/appspecific/com.chrome.devtools.json")) pageErrors.push({ type: "console", text, url: url ?? "" });
+      if (activeCapture && !url?.includes("/.well-known/appspecific/com.chrome.devtools.json")) activeCapture.pageErrors.push({ type: "console", text, url: url ?? "" });
     }
-    if (message.method === "Network.requestWillBeSent") {
-      networkRequests.push(message.params.request.url);
-      requestUrls.set(message.params.requestId, message.params.request.url);
+    if (message.method === "Network.requestWillBeSent" && currentCaptureAccepts(message.params)) {
+      activeCapture.requests.push(message.params.request.url);
+      activeCapture.requestUrls.set(message.params.requestId, message.params.request.url);
+      activeCapture.pendingRequests.add(message.params.requestId);
+      activeCapture.lastNetworkEventAt = Date.now();
     }
-    if (message.method === "Network.loadingFailed") resourceFailures.push({ url: requestUrls.get(message.params.requestId) ?? "<unknown>", error: message.params.errorText, canceled: message.params.canceled === true });
-    if (message.method === "Network.responseReceived" && message.params.response.status >= 400) {
-      httpErrors.push({ url: message.params.response.url, status: message.params.response.status });
+    if (message.method === "Network.loadingFinished" && activeCapture?.requestUrls.has(message.params.requestId)) {
+      activeCapture.pendingRequests.delete(message.params.requestId);
+      activeCapture.lastNetworkEventAt = Date.now();
+    }
+    if (message.method === "Network.loadingFailed" && activeCapture?.requestUrls.has(message.params.requestId)) {
+      activeCapture.pendingRequests.delete(message.params.requestId);
+      activeCapture.resourceFailures.push({ url: activeCapture.requestUrls.get(message.params.requestId) ?? "<unknown>", error: message.params.errorText, canceled: message.params.canceled === true });
+      activeCapture.lastNetworkEventAt = Date.now();
+    }
+    if (message.method === "Network.responseReceived" && currentCaptureAccepts(message.params) && message.params.response.status >= 400) {
+      activeCapture.httpErrors.push({ url: message.params.response.url, status: message.params.response.status });
+      activeCapture.lastNetworkEventAt = Date.now();
     }
   });
 
@@ -161,6 +225,16 @@ try {
       await new Promise((resolve) => setTimeout(resolve, 100));
     }
     return evaluate(expression);
+  }
+
+  async function waitForNetworkIdle(capture, timeout = 5000, quietPeriod = 250) {
+    if (!capture) return;
+    const deadline = Date.now() + timeout;
+    while (Date.now() < deadline) {
+      if (capture.pendingRequests.size === 0 && Date.now() - capture.lastNetworkEventAt >= quietPeriod) return;
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    }
+    if (capture.pendingRequests.size > 0) throw new Error(`Network did not become idle for ${capture.profileName}:${capture.route}`);
   }
 
   async function keyPress(key, code, windowsVirtualKeyCode) {
@@ -246,13 +320,24 @@ try {
   }
 
   async function navigate(route, profileName, options = {}) {
-    pageErrors = [];
-    networkRequests = [];
-    requestUrls = new Map();
-    resourceFailures = [];
-    httpErrors = [];
-    await call("Page.navigate", { url: pageUrl(route) });
-    await waitFor("document.readyState === 'complete' && Boolean(document.querySelector('main h1'))", options.timeout ?? 8000);
+    await waitForNetworkIdle(activeCapture, 1500);
+    const capture = createCapture(route, profileName);
+    activeCapture = capture;
+    const navigation = await call("Page.navigate", { url: pageUrl(route) });
+    capture.loaderId = navigation.loaderId ?? null;
+    const pathname = new URL(pageUrl(route)).pathname;
+    const routeSelector = pathname === sitePrefix || pathname === `${sitePrefix}/`
+      ? ".hero__copy h1"
+      : pathname.endsWith("/papers/") ? ".research-console"
+      : pathname.includes("/papers/") ? ".detail-shell"
+      : pathname.endsWith("/models/") || pathname.endsWith("/datasets/") ? ".comparison-table"
+      : pathname.endsWith("/graph/") ? ".relationship-list"
+      : pathname.endsWith("/roadmap/") ? ".roadmap-full"
+      : pathname.endsWith("/projects/") ? ".project-grid"
+      : pathname.endsWith("/about/") ? ".about-grid"
+      : "main h1";
+    await waitFor(`location.pathname === ${JSON.stringify(pathname)} && document.readyState === 'complete' && Boolean(document.querySelector(${JSON.stringify(routeSelector)})) && (document.querySelector(${JSON.stringify(routeSelector)})?.getBoundingClientRect().height ?? 0) > 0`, options.timeout ?? 8000);
+    await waitForNetworkIdle(capture);
     const metrics = await evaluate(`(() => {
       const configuredPrefix = ${JSON.stringify(sitePrefix)};
       const visible = (element) => {
@@ -278,25 +363,45 @@ try {
         pathPrefixViolations: [...document.querySelectorAll('a[href^="/"]')].map((link) => link.getAttribute('href')).filter((href) => configuredPrefix && !href.startsWith(configuredPrefix)),
       };
     })()`);
-    const routeResourceFailures = [...resourceFailures];
-    const routeHttpErrors = [...httpErrors];
+    const routeResourceFailures = [...capture.resourceFailures];
+    const routeHttpErrors = [...capture.httpErrors];
     const portableHttpErrors = routeHttpErrors.map((error) => ({ ...error, url: portableUrl(error.url) }));
-    const record = { profile: profileName, route, viewport: { width: metrics.innerWidth, height: options.height ?? 0 }, assertions: metrics, consoleErrors: [...pageErrors].map((error) => ({ ...error, url: error.url ? portableUrl(error.url) : undefined })), networkRequests: networkRequests.map(portableUrl), resourceFailures: routeResourceFailures, httpErrors: portableHttpErrors };
+    const requests = portableRequests(capture.requests);
+    const record = { profile: profileName, route, viewport: { width: metrics.innerWidth, height: options.height ?? 0 }, assertions: metrics, consoleErrors: [...capture.pageErrors].map((error) => ({ ...error, url: error.url ? portableUrl(error.url) : undefined })), networkRequests: requests, resourceFailures: routeResourceFailures, httpErrors: portableHttpErrors };
     report.routeChecks.push(record);
-    report.consoleErrors.push(...pageErrors.map((error) => ({ profile: profileName, route, ...error })));
+    report.consoleErrors.push(...capture.pageErrors.map((error) => ({ profile: profileName, route, ...error, url: error.url ? portableUrl(error.url) : undefined })));
     report.resourceFailures.push(...routeResourceFailures.map((failure) => ({ profile: profileName, route, ...failure })));
-    report.networkEvidence.push({ profile: profileName, route, requests: networkRequests.map(portableUrl), httpErrors: portableHttpErrors });
+    report.networkEvidence.push({ profile: profileName, route, requests, httpErrors: portableHttpErrors });
     check(profileName, route, "single main landmark", metrics.main && metrics.heading.length > 0, { main: metrics.main, heading: metrics.heading });
     check(profileName, route, "no horizontal overflow", !metrics.overflow, { scrollWidth: metrics.scrollWidth, innerWidth: metrics.innerWidth });
     check(profileName, route, "header links remain in viewport", metrics.clippedHeaderLinks.length === 0, { clipped: metrics.clippedHeaderLinks });
-    check(profileName, route, "no console errors", pageErrors.length === 0, { errors: pageErrors });
+    check(profileName, route, "no console errors", capture.pageErrors.length === 0, { errors: capture.pageErrors });
     check(profileName, route, "all local resources load", routeResourceFailures.length === 0 && routeHttpErrors.length === 0, { resourceFailures: routeResourceFailures, httpErrors: portableHttpErrors });
     check(profileName, route, "configured base prefixes internal links", metrics.pathPrefixViolations.length === 0, { violations: metrics.pathPrefixViolations });
-    return { metrics, requests: [...networkRequests], errors: [...pageErrors] };
+    return { metrics, requests: [...capture.requests], errors: [...capture.pageErrors] };
   }
 
   async function screenshot(name, profileName, route, viewport) {
-    const result = await call("Page.captureScreenshot", { format: "png", captureBeyondViewport: false });
+    await evaluate("window.scrollTo(0, 0)");
+    await evaluate("(() => { const copy = document.querySelector('.hero__copy'); if (copy) { copy.style.transform = 'translateZ(0)'; void copy.offsetHeight; } })()");
+    await waitFor("document.fonts?.status === 'loaded'", 5000);
+    await evaluate("new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))");
+    await call("Page.getLayoutMetrics");
+    await evaluate("document.body.offsetHeight");
+    let result;
+    let previousData = null;
+    let stable = false;
+    for (let attempt = 0; attempt < 8; attempt += 1) {
+      const current = await call("Page.captureScreenshot", { format: "png", captureBeyondViewport: false, fromSurface: true });
+      if (current.data === previousData) {
+        result = current;
+        stable = true;
+        break;
+      }
+      previousData = current.data;
+      result = current;
+    }
+    if (!stable || !result) throw new Error(`Screenshot did not reach a stable compositor frame: ${name}`);
     const file = path.join(artifactsDirectory, `${name}.png`);
     await writeFile(file, Buffer.from(result.data, "base64"));
     const record = { name, profile: profileName, route, viewport, file: portablePath(file) };
@@ -305,18 +410,19 @@ try {
   }
 
   async function runSearch(profileName) {
-    const input = await selectorCenter('input[type="search"]');
+    await waitFor("Boolean(document.querySelector('[data-search-controls-ready=\"true\"] input[type=\"search\"]'))", 5000);
+    const input = await selectorCenter('[data-search-controls-ready="true"] input[type="search"]');
     if (!input) throw new Error('搜索控件缺失');
-    await pointerActivate('input[type="search"]');
+    await pointerActivate('[data-search-controls-ready="true"] input[type="search"]');
     await call("Input.insertText", { text: "视觉语言" });
-    await waitFor("location.search.includes('q=') && document.querySelector('.research-console__count')?.textContent.includes('2 / 5')", 3000);
+    await waitFor("location.search.includes('q=') && document.querySelector('.research-console__count')?.textContent.includes('2 / 5')", 5000);
     const result = await evaluate(`(() => ({ ok: true, url: location.search, summary: document.querySelector('.research-console__count')?.textContent?.replace(/\\s+/g, ' ').trim() ?? '' }))()`);
     check(profileName, "/papers", "search filters update URL and result count", result.ok && result.url.includes("q=") && result.summary.startsWith("2 / 5"), result);
     return result;
   }
 
   async function runGraph(profileName, route = "/graph", activation = "mouse") {
-    const before = [...networkRequests];
+    const before = portableRequests(activeCapture?.requests ?? []);
     const button = await selectorCenter('.knowledge-graph__load');
     const clicked = Boolean(button);
     if (clicked) await activateControl('.knowledge-graph__load', activation);
@@ -326,21 +432,22 @@ try {
       ready = await waitFor("document.querySelector('[data-knowledge-map-ready=\"true\"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0", 6000);
     }
     if (await selectorCenter('.knowledge-map__nodes button')) await activateControl('.knowledge-map__nodes button', activation === "touch" ? "keyboard" : activation);
-    await new Promise((resolve) => setTimeout(resolve, 120));
-    const after = [...networkRequests];
+    const pathReady = await waitFor("document.querySelectorAll('.knowledge-map__path a').length > 0", 3000);
+    const after = portableRequests(activeCapture?.requests ?? []);
     const graph = await evaluate(`(() => ({
       loaded: Boolean(document.querySelector('[data-knowledge-map-ready="true"]')),
       nodeCount: document.querySelectorAll('.knowledge-map__nodes button').length,
       pathCount: document.querySelectorAll('.knowledge-map__path a').length,
       allTouchSized: [...document.querySelectorAll('.knowledge-map__controls input, .knowledge-map__controls select, .knowledge-map__nodes button')].every((element) => { const rect = element.getBoundingClientRect(); return rect.width >= 44 && rect.height >= 44; }),
     }))()`);
-    check(profileName, route, "Cytoscape is absent before explicit activation", !before.some(isCytoscapeRequest), { before: before.filter(isCytoscapeRequest).map(portableUrl) });
-    check(profileName, route, "graph loads after explicit activation", clicked && ready && graph.loaded && graph.nodeCount > 0 && graph.pathCount > 0, { ...graph, activation, clicked, ready });
-    check(profileName, route, "Cytoscape request follows explicit activation", after.some(isCytoscapeRequest), { after: after.filter(isCytoscapeRequest).map(portableUrl) });
+    check(profileName, route, "Cytoscape is absent before explicit activation", !before.some(isCytoscapeRequest), { before: before.filter(isCytoscapeRequest) });
+    check(profileName, route, "graph loads after explicit activation", clicked && ready && pathReady && graph.loaded && graph.nodeCount > 0 && graph.pathCount > 0, { ...graph, activation, clicked, ready, pathReady });
+    check(profileName, route, "Cytoscape request follows explicit activation", after.some(isCytoscapeRequest), { after: after.filter(isCytoscapeRequest) });
     return { before, after, graph };
   }
 
   await call("Page.enable");
+  await call("Page.addScriptToEvaluateOnNewDocument", { source: "Object.defineProperty(window, '__BROWSER_QA__', { value: true, configurable: false, enumerable: false, writable: false });" });
   await call("Runtime.enable");
   await call("Log.enable");
   await call("Network.enable");
@@ -352,12 +459,12 @@ try {
   await navigate("/", desktop.name, { height: desktop.viewport.height });
   const hero = await waitFor(`(() => {
     const dot = document.querySelector('[data-dot-grid-state]');
-    const distortion = document.querySelector('[data-visual-failed]');
+    const distortion = document.querySelector('[data-visual-state]');
     const embodiment = document.querySelector('[data-embodiment-unit]');
     const dotState = dot?.getAttribute('data-dot-grid-state');
-    const distortionState = distortion?.getAttribute('data-visual-failed');
+    const distortionState = distortion?.getAttribute('data-visual-state');
     const embodimentState = embodiment?.getAttribute('data-embodiment-state');
-    return dot && distortion && embodiment && ['ready', 'fallback'].includes(dotState) && ['false', 'true', 'boundary'].includes(distortionState) && ['ready', 'fallback', 'fallback-error'].includes(embodimentState)
+    return dot && distortion && embodiment && ['ready', 'fallback'].includes(dotState) && ['ready', 'fallback'].includes(distortionState) && ['ready', 'fallback', 'fallback-error'].includes(embodimentState)
       ? { dotState, distortionState, embodimentState }
       : false;
   })()`, 6000);
@@ -462,6 +569,7 @@ try {
     process.exitCode = 1;
   }
   socket?.close();
-  child.kill("SIGTERM");
+  if (child.exitCode === null) child.kill("SIGTERM");
+  await waitForExit(child);
   console.log(JSON.stringify(report, null, 2));
 }

@@ -12,6 +12,7 @@
     "build": "npm run content:build && astro build",
     "preview": "astro preview",
     "qa:browser": "node scripts/browser-qa.mjs",
+    "qa:compare": "node scripts/compare-browser-qa.mjs",
     "test": "npm run build && node --test tests/*.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern generated --ignore-pattern .astro",
     "verify": "node scripts/verify-production.mjs"

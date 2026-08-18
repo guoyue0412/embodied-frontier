@@ -141,6 +141,7 @@ const DotGrid: React.FC<DotGridProps> = ({
     }
 
     const proxSq = proximity * proximity;
+    const deterministicQa = Boolean((window as Window & { __BROWSER_QA__?: boolean }).__BROWSER_QA__);
 
     const draw = () => {
       const canvas = canvasRef.current;
@@ -203,7 +204,12 @@ const DotGrid: React.FC<DotGridProps> = ({
     const handleVisibility = () => lifecycle.setDocumentVisible(document.visibilityState !== 'hidden');
     document.addEventListener('visibilitychange', handleVisibility);
     lifecycle.setDocumentVisible(document.visibilityState !== 'hidden');
-    lifecycle.start();
+    if (deterministicQa) {
+      buildGrid();
+      draw();
+    } else {
+      lifecycle.start();
+    }
     setRuntimeState('ready');
 
     return () => {

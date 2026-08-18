@@ -50,6 +50,8 @@ test("graph client QA targets the current map controls and path contract", async
   assert.match(browserQa, /allTouchSized/);
   assert.match(mapSource, /研究方向分组/);
   assert.doesNotMatch(mapSource, /研究方向聚类/);
+  assert.match(mapSource, /layout:\s*\{\s*name:\s*["']preset["']/);
+  assert.match(mapSource, /positions:/);
 });
 
 test("graph state replays delayed changes and ignores updates after disposal", async () => {
