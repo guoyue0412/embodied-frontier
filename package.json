@@ -14,8 +14,10 @@
     "astro:build": "astro build",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "qa:browser": "node scripts/browser-qa.mjs",
-    "test": "npm run build && node --test tests/*.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern generated"
+    "test:vinext": "npm run build && node --test tests/comparison-content.test.mjs tests/content-validation.test.mjs tests/knowledge-graph.test.mjs tests/rendered-html.test.mjs tests/search-index.test.mjs tests/source-boundaries.test.mjs",
+    "test:astro": "ASTRO_TELEMETRY_DISABLED=1 npm run astro:build && node --test tests/astro-foundation.test.mjs",
+    "test": "npm run test:vinext && npm run test:astro",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern generated --ignore-pattern .astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

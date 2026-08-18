@@ -151,10 +151,12 @@ Replace `tsconfig.json` with:
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "baseUrl": ".",
-    "paths": { "@/*": ["src/*"] }
+    "paths": { "@/*": ["*"] }
   }
 }
 ```
+
+While the legacy Vinext runtime remains in place through Tasks 1-3, the alias must continue resolving the repository-root `app/`, `components/`, and `lib/` trees so the existing site remains buildable. Task 4 switches this staged value to `"paths": { "@/*": ["src/*"] }` after the legacy runtime is removed and the Astro tree owns those modules.
 
 - [ ] **Step 5: Build and run the focused test**
 
@@ -535,6 +537,8 @@ git commit -m "feat: add deep-space research design system"
 - Modify: `package-lock.json`
 - Modify: `eslint.config.mjs`
 - Delete after passing equivalence: `app/`, `components/`, `worker/`, `vite.config.ts`, `next.config.ts`, `next-env.d.ts`, `app/chatgpt-auth.ts`
+
+Once the legacy runtime is deleted and the Astro source tree owns the migrated modules, update `tsconfig.json` to switch the staged alias from `"paths": { "@/*": ["*"] }` to `"paths": { "@/*": ["src/*"] }`.
 
 **Interfaces:**
 - Consumes: Astro collections and the existing pure search/comparison/graph modules.
