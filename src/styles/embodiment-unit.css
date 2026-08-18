@@ -1,0 +1,105 @@
+.embodiment-unit {
+  position: absolute;
+  inset: 5% 1% 4% 34%;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.94;
+  isolation: isolate;
+}
+
+.embodiment-unit::before,
+.embodiment-unit::after {
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgb(72 223 246 / 0.24);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.embodiment-unit::before {
+  width: min(34vw, 420px);
+  height: min(34vw, 420px);
+  top: 9%;
+  right: 14%;
+  transform: rotate(-18deg) scaleY(0.42);
+}
+
+.embodiment-unit::after {
+  width: min(28vw, 350px);
+  height: min(28vw, 350px);
+  top: 25%;
+  right: 24%;
+  border-color: rgb(72 223 246 / 0.12);
+  transform: rotate(38deg) scaleY(0.38);
+}
+
+.embodiment-unit__fallback,
+.embodiment-unit__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.embodiment-unit__fallback {
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0.24;
+  transition: opacity 220ms ease, visibility 220ms ease;
+}
+
+.embodiment-unit__fallback picture,
+.embodiment-unit__fallback img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.embodiment-unit__fallback img {
+  object-fit: cover;
+  object-position: 72% center;
+  filter: saturate(0.72) contrast(1.08);
+  mask-image: radial-gradient(ellipse at 64% 48%, black 0 34%, transparent 78%);
+}
+
+.embodiment-unit__fallback-mark {
+  position: absolute;
+  right: 8%;
+  bottom: 8%;
+  color: rgb(143 225 239 / 0.62);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
+}
+
+.embodiment-unit__canvas {
+  z-index: 1;
+  display: block;
+  opacity: 0;
+  transition: opacity 340ms ease;
+}
+
+.embodiment-unit[data-embodiment-active="true"] .embodiment-unit__fallback {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.embodiment-unit[data-embodiment-active="true"] .embodiment-unit__canvas {
+  opacity: 1;
+}
+
+@media (max-width: 767px), (pointer: coarse) {
+  .embodiment-unit {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .embodiment-unit__fallback,
+  .embodiment-unit__canvas {
+    transition: none;
+  }
+}

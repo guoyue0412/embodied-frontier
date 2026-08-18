@@ -24,7 +24,7 @@ local path and carries the complete upstream license text at
 
 - `gsap@3.15.0` — [GreenSock/GSAP](https://github.com/greensock/GSAP), used by Shuffle and DotGrid. Copyright GreenSock, Inc.; standard no-charge license terms are published at [gsap.com/standard-license](https://gsap.com/standard-license). The dependency is used as declared by the React Bits registry; no Club plugins are included.
 - `@gsap/react@2.1.2` — [greensock/react](https://github.com/greensock/react), used by Shuffle. Copyright GreenSock, Inc.; license terms are published at [gsap.com/standard-license](https://gsap.com/standard-license).
-- `three@0.180.0` — [mrdoob/three.js](https://github.com/mrdoob/three.js), used only by the lazy GridDistortion chunk. Copyright three.js authors; MIT license. It is not part of the shared initial page entry.
+- `three@0.180.0` — [mrdoob/three.js](https://github.com/mrdoob/three.js), Copyright © 2010-2025 three.js authors; MIT license (the complete text is distributed with the package at `node_modules/three/LICENSE`). It is used by the lazy `GridDistortion` and first-party procedural embodiment consumers in `src/components/vendor/react-bits/GridDistortion/GridDistortion.tsx` and `src/lib/three/create-embodiment-scene.ts`; it is not part of the shared initial page entry.
 - `@types/three@0.180.0` — [DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/three), development-only type declarations for the lazy Three.js consumer. Copyright the DefinitelyTyped contributors; MIT license. It is not shipped to browsers.
 
 ## First-party assets

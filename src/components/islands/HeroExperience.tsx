@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import DotGrid from "../vendor/react-bits/DotGrid/DotGrid";
+import EmbodimentUnit from "./EmbodimentUnit";
 import { withBase } from "../../lib/site-path.mjs";
 
 const GridDistortion = lazy(() => import("../vendor/react-bits/GridDistortion/GridDistortion"));
@@ -70,6 +71,9 @@ export default function HeroExperience({ imageSrc = "/hero-static.webp" }: HeroE
           </div>
         </>
       )}
+      <div className="hero-experience__embodiment">
+        <EmbodimentUnit imageSrc={imageSrc} />
+      </div>
     </div>
   );
 }

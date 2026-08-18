@@ -14,12 +14,13 @@ async function sourceFiles(directory) {
     .map((entry) => path.join(entry.parentPath, entry.name));
 }
 
-test("keeps the stage-one runtime lightweight and independently branded", async () => {
+test("keeps runtime dependencies bounded and independently branded", async () => {
   const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib"), sourceFiles("scripts")])).flat();
   const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).join("\n");
-  // Task 6 explicitly introduces the licensed GridDistortion island; Three.js
-  // remains forbidden here until the dedicated embodiment task owns it.
-  assert.doesNotMatch(source, /three(?:\.js)?|WebGL|react-loading-skeleton|具身星图/i);
+  const allowedThreeConsumers = files.filter((file) => /src[\\/]lib[\\/]three[\\/]create-embodiment-scene\.ts$|src[\\/]components[\\/]islands[\\/]EmbodimentUnit\.tsx$|src[\\/]components[\\/]vendor[\\/]react-bits[\\/]GridDistortion[\\/]GridDistortion\.tsx$/.test(file));
+  const boundedSource = (await Promise.all(files.filter((file) => !allowedThreeConsumers.includes(file)).map((file) => readFile(file, "utf8")))).join("\n");
+  assert.doesNotMatch(boundedSource, /three(?:\.js)?|WebGL|react-loading-skeleton|具身星图/i);
+  assert.match(source, /createEmbodimentScene/);
   assert.doesNotMatch(source, /zhuyun97|embodied-ai-learning/i);
 });
 
