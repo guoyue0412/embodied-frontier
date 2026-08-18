@@ -2,6 +2,8 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import EvidenceBadge from "../../components/static/EvidenceBadge.astro";
+import ReadingProgress from "../../components/islands/ReadingProgress";
+import EvidenceLens from "../../components/islands/EvidenceLens";
 import { withBase } from "../../lib/site-path.mjs";
 import { renderSafeMarkdownDocument } from "../../lib/safe-markdown.mjs";
 
@@ -20,11 +22,13 @@ const { html, headings } = renderSafeMarkdownDocument(paper.body ?? "");
 <SiteLayout title={paper.data.title} description={paper.data.summary}>
   <main id="main-content" class="detail-shell">
     <article>
+      <ReadingProgress client:load />
       <header class="detail-header">
         <div class="detail-header__meta"><span>{paper.data.track}</span><span>{paper.data.venue}</span><time datetime={paper.data.date}>{paper.data.date}</time><EvidenceBadge status={paper.data.status} /></div>
         <h1>{paper.data.title}</h1>
         <p>{paper.data.summary}</p>
         <div class="tag-list" aria-label="论文标签">{paper.data.tags.map((tag) => <span>{tag}</span>)}</div>
+        <EvidenceLens client:load />
       </header>
       <div class="prose" set:html={html}></div>
     </article>

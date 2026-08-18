@@ -1,0 +1,19 @@
+---
+interface Props {
+  compatible: boolean;
+  explanation: string;
+}
+
+const { compatible, explanation } = Astro.props;
+const label = compatible ? "协议一致性：可按字段核对" : "协议一致性锁：不可排序";
+const detail = explanation || (compatible
+  ? "协议键一致；仍需字段单位与数值同时一致，才会提供排序。"
+  : "协议键不一致；请先分别阅读各自协议下的字段。 ");
+---
+<div class:list={[
+  "protocol-lock",
+  compatible ? "protocol-lock--compatible" : "protocol-lock--blocked",
+]} data-protocol-compatible={compatible ? "true" : "false"} role="status" aria-live="polite">
+  <strong>{label}</strong>
+  <p>{detail}</p>
+</div>

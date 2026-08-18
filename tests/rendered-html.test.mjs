@@ -38,7 +38,10 @@ test("Astro emits every generated paper detail with record-specific evidence and
     assert.match(html, new RegExp(escapeRegExp(labels[paper.status])), paper.slug);
     for (const source of paper.sources) assert.match(html, new RegExp(escapeRegExp(source.url)), `${paper.slug}:${source.label}`);
     assert.match(html, /<h2 id="[^"]+">/, paper.slug);
-    assert.doesNotMatch(html, /<script\b|\son[a-z]+\s*=|<h1\b[^>]*>[^<]+<\/h1>[\s\S]*<h1\b/i, paper.slug);
+    const prose = html.match(/<div class="prose">([\s\S]*?)<\/div>/)?.[1] ?? "";
+    assert.doesNotMatch(prose, /<script\b|\son[a-z]+\s*=/i, paper.slug);
+    assert.doesNotMatch(html, /\son[a-z]+\s*=/i, paper.slug);
+    assert.doesNotMatch(html, /<h1\b[^>]*>[^<]+<\/h1>[\s\S]*<h1\b/i, paper.slug);
   }
 });
 

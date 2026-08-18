@@ -1,6 +1,8 @@
 ---
 import type { EvidenceFact } from "../../../lib/content/types";
 import EvidenceBadge from "./EvidenceBadge.astro";
+import ProtocolLock from "./ProtocolLock.astro";
+import { canRankFields, protocolMismatch, protocolsCompatible } from "../../lib/comparison-core.mjs";
 
 interface ComparisonRecord {
   slug: string;
@@ -47,11 +49,29 @@ function factText(fact?: EvidenceFact) {
 }
 
 const anchorIdFor = (record: ComparisonRecord) => `${idPrefix}-${record.slug}`;
+const rankable = (field: Field) => {
+  if (field.kind !== "fact") return false;
+  const candidates = records
+    .map((record) => {
+      const fact = factFor(record, field);
+      return { protocol: record.protocol, unit: fact?.unit, value: fact?.value };
+    });
+  const numericCount = candidates.filter((candidate) => typeof candidate.value === "number").length;
+  return numericCount >= 2 && canRankFields(candidates);
+};
+const compatible = protocolsCompatible(records);
+const protocolExplanation = protocolMismatch(records) ?? "协议键一致；仍需字段单位与数值同时一致，才会提供排序。";
 ---
 <div class="comparison-wrap">
+  <ProtocolLock compatible={compatible} explanation={protocolExplanation} />
   <div class="protocol-notice">
     <strong>对比协议</strong>
     <p>只并列呈现事实字段。协议键不同的记录不会生成跨协议排名；空值明确显示，不以推测补齐。</p>
+  </div>
+  <div class="comparison-tools" aria-label={`${caption}排序工具`}>
+    {fields.map((field) => rankable(field) && <button class="comparison-sort" type="button" data-sort-field={field.key} data-sort-direction="desc" aria-label={`按${field.label}从高到低排序`}>
+      按{field.label}从高到低
+    </button>)}
   </div>
   <table class="comparison-table">
     <caption>{caption} · 字段级证据</caption>
@@ -60,7 +80,7 @@ const anchorIdFor = (record: ComparisonRecord) => `${idPrefix}-${record.slug}`;
       {records.map((record) => <tr id={anchorIdFor(record)} data-comparison-anchor={anchorIdFor(record)}>
         <th scope="row"><strong>{record.title}</strong><small>{record.summary}</small></th>
         {fields.map((field) => <td>
-          {field.kind === "fact" ? <div class="fact-cell">
+          {field.kind === "fact" ? <div class="fact-cell" data-comparison-field={field.key} data-comparison-value={typeof factFor(record, field)?.value === "number" ? String(factFor(record, field)?.value) : undefined}>
             <strong class={factFor(record, field)?.value === null || !factFor(record, field) ? "missing-value" : undefined}>{factText(factFor(record, field))}</strong>
             {factFor(record, field) && <><EvidenceBadge status={factFor(record, field)!.status} /><a href={factFor(record, field)!.source} target="_blank" rel="noreferrer noopener">来源 ↗</a></>}
           </div> : valueFor(record, field)}
@@ -75,7 +95,7 @@ const anchorIdFor = (record: ComparisonRecord) => `${idPrefix}-${record.slug}`;
       <dl>{fields.map((field) => <div>
         <dt>{field.label}</dt>
         <dd>
-          {field.kind === "fact" ? <div class="fact-cell">
+          {field.kind === "fact" ? <div class="fact-cell" data-comparison-field={field.key} data-comparison-value={typeof factFor(record, field)?.value === "number" ? String(factFor(record, field)?.value) : undefined}>
             <strong class={factFor(record, field)?.value === null || !factFor(record, field) ? "missing-value" : undefined}>{factText(factFor(record, field))}</strong>
             {factFor(record, field) && <><EvidenceBadge status={factFor(record, field)!.status} /><a href={factFor(record, field)!.source} target="_blank" rel="noreferrer noopener">来源 ↗</a></>}
           </div> : valueFor(record, field)}
@@ -103,4 +123,38 @@ const anchorIdFor = (record: ComparisonRecord) => `${idPrefix}-${record.slug}`;
   window.addEventListener("hashchange", focusComparisonAnchor);
   window.addEventListener("load", focusComparisonAnchor, { once: true });
   requestAnimationFrame(focusComparisonAnchor);
+
+  const sortComparisonRecords = (button) => {
+    const wrap = button.closest(".comparison-wrap");
+    const field = button.dataset.sortField;
+    if (!wrap || !field) return;
+    const direction = button.dataset.sortDirection === "asc" ? "asc" : "desc";
+    const readValue = (record) => {
+      const cell = [...record.querySelectorAll("[data-comparison-field]")]
+        .find((candidate) => candidate.getAttribute("data-comparison-field") === field);
+      const value = Number(cell?.getAttribute("data-comparison-value"));
+      return Number.isFinite(value) ? value : null;
+    };
+    const compare = (left, right) => {
+      const a = readValue(left);
+      const b = readValue(right);
+      if (a === null && b === null) return 0;
+      if (a === null) return 1;
+      if (b === null) return -1;
+      return (b - a) * (direction === "desc" ? 1 : -1);
+    };
+    const body = wrap.querySelector(".comparison-table tbody");
+    if (body) [...body.children].sort(compare).forEach((row) => body.append(row));
+    const cards = wrap.querySelector(".comparison-cards");
+    if (cards) [...cards.children].sort(compare).forEach((card) => cards.append(card));
+    const nextDirection = direction === "desc" ? "asc" : "desc";
+    const fieldLabel = button.textContent.replace(/^按/, "").replace(/从高到低|从低到高/g, "");
+    button.dataset.sortDirection = nextDirection;
+    button.textContent = `按${fieldLabel}从${nextDirection === "desc" ? "高到低" : "低到高"}`;
+    button.setAttribute("aria-label", button.textContent);
+  };
+
+  document.querySelectorAll(".comparison-sort").forEach((button) => {
+    button.addEventListener("click", () => sortComparisonRecords(button));
+  });
 </script>
