@@ -6,7 +6,9 @@ import PaperCard from "../components/static/PaperCard.astro";
 import ProjectCard from "../components/static/ProjectCard.astro";
 import ResearchTrackCard from "../components/static/ResearchTrackCard.astro";
 import SectionHeading from "../components/static/SectionHeading.astro";
+import HeroExperience from "../components/islands/HeroExperience";
 import { withBase } from "../lib/site-path.mjs";
+import "../styles/hero.css";
 
 const [paperEntries, roadmapEntries, projectEntries] = await Promise.all([
   getCollection("papers"),
@@ -30,7 +32,9 @@ const evidenceCopy = [
 ---
 <SiteLayout title="具身智能研究坐标" description="从 VLA、世界模型到数据与评测，以来源、协议和实验边界组织具身智能研究。">
   <main id="main-content">
-    <section class="hero page-shell">
+    <section class="hero page-shell" data-static-hero>
+      <img class="hero__static-art" src={withBase("/hero-static.webp")} alt="" aria-hidden="true" />
+      <HeroExperience client:idle imageSrc="/hero-static.webp" />
       <div class="hero__copy">
         <span class="eyebrow">EMBODIED INTELLIGENCE · FIELD NOTES</span>
         <h1>把具身智能研究，<br />整理成可验证的坐标。</h1>

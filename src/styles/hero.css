@@ -1,0 +1,81 @@
+.hero {
+  isolation: isolate;
+  overflow: clip;
+  background: linear-gradient(90deg, var(--space-void) 0%, color-mix(in srgb, var(--space-void) 86%, transparent) 42%, color-mix(in srgb, var(--space-void) 24%, transparent) 100%);
+}
+
+.hero::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(circle at 76% 70%, rgb(72 223 246 / 0.12), transparent 42%);
+  content: "";
+  pointer-events: none;
+}
+
+.hero__copy,
+.hero__ledger {
+  position: relative;
+  z-index: 2;
+}
+
+.hero__static-art {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% center;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.hero__copy {
+  max-width: 760px;
+}
+
+.hero-experience {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-experience__dots,
+.hero-experience__distortion {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-experience__dots {
+  opacity: 0.38;
+  mix-blend-mode: screen;
+}
+
+.hero-experience__dots .dot-grid {
+  padding: 0;
+}
+
+.hero-experience__distortion {
+  left: 48%;
+  opacity: 0.2;
+  mix-blend-mode: screen;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    background-position: 68% center;
+  }
+
+  .hero-experience {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-experience {
+    display: none;
+  }
+}

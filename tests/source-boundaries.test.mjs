@@ -17,7 +17,9 @@ async function sourceFiles(directory) {
 test("keeps the stage-one runtime lightweight and independently branded", async () => {
   const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib"), sourceFiles("scripts")])).flat();
   const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).join("\n");
-  assert.doesNotMatch(source, /three(?:\.js)?|WebGL|react-loading-skeleton|GridDistortion|具身星图/i);
+  // Task 6 explicitly introduces the licensed GridDistortion island; Three.js
+  // remains forbidden here until the dedicated embodiment task owns it.
+  assert.doesNotMatch(source, /three(?:\.js)?|WebGL|react-loading-skeleton|具身星图/i);
   assert.doesNotMatch(source, /zhuyun97|embodied-ai-learning/i);
 });
 
