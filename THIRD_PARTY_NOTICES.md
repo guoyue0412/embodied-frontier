@@ -2,15 +2,16 @@
 
 This file records the provenance and license boundary for code and assets that
 are shipped in the research station. Vendored source remains in its stated
-local path and is not a replacement for the upstream license text.
+local path and carries the complete upstream license text at
+`src/components/vendor/react-bits/LICENSE.md`.
 
 ## React Bits visual components
 
 - Upstream: [DavidHDev/react-bits](https://github.com/DavidHDev/react-bits)
 - Pinned upstream revision: [`4e0e030193b563be6be33d928f77d0d01cefe237`](https://github.com/DavidHDev/react-bits/commit/4e0e030193b563be6be33d928f77d0d01cefe237)
 - Registry metadata: [React Bits registry](https://reactbits.dev/r/{name}.json)
-- Copyright: David Haz and React Bits contributors
-- License: MIT + Commons Clause, as published by the upstream repository at the pinned revision. This site uses the components for the site's own interface and does not sell or repackage React Bits as a component library.
+- Copyright: Copyright (c) 2026 David Haz
+- License: MIT + Commons Clause License Condition v1.0, reproduced in full at `src/components/vendor/react-bits/LICENSE.md` from the pinned upstream revision. This site uses the components for the site's own interface and does not sell or repackage React Bits as a component library.
 - Imported registry variants: the official React/TypeScript CSS variants only; Vue ports and reference-site source/assets are not used.
 
 | Component | Registry item | Local files |

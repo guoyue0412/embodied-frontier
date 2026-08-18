@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { bindScopedInteraction, createAnimationLifecycle, createFailureGate } from '../../../../lib/hero-visual-runtime.mjs';
 import './GridDistortion.css';
 
 interface GridDistortionProps {
@@ -45,232 +46,273 @@ const GridDistortion: React.FC<GridDistortionProps> = ({
   className = ''
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<THREE.Scene | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const cameraRef = useRef<THREE.OrthographicCamera | null>(null);
-  const planeRef = useRef<THREE.Mesh | null>(null);
-  const imageAspectRef = useRef<number>(1);
-  const animationIdRef = useRef<number | null>(null);
-  const resizeObserverRef = useRef<ResizeObserver | null>(null);
+  const lifecycleRef = useRef<ReturnType<typeof createAnimationLifecycle> | null>(null);
+  const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || failed) return;
 
     const container = containerRef.current;
+    let cleanedUp = false;
+    let scene: THREE.Scene | null = null;
+    let renderer: THREE.WebGLRenderer | null = null;
+    let camera: THREE.OrthographicCamera | null = null;
+    let geometry: THREE.PlaneGeometry | null = null;
+    let material: THREE.ShaderMaterial | null = null;
+    let plane: THREE.Mesh | null = null;
+    let dataTexture: THREE.DataTexture | null = null;
+    let loadedTexture: THREE.Texture | null = null;
+    let resizeObserver: ResizeObserver | null = null;
+    let fallbackResize: (() => void) | null = null;
+    let observer: IntersectionObserver | null = null;
+    let lifecycle: ReturnType<typeof createAnimationLifecycle> | null = null;
+    let removeRuntimeListeners: (() => void) | null = null;
 
-    const scene = new THREE.Scene();
-    sceneRef.current = scene;
-
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: 'high-performance'
+    const failure = createFailureGate((error) => {
+      if (cleanedUp) return;
+      console.warn('[GridDistortion] enhancement disabled; static hero remains active.', error);
+      lifecycle?.stop();
+      setFailed(true);
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setClearColor(0x000000, 0);
-    rendererRef.current = renderer;
 
-    container.innerHTML = '';
-    container.appendChild(renderer.domElement);
-
-    const camera = new THREE.OrthographicCamera(0, 0, 0, 0, -1000, 1000);
-    camera.position.z = 2;
-    cameraRef.current = camera;
-
-    const uniforms = {
-      time: { value: 0 },
-      resolution: { value: new THREE.Vector4() },
-      uTexture: { value: null as THREE.Texture | null },
-      uDataTexture: { value: null as THREE.DataTexture | null }
+    const cleanup = () => {
+      if (cleanedUp) return;
+      cleanedUp = true;
+      observer?.disconnect();
+      resizeObserver?.disconnect();
+      if (fallbackResize) window.removeEventListener('resize', fallbackResize);
+      removeRuntimeListeners?.();
+      removeRuntimeListeners = null;
+      lifecycle?.dispose();
+      if (renderer) {
+        renderer.dispose();
+        try {
+          renderer.forceContextLoss();
+        } catch {
+          // Context loss is best-effort during teardown.
+        }
+        if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
+      }
+      geometry?.dispose();
+      material?.dispose();
+      dataTexture?.dispose();
+      loadedTexture?.dispose();
+      lifecycleRef.current = null;
     };
-
-    const textureLoader = new THREE.TextureLoader();
-    textureLoader.load(imageSrc, (texture: THREE.Texture) => {
-      texture.minFilter = THREE.LinearFilter;
-      texture.magFilter = THREE.LinearFilter;
-      texture.wrapS = THREE.ClampToEdgeWrapping;
-      texture.wrapT = THREE.ClampToEdgeWrapping;
-      imageAspectRef.current = texture.image.width / texture.image.height;
-      uniforms.uTexture.value = texture;
-      handleResize();
-    });
-
-    const size = grid;
-    const data = new Float32Array(4 * size * size);
-    for (let i = 0; i < size * size; i++) {
-      data[i * 4] = Math.random() * 255 - 125;
-      data[i * 4 + 1] = Math.random() * 255 - 125;
-    }
-
-    const dataTexture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat, THREE.FloatType);
-    dataTexture.needsUpdate = true;
-    uniforms.uDataTexture.value = dataTexture;
-
-    const material = new THREE.ShaderMaterial({
-      side: THREE.DoubleSide,
-      uniforms,
-      vertexShader,
-      fragmentShader,
-      transparent: true
-    });
-
-    const geometry = new THREE.PlaneGeometry(1, 1, size - 1, size - 1);
-    const plane = new THREE.Mesh(geometry, material);
-    planeRef.current = plane;
-    scene.add(plane);
 
     const handleResize = () => {
-      if (!container || !renderer || !camera) return;
+      try {
+        if (!container || !renderer || !camera || !plane || !dataTexture) return;
 
-      const rect = container.getBoundingClientRect();
-      const width = rect.width;
-      const height = rect.height;
+        const rect = container.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        if (width === 0 || height === 0) return;
 
-      if (width === 0 || height === 0) return;
-
-      const containerAspect = width / height;
-
-      renderer.setSize(width, height);
-
-      if (plane) {
+        const containerAspect = width / height;
+        renderer.setSize(width, height);
         plane.scale.set(containerAspect, 1, 1);
-      }
 
-      const frustumHeight = 1;
-      const frustumWidth = frustumHeight * containerAspect;
-      camera.left = -frustumWidth / 2;
-      camera.right = frustumWidth / 2;
-      camera.top = frustumHeight / 2;
-      camera.bottom = -frustumHeight / 2;
-      camera.updateProjectionMatrix();
-
-      uniforms.resolution.value.set(width, height, 1, 1);
-    };
-
-    if (window.ResizeObserver) {
-      const resizeObserver = new ResizeObserver(() => {
-        handleResize();
-      });
-      resizeObserver.observe(container);
-      resizeObserverRef.current = resizeObserver;
-    } else {
-      window.addEventListener('resize', handleResize);
-    }
-
-    const mouseState = {
-      x: 0,
-      y: 0,
-      prevX: 0,
-      prevY: 0,
-      vX: 0,
-      vY: 0
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = 1 - (e.clientY - rect.top) / rect.height;
-      mouseState.vX = x - mouseState.prevX;
-      mouseState.vY = y - mouseState.prevY;
-      Object.assign(mouseState, { x, y, prevX: x, prevY: y });
-    };
-
-    const handleMouseLeave = () => {
-      if (dataTexture) {
+        const frustumHeight = 1;
+        const frustumWidth = frustumHeight * containerAspect;
+        camera.left = -frustumWidth / 2;
+        camera.right = frustumWidth / 2;
+        camera.top = frustumHeight / 2;
+        camera.bottom = -frustumHeight / 2;
+        camera.updateProjectionMatrix();
         dataTexture.needsUpdate = true;
+      } catch (error) {
+        failure.fail(error);
       }
-      Object.assign(mouseState, {
+    };
+
+    try {
+      scene = new THREE.Scene();
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance'
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x000000, 0);
+      container.replaceChildren(renderer.domElement);
+
+      camera = new THREE.OrthographicCamera(0, 0, 0, 0, -1000, 1000);
+      camera.position.z = 2;
+
+      const uniforms = {
+        time: { value: 0 },
+        resolution: { value: new THREE.Vector4() },
+        uTexture: { value: null as THREE.Texture | null },
+        uDataTexture: { value: null as THREE.DataTexture | null }
+      };
+
+      const size = grid;
+      const data = new Float32Array(4 * size * size);
+      for (let i = 0; i < size * size; i++) {
+        data[i * 4] = Math.random() * 255 - 125;
+        data[i * 4 + 1] = Math.random() * 255 - 125;
+      }
+
+      dataTexture = new THREE.DataTexture(data, size, size, THREE.RGBAFormat, THREE.FloatType);
+      dataTexture.needsUpdate = true;
+      uniforms.uDataTexture.value = dataTexture;
+
+      material = new THREE.ShaderMaterial({
+        side: THREE.DoubleSide,
+        uniforms,
+        vertexShader,
+        fragmentShader,
+        transparent: true
+      });
+
+      geometry = new THREE.PlaneGeometry(1, 1, size - 1, size - 1);
+      plane = new THREE.Mesh(geometry, material);
+      scene.add(plane);
+
+      const mouseState = {
         x: 0,
         y: 0,
         prevX: 0,
         prevY: 0,
         vX: 0,
         vY: 0
-      });
-    };
+      };
 
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseleave', handleMouseLeave);
+      const animate = () => {
+        if (cleanedUp || !renderer || !scene || !camera || !dataTexture) return;
+        if (!(dataTexture.image.data instanceof Float32Array)) {
+          failure.fail(new Error('GridDistortion data texture is unavailable.'));
+          return;
+        }
 
-    handleResize();
-
-    const animate = () => {
-      animationIdRef.current = requestAnimationFrame(animate);
-
-      if (!renderer || !scene || !camera) return;
-
-      uniforms.time.value += 0.05;
-
-      if (!(dataTexture.image.data instanceof Float32Array)) {
-        console.error('dataTexture.image.data is not a Float32Array');
-        return;
-      }
-      const data: Float32Array = dataTexture.image.data;
-      for (let i = 0; i < size * size; i++) {
-        data[i * 4] *= relaxation;
-        data[i * 4 + 1] *= relaxation;
-      }
-
-      const gridMouseX = size * mouseState.x;
-      const gridMouseY = size * mouseState.y;
-      const maxDist = size * mouse;
-
-      for (let i = 0; i < size; i++) {
-        for (let j = 0; j < size; j++) {
-          const distSq = Math.pow(gridMouseX - i, 2) + Math.pow(gridMouseY - j, 2);
-          if (distSq < maxDist * maxDist) {
-            const index = 4 * (i + size * j);
-            const power = Math.min(maxDist / Math.sqrt(distSq), 10);
-            data[index] += strength * 100 * mouseState.vX * power;
-            data[index + 1] -= strength * 100 * mouseState.vY * power;
+        try {
+          uniforms.time.value += 0.05;
+          const textureData = dataTexture.image.data;
+          for (let i = 0; i < size * size; i++) {
+            textureData[i * 4] *= relaxation;
+            textureData[i * 4 + 1] *= relaxation;
           }
+
+          const gridMouseX = size * mouseState.x;
+          const gridMouseY = size * mouseState.y;
+          const maxDist = size * mouse;
+          for (let i = 0; i < size; i++) {
+            for (let j = 0; j < size; j++) {
+              const distSq = Math.pow(gridMouseX - i, 2) + Math.pow(gridMouseY - j, 2);
+              if (distSq < maxDist * maxDist) {
+                const index = 4 * (i + size * j);
+                const power = Math.min(maxDist / Math.sqrt(distSq), 10);
+                textureData[index] += strength * 100 * mouseState.vX * power;
+                textureData[index + 1] -= strength * 100 * mouseState.vY * power;
+              }
+            }
+          }
+
+          dataTexture.needsUpdate = true;
+          renderer.render(scene, camera);
+        } catch (error) {
+          failure.fail(error);
         }
+      };
+
+      lifecycle = createAnimationLifecycle({
+        requestFrame: (callback) => window.requestAnimationFrame(callback),
+        cancelFrame: (id) => window.cancelAnimationFrame(id),
+        onFrame: animate
+      });
+      lifecycleRef.current = lifecycle;
+
+      const observedElement = container;
+      observer = 'IntersectionObserver' in window
+        ? new IntersectionObserver(([entry]) => lifecycle?.setIntersecting(entry?.isIntersecting === true), { threshold: 0 })
+        : null;
+      if (observer) observer.observe(observedElement);
+      else lifecycle.setIntersecting(true);
+
+      const handleVisibility = () => lifecycle?.setDocumentVisible(document.visibilityState !== 'hidden');
+      document.addEventListener('visibilitychange', handleVisibility);
+      lifecycle.setDocumentVisible(document.visibilityState !== 'hidden');
+
+      resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(handleResize) : null;
+      if (resizeObserver) resizeObserver.observe(container);
+      else {
+        fallbackResize = handleResize;
+        window.addEventListener('resize', fallbackResize);
       }
 
-      dataTexture.needsUpdate = true;
-      renderer.render(scene, camera);
-    };
+      const handleMouseMove = (event: Event) => {
+        const e = event as MouseEvent;
+        if (!lifecycle?.active) return;
+        const rect = container.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = 1 - (e.clientY - rect.top) / rect.height;
+        mouseState.vX = x - mouseState.prevX;
+        mouseState.vY = y - mouseState.prevY;
+        Object.assign(mouseState, { x, y, prevX: x, prevY: y });
+      };
 
-    animate();
+      const handleMouseLeave = () => {
+        Object.assign(mouseState, {
+          x: 0,
+          y: 0,
+          prevX: 0,
+          prevY: 0,
+          vX: 0,
+          vY: 0
+        });
+      };
 
-    return () => {
-      if (animationIdRef.current) {
-        cancelAnimationFrame(animationIdRef.current);
-      }
+      const removeInteraction = bindScopedInteraction(container, [
+        { type: 'mousemove', listener: handleMouseMove, options: { passive: true } },
+        { type: 'mouseleave', listener: handleMouseLeave }
+      ]);
+      removeRuntimeListeners = () => {
+        document.removeEventListener('visibilitychange', handleVisibility);
+        removeInteraction();
+      };
 
-      if (resizeObserverRef.current) {
-        resizeObserverRef.current.disconnect();
-      } else {
-        window.removeEventListener('resize', handleResize);
-      }
+      const textureLoader = new THREE.TextureLoader();
+      textureLoader.load(
+        imageSrc,
+        (texture: THREE.Texture) => {
+          if (cleanedUp || failure.failed) {
+            texture.dispose();
+            return;
+          }
+          if (!texture.image?.width || !texture.image?.height) {
+            texture.dispose();
+            failure.fail(new Error('GridDistortion texture has no usable dimensions.'));
+            return;
+          }
+          texture.minFilter = THREE.LinearFilter;
+          texture.magFilter = THREE.LinearFilter;
+          texture.wrapS = THREE.ClampToEdgeWrapping;
+          texture.wrapT = THREE.ClampToEdgeWrapping;
+          loadedTexture = texture;
+          uniforms.uTexture.value = texture;
+          handleResize();
+          if (!failure.failed) lifecycle?.start();
+        },
+        undefined,
+        (error) => failure.fail(error)
+      );
 
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mouseleave', handleMouseLeave);
-
-      if (renderer) {
-        renderer.dispose();
-        renderer.forceContextLoss();
-        if (container.contains(renderer.domElement)) {
-          container.removeChild(renderer.domElement);
-        }
-      }
-
-      if (geometry) geometry.dispose();
-      if (material) material.dispose();
-      if (dataTexture) dataTexture.dispose();
-      if (uniforms.uTexture.value) uniforms.uTexture.value.dispose();
-
-      sceneRef.current = null;
-      rendererRef.current = null;
-      cameraRef.current = null;
-      planeRef.current = null;
-    };
-  }, [grid, mouse, strength, relaxation, imageSrc]);
+      return () => {
+        cleanup();
+      };
+    } catch (error) {
+      failure.fail(error);
+      return cleanup;
+    }
+  }, [grid, mouse, strength, relaxation, imageSrc, failed]);
 
   return (
     <div
       ref={containerRef}
       className={`distortion-container ${className}`}
+      data-visual-failed={failed ? 'true' : 'false'}
       style={{
         width: '100%',
         height: '100%',

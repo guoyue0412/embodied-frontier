@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useCallback, useMemo } from 'react';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
+import { bindScopedInteraction, createAnimationLifecycle } from '../../../../lib/hero-visual-runtime.mjs';
 
 import './DotGrid.css';
 
@@ -80,6 +81,7 @@ const DotGrid: React.FC<DotGridProps> = ({
     lastX: 0,
     lastY: 0
   });
+  const lifecycleRef = useRef<ReturnType<typeof createAnimationLifecycle> | null>(null);
 
   const baseRgb = useMemo(() => hexToRgb(baseColor), [baseColor]);
   const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor]);
@@ -105,7 +107,7 @@ const DotGrid: React.FC<DotGridProps> = ({
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
     const ctx = canvas.getContext('2d');
-    if (ctx) ctx.scale(dpr, dpr);
+    if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const cols = Math.floor((width + gap) / (dotSize + gap));
     const rows = Math.floor((height + gap) / (dotSize + gap));
@@ -134,7 +136,6 @@ const DotGrid: React.FC<DotGridProps> = ({
   useEffect(() => {
     if (!circlePath) return;
 
-    let rafId: number;
     const proxSq = proximity * proximity;
 
     const draw = () => {
@@ -169,12 +170,43 @@ const DotGrid: React.FC<DotGridProps> = ({
         ctx.fill(circlePath);
         ctx.restore();
       }
-
-      rafId = requestAnimationFrame(draw);
     };
 
-    draw();
-    return () => cancelAnimationFrame(rafId);
+    const lifecycle = createAnimationLifecycle({
+      requestFrame: (callback) => window.requestAnimationFrame(callback),
+      cancelFrame: (id) => window.cancelAnimationFrame(id),
+      onFrame: draw,
+      onActiveChange: (active) => {
+        if (!active) {
+          gsap.killTweensOf(dotsRef.current);
+          for (const dot of dotsRef.current) {
+            dot.xOffset = 0;
+            dot.yOffset = 0;
+            dot._inertiaApplied = false;
+          }
+        }
+      }
+    });
+    lifecycleRef.current = lifecycle;
+
+    const observedElement = wrapperRef.current;
+    const observer = 'IntersectionObserver' in window && observedElement
+      ? new IntersectionObserver(([entry]) => lifecycle.setIntersecting(entry?.isIntersecting === true), { threshold: 0 })
+      : null;
+    if (observer && observedElement) observer.observe(observedElement);
+    else lifecycle.setIntersecting(true);
+
+    const handleVisibility = () => lifecycle.setDocumentVisible(document.visibilityState !== 'hidden');
+    document.addEventListener('visibilitychange', handleVisibility);
+    lifecycle.setDocumentVisible(document.visibilityState !== 'hidden');
+    lifecycle.start();
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+      observer?.disconnect();
+      lifecycle.dispose();
+      if (lifecycleRef.current === lifecycle) lifecycleRef.current = null;
+    };
   }, [proximity, baseColor, activeRgb, baseRgb, circlePath]);
 
   useEffect(() => {
@@ -193,7 +225,9 @@ const DotGrid: React.FC<DotGridProps> = ({
   }, [buildGrid]);
 
   useEffect(() => {
-    const onMove = (e: MouseEvent) => {
+    const onMove = (event: Event) => {
+      const e = event as MouseEvent;
+      if (!lifecycleRef.current?.active || !canvasRef.current) return;
       const now = performance.now();
       const pr = pointerRef.current;
       const dt = pr.lastTime ? now - pr.lastTime : 16;
@@ -215,7 +249,7 @@ const DotGrid: React.FC<DotGridProps> = ({
       pr.vy = vy;
       pr.speed = speed;
 
-      const rect = canvasRef.current!.getBoundingClientRect();
+      const rect = canvasRef.current.getBoundingClientRect();
       pr.x = e.clientX - rect.left;
       pr.y = e.clientY - rect.top;
 
@@ -242,8 +276,10 @@ const DotGrid: React.FC<DotGridProps> = ({
       }
     };
 
-    const onClick = (e: MouseEvent) => {
-      const rect = canvasRef.current!.getBoundingClientRect();
+    const onClick = (event: Event) => {
+      const e = event as MouseEvent;
+      if (!lifecycleRef.current?.active || !canvasRef.current) return;
+      const rect = canvasRef.current.getBoundingClientRect();
       const cx = e.clientX - rect.left;
       const cy = e.clientY - rect.top;
       for (const dot of dotsRef.current) {
@@ -271,13 +307,10 @@ const DotGrid: React.FC<DotGridProps> = ({
     };
 
     const throttledMove = throttle(onMove, 50);
-    window.addEventListener('mousemove', throttledMove, { passive: true });
-    window.addEventListener('click', onClick);
-
-    return () => {
-      window.removeEventListener('mousemove', throttledMove);
-      window.removeEventListener('click', onClick);
-    };
+    return bindScopedInteraction(wrapperRef.current, [
+      { type: 'mousemove', listener: throttledMove, options: { passive: true } },
+      { type: 'click', listener: onClick }
+    ]);
   }, [maxSpeed, speedTrigger, proximity, resistance, returnDuration, shockRadius, shockStrength]);
 
   return (

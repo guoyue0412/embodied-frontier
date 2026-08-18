@@ -1,8 +1,24 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import DotGrid from "../vendor/react-bits/DotGrid/DotGrid";
 import { withBase } from "../../lib/site-path.mjs";
 
 const GridDistortion = lazy(() => import("../vendor/react-bits/GridDistortion/GridDistortion"));
+
+class VisualErrorBoundary extends React.Component<React.PropsWithChildren, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  componentDidCatch(error: unknown) {
+    console.warn("[HeroExperience] optional visual enhancement disabled; static hero remains active.", error);
+  }
+
+  render() {
+    return this.state.failed ? null : this.props.children;
+  }
+}
 
 interface CapabilityState {
   enhanced: boolean;
@@ -46,9 +62,11 @@ export default function HeroExperience({ imageSrc = "/hero-static.webp" }: HeroE
             <DotGrid dotSize={2} gap={22} baseColor="#18314d" activeColor="#48dff6" proximity={140} shockRadius={180} />
           </div>
           <div className="hero-experience__distortion">
-            <Suspense fallback={null}>
-              <GridDistortion imageSrc={withBase(imageSrc)} grid={18} mouse={0.1} strength={0.12} relaxation={0.92} />
-            </Suspense>
+            <VisualErrorBoundary>
+              <Suspense fallback={null}>
+                <GridDistortion imageSrc={withBase(imageSrc)} grid={18} mouse={0.1} strength={0.12} relaxation={0.92} />
+              </Suspense>
+            </VisualErrorBoundary>
           </div>
         </>
       )}

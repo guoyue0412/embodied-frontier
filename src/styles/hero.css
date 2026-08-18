@@ -40,6 +40,9 @@
   z-index: 1;
   inset: 0;
   overflow: hidden;
+  /* The visual layer never owns hit-testing. Vendor listeners bind to the
+     nearest [data-static-hero] ancestor, so bubbling events still animate the
+     backdrop while links and buttons keep their normal target/default action. */
   pointer-events: none;
 }
 
