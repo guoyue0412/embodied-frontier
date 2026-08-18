@@ -31,10 +31,18 @@ function stringArray(data, field, file, { min = 0 } = {}) {
 
 function isoDate(data, field, file) {
   const value = requiredString(data, field, file);
-  if (!datePattern.test(value) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) {
+  if (!isRealCalendarDate(value)) {
     fail(file, `${field} must be YYYY-MM-DD`);
   }
   return value;
+}
+
+function isRealCalendarDate(value) {
+  if (!datePattern.test(value)) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const daysInMonth = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  return month >= 1 && month <= 12 && day >= 1 && day <= daysInMonth[month - 1];
 }
 
 function slug(data, file) {
