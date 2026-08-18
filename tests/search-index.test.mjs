@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { buildSearchIndex, filtersFromSearchParams, searchRecords } from "../lib/search-core.mjs";
+import { buildSearchIndex, filtersFromSearchParams, searchRecords } from "../src/lib/search-core.mjs";
 
 const papers = [
   {

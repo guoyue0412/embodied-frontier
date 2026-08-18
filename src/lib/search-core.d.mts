@@ -1,4 +1,4 @@
-import type { EvidenceStatus } from "./content/types";
+import type { EvidenceStatus } from "../../lib/content/types";
 
 export interface SearchRecord {
   slug: string;

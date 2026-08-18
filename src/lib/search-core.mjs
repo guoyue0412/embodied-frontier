@@ -37,7 +37,7 @@ export function searchRecords(records, filters = {}) {
 
 export function filtersFromSearchParams(params) {
   const filters = {};
-  const mapping = { q: "query", track: "track", tag: "tag", year: "year", venue: "venue", status: "status" };
+  const mapping = { q: "query", query: "query", track: "track", tag: "tag", year: "year", venue: "venue", status: "status" };
   for (const [param, key] of Object.entries(mapping)) {
     const value = params.get(param)?.trim();
     if (value) filters[key] = value;
