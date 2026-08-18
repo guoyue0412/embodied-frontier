@@ -15,6 +15,7 @@ test("the design system exposes required semantic and motion tokens", async () =
 });
 
 test("the base-path helper joins root and GitHub Pages paths", () => {
+  assert.equal(withBase("/"), "/");
   assert.equal(withBase("/", "/"), "/");
   assert.equal(withBase("/papers/", "/"), "/papers/");
   assert.equal(withBase("/", "/embodied-frontier/"), "/embodied-frontier/");
