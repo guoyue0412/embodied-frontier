@@ -95,7 +95,7 @@ export function compareMetric(records, metric) {
   if (!gate.compatible) {
     return { comparable: false, ranking: [], warning: gate.reason };
   }
-  const present = candidates.filter((candidate) => typeof candidate.value === "number");
+  const present = candidates.filter((candidate) => Number.isFinite(candidate.value));
   if (present.length < 2) {
     return { comparable: false, ranking: [], warning: "可比较的数值字段不足，禁止生成排名。" };
   }
