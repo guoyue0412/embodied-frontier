@@ -11,8 +11,10 @@
     "dev": "astro dev",
     "build": "npm run content:build && astro build",
     "preview": "astro preview",
+    "qa:browser": "node scripts/browser-qa.mjs",
     "test": "npm run build && node --test tests/*.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern generated --ignore-pattern .astro"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern generated --ignore-pattern .astro",
+    "verify": "npm run test && npm run lint && node scripts/check-static-site.mjs && node scripts/check-bundle-budget.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

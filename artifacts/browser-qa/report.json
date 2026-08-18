@@ -1,0 +1,3088 @@
+{
+  "timestamp": "2026-08-18T15:11:09.615Z",
+  "siteUrl": "http://127.0.0.1:4323/",
+  "artifactsDirectory": "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa",
+  "profiles": [
+    {
+      "name": "desktop",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "reducedMotion": false,
+      "touch": false
+    },
+    {
+      "name": "mobile-touch",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "reducedMotion": false,
+      "touch": true
+    },
+    {
+      "name": "desktop-reduced-motion",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "reducedMotion": true,
+      "touch": false
+    }
+  ],
+  "routeChecks": [
+    {
+      "profile": "desktop",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "具身智能研究坐标 · 具身前沿",
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/hero-static.webp",
+        "http://127.0.0.1:4323/favicon.ico",
+        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
+        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js",
+        "http://127.0.0.1:4323/_astro/GridDistortion.p13ceiq3.js",
+        "http://127.0.0.1:4323/_astro/three.module.CBZXipR7.js",
+        "http://127.0.0.1:4323/_astro/create-embodiment-scene.BARYRmG5.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "论文档案 · 具身前沿",
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "论文档案 · 具身前沿",
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "OpenVLA · 具身前沿",
+        "main": true,
+        "heading": "OpenVLA",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.875,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/openvla/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "模型对比 · 具身前沿",
+        "main": true,
+        "heading": "先对齐接口与协议，再谈模型差异。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/models/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "数据集对比 · 具身前沿",
+        "main": true,
+        "heading": "规模不是一个数字，而是一组采集协议。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/datasets/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "知识图谱 · 具身前沿",
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "研究路线 · 具身前沿",
+        "main": true,
+        "heading": "学习路线的终点，是能设计验证实验。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/roadmap/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "项目现场 · 具身前沿",
+        "main": true,
+        "heading": "让项目状态，落在证据层级上。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/projects/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "关于与证据约定 · 具身前沿",
+        "main": true,
+        "heading": "宁可保留缺口，也不补全未经证实的结论。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/about/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "具身智能研究坐标 · 具身前沿",
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/hero-static.webp",
+        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
+        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js",
+        "http://127.0.0.1:4323/_astro/GridDistortion.p13ceiq3.js",
+        "http://127.0.0.1:4323/_astro/three.module.CBZXipR7.js",
+        "http://127.0.0.1:4323/_astro/create-embodiment-scene.BARYRmG5.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "论文档案 · 具身前沿",
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "知识图谱 · 具身前沿",
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "具身智能研究坐标 · 具身前沿",
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/hero-static.webp",
+        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
+        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "论文档案 · 具身前沿",
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "论文档案 · 具身前沿",
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "OpenVLA · 具身前沿",
+        "main": true,
+        "heading": "OpenVLA",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.875,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/openvla/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "模型对比 · 具身前沿",
+        "main": true,
+        "heading": "先对齐接口与协议，再谈模型差异。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/models/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "数据集对比 · 具身前沿",
+        "main": true,
+        "heading": "规模不是一个数字，而是一组采集协议。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/datasets/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "知识图谱 · 具身前沿",
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "研究路线 · 具身前沿",
+        "main": true,
+        "heading": "学习路线的终点，是能设计验证实验。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/roadmap/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "项目现场 · 具身前沿",
+        "main": true,
+        "heading": "让项目状态，落在证据层级上。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/projects/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "关于与证据约定 · 具身前沿",
+        "main": true,
+        "heading": "宁可保留缺口，也不补全未经证实的结论。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/about/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "知识图谱 · 具身前沿",
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "具身智能研究坐标 · 具身前沿",
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/hero-static.webp",
+        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
+        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "论文档案 · 具身前沿",
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "OpenVLA · 具身前沿",
+        "main": true,
+        "heading": "OpenVLA",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.875,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/openvla/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
+      ]
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "知识图谱 · 具身前沿",
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "viewport": {
+        "width": 1440,
+        "height": 800
+      },
+      "assertions": {
+        "title": "论文档案 · 具身前沿",
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
+      "viewport": {
+        "width": 1440,
+        "height": 800
+      },
+      "assertions": {
+        "title": "知识图谱 · 具身前沿",
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    }
+  ],
+  "assertions": [
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "OpenVLA"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "先对齐接口与协议，再谈模型差异。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "规模不是一个数字，而是一组采集协议。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "学习路线的终点，是能设计验证实验。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "让项目状态，落在证据层级上。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "宁可保留缺口，也不补全未经证实的结论。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "hero effects initialize on desktop",
+      "passed": true,
+      "details": {
+        "enhanced": "true"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "search filters update URL and result count",
+      "passed": true,
+      "details": {
+        "ok": true,
+        "url": "?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80",
+        "summary": "2 / 5 篇匹配"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "Cytoscape is absent before explicit activation",
+      "passed": true,
+      "details": {
+        "before": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "graph loads after explicit activation",
+      "passed": true,
+      "details": {
+        "loaded": true,
+        "nodeCount": 11,
+        "pathCount": 4,
+        "allTouchSized": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "Cytoscape request follows explicit activation",
+      "passed": true,
+      "details": {
+        "after": [
+          "http://127.0.0.1:4323/_astro/KnowledgeMap.CyHtxkCQ.js",
+          "http://127.0.0.1:4323/_astro/cytoscape.esm.DJPTHK7J.js"
+        ]
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "desktop graph has visible node/path controls",
+      "passed": true,
+      "details": {
+        "loaded": true,
+        "nodeCount": 11,
+        "pathCount": 4,
+        "allTouchSized": true
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 44,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 44,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "OpenVLA"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.875,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "先对齐接口与协议，再谈模型差异。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "规模不是一个数字，而是一组采集协议。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "学习路线的终点，是能设计验证实验。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 44,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "让项目状态，落在证据层级上。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "宁可保留缺口，也不补全未经证实的结论。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "Cytoscape is absent before explicit activation",
+      "passed": true,
+      "details": {
+        "before": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "graph loads after explicit activation",
+      "passed": true,
+      "details": {
+        "loaded": true,
+        "nodeCount": 11,
+        "pathCount": 4,
+        "allTouchSized": true
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "Cytoscape request follows explicit activation",
+      "passed": true,
+      "details": {
+        "after": [
+          "http://127.0.0.1:4323/_astro/KnowledgeMap.CyHtxkCQ.js",
+          "http://127.0.0.1:4323/_astro/cytoscape.esm.DJPTHK7J.js"
+        ]
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "activated graph controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "loaded": true,
+        "nodeCount": 11,
+        "pathCount": 4,
+        "allTouchSized": true
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。"
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "reduced-motion keeps static hero visible",
+      "passed": true,
+      "details": {
+        "matches": true,
+        "staticVisible": true,
+        "enhanced": "false",
+        "motionLayerHidden": true,
+        "continuousAnimations": 0
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "reduced-motion has no continuous animations",
+      "passed": true,
+      "details": {
+        "matches": true,
+        "staticVisible": true,
+        "enhanced": "false",
+        "motionLayerHidden": true,
+        "continuousAnimations": 0
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。"
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "name": "search filters update URL and result count",
+      "passed": true,
+      "details": {
+        "ok": true,
+        "url": "?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80",
+        "summary": "2 / 5 篇匹配"
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "OpenVLA"
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "name": "reduced-motion keeps reading tools usable",
+      "passed": true,
+      "details": {
+        "ok": true,
+        "proseVisible": true
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。"
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "Cytoscape is absent before explicit activation",
+      "passed": true,
+      "details": {
+        "before": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "graph loads after explicit activation",
+      "passed": true,
+      "details": {
+        "loaded": true,
+        "nodeCount": 11,
+        "pathCount": 4,
+        "allTouchSized": true
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "Cytoscape request follows explicit activation",
+      "passed": true,
+      "details": {
+        "after": [
+          "http://127.0.0.1:4323/_astro/KnowledgeMap.CyHtxkCQ.js",
+          "http://127.0.0.1:4323/_astro/cytoscape.esm.DJPTHK7J.js"
+        ]
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "reduced-motion keeps graph usable",
+      "passed": true,
+      "details": {
+        "loaded": true,
+        "nodeCount": 11,
+        "pathCount": 4,
+        "allTouchSized": true
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "论文不是条目，而是一组可核验的主张。"
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "name": "static paper list remains usable without JavaScript",
+      "passed": true,
+      "details": {
+        "cards": 5,
+        "filtersPresent": true,
+        "fallback": true
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。"
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
+      "name": "static graph relationship list remains usable without JavaScript",
+      "passed": true,
+      "details": {
+        "relationshipList": 10,
+        "fallback": true
+      }
+    }
+  ],
+  "consoleErrors": [],
+  "networkEvidence": [
+    {
+      "profile": "desktop",
+      "route": "/",
+      "requests": [
+        "http://127.0.0.1:4323/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/hero-static.webp",
+        "http://127.0.0.1:4323/favicon.ico",
+        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
+        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js",
+        "http://127.0.0.1:4323/_astro/GridDistortion.p13ceiq3.js",
+        "http://127.0.0.1:4323/_astro/three.module.CBZXipR7.js",
+        "http://127.0.0.1:4323/_astro/create-embodiment-scene.BARYRmG5.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "requests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "requests": [
+        "http://127.0.0.1:4323/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
+      "requests": [
+        "http://127.0.0.1:4323/papers/openvla/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "requests": [
+        "http://127.0.0.1:4323/models/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
+      "requests": [
+        "http://127.0.0.1:4323/datasets/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "requests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
+      "requests": [
+        "http://127.0.0.1:4323/roadmap/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "requests": [
+        "http://127.0.0.1:4323/projects/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
+      "requests": [
+        "http://127.0.0.1:4323/about/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "requests": [
+        "http://127.0.0.1:4323/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/hero-static.webp",
+        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
+        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js",
+        "http://127.0.0.1:4323/_astro/GridDistortion.p13ceiq3.js",
+        "http://127.0.0.1:4323/_astro/three.module.CBZXipR7.js",
+        "http://127.0.0.1:4323/_astro/create-embodiment-scene.BARYRmG5.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "requests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "requests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "requests": [
+        "http://127.0.0.1:4323/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/hero-static.webp",
+        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
+        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
+      "requests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "requests": [
+        "http://127.0.0.1:4323/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "requests": [
+        "http://127.0.0.1:4323/papers/openvla/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
+      "requests": [
+        "http://127.0.0.1:4323/models/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
+      "requests": [
+        "http://127.0.0.1:4323/datasets/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "requests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
+      "requests": [
+        "http://127.0.0.1:4323/roadmap/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "requests": [
+        "http://127.0.0.1:4323/projects/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "requests": [
+        "http://127.0.0.1:4323/about/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "requests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "requests": [
+        "http://127.0.0.1:4323/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/hero-static.webp",
+        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
+        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "requests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
+      ]
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "requests": [
+        "http://127.0.0.1:4323/papers/openvla/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
+      ]
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "requests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
+        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
+        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
+        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
+        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
+        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
+      ]
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "requests": [
+        "http://127.0.0.1:4323/papers/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
+      "requests": [
+        "http://127.0.0.1:4323/graph/",
+        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
+      ]
+    }
+  ],
+  "screenshots": [
+    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/desktop-home.png",
+    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/desktop-graph.png",
+    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/mobile-home.png",
+    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/reduced-motion-home.png",
+    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/reduced-motion-graph.png"
+  ],
+  "failures": []
+}
