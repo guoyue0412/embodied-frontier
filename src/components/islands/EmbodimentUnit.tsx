@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { createEmbodimentFailureGate } from "../../lib/embodiment-runtime.mjs";
 import { withBase } from "../../lib/site-path.mjs";
 import "../../styles/embodiment-unit.css";
 
@@ -14,7 +15,7 @@ interface EmbodimentScene {
 }
 
 interface EmbodimentSceneModule {
-  createEmbodimentScene: (canvas: HTMLCanvasElement) => EmbodimentScene;
+  createEmbodimentScene: (canvas: HTMLCanvasElement, options?: { onError?: (error: unknown) => void }) => EmbodimentScene;
 }
 
 function StaticEmbodimentFallback({ imageSrc }: { imageSrc: string }) {
@@ -52,6 +53,9 @@ export default function EmbodimentUnit({ imageSrc = "/hero-static.webp" }: Embod
     let disposed = false;
     let intersecting = false;
     let loading = false;
+    let terminalFailure = false;
+    let observer: IntersectionObserver | null = null;
+    let lifecycleCleaned = false;
     let pointer = { x: 0, y: 0 };
     const reducedQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const desktopQuery = window.matchMedia("(min-width: 768px) and (pointer: fine)");
@@ -64,33 +68,70 @@ export default function EmbodimentUnit({ imageSrc = "/hero-static.webp" }: Embod
     }
 
     const stopScene = () => {
-      sceneRef.current?.dispose();
+      const scene = sceneRef.current;
       sceneRef.current = null;
+      try {
+        scene?.dispose();
+      } catch {
+        // A context-loss/unmount race must not prevent lifecycle listeners
+        // from being removed or the static fallback from taking over.
+      }
       if (!disposed) setActive(false);
     };
+    const removeLifecycleBindings = () => {
+      if (lifecycleCleaned) return;
+      lifecycleCleaned = true;
+      observer?.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("resize", onResize);
+      reducedQuery.removeEventListener?.("change", onCapabilityChange);
+      desktopQuery.removeEventListener?.("change", onCapabilityChange);
+      pointerTarget.removeEventListener("pointermove", onPointerMove);
+      pointerTarget.removeEventListener("pointerleave", onPointerLeave);
+    };
+    const failureGate = createEmbodimentFailureGate({
+      cleanup: () => {
+        terminalFailure = true;
+        stopScene();
+        removeLifecycleBindings();
+      },
+      onFallback: (error) => {
+        if (disposed) return;
+        console.warn("[EmbodimentUnit] optional WebGL enhancement disabled; static fallback remains active.", error);
+        setFailed(true);
+      },
+    });
     const failScene = (error: unknown) => {
-      if (disposed) return;
-      console.warn("[EmbodimentUnit] optional WebGL enhancement disabled; static fallback remains active.", error);
-      stopScene();
-      setFailed(true);
+      if (disposed || terminalFailure || failureGate.failed) return;
+      failureGate.fail(error);
     };
     const syncVisibility = () => {
+      if (disposed || terminalFailure) return;
       sceneRef.current?.setVisible(intersecting && !document.hidden);
     };
     const startScene = async () => {
       const capabilities = readEligibleCapabilities();
-      if (disposed || loading || sceneRef.current || !intersecting || !capabilities.eligible || capabilities.reduced) return;
+      if (disposed || terminalFailure || failureGate.failed || loading || sceneRef.current || !intersecting || !capabilities.eligible || capabilities.reduced) return;
       loading = true;
       try {
         // Keep Three.js behind both the desktop capability and viewport intent
         // gate. Touch/narrow/reduced-motion sessions never evaluate this import.
         const module = (await import("../../lib/three/create-embodiment-scene")) as EmbodimentSceneModule;
-        if (disposed || !intersecting || !desktopQuery.matches || reducedQuery.matches) return;
-        const scene = module.createEmbodimentScene(canvas);
+        if (disposed || terminalFailure || failureGate.failed || !intersecting || !desktopQuery.matches || reducedQuery.matches) return;
+        const scene = module.createEmbodimentScene(canvas, { onError: failScene });
+        if (disposed || terminalFailure || failureGate.failed) {
+          try {
+            scene.dispose();
+          } catch {
+            // The failure gate already owns fallback state; keep late init
+            // cleanup from escaping if the renderer is already lost.
+          }
+          return;
+        }
         sceneRef.current = scene;
         scene.setPointer(pointer.x, pointer.y);
         scene.setVisible(!document.hidden && intersecting);
-        if (!disposed) setActive(true);
+        if (!disposed && !terminalFailure) setActive(true);
       } catch (error) {
         failScene(error);
       } finally {
@@ -98,23 +139,31 @@ export default function EmbodimentUnit({ imageSrc = "/hero-static.webp" }: Embod
       }
     };
     const onIntersect = (entries: IntersectionObserverEntry[]) => {
+      if (disposed || terminalFailure) return;
       intersecting = entries.some((entry) => entry.isIntersecting);
       syncVisibility();
       if (intersecting) void startScene();
     };
-    const observer = new IntersectionObserver(onIntersect, { threshold: 0.12 });
+    observer = new IntersectionObserver(onIntersect, { threshold: 0.12 });
     observer.observe(root);
 
     const onVisibility = () => syncVisibility();
     const onResize = () => {
+      if (disposed || terminalFailure) return;
       if (!desktopQuery.matches || reducedQuery.matches) {
         stopScene();
         return;
       }
-      sceneRef.current?.resize();
+      try {
+        sceneRef.current?.resize();
+      } catch (error) {
+        failScene(error);
+        return;
+      }
       if (intersecting) void startScene();
     };
     const onCapabilityChange = () => {
+      if (disposed || terminalFailure) return;
       const capabilities = readEligibleCapabilities();
       if (!capabilities.eligible || capabilities.reduced) {
         stopScene();
@@ -123,6 +172,7 @@ export default function EmbodimentUnit({ imageSrc = "/hero-static.webp" }: Embod
       if (intersecting) void startScene();
     };
     const onPointerMove = (event: Event) => {
+      if (disposed || terminalFailure) return;
       const pointerEvent = event as PointerEvent;
       const bounds = pointerTarget.getBoundingClientRect();
       pointer = {
@@ -132,31 +182,21 @@ export default function EmbodimentUnit({ imageSrc = "/hero-static.webp" }: Embod
       sceneRef.current?.setPointer(pointer.x, pointer.y);
     };
     const onPointerLeave = () => {
+      if (disposed || terminalFailure) return;
       pointer = { x: 0, y: 0 };
       sceneRef.current?.setPointer(0, 0);
     };
-    const onContextLost = () => failScene(new Error("WebGL context lost"));
-
     document.addEventListener("visibilitychange", onVisibility);
     window.addEventListener("resize", onResize, { passive: true });
     reducedQuery.addEventListener?.("change", onCapabilityChange);
     desktopQuery.addEventListener?.("change", onCapabilityChange);
     pointerTarget.addEventListener("pointermove", onPointerMove, { passive: true });
     pointerTarget.addEventListener("pointerleave", onPointerLeave, { passive: true });
-    canvas.addEventListener("embodiment-context-lost", onContextLost);
 
     return () => {
       disposed = true;
-      observer.disconnect();
-      document.removeEventListener("visibilitychange", onVisibility);
-      window.removeEventListener("resize", onResize);
-      reducedQuery.removeEventListener?.("change", onCapabilityChange);
-      desktopQuery.removeEventListener?.("change", onCapabilityChange);
-      pointerTarget.removeEventListener("pointermove", onPointerMove);
-      pointerTarget.removeEventListener("pointerleave", onPointerLeave);
-      canvas.removeEventListener("embodiment-context-lost", onContextLost);
-      sceneRef.current?.dispose();
-      sceneRef.current = null;
+      removeLifecycleBindings();
+      stopScene();
     };
   }, []);
 

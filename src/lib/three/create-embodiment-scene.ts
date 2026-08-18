@@ -1,10 +1,15 @@
 import * as THREE from "three";
+import { createEmbodimentRenderLoop } from "../embodiment-runtime.mjs";
 
 export interface EmbodimentScene {
   setPointer(x: number, y: number): void;
   setVisible(value: boolean): void;
   resize(): void;
   dispose(): void;
+}
+
+export interface EmbodimentSceneOptions {
+  onError?: (error: unknown) => void;
 }
 
 type DisposableMaterial = THREE.Material | THREE.Material[];
@@ -18,7 +23,7 @@ const clamp = (value: number, min: number, max: number) => Math.min(max, Math.ma
  * from a small, inspectable set of primitives so the static fallback remains
  * the canonical experience on devices that cannot use WebGL.
  */
-export function createEmbodimentScene(canvas: HTMLCanvasElement): EmbodimentScene {
+export function createEmbodimentScene(canvas: HTMLCanvasElement, options: EmbodimentSceneOptions = {}): EmbodimentScene {
   if (!canvas) throw new Error("Embodiment scene requires a canvas");
 
   const scene = new THREE.Scene();
@@ -133,24 +138,22 @@ export function createEmbodimentScene(canvas: HTMLCanvasElement): EmbodimentScen
   let visible = false;
   let disposed = false;
   let contextLost = false;
-  let frameId: number | null = null;
   let previousTime = 0;
+  let renderLoop: ReturnType<typeof createEmbodimentRenderLoop> | null = null;
 
-  const isEasing = () => pointerCurrent.distanceTo(pointerTarget) > 0.002;
-  const shouldRender = () => !disposed && !contextLost && (visible || isEasing());
-  const stop = () => {
-    if (frameId !== null) {
-      window.cancelAnimationFrame(frameId);
-      frameId = null;
+  const shouldRender = () => !disposed && !contextLost && visible;
+  const reportError = (error: unknown) => {
+    if (disposed || contextLost) return;
+    contextLost = true;
+    renderLoop?.stop();
+    try {
+      options.onError?.(error);
+    } catch {
+      // The host callback is optional enhancement plumbing and must not escape
+      // into the page if unmount and failure happen in the same turn.
     }
   };
-  const schedule = () => {
-    if (!shouldRender() || frameId !== null) return;
-    frameId = window.requestAnimationFrame(renderFrame);
-  };
-  const renderFrame = (timestamp: number) => {
-    frameId = null;
-    if (!shouldRender()) return;
+  const drawFrame = (timestamp: number) => {
     const delta = previousTime === 0 ? 0.016 : Math.min(0.05, Math.max(0.001, (timestamp - previousTime) / 1000));
     previousTime = timestamp;
     const follow = 1 - Math.pow(0.0008, delta);
@@ -160,19 +163,23 @@ export function createEmbodimentScene(canvas: HTMLCanvasElement): EmbodimentScen
     figure.rotation.x = pointerCurrent.y * 0.12;
     jointMaterial.emissiveIntensity = 2.15 + Math.sin(timestamp * 0.003) * 0.3;
     renderer.render(scene, camera);
-    schedule();
   };
+  renderLoop = createEmbodimentRenderLoop({
+    requestFrame: (callback) => window.requestAnimationFrame(callback),
+    cancelFrame: (id) => window.cancelAnimationFrame(id),
+    shouldRender,
+    onFrame: drawFrame,
+    onError: reportError,
+  });
 
   const onContextLost = (event: Event) => {
     event.preventDefault();
-    contextLost = true;
-    stop();
-    canvas.dispatchEvent(new CustomEvent("embodiment-context-lost"));
+    reportError(new Error("WebGL context lost"));
   };
   canvas.addEventListener("webglcontextlost", onContextLost, false);
 
   const resize = () => {
-    if (disposed) return;
+    if (disposed || contextLost) return;
     const rect = canvas.getBoundingClientRect();
     const width = Math.max(1, Math.round(canvas.clientWidth || rect.width || 1));
     const height = Math.max(1, Math.round(canvas.clientHeight || rect.height || 1));
@@ -183,8 +190,12 @@ export function createEmbodimentScene(canvas: HTMLCanvasElement): EmbodimentScen
     camera.top = verticalSpan / 2;
     camera.bottom = -verticalSpan / 2;
     camera.updateProjectionMatrix();
-    renderer.setSize(width, height, false);
-    schedule();
+    try {
+      renderer.setSize(width, height, false);
+      renderLoop?.schedule();
+    } catch (error) {
+      reportError(error);
+    }
   };
   resize();
 
@@ -197,7 +208,7 @@ export function createEmbodimentScene(canvas: HTMLCanvasElement): EmbodimentScen
     setPointer(x: number, y: number) {
       if (disposed) return;
       pointerTarget.set(clamp(x, -1, 1), clamp(y, -1, 1));
-      schedule();
+      if (visible) renderLoop?.schedule();
     },
     setVisible(value: boolean) {
       if (disposed || contextLost) return;
@@ -206,17 +217,17 @@ export function createEmbodimentScene(canvas: HTMLCanvasElement): EmbodimentScen
       if (!visible) {
         // Visibility is a hard lifecycle boundary: hidden tabs and offscreen
         // islands must not keep a RAF alive while the page is unavailable.
-        stop();
+        renderLoop?.stop();
         return;
       }
-      else schedule();
+      renderLoop?.schedule();
     },
     resize,
     dispose() {
       if (disposed) return;
       disposed = true;
       visible = false;
-      stop();
+      renderLoop?.dispose();
       canvas.removeEventListener("webglcontextlost", onContextLost, false);
       geometries.forEach((geometry) => geometry.dispose());
       materials.forEach((material) => disposeMaterial(material));
