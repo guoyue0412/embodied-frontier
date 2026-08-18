@@ -185,10 +185,74 @@ try {
       nodeCount: buttons.length,
       pathCount: document.querySelectorAll('.knowledge-map__path a').length,
       pathHref: document.querySelector('.knowledge-map__path a')?.getAttribute('href') ?? '',
+      modelHref: [...document.querySelectorAll('.knowledge-map__path a')].find((link) => link.getAttribute('href')?.includes('/models/#'))?.href ?? '',
+      datasetHref: [...document.querySelectorAll('.knowledge-map__path a')].find((link) => link.getAttribute('href')?.includes('/datasets/#'))?.href ?? '',
       selected: selected?.getAttribute('data-graph-node') ?? '',
       focused: document.activeElement === selected,
     };
   })()`);
+
+  await call("Emulation.setDeviceMetricsOverride", { width: 360, height: 800, deviceScaleFactor: 1, mobile: true });
+  await call("Page.navigate", { url: pageUrl("/graph") });
+  await new Promise((resolve) => setTimeout(resolve, 700));
+  const mobileLoadGraph = await evaluate(`(() => {
+    const button = document.querySelector('.knowledge-graph__load');
+    if (!button) return false;
+    button.click();
+    return true;
+  })()`);
+  const graphMobileReady = await evaluate(`(async () => {
+    const deadline = Date.now() + 5000;
+    while (Date.now() < deadline) {
+      if (document.querySelector('[data-knowledge-map-ready="true"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0) return true;
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    return false;
+  })()`);
+  const graphMobile = await evaluate(`(() => {
+    const controls = [...document.querySelectorAll('.knowledge-map__controls input, .knowledge-map__controls select, .knowledge-map__nodes button')];
+    const sizes = controls.map((control) => {
+      const rect = control.getBoundingClientRect();
+      return { width: rect.width, height: rect.height };
+    });
+    return {
+      loaded: Boolean(document.querySelector('[data-knowledge-map-ready="true"]')),
+      nodeCount: document.querySelectorAll('.knowledge-map__nodes button').length,
+      controlCount: controls.length,
+      allTouchSized: sizes.length > 0 && sizes.every(({ width, height }) => width >= 44 && height >= 44),
+      minWidth: sizes.length ? Math.min(...sizes.map(({ width }) => width)) : 0,
+      minHeight: sizes.length ? Math.min(...sizes.map(({ height }) => height)) : 0,
+    };
+  })()`);
+
+  async function inspectComparisonAnchor(url) {
+    if (!url) return { visible: false, missing: true };
+    await call("Page.navigate", { url });
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    return evaluate(`(() => {
+      const requestedId = location.hash.slice(1);
+      const target = [...document.querySelectorAll('[data-comparison-anchor]')].find((element) => {
+        if (element.getAttribute('data-comparison-anchor') !== requestedId) return false;
+        const styles = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return styles.display !== 'none' && styles.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+      });
+      if (!target) return { requestedId, visible: false, focused: false, inViewport: false };
+      const rect = target.getBoundingClientRect();
+      return {
+        requestedId,
+        visible: true,
+        tagName: target.tagName,
+        focused: document.activeElement === target,
+        inViewport: rect.top >= -1 && rect.bottom <= window.innerHeight + 1,
+        top: rect.top,
+        bottom: rect.bottom,
+      };
+    })()`);
+  }
+
+  const modelAnchor = await inspectComparisonAnchor(graphInteraction.modelHref);
+  const datasetAnchor = await inspectComparisonAnchor(graphInteraction.datasetHref);
 
   const failures = results.filter((result) => !result.main || !result.heading || result.overflow || result.clippedHeaderLinks.length > 0 || result.pageErrors.length > 0);
   const skipLinkVisible = keyboard.transform === "none" || keyboard.transform === "matrix(1, 0, 0, 1, 0, 0)";
@@ -198,8 +262,10 @@ try {
 
   if (!searchInteraction.url.includes("q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80") || !searchInteraction.summary.startsWith("2 / 5")) failures.push({ searchInteraction });
   if (!loadGraph || !graphReady || !graphInteraction.loaded || !(graphInteraction.nodeCount > 0) || !(graphInteraction.pathCount > 0) || !graphInteraction.pathHref.startsWith(`${sitePrefix}/`) || !graphInteraction.selected || !graphFocused || !graphInteraction.focused) failures.push({ graphInteraction, graphReady, graphFocused });
+  if (!mobileLoadGraph || !graphMobileReady || !graphMobile.loaded || !(graphMobile.nodeCount > 0) || !graphMobile.allTouchSized) failures.push({ graphMobile, graphMobileReady });
+  if (!modelAnchor.visible || !modelAnchor.focused || !modelAnchor.inViewport || !datasetAnchor.visible || !datasetAnchor.focused || !datasetAnchor.inViewport) failures.push({ modelAnchor, datasetAnchor });
 
-  console.log(JSON.stringify({ results, keyboard, reducedMotion, searchInteraction, graphInteraction, failures }, null, 2));
+  console.log(JSON.stringify({ results, keyboard, reducedMotion, searchInteraction, graphInteraction, graphMobile, modelAnchor, datasetAnchor, failures }, null, 2));
   socket.close();
   if (failures.length) process.exitCode = 1;
 } finally {

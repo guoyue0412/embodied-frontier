@@ -45,6 +45,8 @@ function factText(fact?: EvidenceFact) {
   if (!fact || fact.value === null) return "暂无可靠值";
   return `${new Intl.NumberFormat("zh-CN").format(fact.value)} ${units[fact.unit] ?? fact.unit}`;
 }
+
+const anchorIdFor = (record: ComparisonRecord) => `${idPrefix}-${record.slug}`;
 ---
 <div class="comparison-wrap">
   <div class="protocol-notice">
@@ -55,7 +57,7 @@ function factText(fact?: EvidenceFact) {
     <caption>{caption} · 字段级证据</caption>
     <thead><tr><th scope="col">记录</th>{fields.map((field) => <th scope="col">{field.label}</th>)}</tr></thead>
     <tbody>
-      {records.map((record) => <tr id={`${idPrefix}-${record.slug}`}>
+      {records.map((record) => <tr id={anchorIdFor(record)} data-comparison-anchor={anchorIdFor(record)}>
         <th scope="row"><strong>{record.title}</strong><small>{record.summary}</small></th>
         {fields.map((field) => <td>
           {field.kind === "fact" ? <div class="fact-cell">
@@ -67,7 +69,7 @@ function factText(fact?: EvidenceFact) {
     </tbody>
   </table>
   <div class="comparison-cards" aria-label={`${caption} · 字段级证据`}>
-    {records.map((record) => <article>
+    {records.map((record) => <article data-comparison-anchor={anchorIdFor(record)}>
       <h2>{record.title}</h2>
       <p>{record.summary}</p>
       <dl>{fields.map((field) => <div>
@@ -82,3 +84,23 @@ function factText(fact?: EvidenceFact) {
     </article>)}
   </div>
 </div>
+<script is:inline>
+  const focusComparisonAnchor = () => {
+    const requestedId = window.location.hash.slice(1);
+    if (!requestedId) return;
+    const target = [...document.querySelectorAll("[data-comparison-anchor]")].find((element) => {
+      if (element.getAttribute("data-comparison-anchor") !== requestedId) return false;
+      const styles = window.getComputedStyle(element);
+      const rect = element.getBoundingClientRect();
+      return styles.display !== "none" && styles.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
+    });
+    if (!(target instanceof HTMLElement)) return;
+    target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "start", inline: "nearest" });
+  };
+
+  window.addEventListener("hashchange", focusComparisonAnchor);
+  window.addEventListener("load", focusComparisonAnchor, { once: true });
+  requestAnimationFrame(focusComparisonAnchor);
+</script>

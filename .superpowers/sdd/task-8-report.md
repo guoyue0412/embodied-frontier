@@ -24,9 +24,15 @@ activation.
 - Updated `KnowledgeMap` selectors and browser QA to exercise the real map:
   node navigation buttons, keyboard Space selection, nonzero nodes, nonzero
   path links, and base-prefixed path hrefs. The visible control is named
-  `研究方向聚类` so the grouping semantics are explicit.
-- Added stable `model-<slug>` and `dataset-<slug>` anchors to comparison rows;
-  graph model/dataset links now target those precise overview anchors.
+  `研究方向分组` because the heterogeneous metadata is a grouping, not a
+  claim of strict clustering.
+- Added stable `model-<slug>` and `dataset-<slug>` hash ids to comparison rows
+  plus matching `data-comparison-anchor` markers on both desktop rows and
+  mobile cards. A breakpoint-safe inline handler selects the visible marker,
+  focuses it, and scrolls it into view; the DOM keeps exactly one hash id.
+- Extended 360px browser QA to activate the graph, verify all 13 map controls
+  are at least 44px tall, and follow both model and dataset path links to a
+  focused, in-viewport mobile card.
 - Added focused regression coverage for the configured base, browser selectors,
   delayed-state replay/disposal, stable anchors, static fallback, and explicit
   graph data determinism/dangling-relation rejection.
@@ -51,9 +57,12 @@ activation.
 - The updated `scripts/browser-qa.mjs` ran against the generated non-root
   `dist` through a temporary prefix-aware localhost static server:
   desktop/mobile 20 route checks passed with no overflow or page errors;
-  search produced `2 / 5 篇匹配`; graph interaction produced 11 nodes, 4
-  path links, selected `paper:openvla`, focused keyboard state, and
-  `/embodied-frontier/papers/openvla/` path href; failures were empty.
+  search produced `2 / 5 篇匹配`; desktop graph interaction produced 11
+  nodes, 4 path links, selected `paper:openvla`, focused keyboard state, and
+  `/embodied-frontier/papers/openvla/` path href. At 360px, graph activation
+  produced 11 nodes and 13 controls with a 44px minimum height; model and
+  dataset paths focused visible `ARTICLE` targets in the viewport. Failures
+  were empty.
 - `git diff --check` — passed. The final bundle check showed
   `KnowledgeGraph` 2,069 bytes, lazy `KnowledgeMap` 6,677 bytes, and lazy
   `cytoscape.esm` 435,576 bytes; the graph HTML had no

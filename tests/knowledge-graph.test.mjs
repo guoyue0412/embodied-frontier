@@ -41,10 +41,15 @@ test("graph island serializes the configured base for client navigation", async 
 
 test("graph client QA targets the current map controls and path contract", async () => {
   const browserQa = await readFile("scripts/browser-qa.mjs", "utf8");
+  const mapSource = await readFile("src/components/islands/KnowledgeMap.tsx", "utf8");
   for (const selector of [".knowledge-graph__load", ".knowledge-map__nodes button", ".knowledge-map__path a", "data-knowledge-map-ready"])
     assert.match(browserQa, new RegExp(escapeRegExp(selector)));
   assert.match(browserQa, /nodeCount\s*>\s*0/);
   assert.match(browserQa, /pathCount\s*>\s*0/);
+  assert.match(browserQa, /graphMobile/);
+  assert.match(browserQa, /allTouchSized/);
+  assert.match(mapSource, /研究方向分组/);
+  assert.doesNotMatch(mapSource, /研究方向聚类/);
 });
 
 test("graph state replays delayed changes and ignores updates after disposal", async () => {
@@ -68,6 +73,12 @@ test("model and dataset graph links resolve to stable comparison anchors", async
   const datasets = await readFile("dist/datasets/index.html", "utf8");
   assert.match(models, /id="model-openvla"/);
   assert.match(datasets, /id="dataset-open-x-embodiment"/);
+  assert.equal((models.match(/data-comparison-anchor="model-openvla"/g) ?? []).length, 2);
+  assert.equal((datasets.match(/data-comparison-anchor="dataset-open-x-embodiment"/g) ?? []).length, 2);
+  assert.equal((models.match(/id="model-openvla"/g) ?? []).length, 1);
+  assert.equal((datasets.match(/id="dataset-open-x-embodiment"/g) ?? []).length, 1);
+  assert.match(models, /focusComparisonAnchor/);
+  assert.match(datasets, /scrollIntoView/);
 });
 
 function escapeRegExp(value) {

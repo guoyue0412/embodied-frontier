@@ -216,8 +216,8 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
           <input aria-label="搜索节点" type="search" value={query} onChange={(event) => setQuery(event.currentTarget.value)} placeholder="名称、类型或研究方向" />
         </label>
         <label>
-          <span>研究方向聚类</span>
-          <select aria-label="研究方向聚类" value={group} onChange={(event) => setGroup(event.currentTarget.value)}>
+          <span>研究方向分组</span>
+          <select aria-label="研究方向分组" value={group} onChange={(event) => setGroup(event.currentTarget.value)}>
             <option value="">全部研究方向</option>
             {groups.map((value) => <option key={value} value={value}>{value}</option>)}
           </select>
