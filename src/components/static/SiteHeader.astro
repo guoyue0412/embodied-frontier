@@ -1,0 +1,25 @@
+---
+const navigation = [
+  { href: "/papers/", label: "论文" },
+  { href: "/models/", label: "模型" },
+  { href: "/datasets/", label: "数据" },
+  { href: "/graph/", label: "图谱" },
+  { href: "/projects/", label: "项目" },
+  { href: "/roadmap/", label: "路线" },
+  { href: "/about/", label: "关于" },
+];
+---
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="wordmark" href="/" aria-label="具身前沿首页">
+      <span class="wordmark__mark" aria-hidden="true">EF</span>
+      <span>
+        <strong>具身前沿</strong>
+        <small>EMBODIED FRONTIER</small>
+      </span>
+    </a>
+    <nav aria-label="主导航">
+      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+  </div>
+</header>
