@@ -1,5 +1,5 @@
 import collection from "@/generated/content.json";
-import type { ContentCollection, PaperRecord, ProjectRecord, RoadmapRecord } from "./types";
+import type { ContentCollection, DatasetRecord, ModelRecord, PaperRecord, ProjectRecord, RoadmapRecord } from "./types";
 
 const content = collection as ContentCollection;
 
@@ -18,3 +18,6 @@ export function getRoadmap(): RoadmapRecord[] {
 export function getProjects(): ProjectRecord[] {
   return [...content.projects];
 }
+
+export function getModels(): ModelRecord[] { return [...content.models]; }
+export function getDatasets(): DatasetRecord[] { return [...content.datasets]; }

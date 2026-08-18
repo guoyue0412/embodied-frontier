@@ -82,9 +82,20 @@ export default function Home() {
       </section>
 
       <section className="section page-shell">
-        <SectionHeading index="04" eyebrow="ACTIVE WORK" title="研究发生在可复现的现场。">区分已经形成的证据、当前推断和下一步实验。</SectionHeading>
+        <SectionHeading index="04" eyebrow="KNOWLEDGE TOOLS" title="从检索，到可解释的关系。">全文索引、字段级对比与显式知识关系都由仓库内容在构建时生成。</SectionHeading>
+        <div className="tool-grid">
+          <Link href="/papers"><span>01 / SEARCH</span><h3>检索论文档案</h3><p>组合关键词、方向、标签、年份、来源与证据状态。</p><b>进入检索 →</b></Link>
+          <Link href="/models"><span>02 / COMPARE</span><h3>模型与数据集对比</h3><p>逐字段显示单位、来源和可信度，不制造跨协议排名。</p><b>查看模型 →</b></Link>
+          <Link href="/graph"><span>03 / GRAPH</span><h3>浏览知识关系</h3><p>从论文连接到模型与数据集，并保留完整列表等价视图。</p><b>打开图谱 →</b></Link>
+        </div>
+      </section>
+
+      <section className="section section--soft">
+        <div className="page-shell">
+        <SectionHeading index="05" eyebrow="ACTIVE WORK" title="研究发生在可复现的现场。">区分已经形成的证据、当前推断和下一步实验。</SectionHeading>
         <div className="project-grid">{projects.slice(0, 2).map((project) => <ProjectCard key={project.slug} project={project} />)}</div>
         <div className="section-link"><Link href="/projects">进入全部项目 <span aria-hidden="true">→</span></Link></div>
+        </div>
       </section>
 
       <section className="section section--evidence">

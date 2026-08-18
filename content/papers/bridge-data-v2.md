@@ -13,6 +13,8 @@ sources:
     url: "https://arxiv.org/abs/2308.12952"
   - label: "Dataset"
     url: "https://rail-berkeley.github.io/bridgedata/"
+relations:
+  - { target: "dataset:bridge-data-v2", type: "describes" }
 ---
 
 ## 数据价值

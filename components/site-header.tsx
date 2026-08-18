@@ -2,6 +2,9 @@ import Link from "next/link";
 
 const navigation = [
   { href: "/papers", label: "论文" },
+  { href: "/models", label: "模型" },
+  { href: "/datasets", label: "数据" },
+  { href: "/graph", label: "图谱" },
   { href: "/roadmap", label: "路线" },
   { href: "/projects", label: "项目" },
   { href: "/about", label: "关于" },

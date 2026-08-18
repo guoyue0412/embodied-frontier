@@ -10,6 +10,9 @@ export function SiteFooter() {
         </div>
         <div className="site-footer__links">
           <Link href="/papers">论文档案</Link>
+          <Link href="/models">模型对比</Link>
+          <Link href="/datasets">数据集</Link>
+          <Link href="/graph">知识图谱</Link>
           <Link href="/roadmap">研究路线</Link>
           <Link href="/about">证据约定</Link>
         </div>

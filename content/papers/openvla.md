@@ -13,6 +13,9 @@ sources:
     url: "https://arxiv.org/abs/2406.09246"
   - label: "Project"
     url: "https://openvla.github.io/"
+relations:
+  - { target: "model:openvla", type: "describes" }
+  - { target: "dataset:open-x-embodiment", type: "uses" }
 ---
 
 ## 为什么值得读

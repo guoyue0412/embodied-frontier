@@ -38,4 +38,4 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
-/generated/content.json
+/generated/

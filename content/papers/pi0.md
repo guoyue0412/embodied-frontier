@@ -13,6 +13,8 @@ sources:
     url: "https://arxiv.org/abs/2410.24164"
   - label: "Project"
     url: "https://www.physicalintelligence.company/blog/pi0"
+relations:
+  - { target: "model:pi0", type: "describes" }
 ---
 
 ## 核心问题

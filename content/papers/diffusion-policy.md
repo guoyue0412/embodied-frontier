@@ -13,6 +13,7 @@ sources:
     url: "https://arxiv.org/abs/2303.04137"
   - label: "Project"
     url: "https://diffusion-policy.cs.columbia.edu/"
+relations: []
 ---
 
 ## 核心贡献

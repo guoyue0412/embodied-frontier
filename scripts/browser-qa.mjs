@@ -84,7 +84,7 @@ try {
   await call("Runtime.enable");
   await call("Log.enable");
 
-  const routes = ["/", "/papers", "/papers/openvla", "/roadmap", "/projects", "/about"];
+  const routes = ["/", "/papers", "/papers?q=视觉语言&status=verified", "/papers/openvla", "/models", "/datasets", "/graph", "/roadmap", "/projects", "/about"];
   const viewports = [
     { name: "desktop", width: 1440, height: 1000 },
     { name: "mobile", width: 360, height: 800 },
@@ -133,13 +133,45 @@ try {
     scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior,
   }))()`);
 
+  await call("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
+  await call("Page.navigate", { url: `${base}/papers` });
+  await new Promise((resolve) => setTimeout(resolve, 700));
+  const searchInteraction = await evaluate(`(async () => {
+    const input = document.querySelector('input[type="search"]');
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
+    setter.call(input, '视觉语言');
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    return { url: location.search, summary: document.querySelector('.result-summary')?.textContent?.replace(/\\s+/g, ' ').trim() ?? '' };
+  })()`);
+
+  await call("Page.navigate", { url: `${base}/graph` });
+  await new Promise((resolve) => setTimeout(resolve, 700));
+  const loadGraph = await evaluate(`(() => { [...document.querySelectorAll('button')].find((button) => button.textContent.includes('加载关系图'))?.click(); return true; })()`);
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  await evaluate(`(() => {
+    const buttons = [...document.querySelectorAll('.graph-node')];
+    buttons.at(-1)?.focus();
+    return true;
+  })()`);
+  await call("Input.dispatchKeyEvent", { type: "rawKeyDown", key: " ", code: "Space", text: " ", unmodifiedText: " ", windowsVirtualKeyCode: 32, nativeVirtualKeyCode: 32 });
+  await call("Input.dispatchKeyEvent", { type: "keyUp", key: " ", code: "Space", windowsVirtualKeyCode: 32, nativeVirtualKeyCode: 32 });
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  const graphInteraction = await evaluate(`(() => {
+    const buttons = [...document.querySelectorAll('.graph-node')];
+    return { loaded: Boolean(document.querySelector('.knowledge-map')), nodeCount: buttons.length, selected: buttons.at(-1)?.getAttribute('aria-pressed'), focused: document.activeElement === buttons.at(-1) };
+  })()`);
+
   const failures = results.filter((result) => !result.main || !result.heading || result.overflow || result.clippedHeaderLinks.length > 0 || result.pageErrors.length > 0);
   const skipLinkVisible = keyboard.transform === "none" || keyboard.transform === "matrix(1, 0, 0, 1, 0, 0)";
   if (!keyboard.focused || keyboard.outlineWidth === "0px" || !skipLinkVisible || !reducedMotion.matches || reducedMotion.scrollBehavior !== "auto") {
     failures.push({ keyboard, reducedMotion });
   }
 
-  console.log(JSON.stringify({ results, keyboard, reducedMotion, failures }, null, 2));
+  if (!searchInteraction.url.includes("q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80") || !searchInteraction.summary.startsWith("2 / 5")) failures.push({ searchInteraction });
+  if (!loadGraph || !graphInteraction.loaded || graphInteraction.nodeCount < 3 || graphInteraction.selected !== "true" || !graphInteraction.focused) failures.push({ graphInteraction });
+
+  console.log(JSON.stringify({ results, keyboard, reducedMotion, searchInteraction, graphInteraction, failures }, null, 2));
   socket.close();
   if (failures.length) process.exitCode = 1;
 } finally {

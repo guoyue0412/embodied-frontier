@@ -8,6 +8,7 @@ export const evidenceStatuses = ["verified", "self-reported", "unverified"];
 const evidenceStatusSet = new Set(evidenceStatuses);
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const factUnits = new Set(["billion-parameters", "steps", "trajectories", "episodes", "hours", "tasks", "environments", "embodiments", "percent"]);
 
 function fail(file, message) {
   throw new Error(`${file}: ${message}`);
@@ -63,6 +64,38 @@ function sources(data, file) {
   });
 }
 
+function httpUrl(value, field, file) {
+  if (typeof value !== "string" || !value.trim()) fail(file, `${field} is required`);
+  let parsed;
+  try { parsed = new URL(value); } catch { fail(file, `${field} must be a valid URL`); }
+  if (!new Set(["http:", "https:"]).has(parsed.protocol)) fail(file, `${field} must use http or https`);
+  return parsed.toString();
+}
+
+function relations(data, file) {
+  if (!Array.isArray(data.relations)) fail(file, "relations must be an array");
+  return data.relations.map((relation, index) => {
+    if (!relation || typeof relation !== "object") fail(file, `relations[${index}] must be an object`);
+    return {
+      target: requiredString(relation, "target", `${file} relations[${index}]`),
+      type: requiredString(relation, "type", `${file} relations[${index}]`),
+    };
+  });
+}
+
+function facts(data, file) {
+  if (!data.facts || typeof data.facts !== "object" || Array.isArray(data.facts)) fail(file, "facts must be an object");
+  return Object.fromEntries(Object.entries(data.facts).map(([name, fact]) => {
+    if (!fact || typeof fact !== "object" || Array.isArray(fact)) fail(file, `facts.${name} must be an object`);
+    if (!(typeof fact.value === "number" || fact.value === null)) fail(file, `facts.${name}.value must be a number or null`);
+    const unit = requiredString(fact, "unit", `${file} facts.${name}`);
+    if (!factUnits.has(unit)) fail(file, `facts.${name} has unsupported unit ${unit}`);
+    const status = requiredString(fact, "status", `${file} facts.${name}`);
+    if (!evidenceStatusSet.has(status)) fail(file, `facts.${name}.status must be one of ${evidenceStatuses.join(", ")}`);
+    return [name, { value: fact.value, unit, status, source: httpUrl(fact.source, `facts.${name}.source`, file) }];
+  }));
+}
+
 function safeMarkdown(markdown) {
   const rendered = marked.parse(markdown, { async: false, gfm: true });
   return sanitizeHtml(rendered, {
@@ -79,6 +112,11 @@ function safeMarkdown(markdown) {
       }),
     },
   });
+}
+
+function plainText(markdown) {
+  const rendered = marked.parse(markdown, { async: false, gfm: true });
+  return sanitizeHtml(rendered, { allowedTags: [], allowedAttributes: {} }).replace(/\s+/g, " ").trim();
 }
 
 function parsePaper(data, content, file) {
@@ -98,6 +136,44 @@ function parsePaper(data, content, file) {
     tags: stringArray(data, "tags", file, { min: 1 }),
     summary: requiredString(data, "summary", file),
     sources: sources(data, file),
+    relations: Array.isArray(data.relations) ? relations(data, file) : [],
+    text: plainText(content),
+    html: safeMarkdown(content),
+  };
+}
+
+function parseModel(data, content, file) {
+  return {
+    type: "model",
+    title: requiredString(data, "title", file),
+    slug: slug(data, file),
+    updated: isoDate(data, "updated", file),
+    family: requiredString(data, "family", file),
+    organization: requiredString(data, "organization", file),
+    license: requiredString(data, "license", file),
+    protocol: requiredString(data, "protocol", file),
+    summary: requiredString(data, "summary", file),
+    inputs: stringArray(data, "inputs", file, { min: 1 }),
+    outputs: stringArray(data, "outputs", file, { min: 1 }),
+    facts: facts(data, file),
+    relations: relations(data, file),
+    html: safeMarkdown(content),
+  };
+}
+
+function parseDataset(data, content, file) {
+  return {
+    type: "dataset",
+    title: requiredString(data, "title", file),
+    slug: slug(data, file),
+    updated: isoDate(data, "updated", file),
+    organization: requiredString(data, "organization", file),
+    license: requiredString(data, "license", file),
+    protocol: requiredString(data, "protocol", file),
+    summary: requiredString(data, "summary", file),
+    modalities: stringArray(data, "modalities", file, { min: 1 }),
+    facts: facts(data, file),
+    relations: relations(data, file),
     html: safeMarkdown(content),
   };
 }
@@ -135,10 +211,12 @@ function parseProject(data, content, file) {
   };
 }
 
-const parsers = { papers: parsePaper, roadmap: parseRoadmap, projects: parseProject };
+const parsers = { papers: parsePaper, roadmap: parseRoadmap, projects: parseProject, models: parseModel, datasets: parseDataset };
 
 async function markdownFiles(directory) {
-  const entries = await readdir(directory, { withFileTypes: true });
+  let entries;
+  try { entries = await readdir(directory, { withFileTypes: true }); }
+  catch (error) { if (error?.code === "ENOENT") return []; throw error; }
   return entries
     .filter((entry) => entry.isFile() && entry.name.endsWith(".md"))
     .map((entry) => path.join(directory, entry.name))
@@ -146,7 +224,7 @@ async function markdownFiles(directory) {
 }
 
 export async function compileContent({ contentDir, outputFile }) {
-  const result = { papers: [], roadmap: [], projects: [] };
+  const result = { papers: [], roadmap: [], projects: [], models: [], datasets: [] };
   const slugs = new Map();
 
   for (const [section, parser] of Object.entries(parsers)) {
@@ -164,6 +242,8 @@ export async function compileContent({ contentDir, outputFile }) {
   result.papers.sort((a, b) => b.updated.localeCompare(a.updated) || a.title.localeCompare(b.title));
   result.roadmap.sort((a, b) => a.order - b.order);
   result.projects.sort((a, b) => b.updated.localeCompare(a.updated));
+  result.models.sort((a, b) => a.title.localeCompare(b.title));
+  result.datasets.sort((a, b) => a.title.localeCompare(b.title));
 
   const payload = { ...result, generatedAt: new Date().toISOString() };
   await mkdir(path.dirname(outputFile), { recursive: true });

@@ -54,3 +54,39 @@ test("unknown paper returns 404", async () => {
   const response = await render("/papers/not-a-paper");
   assert.equal(response.status, 404);
 });
+
+test("paper explorer server-renders searchable filters and all paper records", async () => {
+  const response = await render("/papers?q=robot&track=VLA");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /aria-label="全文检索"/);
+  assert.match(html, /研究方向/);
+  assert.match(html, /证据状态/);
+  assert.match(html, /清除筛选/);
+  assert.match(html, /OpenVLA/);
+  assert.match(html, /Diffusion Policy/);
+  assert.doesNotMatch(html, /第二阶段将在此加入/);
+});
+
+test("renders evidence-aware model and dataset comparisons without cross-protocol ranking", async () => {
+  for (const route of ["/models", "/datasets"]) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    const html = await response.text();
+    assert.match(html, /对比协议/, route);
+    assert.match(html, /字段级证据/, route);
+    assert.match(html, /暂无可靠值/, route);
+    assert.doesNotMatch(html, /class="[^"]*ranking/, route);
+  }
+});
+
+test("renders the complete relationship list before the optional visual graph", async () => {
+  const response = await render("/graph");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /关系清单/);
+  assert.match(html, /加载关系图/);
+  assert.match(html, /OpenVLA/);
+  assert.match(html, /Open X-Embodiment/);
+  assert.match(html, /describes/);
+});

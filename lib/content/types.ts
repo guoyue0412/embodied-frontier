@@ -17,7 +17,25 @@ export interface PaperRecord {
   tags: string[];
   summary: string;
   sources: SourceLink[];
+  relations: Relation[];
+  text: string;
   html: string;
+}
+
+export interface Relation { target: string; type: string }
+export interface EvidenceFact { value: number | null; unit: string; status: EvidenceStatus; source: string }
+
+export interface ModelRecord {
+  type: "model"; title: string; slug: string; updated: string; family: string;
+  organization: string; license: string; protocol: string; summary: string;
+  inputs: string[]; outputs: string[]; facts: Record<string, EvidenceFact>;
+  relations: Relation[]; html: string;
+}
+
+export interface DatasetRecord {
+  type: "dataset"; title: string; slug: string; updated: string; organization: string;
+  license: string; protocol: string; summary: string; modalities: string[];
+  facts: Record<string, EvidenceFact>; relations: Relation[]; html: string;
 }
 
 export interface RoadmapRecord {
@@ -51,5 +69,7 @@ export interface ContentCollection {
   papers: PaperRecord[];
   roadmap: RoadmapRecord[];
   projects: ProjectRecord[];
+  models: ModelRecord[];
+  datasets: DatasetRecord[];
   generatedAt: string;
 }

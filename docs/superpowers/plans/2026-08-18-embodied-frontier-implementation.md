@@ -316,11 +316,11 @@ Verify root, papers, one paper detail, roadmap, and projects at desktop and 360 
 - Consumes: compiled paper records.
 - Produces: a versioned local index and client filters for query, track, tag, year, venue, and status.
 
-- [ ] Build a compact normalized token index at build time.
-- [ ] Lazy-load the client explorer only on `/papers`.
-- [ ] Preserve a complete server-rendered paper list when JavaScript is unavailable.
-- [ ] Encode filters in URL search parameters and provide a one-action clear control.
-- [ ] Test Chinese/English queries, filter intersections, empty states, and URL restoration.
+- [x] Build a compact normalized token index at build time.
+- [x] Lazy-load the client explorer only on `/papers`.
+- [x] Preserve a complete server-rendered paper list when JavaScript is unavailable.
+- [x] Encode filters in URL search parameters and provide a one-action clear control.
+- [x] Test Chinese/English queries, filter intersections, empty states, and URL restoration.
 
 ### Task 9: Model and Dataset Comparison
 
@@ -336,10 +336,10 @@ Verify root, papers, one paper detail, roadmap, and projects at desktop and 360 
 - Consumes: explicit model and dataset schemas.
 - Produces: accessible comparison tables with source and confidence per field.
 
-- [ ] Validate units and confidence at field level.
-- [ ] Refuse cross-benchmark ranking unless protocol keys match.
-- [ ] Provide stacked mobile cards as the semantic equivalent of wide tables.
-- [ ] Test missing values, mixed confidence, and protocol mismatch warnings.
+- [x] Validate units and confidence at field level.
+- [x] Refuse cross-benchmark ranking unless protocol keys match.
+- [x] Provide stacked mobile cards as the semantic equivalent of wide tables.
+- [x] Test missing values, mixed confidence, and protocol mismatch warnings.
 
 ### Task 10: Knowledge Graph with List Equivalent
 
@@ -354,10 +354,10 @@ Verify root, papers, one paper detail, roadmap, and projects at desktop and 360 
 - Consumes: explicit `relations` fields from Markdown.
 - Produces: node/edge JSON, lazy visual graph, and keyboard-accessible relationship list.
 
-- [ ] Validate all relation targets and reject dangling edges.
-- [ ] Lazy-load visualization code after the page content.
-- [ ] Make every graph query available through the list view.
-- [ ] Test graph determinism, dangling relations, keyboard selection, and reduced motion.
+- [x] Validate all relation targets and reject dangling edges.
+- [x] Lazy-load visualization code after the page content.
+- [x] Make every graph query available through the list view.
+- [x] Test graph determinism, dangling relations, keyboard selection, and reduced motion.
 
 ---
 

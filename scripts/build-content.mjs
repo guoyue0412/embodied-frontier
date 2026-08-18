@@ -11,7 +11,7 @@ const outputFile = process.env.CONTENT_OUTPUT
 try {
   const payload = await compileContent({ contentDir, outputFile });
   console.log(
-    `[content] ${payload.papers.length} papers · ${payload.roadmap.length} roadmap stages · ${payload.projects.length} projects`,
+    `[content] ${payload.papers.length} papers · ${payload.roadmap.length} roadmap stages · ${payload.projects.length} projects · ${payload.models.length} models · ${payload.datasets.length} datasets`,
   );
 } catch (error) {
   console.error(`[content] ${error instanceof Error ? error.message : String(error)}`);

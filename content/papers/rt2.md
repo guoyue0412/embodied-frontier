@@ -13,6 +13,8 @@ sources:
     url: "https://arxiv.org/abs/2307.15818"
   - label: "Project"
     url: "https://robotics-transformer2.github.io/"
+relations:
+  - { target: "model:rt2", type: "describes" }
 ---
 
 ## 核心问题
