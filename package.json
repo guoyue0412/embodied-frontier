@@ -8,17 +8,11 @@
   "scripts": {
     "content:build": "node scripts/build-content.mjs && node scripts/build-search-index.mjs && node scripts/build-graph.mjs",
     "content:validate": "ASTRO_TELEMETRY_DISABLED=1 astro check && node scripts/build-content.mjs && node scripts/build-search-index.mjs && node scripts/build-graph.mjs",
-    "predev": "npm run content:build",
-    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
-    "prebuild": "npm run content:build",
-    "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
-    "astro:build": "astro build",
-    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
-    "qa:browser": "node scripts/browser-qa.mjs",
-    "test:vinext": "npm run build && node --test tests/comparison-content.test.mjs tests/content-validation.test.mjs tests/knowledge-graph.test.mjs tests/rendered-html.test.mjs tests/search-index.test.mjs tests/source-boundaries.test.mjs",
-    "test:astro": "ASTRO_TELEMETRY_DISABLED=1 npm run astro:build && node --test tests/astro-foundation.test.mjs tests/astro-content.test.mjs tests/design-system.test.mjs tests/astro-shell.test.mjs",
-    "test": "npm run test:vinext && npm run test:astro",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern generated --ignore-pattern .astro"
+    "dev": "astro dev",
+    "build": "npm run content:build && astro build",
+    "preview": "astro preview",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern generated --ignore-pattern .astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -32,28 +26,17 @@
     "sanitize-html": "^2.17.7"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.37.1",
     "@eslint/js": "9.39.4",
-    "@next/eslint-plugin-next": "16.2.6",
-    "@openai/sites-vite-plugin": "0.1.0",
-    "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.2",
-    "@vitejs/plugin-rsc": "0.5.26",
     "eslint": "9.39.4",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.1.1",
     "globals": "16.4.0",
-    "react-server-dom-webpack": "19.2.6",
-    "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.59.3",
-    "vinext": "1.0.0-beta.2",
-    "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "typescript-eslint": "8.59.3"
   },
   "type": "module"
 }

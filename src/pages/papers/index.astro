@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PaperCard from "../../components/static/PaperCard.astro";
+import { withBase } from "../../lib/site-path.mjs";
+import { getSearchIndex } from "../../../lib/search-index";
+
+const paperEntries = (await getCollection("papers")).toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const tracks = [...new Set(paperEntries.map((paper) => paper.data.track))].sort();
+const tags = [...new Set(paperEntries.flatMap((paper) => paper.data.tags))].sort();
+const years = [...new Set(paperEntries.map((paper) => paper.data.date.slice(0, 4)))].sort().reverse();
+const venues = [...new Set(paperEntries.map((paper) => paper.data.venue))].sort();
+const searchIndex = getSearchIndex();
+const statusLabels = { verified: "已核验", "self-reported": "作者自评", unverified: "待核" };
+---
+<SiteLayout title="论文档案" description="按研究方向浏览具身智能论文笔记，并保留来源与证据状态。">
+  <main id="main-content">
+    <header class="page-intro page-shell">
+      <span class="eyebrow">PAPER DOSSIERS</span>
+      <h1>论文不是条目，<br />而是一组可核验的主张。</h1>
+      <p>按研究方向整理贡献、实现接口、评测协议和证据边界。检索与筛选全部在本地执行，并可通过 URL 恢复。</p>
+    </header>
+    <div class="page-section page-shell">
+      <div class="paper-explorer" data-search-index={JSON.stringify(searchIndex)}>
+        <form class="filter-panel" role="search" action={withBase("/papers/")} method="get">
+          <label class="filter-query"><span>全文检索</span><input aria-label="全文检索" type="search" name="q" placeholder="标题、摘要、正文、标签…" /></label>
+          <label><span>研究方向</span><select name="track"><option value="">全部</option>{tracks.map((value) => <option value={value}>{value}</option>)}</select></label>
+          <label><span>标签</span><select name="tag"><option value="">全部</option>{tags.map((value) => <option value={value}>{value}</option>)}</select></label>
+          <label><span>年份</span><select name="year"><option value="">全部</option>{years.map((value) => <option value={value}>{value}</option>)}</select></label>
+          <label><span>会议 / 来源</span><select name="venue"><option value="">全部</option>{venues.map((value) => <option value={value}>{value}</option>)}</select></label>
+          <label><span>证据状态</span><select name="status"><option value="">全部</option>{Object.entries(statusLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
+          <button class="filter-clear" type="reset">清除筛选</button>
+        </form>
+        <div class="result-summary" role="status"><strong>{paperEntries.length}</strong> / {paperEntries.length} 篇匹配</div>
+        {tracks.map((track) => {
+          const group = paperEntries.filter((paper) => paper.data.track === track);
+          return <section aria-labelledby={`track-${track.replace(/\W/g, "-")}`}>
+            <div class="group-heading"><h2 id={`track-${track.replace(/\W/g, "-")}`}>{track}</h2><span>{String(group.length).padStart(2, "0")} RECORDS</span></div>
+            <div class="paper-grid">{group.map((paper, index) => <PaperCard paper={paper.data} index={index + 1} />)}</div>
+          </section>;
+        })}
+      </div>
+    </div>
+  </main>
+</SiteLayout>

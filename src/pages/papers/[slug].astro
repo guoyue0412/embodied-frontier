@@ -1,0 +1,40 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import EvidenceBadge from "../../components/static/EvidenceBadge.astro";
+import { withBase } from "../../lib/site-path.mjs";
+
+export async function getStaticPaths() {
+  const papers = await getCollection("papers");
+  return papers.map((paper) => ({ params: { slug: paper.data.slug }, props: { paper } }));
+}
+
+interface Props {
+  paper: CollectionEntry<"papers">;
+}
+
+const { paper } = Astro.props;
+const { Content, headings } = await render(paper);
+---
+<SiteLayout title={paper.data.title} description={paper.data.summary}>
+  <main id="main-content" class="detail-shell">
+    <article>
+      <header class="detail-header">
+        <div class="detail-header__meta"><span>{paper.data.track}</span><span>{paper.data.venue}</span><time datetime={paper.data.date}>{paper.data.date}</time><EvidenceBadge status={paper.data.status} /></div>
+        <h1>{paper.data.title}</h1>
+        <p>{paper.data.summary}</p>
+        <div class="tag-list" aria-label="论文标签">{paper.data.tags.map((tag) => <span>{tag}</span>)}</div>
+      </header>
+      <div class="prose"><Content /></div>
+    </article>
+    <aside class="detail-aside" aria-label="章节与来源">
+      <nav aria-label="本页章节">
+        <h2>章节</h2>
+        <ul>{headings.filter((heading) => heading.depth === 2).map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul>
+      </nav>
+      <section><h2>来源</h2><ul>{paper.data.sources.map((source) => <li><a href={source.url} target="_blank" rel="noreferrer noopener">{source.label} ↗</a></li>)}</ul></section>
+      <section><h2>记录</h2><ul><li>首次发布：{paper.data.date}</li><li>本站更新：{paper.data.updated}</li></ul></section>
+      <a class="button button--secondary" href={withBase("/papers/")}>← 返回论文档案</a>
+    </aside>
+  </main>
+</SiteLayout>

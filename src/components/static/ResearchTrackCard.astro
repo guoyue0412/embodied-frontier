@@ -1,0 +1,20 @@
+---
+import { withBase } from "../../lib/site-path.mjs";
+
+interface Props {
+  code: string;
+  title: string;
+  question: string;
+  points: string[];
+}
+
+const { code, title, question, points } = Astro.props;
+const archiveUrl = withBase(`/papers/?track=${encodeURIComponent(title)}`);
+---
+<article class="track-card">
+  <div class="track-card__code">{code}</div>
+  <h3>{title}</h3>
+  <p>{question}</p>
+  <ul>{points.map((point) => <li>{point}</li>)}</ul>
+  <a href={archiveUrl}>查看研究档案 <span aria-hidden="true">↗</span></a>
+</article>

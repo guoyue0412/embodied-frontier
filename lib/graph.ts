@@ -1,4 +1,4 @@
-import graph from "@/generated/knowledge-graph.json";
+import graph from "../generated/knowledge-graph.json";
 import type { KnowledgeGraphData } from "./graph-core.mjs";
 
 export function getKnowledgeGraph(): KnowledgeGraphData {

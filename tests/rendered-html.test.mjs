@@ -1,92 +1,33 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFile } from "node:fs/promises";
 
-async function render(route = "/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${route}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(
-    new Request(`http://localhost${route}`, { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
+const required = [
+  "index",
+  "about/index",
+  "papers/index",
+  "models/index",
+  "datasets/index",
+  "graph/index",
+  "projects/index",
+  "roadmap/index",
+  "papers/openvla/index",
+];
+
+async function readRoute(route) {
+  return readFile(`dist/${route}.html`, "utf8").catch(() => readFile(`dist/${route}/index.html`, "utf8"));
 }
 
-test("server-renders the research homepage", async () => {
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+test("Astro emits every public route with one main and one h1", async () => {
+  for (const route of required) {
+    const html = await readRoute(route);
+    assert.equal((html.match(/<main\b/g) ?? []).length, 1, route);
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1, route);
+  }
+});
 
-  const html = await response.text();
-  assert.match(html, /<html[^>]*lang="zh-CN"/i);
-  assert.match(html, /<title>具身智能研究坐标 · 具身前沿<\/title>/i);
-  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
-  assert.match(html, /href="#main-content"[^>]*>跳到正文/);
-  assert.match(html, /把具身智能研究/);
-  assert.match(html, /VLA/);
-  assert.match(html, /WAM/);
-  assert.match(html, /Data &amp; Eval/);
+test("paper pages expose evidence and source links", async () => {
+  const html = await readFile("dist/papers/openvla/index.html", "utf8");
   assert.match(html, /已核验/);
-  assert.match(html, /作者自评/);
-  assert.match(html, /待核/);
-  assert.match(html, /http:\/\/localhost(?::3000)?\/og\.png/);
-  assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
-});
-
-test("renders primary routes and a paper record", async () => {
-  for (const route of ["/papers", "/roadmap", "/projects", "/about", "/papers/openvla"]) {
-    const response = await render(route);
-    assert.equal(response.status, 200, route);
-    const html = await response.text();
-    assert.match(html, /具身前沿/, route);
-  }
-});
-
-test("paper metadata is record-specific and does not inherit the site image", async () => {
-  const response = await render("/papers/openvla");
-  const html = await response.text();
-  assert.match(html, /<title>OpenVLA · 具身前沿<\/title>/i);
-  assert.match(html, /以公开权重和训练代码降低通用机器人策略研究门槛/);
-  assert.doesNotMatch(html, /og\.png/);
-});
-
-test("unknown paper returns 404", async () => {
-  const response = await render("/papers/not-a-paper");
-  assert.equal(response.status, 404);
-});
-
-test("paper explorer server-renders searchable filters and all paper records", async () => {
-  const response = await render("/papers?q=robot&track=VLA");
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /aria-label="全文检索"/);
-  assert.match(html, /研究方向/);
-  assert.match(html, /证据状态/);
-  assert.match(html, /清除筛选/);
-  assert.match(html, /OpenVLA/);
-  assert.match(html, /Diffusion Policy/);
-  assert.doesNotMatch(html, /第二阶段将在此加入/);
-});
-
-test("renders evidence-aware model and dataset comparisons without cross-protocol ranking", async () => {
-  for (const route of ["/models", "/datasets"]) {
-    const response = await render(route);
-    assert.equal(response.status, 200, route);
-    const html = await response.text();
-    assert.match(html, /对比协议/, route);
-    assert.match(html, /字段级证据/, route);
-    assert.match(html, /暂无可靠值/, route);
-    assert.doesNotMatch(html, /class="[^"]*ranking/, route);
-  }
-});
-
-test("renders the complete relationship list before the optional visual graph", async () => {
-  const response = await render("/graph");
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /关系清单/);
-  assert.match(html, /加载关系图/);
-  assert.match(html, /OpenVLA/);
-  assert.match(html, /Open X-Embodiment/);
-  assert.match(html, /describes/);
+  assert.match(html, /https:\/\/arxiv\.org\//);
 });

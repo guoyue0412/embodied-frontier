@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import ComparisonTable from "../components/static/ComparisonTable.astro";
+
+const datasets = (await getCollection("datasets")).toSorted((a, b) => a.data.title.localeCompare(b.data.title));
+---
+<SiteLayout title="数据集对比" description="按规模、形态、许可与字段级证据对比机器人数据集。">
+  <main id="main-content">
+    <header class="page-intro page-shell">
+      <span class="eyebrow">DATASET INDEX</span>
+      <h1>规模不是一个数字，<br />而是一组采集协议。</h1>
+      <p>轨迹、环境和机器人形态保留单位与来源，不把异质数据直接折算成排行榜。</p>
+    </header>
+    <div class="page-section page-shell"><ComparisonTable caption="数据集对比" records={datasets.map((entry) => entry.data)} fields={[
+      { key: "organization", label: "机构" }, { key: "license", label: "许可" }, { key: "protocol", label: "协议键" },
+      { key: "modalities", label: "模态", kind: "list" }, { key: "trajectories", label: "轨迹", kind: "fact" },
+      { key: "embodiments", label: "本体", kind: "fact" }, { key: "environments", label: "环境", kind: "fact" },
+    ]} /></div>
+  </main>
+</SiteLayout>

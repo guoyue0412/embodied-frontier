@@ -1,0 +1,29 @@
+---
+import type { KnowledgeGraphData } from "../../../lib/graph-core.mjs";
+
+interface Props {
+  graph: KnowledgeGraphData;
+}
+
+const { graph } = Astro.props;
+const typeLabels = { paper: "论文", model: "模型", dataset: "数据集" } as const;
+const titles = new Map(graph.nodes.map((node) => [node.id, node.title]));
+---
+<section class="relationship-section" aria-labelledby="relationship-title">
+  <div class="group-heading"><h2 id="relationship-title">关系清单</h2><span>{graph.edges.length} EDGES</span></div>
+  <p class="relationship-note">这是关系图的完整键盘与无 JavaScript 等价视图；每条边都来自 Markdown 中显式声明的 relations 字段。</p>
+  <div class="relationship-list">
+    {graph.nodes.map((node) => {
+      const outbound = graph.edges.filter((edge) => edge.source === node.id);
+      const inbound = graph.edges.filter((edge) => edge.target === node.id);
+      if (!outbound.length && !inbound.length) return null;
+      return <details>
+        <summary><span>{typeLabels[node.type]}</span><strong>{node.title}</strong><small>{outbound.length + inbound.length} 条关系</small></summary>
+        <ul>
+          {outbound.map((edge) => <li><b>{node.title}</b><code>{edge.type}</code><span>{titles.get(edge.target)}</span></li>)}
+          {inbound.map((edge) => <li><span>{titles.get(edge.source)}</span><code>{edge.type}</code><b>{node.title}</b></li>)}
+        </ul>
+      </details>;
+    })}
+  </div>
+</section>

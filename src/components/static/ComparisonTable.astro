@@ -1,0 +1,83 @@
+---
+import type { EvidenceFact } from "../../../lib/content/types";
+import EvidenceBadge from "./EvidenceBadge.astro";
+
+interface ComparisonRecord {
+  slug: string;
+  title: string;
+  summary: string;
+  [key: string]: unknown;
+  facts: Record<string, EvidenceFact>;
+}
+type Field = { key: string; label: string; kind?: "fact" | "list" };
+
+interface Props {
+  records: ComparisonRecord[];
+  fields: Field[];
+  caption: string;
+}
+
+const units: Record<string, string> = {
+  "billion-parameters": "B 参数",
+  steps: "步",
+  trajectories: "条轨迹",
+  episodes: "段 episode",
+  hours: "小时",
+  tasks: "项任务",
+  environments: "个环境",
+  embodiments: "种本体",
+  percent: "%",
+};
+
+const { records, fields, caption } = Astro.props;
+
+function valueFor(record: ComparisonRecord, field: Field) {
+  const value = record[field.key];
+  return Array.isArray(value) ? value.join(" · ") : String(value ?? "—");
+}
+
+function factFor(record: ComparisonRecord, field: Field) {
+  return record.facts[field.key];
+}
+
+function factText(fact?: EvidenceFact) {
+  if (!fact || fact.value === null) return "暂无可靠值";
+  return `${new Intl.NumberFormat("zh-CN").format(fact.value)} ${units[fact.unit] ?? fact.unit}`;
+}
+---
+<div class="comparison-wrap">
+  <div class="protocol-notice">
+    <strong>对比协议</strong>
+    <p>只并列呈现事实字段。协议键不同的记录不会生成跨协议排名；空值明确显示，不以推测补齐。</p>
+  </div>
+  <table class="comparison-table">
+    <caption>{caption} · 字段级证据</caption>
+    <thead><tr><th scope="col">记录</th>{fields.map((field) => <th scope="col">{field.label}</th>)}</tr></thead>
+    <tbody>
+      {records.map((record) => <tr>
+        <th scope="row"><strong>{record.title}</strong><small>{record.summary}</small></th>
+        {fields.map((field) => <td>
+          {field.kind === "fact" ? <div class="fact-cell">
+            <strong class={factFor(record, field)?.value === null || !factFor(record, field) ? "missing-value" : undefined}>{factText(factFor(record, field))}</strong>
+            {factFor(record, field) && <><EvidenceBadge status={factFor(record, field)!.status} /><a href={factFor(record, field)!.source} target="_blank" rel="noreferrer noopener">来源 ↗</a></>}
+          </div> : valueFor(record, field)}
+        </td>)}
+      </tr>)}
+    </tbody>
+  </table>
+  <div class="comparison-cards" aria-label={`${caption} · 字段级证据`}>
+    {records.map((record) => <article>
+      <h2>{record.title}</h2>
+      <p>{record.summary}</p>
+      <dl>{fields.map((field) => <div>
+        <dt>{field.label}</dt>
+        <dd>
+          {field.kind === "fact" ? <div class="fact-cell">
+            <strong class={factFor(record, field)?.value === null || !factFor(record, field) ? "missing-value" : undefined}>{factText(factFor(record, field))}</strong>
+            {factFor(record, field) && <><EvidenceBadge status={factFor(record, field)!.status} /><a href={factFor(record, field)!.source} target="_blank" rel="noreferrer noopener">来源 ↗</a></>}
+          </div> : valueFor(record, field)}
+        </dd>
+      </div>)}</dl>
+    </article>)}
+  </div>
+</div>

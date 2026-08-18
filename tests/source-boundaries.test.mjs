@@ -14,14 +14,14 @@ async function sourceFiles(directory) {
 }
 
 test("keeps the stage-one runtime lightweight and independently branded", async () => {
-  const files = (await Promise.all([sourceFiles("app"), sourceFiles("components"), sourceFiles("lib")])).flat();
+  const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib")])).flat();
   const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).join("\n");
   assert.doesNotMatch(source, /three(?:\.js)?|WebGL|react-loading-skeleton|GridDistortion|具身星图/i);
   assert.doesNotMatch(source, /zhuyun97|embodied-ai-learning/i);
 });
 
 test("does not request research content from a runtime API", async () => {
-  const files = (await Promise.all([sourceFiles("app"), sourceFiles("components"), sourceFiles("lib")])).flat();
+  const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib")])).flat();
   const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).join("\n");
   assert.doesNotMatch(source, /fetch\s*\(|XMLHttpRequest|WebSocket|EventSource/);
 });

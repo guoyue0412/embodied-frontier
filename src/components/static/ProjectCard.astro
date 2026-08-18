@@ -1,0 +1,27 @@
+---
+interface ProjectCardData {
+  title: string;
+  updated: string;
+  status: string;
+  question: string;
+  summary: string;
+  evidence: string[];
+  next: string;
+}
+
+interface Props {
+  project: ProjectCardData;
+}
+
+const { project } = Astro.props;
+---
+<article class="project-card">
+  <div class="project-card__meta"><span>{project.status}</span><time datetime={project.updated}>{project.updated}</time></div>
+  <h3>{project.title}</h3>
+  <p class="project-card__question">{project.question}</p>
+  <p>{project.summary}</p>
+  <dl>
+    <div><dt>已形成证据</dt><dd>{project.evidence[0]}</dd></div>
+    <div><dt>下一步</dt><dd>{project.next}</dd></div>
+  </dl>
+</article>

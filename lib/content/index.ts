@@ -1,4 +1,4 @@
-import collection from "@/generated/content.json";
+import collection from "../../generated/content.json";
 import type { ContentCollection, DatasetRecord, ModelRecord, PaperRecord, ProjectRecord, RoadmapRecord } from "./types";
 
 const content = collection as ContentCollection;
