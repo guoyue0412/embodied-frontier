@@ -1,8 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
-import { marked } from "marked";
-import sanitizeHtml from "sanitize-html";
+import { markdownToPlainText, renderSafeMarkdown } from "../src/lib/safe-markdown.mjs";
 
 export const evidenceStatuses = ["verified", "self-reported", "unverified"];
 const evidenceStatusSet = new Set(evidenceStatuses);
@@ -104,29 +103,6 @@ function facts(data, file) {
   }));
 }
 
-function safeMarkdown(markdown) {
-  const rendered = marked.parse(markdown, { async: false, gfm: true });
-  return sanitizeHtml(rendered, {
-    allowedTags: [
-      "h2", "h3", "h4", "p", "ul", "ol", "li", "blockquote", "strong", "em",
-      "code", "pre", "a", "hr", "table", "thead", "tbody", "tr", "th", "td",
-    ],
-    allowedAttributes: { a: ["href", "target", "rel"] },
-    allowedSchemes: ["http", "https", "mailto"],
-    transformTags: {
-      a: (_tagName, attribs) => ({
-        tagName: "a",
-        attribs: { ...attribs, target: "_blank", rel: "noreferrer noopener" },
-      }),
-    },
-  });
-}
-
-function plainText(markdown) {
-  const rendered = marked.parse(markdown, { async: false, gfm: true });
-  return sanitizeHtml(rendered, { allowedTags: [], allowedAttributes: {} }).replace(/\s+/g, " ").trim();
-}
-
 function parsePaper(data, content, file) {
   const status = requiredString(data, "status", file);
   if (!evidenceStatusSet.has(status)) {
@@ -145,8 +121,8 @@ function parsePaper(data, content, file) {
     summary: requiredString(data, "summary", file),
     sources: sources(data, file),
     relations: Array.isArray(data.relations) ? relations(data, file) : [],
-    text: plainText(content),
-    html: safeMarkdown(content),
+    text: markdownToPlainText(content),
+    html: renderSafeMarkdown(content),
   };
 }
 
@@ -165,7 +141,7 @@ function parseModel(data, content, file) {
     outputs: stringArray(data, "outputs", file, { min: 1 }),
     facts: facts(data, file),
     relations: relations(data, file),
-    html: safeMarkdown(content),
+    html: renderSafeMarkdown(content),
   };
 }
 
@@ -182,7 +158,7 @@ function parseDataset(data, content, file) {
     modalities: stringArray(data, "modalities", file, { min: 1 }),
     facts: facts(data, file),
     relations: relations(data, file),
-    html: safeMarkdown(content),
+    html: renderSafeMarkdown(content),
   };
 }
 
@@ -200,7 +176,7 @@ function parseRoadmap(data, content, file) {
     goals: stringArray(data, "goals", file, { min: 1 }),
     outputs: stringArray(data, "outputs", file, { min: 1 }),
     reading: stringArray(data, "reading", file, { min: 1 }),
-    html: safeMarkdown(content),
+    html: renderSafeMarkdown(content),
   };
 }
 
@@ -215,7 +191,7 @@ function parseProject(data, content, file) {
     summary: requiredString(data, "summary", file),
     evidence: stringArray(data, "evidence", file, { min: 1 }),
     next: requiredString(data, "next", file),
-    html: safeMarkdown(content),
+    html: renderSafeMarkdown(content),
   };
 }
 

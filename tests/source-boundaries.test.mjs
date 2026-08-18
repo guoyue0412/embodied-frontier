@@ -9,18 +9,20 @@ async function sourceFiles(directory) {
   const absolute = new URL(`${directory}/`, root);
   const entries = await readdir(absolute, { withFileTypes: true, recursive: true });
   return entries
-    .filter((entry) => entry.isFile() && /\.(ts|tsx|css)$/.test(entry.name))
+    .filter((entry) => entry.isFile() && /\.(astro|mjs|ts|tsx|css)$/.test(entry.name))
+    .filter((entry) => !/(?:^|[\\/])(?:generated|dist|vendor|node_modules)(?:[\\/]|$)/.test(entry.parentPath))
     .map((entry) => path.join(entry.parentPath, entry.name));
 }
 
 test("keeps the stage-one runtime lightweight and independently branded", async () => {
-  const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib")])).flat();
+  const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib"), sourceFiles("scripts")])).flat();
   const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).join("\n");
   assert.doesNotMatch(source, /three(?:\.js)?|WebGL|react-loading-skeleton|GridDistortion|具身星图/i);
   assert.doesNotMatch(source, /zhuyun97|embodied-ai-learning/i);
 });
 
 test("does not request research content from a runtime API", async () => {
+  // Browser QA and build scripts are tooling; only the shipped source tree is a runtime boundary.
   const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib")])).flat();
   const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).join("\n");
   assert.doesNotMatch(source, /fetch\s*\(|XMLHttpRequest|WebSocket|EventSource/);

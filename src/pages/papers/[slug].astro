@@ -1,8 +1,9 @@
 ---
-import { getCollection, render, type CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import EvidenceBadge from "../../components/static/EvidenceBadge.astro";
 import { withBase } from "../../lib/site-path.mjs";
+import { renderSafeMarkdownDocument } from "../../lib/safe-markdown.mjs";
 
 export async function getStaticPaths() {
   const papers = await getCollection("papers");
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const { paper } = Astro.props;
-const { Content, headings } = await render(paper);
+const { html, headings } = renderSafeMarkdownDocument(paper.body ?? "");
 ---
 <SiteLayout title={paper.data.title} description={paper.data.summary}>
   <main id="main-content" class="detail-shell">
@@ -25,7 +26,7 @@ const { Content, headings } = await render(paper);
         <p>{paper.data.summary}</p>
         <div class="tag-list" aria-label="论文标签">{paper.data.tags.map((tag) => <span>{tag}</span>)}</div>
       </header>
-      <div class="prose"><Content /></div>
+      <div class="prose" set:html={html}></div>
     </article>
     <aside class="detail-aside" aria-label="章节与来源">
       <nav aria-label="本页章节">
