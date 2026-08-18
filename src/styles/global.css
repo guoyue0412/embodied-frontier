@@ -31,7 +31,12 @@ a {
   font: inherit;
 }
 
-:where(a, button, input, select, textarea, summary) {
+:where(a) {
+  min-height: 44px;
+}
+
+:where(button, input, select, textarea, summary) {
+  min-width: 44px;
   min-height: 44px;
 }
 
@@ -118,7 +123,7 @@ a {
   height: 36px;
   place-items: center;
   border: 1px solid var(--energy-cyan);
-  border-radius: 8px;
+  border-radius: var(--radius-control);
   color: var(--energy-cyan);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -220,7 +225,7 @@ a {
   gap: 7px;
   padding: 5px 9px;
   border: 1px solid currentColor;
-  border-radius: var(--radius-panel);
+  border-radius: var(--radius-pill);
   font-family: var(--font-mono);
   font-size: 0.67rem;
   font-weight: 700;
@@ -229,7 +234,7 @@ a {
 .evidence__dot {
   width: 7px;
   height: 7px;
-  border-radius: 50%;
+  border-radius: var(--radius-dot);
   background: currentColor;
 }
 

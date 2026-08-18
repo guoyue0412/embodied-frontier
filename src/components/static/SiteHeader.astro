@@ -1,17 +1,19 @@
 ---
+import { withBase } from "../../lib/site-path.mjs";
+
 const navigation = [
-  { href: "/papers/", label: "论文" },
-  { href: "/models/", label: "模型" },
-  { href: "/datasets/", label: "数据" },
-  { href: "/graph/", label: "图谱" },
-  { href: "/projects/", label: "项目" },
-  { href: "/roadmap/", label: "路线" },
-  { href: "/about/", label: "关于" },
+  { path: "/papers/", label: "论文" },
+  { path: "/models/", label: "模型" },
+  { path: "/datasets/", label: "数据" },
+  { path: "/graph/", label: "图谱" },
+  { path: "/projects/", label: "项目" },
+  { path: "/roadmap/", label: "路线" },
+  { path: "/about/", label: "关于" },
 ];
 ---
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="wordmark" href="/" aria-label="具身前沿首页">
+    <a class="wordmark" href={withBase("/")} aria-label="具身前沿首页">
       <span class="wordmark__mark" aria-hidden="true">EF</span>
       <span>
         <strong>具身前沿</strong>
@@ -19,7 +21,7 @@ const navigation = [
       </span>
     </a>
     <nav aria-label="主导航">
-      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      {navigation.map((item) => <a href={withBase(item.path)}>{item.label}</a>)}
     </nav>
   </div>
 </header>
