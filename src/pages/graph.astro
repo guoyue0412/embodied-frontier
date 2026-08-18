@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelationshipList from "../components/static/RelationshipList.astro";
+import KnowledgeGraph from "../components/islands/KnowledgeGraph";
 import { getKnowledgeGraph } from "../../lib/graph";
 
 const graph = getKnowledgeGraph();
@@ -13,10 +14,7 @@ const graph = getKnowledgeGraph();
       <p>{graph.nodes.length} 个节点、{graph.edges.length} 条显式关系；拒绝从关键词共现自动臆测连接。</p>
     </header>
     <div class="page-section page-shell">
-      <section class="graph-loader" aria-labelledby="graph-visual-title" data-graph={JSON.stringify(graph)}>
-        <div><span class="eyebrow">OPTIONAL VISUAL LAYER</span><h2 id="graph-visual-title">轻量关系图</h2><p>默认不加载可视层，完整知识关系已在下方清单中呈现。</p></div>
-        <button class="button button--primary" type="button" disabled title="静态发布版本使用下方键盘关系清单">加载关系图 <span aria-hidden="true">→</span></button>
-      </section>
+      <KnowledgeGraph client:load graph={graph} />
       <RelationshipList graph={graph} />
     </div>
   </main>

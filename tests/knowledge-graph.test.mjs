@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { buildKnowledgeGraph } from "../lib/graph-core.mjs";
+import { buildKnowledgeGraph } from "../src/lib/graph-core.mjs";
 
 const content = {
   papers: [{ type: "paper", slug: "paper-a", title: "Paper A", track: "VLA", relations: [{ target: "model:model-a", type: "describes" }] }],
@@ -20,4 +21,11 @@ test("rejects dangling relation targets with the source id", () => {
   const broken = structuredClone(content);
   broken.models[0].relations[0].target = "dataset:missing";
   assert.throws(() => buildKnowledgeGraph(broken), /model:model-a.*dataset:missing/);
+});
+
+test("graph HTML keeps the complete list and defers Cytoscape", async () => {
+  const html = await readFile("dist/graph/index.html", "utf8");
+  assert.match(html, /完整关系清单/);
+  assert.match(html, /加载交互图谱/);
+  assert.doesNotMatch(html, /cytoscape[^<]*\.js/i);
 });

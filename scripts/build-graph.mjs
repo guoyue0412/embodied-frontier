@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildKnowledgeGraph } from "../lib/graph-core.mjs";
+import { buildKnowledgeGraph } from "../src/lib/graph-core.mjs";
 import { validateRelations } from "./validate-relations.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");

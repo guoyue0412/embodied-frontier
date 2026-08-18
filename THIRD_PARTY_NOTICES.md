@@ -27,6 +27,10 @@ local path and carries the complete upstream license text at
 - `three@0.180.0` — [mrdoob/three.js](https://github.com/mrdoob/three.js), Copyright © 2010-2025 three.js authors; MIT license (the complete text is distributed with the package at `node_modules/three/LICENSE`). It is used by the lazy `GridDistortion` and first-party procedural embodiment consumers in `src/components/vendor/react-bits/GridDistortion/GridDistortion.tsx` and `src/lib/three/create-embodiment-scene.ts`; it is not part of the shared initial page entry.
 - `@types/three@0.180.0` — [DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/three), development-only type declarations for the lazy Three.js consumer. Copyright the DefinitelyTyped contributors; MIT license. It is not shipped to browsers.
 
+## Optional knowledge graph
+
+- `cytoscape@3.34.1` — [cytoscape/cytoscape.js](https://github.com/cytoscape/cytoscape.js), pinned package version `3.34.1`. Copyright (c) 2016-2026, The Cytoscape Consortium; MIT license (the complete text is distributed with the package at `node_modules/cytoscape/LICENSE`). It is dynamically imported by `src/components/islands/KnowledgeMap.tsx` only after the user activates the graph; it is not part of the shared page entry.
+
 ## First-party assets
 
 - `public/hero-static.webp` — original abstract procedural gradient and orbital-line composition authored for this project with the built-in image generation tool on 2026-08-18, then encoded as WebP for the static hero fallback. No reference-site image, robot model, logo, or copied visual asset was used. SHA-256: `09df95ec29889453ce74223fb232ee930b7b6b040f045be507ee8497edd229f7`.
