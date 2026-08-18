@@ -29,6 +29,10 @@ test("the shared shell contract covers focus, provenance, controls, and mobile l
   const layout = await readFile("src/layouts/SiteLayout.astro", "utf8");
 
   assert.match(globalStyles, /:focus-visible/);
+  const anchorBlock = globalStyles.match(/(?:^|\n)a \{([\s\S]*?)\n\}/)?.[1] ?? "";
+  assert.match(anchorBlock, /display:\s*inline-flex/);
+  assert.match(anchorBlock, /min-width:\s*44px/);
+  assert.match(anchorBlock, /min-height:\s*44px/);
   assert.match(globalStyles, /min-width:\s*44px/);
   assert.match(globalStyles, /min-height:\s*44px/);
   assert.match(globalStyles, /calc\(100% - 36px\)/);
