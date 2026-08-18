@@ -4,12 +4,13 @@ import "../../styles/knowledge-graph.css";
 
 export interface KnowledgeMapProps {
   graph: KnowledgeGraphData;
+  basePath: string;
   onError?: (error: unknown) => void;
 }
 
 type GraphState = "idle" | "loading" | "ready" | "error";
 
-export default function KnowledgeGraph({ graph }: { graph: KnowledgeGraphData }) {
+export default function KnowledgeGraph({ graph, basePath }: { graph: KnowledgeGraphData; basePath: string }) {
   const [state, setState] = useState<GraphState>("idle");
   const [KnowledgeMap, setKnowledgeMap] = useState<ComponentType<KnowledgeMapProps> | null>(null);
 
@@ -34,7 +35,7 @@ export default function KnowledgeGraph({ graph }: { graph: KnowledgeGraphData })
   }, [handleError, state]);
 
   if (state === "ready" && KnowledgeMap) {
-    return <KnowledgeMap graph={graph} onError={handleError} />;
+    return <KnowledgeMap graph={graph} basePath={basePath} onError={handleError} />;
   }
 
   const buttonLabel = state === "error" ? "重试加载交互图谱" : "加载交互图谱";

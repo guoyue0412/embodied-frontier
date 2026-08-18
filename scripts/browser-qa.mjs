@@ -5,7 +5,14 @@ import process from "node:process";
 const chrome = process.env.CHROME_PATH ?? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const port = 9333;
 const profile = "/tmp/embodied-frontier-browser-qa";
-const base = process.env.SITE_URL ?? "http://localhost:3000";
+const siteUrl = new URL(process.env.SITE_URL ?? "http://localhost:3000/");
+const sitePrefix = siteUrl.pathname.replace(/\/+$/g, "");
+
+function pageUrl(route) {
+  const [pathname, query = ""] = route.split("?", 2);
+  const routePath = pathname === "/" ? `${sitePrefix || ""}/` : `${sitePrefix}/${pathname.replace(/^\/+/, "")}`;
+  return `${siteUrl.origin}${routePath}${query ? `?${query}` : ""}`;
+}
 
 await rm(profile, { recursive: true, force: true });
 await mkdir(profile, { recursive: true });
@@ -100,7 +107,7 @@ try {
     });
     for (const route of routes) {
       pageErrors.length = 0;
-      await call("Page.navigate", { url: `${base}${route}` });
+      await call("Page.navigate", { url: pageUrl(route) });
       await new Promise((resolve) => setTimeout(resolve, 800));
       const metrics = await evaluate(`(() => ({
         title: document.title,
@@ -117,7 +124,7 @@ try {
     }
   }
 
-  await call("Page.navigate", { url: base });
+  await call("Page.navigate", { url: pageUrl("/") });
   await new Promise((resolve) => setTimeout(resolve, 600));
   await evaluate("document.activeElement?.blur()");
   await call("Input.dispatchKeyEvent", { type: "keyDown", key: "Tab", code: "Tab", windowsVirtualKeyCode: 9 });
@@ -134,7 +141,7 @@ try {
   }))()`);
 
   await call("Emulation.setDeviceMetricsOverride", { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
-  await call("Page.navigate", { url: `${base}/papers` });
+  await call("Page.navigate", { url: pageUrl("/papers") });
   await new Promise((resolve) => setTimeout(resolve, 700));
   const searchInteraction = await evaluate(`(async () => {
     const input = document.querySelector('input[type="search"]');
@@ -142,24 +149,45 @@ try {
     setter.call(input, '视觉语言');
     input.dispatchEvent(new Event('input', { bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 150));
-    return { url: location.search, summary: document.querySelector('.result-summary')?.textContent?.replace(/\\s+/g, ' ').trim() ?? '' };
+    return { url: location.search, summary: document.querySelector('.research-console__count')?.textContent?.replace(/\\s+/g, ' ').trim() ?? '' };
   })()`);
 
-  await call("Page.navigate", { url: `${base}/graph` });
+  await call("Page.navigate", { url: pageUrl("/graph") });
   await new Promise((resolve) => setTimeout(resolve, 700));
-  const loadGraph = await evaluate(`(() => { [...document.querySelectorAll('button')].find((button) => button.textContent.includes('加载关系图'))?.click(); return true; })()`);
-  await new Promise((resolve) => setTimeout(resolve, 500));
-  await evaluate(`(() => {
-    const buttons = [...document.querySelectorAll('.graph-node')];
-    buttons.at(-1)?.focus();
+  const loadGraph = await evaluate(`(() => {
+    const button = document.querySelector('.knowledge-graph__load');
+    if (!button) return false;
+    button.click();
     return true;
+  })()`);
+  const graphReady = await evaluate(`(async () => {
+    const deadline = Date.now() + 5000;
+    while (Date.now() < deadline) {
+      if (document.querySelector('[data-knowledge-map-ready="true"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0) return true;
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+    return false;
+  })()`);
+  const graphFocused = await evaluate(`(() => {
+    const button = document.querySelector('[data-graph-node="paper:openvla"]') ?? document.querySelector('.knowledge-map__nodes button');
+    if (!button) return false;
+    button.focus();
+    return document.activeElement === button;
   })()`);
   await call("Input.dispatchKeyEvent", { type: "rawKeyDown", key: " ", code: "Space", text: " ", unmodifiedText: " ", windowsVirtualKeyCode: 32, nativeVirtualKeyCode: 32 });
   await call("Input.dispatchKeyEvent", { type: "keyUp", key: " ", code: "Space", windowsVirtualKeyCode: 32, nativeVirtualKeyCode: 32 });
   await new Promise((resolve) => setTimeout(resolve, 100));
   const graphInteraction = await evaluate(`(() => {
-    const buttons = [...document.querySelectorAll('.graph-node')];
-    return { loaded: Boolean(document.querySelector('.knowledge-map')), nodeCount: buttons.length, selected: buttons.at(-1)?.getAttribute('aria-pressed'), focused: document.activeElement === buttons.at(-1) };
+    const buttons = [...document.querySelectorAll('.knowledge-map__nodes button')];
+    const selected = buttons.find((button) => button.getAttribute('aria-pressed') === 'true');
+    return {
+      loaded: Boolean(document.querySelector('[data-knowledge-map-ready="true"]')),
+      nodeCount: buttons.length,
+      pathCount: document.querySelectorAll('.knowledge-map__path a').length,
+      pathHref: document.querySelector('.knowledge-map__path a')?.getAttribute('href') ?? '',
+      selected: selected?.getAttribute('data-graph-node') ?? '',
+      focused: document.activeElement === selected,
+    };
   })()`);
 
   const failures = results.filter((result) => !result.main || !result.heading || result.overflow || result.clippedHeaderLinks.length > 0 || result.pageErrors.length > 0);
@@ -169,7 +197,7 @@ try {
   }
 
   if (!searchInteraction.url.includes("q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80") || !searchInteraction.summary.startsWith("2 / 5")) failures.push({ searchInteraction });
-  if (!loadGraph || !graphInteraction.loaded || graphInteraction.nodeCount < 3 || graphInteraction.selected !== "true" || !graphInteraction.focused) failures.push({ graphInteraction });
+  if (!loadGraph || !graphReady || !graphInteraction.loaded || !(graphInteraction.nodeCount > 0) || !(graphInteraction.pathCount > 0) || !graphInteraction.pathHref.startsWith(`${sitePrefix}/`) || !graphInteraction.selected || !graphFocused || !graphInteraction.focused) failures.push({ graphInteraction, graphReady, graphFocused });
 
   console.log(JSON.stringify({ results, keyboard, reducedMotion, searchInteraction, graphInteraction, failures }, null, 2));
   socket.close();

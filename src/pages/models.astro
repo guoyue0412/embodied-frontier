@@ -12,7 +12,7 @@ const models = (await getCollection("models")).toSorted((a, b) => a.data.title.l
       <h1>先对齐接口与协议，<br />再谈模型差异。</h1>
       <p>参数、动作表示和输入输出均保留字段级证据；协议不一致时禁止生成排名。</p>
     </header>
-    <div class="page-section page-shell"><ComparisonTable caption="模型对比" records={models.map((entry) => entry.data)} fields={[
+    <div class="page-section page-shell"><ComparisonTable idPrefix="model" caption="模型对比" records={models.map((entry) => entry.data)} fields={[
       { key: "family", label: "类别" }, { key: "organization", label: "机构" }, { key: "license", label: "开放性" },
       { key: "protocol", label: "协议键" }, { key: "inputs", label: "输入", kind: "list" }, { key: "outputs", label: "输出", kind: "list" },
       { key: "parameters", label: "参数规模", kind: "fact" }, { key: "action_horizon", label: "动作跨度", kind: "fact" },

@@ -15,6 +15,7 @@ interface Props {
   records: ComparisonRecord[];
   fields: Field[];
   caption: string;
+  idPrefix?: string;
 }
 
 const units: Record<string, string> = {
@@ -29,7 +30,7 @@ const units: Record<string, string> = {
   percent: "%",
 };
 
-const { records, fields, caption } = Astro.props;
+const { records, fields, caption, idPrefix = "record" } = Astro.props;
 
 function valueFor(record: ComparisonRecord, field: Field) {
   const value = record[field.key];
@@ -54,7 +55,7 @@ function factText(fact?: EvidenceFact) {
     <caption>{caption} · 字段级证据</caption>
     <thead><tr><th scope="col">记录</th>{fields.map((field) => <th scope="col">{field.label}</th>)}</tr></thead>
     <tbody>
-      {records.map((record) => <tr>
+      {records.map((record) => <tr id={`${idPrefix}-${record.slug}`}>
         <th scope="row"><strong>{record.title}</strong><small>{record.summary}</small></th>
         {fields.map((field) => <td>
           {field.kind === "fact" ? <div class="fact-cell">

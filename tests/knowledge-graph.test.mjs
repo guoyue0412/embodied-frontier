@@ -29,3 +29,47 @@ test("graph HTML keeps the complete list and defers Cytoscape", async () => {
   assert.match(html, /加载交互图谱/);
   assert.doesNotMatch(html, /cytoscape[^<]*\.js/i);
 });
+
+test("graph island serializes the configured base for client navigation", async () => {
+  const html = await readFile("dist/graph/index.html", "utf8");
+  const configuredBase = process.env.BASE_PATH && process.env.BASE_PATH !== "/"
+    ? `/${process.env.BASE_PATH.replace(/^\/+|\/+$/g, "")}/`
+    : "/";
+  assert.match(html, /basePath/);
+  assert.match(html, new RegExp(escapeRegExp(configuredBase)));
+});
+
+test("graph client QA targets the current map controls and path contract", async () => {
+  const browserQa = await readFile("scripts/browser-qa.mjs", "utf8");
+  for (const selector of [".knowledge-graph__load", ".knowledge-map__nodes button", ".knowledge-map__path a", "data-knowledge-map-ready"])
+    assert.match(browserQa, new RegExp(escapeRegExp(selector)));
+  assert.match(browserQa, /nodeCount\s*>\s*0/);
+  assert.match(browserQa, /pathCount\s*>\s*0/);
+});
+
+test("graph state replays delayed changes and ignores updates after disposal", async () => {
+  const { createKnowledgeGraphStateSynchronizer } = await import("../src/lib/knowledge-graph-runtime.mjs");
+  const applied = [];
+  const synchronizer = createKnowledgeGraphStateSynchronizer((state) => applied.push(state));
+  const latest = { visibleIds: new Set(["paper:openvla"]), selectedId: "paper:openvla" };
+  synchronizer.setState({ visibleIds: new Set(["paper:pi0"]), selectedId: "paper:pi0" });
+  synchronizer.setState(latest);
+  assert.deepEqual(applied, []);
+  synchronizer.setReady(true);
+  assert.equal(applied.length, 1);
+  assert.equal(applied[0].selectedId, "paper:openvla");
+  synchronizer.dispose();
+  synchronizer.setState({ visibleIds: new Set(), selectedId: null });
+  assert.equal(applied.length, 1);
+});
+
+test("model and dataset graph links resolve to stable comparison anchors", async () => {
+  const models = await readFile("dist/models/index.html", "utf8");
+  const datasets = await readFile("dist/datasets/index.html", "utf8");
+  assert.match(models, /id="model-openvla"/);
+  assert.match(datasets, /id="dataset-open-x-embodiment"/);
+});
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}

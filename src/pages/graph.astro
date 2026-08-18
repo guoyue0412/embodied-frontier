@@ -2,6 +2,7 @@
 import SiteLayout from "../layouts/SiteLayout.astro";
 import RelationshipList from "../components/static/RelationshipList.astro";
 import KnowledgeGraph from "../components/islands/KnowledgeGraph";
+import { getBasePath } from "../lib/site-path.mjs";
 import { getKnowledgeGraph } from "../../lib/graph";
 
 const graph = getKnowledgeGraph();
@@ -14,7 +15,7 @@ const graph = getKnowledgeGraph();
       <p>{graph.nodes.length} 个节点、{graph.edges.length} 条显式关系；拒绝从关键词共现自动臆测连接。</p>
     </header>
     <div class="page-section page-shell">
-      <KnowledgeGraph client:load graph={graph} />
+      <KnowledgeGraph client:load graph={graph} basePath={getBasePath()} />
       <RelationshipList graph={graph} />
     </div>
   </main>

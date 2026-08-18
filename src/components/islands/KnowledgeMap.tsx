@@ -1,12 +1,19 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type cytoscape from "cytoscape";
 import type { GraphNode, KnowledgeGraphData } from "../../lib/graph-core.mjs";
+import { createKnowledgeGraphStateSynchronizer } from "../../lib/knowledge-graph-runtime.mjs";
 import { withBase } from "../../lib/site-path.mjs";
 import "../../styles/knowledge-graph.css";
 
 interface Props {
   graph: KnowledgeGraphData;
+  basePath: string;
   onError?: (error: unknown) => void;
+}
+
+interface GraphViewState {
+  visibleIds: ReadonlySet<string>;
+  selectedId: string | null;
 }
 
 const typeLabels: Record<GraphNode["type"], string> = {
@@ -17,12 +24,12 @@ const typeLabels: Record<GraphNode["type"], string> = {
 
 const typePaths: Record<GraphNode["type"], (slug: string) => string> = {
   paper: (slug) => `/papers/${slug}/`,
-  model: () => "/models/",
-  dataset: () => "/datasets/",
+  model: (slug) => `/models/#model-${slug}`,
+  dataset: (slug) => `/datasets/#dataset-${slug}`,
 };
 
-function nodeHref(node: GraphNode) {
-  return withBase(typePaths[node.type](node.slug));
+function nodeHref(node: GraphNode, basePath: string) {
+  return withBase(typePaths[node.type](node.slug), basePath);
 }
 
 function slugClass(value: string) {
@@ -35,9 +42,33 @@ function matchesNode(node: GraphNode, query: string, group: string) {
   return (!normalized || searchable.includes(normalized)) && (!group || node.group === group);
 }
 
-export default function KnowledgeMap({ graph, onError }: Props) {
+function applyGraphState(cy: cytoscape.Core, { visibleIds, selectedId }: GraphViewState) {
+  cy.nodes().forEach((node) => {
+    node.toggleClass("is-filtered", !visibleIds.has(node.id()));
+  });
+  cy.edges().forEach((edge) => {
+    edge.toggleClass("is-filtered", !visibleIds.has(edge.source().id()) || !visibleIds.has(edge.target().id()));
+  });
+
+  cy.elements().removeClass("is-selected is-neighbor is-dimmed");
+  if (!selectedId) return;
+  const focusIds = new Set([selectedId]);
+  const selected = cy.getElementById(selectedId);
+  if (selected.empty()) return;
+  selected.neighborhood("node").forEach((node) => {
+    focusIds.add(node.id());
+  });
+  cy.nodes().forEach((node) => {
+    if (node.id() === selectedId) node.addClass("is-selected");
+    else if (focusIds.has(node.id())) node.addClass("is-neighbor");
+    else node.addClass("is-dimmed");
+  });
+}
+
+export default function KnowledgeMap({ graph, basePath, onError }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cyRef = useRef<cytoscape.Core | null>(null);
+  const stateSynchronizerRef = useRef<ReturnType<typeof createKnowledgeGraphStateSynchronizer> | null>(null);
   const [query, setQuery] = useState("");
   const [group, setGroup] = useState("");
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -63,6 +94,12 @@ export default function KnowledgeMap({ graph, onError }: Props) {
 
     let cancelled = false;
     let instance: cytoscape.Core | null = null;
+    const synchronizer = createKnowledgeGraphStateSynchronizer((state: GraphViewState) => {
+      const cy = cyRef.current;
+      if (cy) applyGraphState(cy, state);
+    });
+    stateSynchronizerRef.current = synchronizer;
+    setReady(false);
 
     async function createGraph() {
       try {
@@ -137,6 +174,7 @@ export default function KnowledgeMap({ graph, onError }: Props) {
         }
         instance.on("tap", "node", (event) => setSelectedId(event.target.id()));
         cyRef.current = instance;
+        synchronizer.setReady(true);
         setReady(true);
       } catch (error) {
         if (!cancelled) onError?.(error);
@@ -146,6 +184,8 @@ export default function KnowledgeMap({ graph, onError }: Props) {
     void createGraph();
     return () => {
       cancelled = true;
+      synchronizer.dispose();
+      if (stateSynchronizerRef.current === synchronizer) stateSynchronizerRef.current = null;
       cyRef.current = null;
       try {
         instance?.destroy();
@@ -156,32 +196,8 @@ export default function KnowledgeMap({ graph, onError }: Props) {
   }, [graph, onError]);
 
   useEffect(() => {
-    const cy = cyRef.current;
-    if (!cy) return;
-    cy.nodes().forEach((node) => {
-      node.toggleClass("is-filtered", !visibleIds.has(node.id()));
-    });
-    cy.edges().forEach((edge) => {
-      edge.toggleClass("is-filtered", !visibleIds.has(edge.source().id()) || !visibleIds.has(edge.target().id()));
-    });
-  }, [visibleIds]);
-
-  useEffect(() => {
-    const cy = cyRef.current;
-    if (!cy) return;
-    cy.elements().removeClass("is-selected is-neighbor is-dimmed");
-    if (!selectedId) return;
-    const focusIds = new Set([selectedId]);
-    const selected = cy.getElementById(selectedId);
-    selected.neighborhood("node").forEach((node) => {
-      focusIds.add(node.id());
-    });
-    cy.nodes().forEach((node) => {
-      if (node.id() === selectedId) node.addClass("is-selected");
-      else if (focusIds.has(node.id())) node.addClass("is-neighbor");
-      else node.addClass("is-dimmed");
-    });
-  }, [selectedId]);
+    stateSynchronizerRef.current?.setState({ visibleIds, selectedId });
+  }, [selectedId, visibleIds, ready]);
 
   return (
     <section className="knowledge-map" aria-labelledby="knowledge-map-title" data-knowledge-map-ready={ready ? "true" : "false"}>
@@ -215,7 +231,7 @@ export default function KnowledgeMap({ graph, onError }: Props) {
           <ul>
             {visibleNodes.map((node) => (
               <li key={node.id}>
-                <button type="button" aria-pressed={selectedId === node.id} onClick={() => setSelectedId(node.id)}>
+                <button type="button" data-graph-node={node.id} aria-pressed={selectedId === node.id} onClick={() => setSelectedId(node.id)}>
                   <span>{typeLabels[node.type]}</span>
                   <strong>{node.title}</strong>
                   <small>{node.group}</small>
@@ -229,7 +245,7 @@ export default function KnowledgeMap({ graph, onError }: Props) {
       <aside className="knowledge-map__path" aria-live="polite" aria-labelledby="knowledge-path-title">
         <div className="knowledge-map__path-heading">
           <h3 id="knowledge-path-title">关系路径</h3>
-          {selectedNode ? <a href={nodeHref(selectedNode)}>打开{typeLabels[selectedNode.type]}条目 ↗</a> : <span>选择一个节点查看邻居</span>}
+          {selectedNode ? <a href={nodeHref(selectedNode, basePath)}>打开{typeLabels[selectedNode.type]}条目 ↗</a> : <span>选择一个节点查看邻居</span>}
         </div>
         {selectedNode ? (
           <ul>
@@ -241,7 +257,7 @@ export default function KnowledgeMap({ graph, onError }: Props) {
                 <li key={edge.id}>
                   <span>{edge.source === selectedNode.id ? "出" : "入"}</span>
                   <code>{edge.type}</code>
-                  <a href={nodeHref(other)}>{other.title}</a>
+                  <a href={nodeHref(other, basePath)}>{other.title}</a>
                 </li>
               );
             })}
