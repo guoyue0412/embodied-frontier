@@ -3,7 +3,7 @@
 Status: DONE
 
 - Base SHA: `4ebc4b7248969c64f30ff5860d7527949ca77a3d`
-- Implementation commits: `17c4046` (`feat: add licensed interactive hero effects`), `c64c560` (`fix: harden hero visual lifecycle`)
+- Implementation commits: `17c4046` (`feat: add licensed interactive hero effects`), `c64c560` (`fix: harden hero visual lifecycle`), `32ae087` (`fix: close hero visual listeners on setup failure`)
 - Scope: licensed React Bits hero effects, original static hero artwork, static-first Astro fallback, capability/reduced-motion gates, visibility lifecycle gates, scoped interaction, WebGL/texture failure recovery, base-path-safe asset handling, provenance notices, and focused regression tests.
 
 ## Provenance and license
@@ -37,7 +37,7 @@ Status: DONE
 - Bundle inspection measured the HeroExperience chunk at approximately 32,721 gzip bytes and the lazy GridDistortion chunk at approximately 119,905 gzip bytes. The lazy chunk contains Three.js/WebGL; the HeroExperience chunk and shared lifecycle helper do not. The total gzip of all built non-lazy JS chunks was approximately 96,356 bytes.
 - `public/hero-static.webp` was inspected as a 1536x1024 WebP and its SHA-256 was recomputed against the notice.
 - Staged diff whitespace check passed with `git diff --cached --check` before the implementation commit.
-- Final code commit `c64c560` passed `git diff --cached --check`; the report is recorded separately after the code commit.
+- Final code commit `32ae087` passed `git diff --cached --check`; the report is recorded separately after the code commit.
 
 ## Verification limits
 
