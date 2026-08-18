@@ -8,9 +8,14 @@ const profile = "/tmp/embodied-frontier-browser-qa";
 const siteUrl = new URL(process.env.SITE_URL ?? "http://localhost:3000/");
 const sitePrefix = siteUrl.pathname.replace(/\/+$/g, "");
 
+function trailingSlash(pathname) {
+  const normalized = pathname.replace(/^\/+|\/+$/g, "");
+  return normalized ? `/${normalized}/` : "/";
+}
+
 function pageUrl(route) {
   const [pathname, query = ""] = route.split("?", 2);
-  const routePath = pathname === "/" ? `${sitePrefix || ""}/` : `${sitePrefix}/${pathname.replace(/^\/+/, "")}`;
+  const routePath = `${sitePrefix}${trailingSlash(pathname)}`;
   return `${siteUrl.origin}${routePath}${query ? `?${query}` : ""}`;
 }
 
@@ -145,11 +150,39 @@ try {
   await new Promise((resolve) => setTimeout(resolve, 700));
   const searchInteraction = await evaluate(`(async () => {
     const input = document.querySelector('input[type="search"]');
+    if (!input) throw new Error('搜索控件缺失：' + location.href);
     const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set;
+    if (!setter) throw new Error('搜索控件 value setter 不可用');
     setter.call(input, '视觉语言');
     input.dispatchEvent(new Event('input', { bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 150));
     return { url: location.search, summary: document.querySelector('.research-console__count')?.textContent?.replace(/\\s+/g, ' ').trim() ?? '' };
+  })()`);
+
+  await call("Page.navigate", { url: pageUrl("/papers/openvla") });
+  await new Promise((resolve) => setTimeout(resolve, 700));
+  const readingInteraction = await evaluate(`(async () => {
+    const article = document.querySelector('.detail-shell article');
+    const progress = document.querySelector('[aria-label="阅读进度"]');
+    const buttons = [...document.querySelectorAll('.evidence-lens__button')];
+    if (!article || !progress || buttons.length !== 3) {
+      throw new Error('阅读工具缺失：article=' + Boolean(article) + ' progress=' + Boolean(progress) + ' lensButtons=' + buttons.length + ' url=' + location.href);
+    }
+    const verified = buttons.find((button) => button.getAttribute('data-lens') === 'verified');
+    if (!verified) throw new Error('证据透镜缺少突出已核验按钮');
+    verified.click();
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const prose = document.querySelector('.prose');
+    if (!prose) throw new Error('论文正文缺失：' + location.href);
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    const style = getComputedStyle(prose);
+    return {
+      progress: progress.getAttribute('aria-valuenow'),
+      lens: article.getAttribute('data-evidence-lens'),
+      proseVisible: style.display !== 'none' && style.visibility !== 'hidden',
+      proseTextLength: prose.textContent.trim().length,
+    };
   })()`);
 
   await call("Page.navigate", { url: pageUrl("/graph") });
@@ -261,11 +294,12 @@ try {
   }
 
   if (!searchInteraction.url.includes("q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80") || !searchInteraction.summary.startsWith("2 / 5")) failures.push({ searchInteraction });
+  if (readingInteraction.lens !== "verified" || !readingInteraction.proseVisible || readingInteraction.proseTextLength < 80) failures.push({ readingInteraction });
   if (!loadGraph || !graphReady || !graphInteraction.loaded || !(graphInteraction.nodeCount > 0) || !(graphInteraction.pathCount > 0) || !graphInteraction.pathHref.startsWith(`${sitePrefix}/`) || !graphInteraction.selected || !graphFocused || !graphInteraction.focused) failures.push({ graphInteraction, graphReady, graphFocused });
   if (!mobileLoadGraph || !graphMobileReady || !graphMobile.loaded || !(graphMobile.nodeCount > 0) || !graphMobile.allTouchSized) failures.push({ graphMobile, graphMobileReady });
   if (!modelAnchor.visible || !modelAnchor.focused || !modelAnchor.inViewport || !datasetAnchor.visible || !datasetAnchor.focused || !datasetAnchor.inViewport) failures.push({ modelAnchor, datasetAnchor });
 
-  console.log(JSON.stringify({ results, keyboard, reducedMotion, searchInteraction, graphInteraction, graphMobile, modelAnchor, datasetAnchor, failures }, null, 2));
+  console.log(JSON.stringify({ results, keyboard, reducedMotion, searchInteraction, readingInteraction, graphInteraction, graphMobile, modelAnchor, datasetAnchor, failures }, null, 2));
   socket.close();
   if (failures.length) process.exitCode = 1;
 } finally {

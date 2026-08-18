@@ -1,37 +1,66 @@
 /**
- * Normalize the small field records used by the comparison table.  This
- * module deliberately knows nothing about content fetching: Markdown is
- * compiled into records before this code is called.
+ * Normalize the small field records used by the comparison table. This module
+ * deliberately knows nothing about content fetching: Markdown is compiled
+ * into records before this code is called.
  */
 function normalizeField(field) {
-  if (!field || typeof field !== "object") return null;
+  if (!field || typeof field !== "object") {
+    return { field: "", protocol: "", unit: "", value: null };
+  }
   const source = field.fact && typeof field.fact === "object" ? field.fact : field;
+  const identity = field.field ?? field.key ?? field.metric;
   const value = source.value;
-  const unit = source.unit;
-  const protocol = field.protocol ?? source.protocol;
   return {
-    protocol: typeof protocol === "string" ? protocol : "",
-    unit: typeof unit === "string" ? unit : "",
+    field: typeof identity === "string" ? identity : "",
+    protocol: typeof field.protocol === "string" ? field.protocol : "",
+    unit: typeof source.unit === "string" ? source.unit : "",
     value: typeof value === "number" && Number.isFinite(value) ? value : null,
   };
 }
 
 function fieldList(fields) {
-  if (Array.isArray(fields)) return fields.map(normalizeField).filter(Boolean);
-  if (fields && typeof fields === "object") return Object.values(fields).map(normalizeField).filter(Boolean);
+  if (Array.isArray(fields)) return fields.map(normalizeField);
+  if (fields && typeof fields === "object") return Object.values(fields).map(normalizeField);
   return [];
 }
 
 /**
- * Return true only when at least two fields share one explicit protocol and
- * one unit.  Missing values are allowed here so callers can use the function
- * for a protocol lock; ranking callers must still require numeric values.
+ * Validate the complete candidate set before considering numeric values.
+ * Missing metadata is intentionally incompatible: excluding an incomplete
+ * record before validation could turn a heterogeneous comparison into a
+ * misleading ranking of the remaining rows.
  */
+export function comparisonGate(fields) {
+  const normalized = fieldList(fields);
+  if (normalized.length < 2) {
+    return { compatible: false, reason: "至少需要两条记录，禁止生成排名。" };
+  }
+  if (normalized.some((field) => !field.field)) {
+    return { compatible: false, reason: "字段身份缺失，禁止生成排名。" };
+  }
+  const fieldKeys = new Set(normalized.map((field) => field.field));
+  if (fieldKeys.size > 1) {
+    return { compatible: false, reason: "比较字段不同，禁止生成排名。" };
+  }
+  if (normalized.some((field) => !field.protocol)) {
+    return { compatible: false, reason: "协议键缺失，禁止生成排名。" };
+  }
+  const protocols = new Set(normalized.map((field) => field.protocol));
+  if (protocols.size > 1) {
+    return { compatible: false, reason: `评测协议不同：${[...protocols].join("、")}，禁止生成跨协议排名。` };
+  }
+  if (normalized.some((field) => !field.unit)) {
+    return { compatible: false, reason: "计量单位缺失，禁止生成排名。" };
+  }
+  const units = new Set(normalized.map((field) => field.unit));
+  if (units.size > 1) {
+    return { compatible: false, reason: `计量单位不同：${[...units].join("、")}，禁止生成排名。` };
+  }
+  return { compatible: true, reason: null, field: normalized[0].field, protocol: normalized[0].protocol, unit: normalized[0].unit };
+}
+
 export function canRankFields(fields) {
-  const normalized = fieldList(fields).filter((field) => field.protocol && field.unit);
-  if (normalized.length < 2) return false;
-  return new Set(normalized.map((field) => field.protocol)).size === 1
-    && new Set(normalized.map((field) => field.unit)).size === 1;
+  return comparisonGate(fields).compatible;
 }
 
 export function protocolKeys(records) {
@@ -39,37 +68,47 @@ export function protocolKeys(records) {
 }
 
 export function protocolsCompatible(records) {
-  return protocolKeys(records).length <= 1;
+  const candidates = (records ?? []).map((record) => ({ field: "__protocol__", protocol: record?.protocol, unit: "__protocol__", value: 1 }));
+  return comparisonGate(candidates).compatible;
 }
 
 export function protocolMismatch(records) {
-  const protocols = protocolKeys(records);
+  const values = (records ?? []).map((record) => record?.protocol);
+  if (values.some((value) => typeof value !== "string" || !value)) return "协议键缺失，禁止生成排名。";
+  const protocols = [...new Set(values)];
   if (protocols.length <= 1) return null;
   return `协议键不一致：${protocols.join("、")}。`;
 }
 
 export function compareMetric(records, metric) {
-  const present = (records ?? [])
-    .filter((record) => typeof record?.facts?.[metric]?.value === "number")
-    .map((record) => ({
-      ...record,
-      protocol: record.protocol,
-      value: record.facts[metric].value,
-      unit: record.facts[metric].unit,
-    }));
-
-  if (!canRankFields(present)) {
-    const protocols = new Set(present.map((record) => record.protocol));
-    const units = new Set(present.map((record) => record.unit));
-    let warning = "可比较的数值字段不足，禁止生成排名。";
-    if (protocols.size > 1) warning = "评测协议不同，禁止生成跨协议排名。";
-    else if (units.size > 1) warning = "计量单位不同，禁止生成排名。";
-    return { comparable: false, ranking: [], warning };
+  const candidates = (records ?? []).map((record) => {
+    const fact = record?.facts?.[metric];
+    return {
+      record,
+      field: metric,
+      protocol: record?.protocol,
+      unit: fact?.unit,
+      value: fact?.value,
+    };
+  });
+  const gate = comparisonGate(candidates);
+  if (!gate.compatible) {
+    return { comparable: false, ranking: [], warning: gate.reason };
   }
-
+  const present = candidates.filter((candidate) => typeof candidate.value === "number");
+  if (present.length < 2) {
+    return { comparable: false, ranking: [], warning: "可比较的数值字段不足，禁止生成排名。" };
+  }
   return {
     comparable: true,
-    ranking: [...present].sort((a, b) => b.value - a.value),
+    ranking: present
+      .map((candidate) => ({
+        ...candidate.record,
+        protocol: candidate.protocol,
+        value: candidate.value,
+        unit: candidate.unit,
+      }))
+      .sort((a, b) => b.value - a.value),
     warning: null,
   };
 }

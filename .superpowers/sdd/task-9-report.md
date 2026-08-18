@@ -8,19 +8,24 @@ compiled records and article evidence states.
 
 ## Delivered
 
-- Added `src/lib/comparison-core.mjs` with protocol/unit-aware
-  `canRankFields`, protocol-key helpers, and a compatibility-preserving
-  `compareMetric`. The existing `lib/comparison-core.mjs` is a thin re-export
-  for older test/tool imports while the application imports the `src/lib`
-  implementation.
+- Added `src/lib/comparison-core.mjs` with a shared conservative comparison
+  gate. It validates the complete candidate set—including null/non-numeric
+  records—before numeric filtering, and requires one explicit field identity,
+  protocol key, and unit. `canRankFields`, `compareMetric`, and the table’s
+  rankability path all use that gate; missing or incompatible metadata yields
+  no sorting affordance and an explicit reason. The existing
+  `lib/comparison-core.mjs` is a thin re-export for older test/tool imports
+  while the application imports the `src/lib` implementation.
 - Added `ProtocolLock.astro`. Mixed model protocols visibly render
   `协议一致性锁：不可排序` with the exact protocol-key mismatch; compatible
   dataset protocols render a positive field-check state.
-- Updated `ComparisonTable.astro` to expose sorting only when every selected
-  numeric field has enough values and a shared protocol/unit. Model fields
-  remain unranked because their protocols differ, including fields where only
-  a matching subset has numeric values. Dataset controls sort both table rows
-  and mobile cards, with missing values last.
+- Updated `ComparisonTable.astro` to expose sorting only when every compared
+  record has the same field identity, protocol, and unit, and at least two
+  values are numeric. Model fields remain unranked because their protocols
+  differ, including fields where only a matching subset has numeric values;
+  missing values stay `暂无可靠值`. Dataset controls sort both table rows and
+  mobile cards, with missing values last. `ProtocolLock.astro` receives the
+  same full-set protocol compatibility result and preserves the reason text.
 - Added `ReadingProgress.tsx`: server-rendered progress semantics, one passive
   scroll listener throttled by `requestAnimationFrame`, and cleanup of both
   the listener and pending frame.
@@ -36,36 +41,37 @@ compiled records and article evidence states.
 
 ## TDD evidence
 
-- RED: `ASTRO_TELEMETRY_DISABLED=1 npm run build && node --test tests/reading-and-comparison.test.mjs`
-  failed all four new tests before the protocol lock, reading islands, and
-  `src/lib/comparison-core.mjs` existed.
-- GREEN: the same focused build/test command passed 8/8 after implementation.
+- RED: the review regression first failed on a missing-unit candidate and the
+  browser QA source contract before the conservative gate and route repair
+  were applied.
+- GREEN: `node --test tests/reading-and-comparison.test.mjs
+  tests/comparison-content.test.mjs` passed 9/9 after the review fixes.
 
 ## Final verification
 
-- `ASTRO_TELEMETRY_DISABLED=1 npm test` — 60/60 tests passed; 14 pages built.
+- `ASTRO_TELEMETRY_DISABLED=1 npm test` — 61/61 tests passed; 14 pages built.
 - `npm run lint` — passed, exit code 0.
 - `ASTRO_TELEMETRY_DISABLED=1 npm run content:validate` — 0 errors; existing
   Astro deprecation/hint diagnostics remain.
-- `BASE_PATH=/embodied-frontier ASTRO_TELEMETRY_DISABLED=1 npm run build && BASE_PATH=/embodied-frontier node --test tests/astro-shell.test.mjs tests/reading-and-comparison.test.mjs` — 7/7 passed; non-root links and reading output were preserved.
+- `BASE_PATH=/embodied-frontier ASTRO_TELEMETRY_DISABLED=1 npm run build && BASE_PATH=/embodied-frontier node --test tests/astro-shell.test.mjs tests/reading-and-comparison.test.mjs` — 8/8 passed; non-root links, trailing-slash routes, and reading output were preserved.
 - `git diff --check` — passed.
-- Focused headless browser check against the production preview passed:
-  paper controls rendered with all three labels; lens persisted `verified`,
-  article prose stayed visible, and instant scroll updated progress to 100;
-  model pages showed the protocol lock and 0 sort controls; dataset sorting
-  changed table order; mobile had no horizontal overflow and 44px lens
-  controls; reduced motion matched and progress transition was `0.00001s`.
-- Emitted assets remained dependency-light: `ReadingProgress` 1,387 bytes,
+- `SITE_URL=http://127.0.0.1:4335/embodied-frontier/ node scripts/browser-qa.mjs`
+  against the real `astro preview` — passed with 0 failures across 20 route /
+  viewport checks. The canonical script now normalizes every route to
+  `trailingSlash: "always"`, reports missing search/reading controls with
+  descriptive assertions, and directly checks paper progress/lens behavior:
+  lens `verified`, prose visible, progress `100`, and 213 characters of body
+  text. It also passed keyboard skip-link, reduced-motion, graph, anchor,
+  mobile overflow, and touch-target checks.
+- Emitted assets remained dependency-light: `ReadingProgress` 1,419 bytes,
   `EvidenceLens` 1,392 bytes, with no Three.js/Cytoscape references in either
   island chunk. No package or dependency changes were required.
 
 ## Limitations and evidence boundary
 
-- The repository’s existing `scripts/browser-qa.mjs` could not reach its later
-  assertions in this managed environment: its pre-existing search step calls
-  the input value setter with a null target and Chrome reports `Illegal
-  invocation`. The dedicated Task 9 browser check above avoided that unrelated
-  failure and directly exercised the new controls.
 - Reading progress intentionally tracks the article/page scroll range and
   uses no analytics or network persistence. Lens preference is local-only and
   is discarded gracefully when browser storage is unavailable.
+- Browser QA was run against a real local production preview at a non-root
+  base; the preview process was stopped after the check. The report does not
+  claim external GitHub Pages hosting or remote browser coverage.

@@ -2,7 +2,7 @@
 import type { EvidenceFact } from "../../../lib/content/types";
 import EvidenceBadge from "./EvidenceBadge.astro";
 import ProtocolLock from "./ProtocolLock.astro";
-import { canRankFields, protocolMismatch, protocolsCompatible } from "../../lib/comparison-core.mjs";
+import { comparisonGate, protocolMismatch, protocolsCompatible } from "../../lib/comparison-core.mjs";
 
 interface ComparisonRecord {
   slug: string;
@@ -54,10 +54,10 @@ const rankable = (field: Field) => {
   const candidates = records
     .map((record) => {
       const fact = factFor(record, field);
-      return { protocol: record.protocol, unit: fact?.unit, value: fact?.value };
+      return { field: field.key, protocol: record.protocol, unit: fact?.unit, value: fact?.value };
     });
   const numericCount = candidates.filter((candidate) => typeof candidate.value === "number").length;
-  return numericCount >= 2 && canRankFields(candidates);
+  return numericCount >= 2 && comparisonGate(candidates).compatible;
 };
 const compatible = protocolsCompatible(records);
 const protocolExplanation = protocolMismatch(records) ?? "协议键一致；仍需字段单位与数值同时一致，才会提供排序。";
