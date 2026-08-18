@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useRef, useEffect, useCallback, useMemo, useState } from 'react';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
 import { bindScopedInteraction, createAnimationLifecycle } from '../../../../lib/hero-visual-runtime.mjs';
@@ -68,6 +68,7 @@ const DotGrid: React.FC<DotGridProps> = ({
   className = '',
   style
 }) => {
+  const [runtimeState, setRuntimeState] = useState<'initializing' | 'ready' | 'fallback'>('initializing');
   const wrapperRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dotsRef = useRef<Dot[]>([]);
@@ -134,7 +135,10 @@ const DotGrid: React.FC<DotGridProps> = ({
   }, [dotSize, gap]);
 
   useEffect(() => {
-    if (!circlePath) return;
+    if (!circlePath) {
+      setRuntimeState('fallback');
+      return;
+    }
 
     const proxSq = proximity * proximity;
 
@@ -200,11 +204,13 @@ const DotGrid: React.FC<DotGridProps> = ({
     document.addEventListener('visibilitychange', handleVisibility);
     lifecycle.setDocumentVisible(document.visibilityState !== 'hidden');
     lifecycle.start();
+    setRuntimeState('ready');
 
     return () => {
       document.removeEventListener('visibilitychange', handleVisibility);
       observer?.disconnect();
       lifecycle.dispose();
+      setRuntimeState('fallback');
       if (lifecycleRef.current === lifecycle) lifecycleRef.current = null;
     };
   }, [proximity, baseColor, activeRgb, baseRgb, circlePath]);
@@ -314,7 +320,7 @@ const DotGrid: React.FC<DotGridProps> = ({
   }, [maxSpeed, speedTrigger, proximity, resistance, returnDuration, shockRadius, shockStrength]);
 
   return (
-    <section className={`dot-grid ${className}`} style={style}>
+    <section className={`dot-grid ${className}`} style={style} data-dot-grid-state={runtimeState}>
       <div ref={wrapperRef} className="dot-grid__wrap">
         <canvas ref={canvasRef} className="dot-grid__canvas" />
       </div>

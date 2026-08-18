@@ -8,9 +8,10 @@ DONE. Task 10 gates are implemented and verified in the isolated worktree.
 
 - Added `scripts/check-bundle-budget.mjs`.
   - Emits and reads a deterministic `dist/astro-manifest.json` from the Astro
-    client bundle.
-  - Follows the emitted import graph, traversing static imports only and
-    excluding dynamic Three.js/Cytoscape branches.
+    client bundle and fails closed when the manifest is missing or malformed.
+  - Includes every initial module `script[src]` and `rel=modulepreload` asset,
+    then follows the emitted import graph while excluding dynamic
+    Three.js/Cytoscape branches.
   - Gzip-checks emitted JavaScript and reports initial-entry membership,
     package leakage, and exact byte counts.
 - Added `scripts/check-static-site.mjs`.
@@ -27,8 +28,18 @@ DONE. Task 10 gates are implemented and verified in the isolated worktree.
     reading, and graph usability;
   - no-JavaScript paper and relationship-list fallbacks;
   - pre/post activation Cytoscape request evidence;
+  - keyboard Tab focus and visible focus-ring evidence, Space/Enter activation,
+    real mouse and touch activation, and HTTP/resource failure reporting;
+  - observable DotGrid, GridDistortion, and Embodiment ready/fallback states;
   - screenshots and JSON report under `artifacts/browser-qa/`.
-- Added `tests/bundle-budget.test.mjs` and `tests/static-site.test.mjs`.
+- Added `scripts/serve-dist.mjs` and `scripts/verify-production.mjs`; `npm run
+  verify` now builds, runs all tests, lints, checks static HTML and bundle
+  budgets, starts/stops a prefix-aware production-dist server, and runs the
+  browser gate with deterministic exit status.
+- Added `tests/bundle-budget.test.mjs` and `tests/static-site.test.mjs`,
+  including negative fixtures for missing manifests, oversized modulepreload,
+  nested relative links, unsafe URLs, duplicate landmarks, unlabeled controls,
+  and missing image alt text.
 - Added `qa:browser` and unified `verify` scripts to `package.json`.
 - Kept the paper island’s SSR `hidden` filter controls contract while proving
   the static paper cards and no-JS note remain available.
@@ -43,7 +54,9 @@ DONE. Task 10 gates are implemented and verified in the isolated worktree.
 - GREEN: the focused bundle/static tests passed after the checkers were added.
 - Browser regressions found and fixed: hero assertion was run after returning
   to `/`; graph readiness now selects a node before requiring a path; browser
-  expressions now return booleans instead of DOM objects.
+  expressions now return booleans instead of DOM objects; mobile screenshots
+  now explicitly navigate to `/`; and browser reports no longer persist
+  absolute worktree paths, timestamps, or ephemeral ports.
 
 ## Verification
 
@@ -52,51 +65,52 @@ DONE. Task 10 gates are implemented and verified in the isolated worktree.
 Command:
 
 ```bash
-ASTRO_TELEMETRY_DISABLED=1 npm run verify
+npm run verify
 ```
 
-Result: exit 0; 65/65 Node tests passed, ESLint passed, static site checker
-passed all 14 HTML documents, and bundle checker passed:
+Result: exit 0; 69/69 Node tests passed, ESLint passed, static site checker
+passed all 14 HTML documents, bundle checker passed, and self-contained
+production browser QA passed:
 
 ```text
-initialInteractiveGzip: 100255 bytes
+initialInteractiveGzip: 100349 bytes
 budget: 122880 bytes
 sharedIncludesThree: false
 sharedIncludesCytoscape: false
 manifest: dist/astro-manifest.json
 ```
 
-### Root production preview browser gate
+The root run produced 243 assertions, 33 route checks, 0 console errors,
+0 resource/HTTP failures, 0 failures, and 5 screenshots. The CI workflow
+invokes this same `npm run verify` command.
+
+### Root production browser gate
 
 Command:
 
 ```bash
-SITE_URL=http://127.0.0.1:4323/ npm run qa:browser
+npm run verify
 ```
 
-The command ran against a real Astro production preview. Result: exit 0;
-190 assertions, 30 route checks across the three profiles and no-JavaScript
-profile, 0 console errors, 0 failures, and 5 screenshots. The final JSON
-evidence is `artifacts/browser-qa/report.json`.
+The unified runner exercises Chrome against a self-contained prefix-aware
+server over the production `dist/` and handles process cleanup. Result: exit
+0; 243 assertions, 33 route checks, 0 console errors, 0 resource/HTTP failures, 0
+failures, and 5 screenshots. The JSON evidence is
+`artifacts/browser-qa/report.json`.
 
 ### GitHub Pages base-path gate
 
 Commands:
 
 ```bash
-ASTRO_TELEMETRY_DISABLED=1 BASE_PATH=/embodied-frontier SITE_URL=https://example.github.io/embodied-frontier/ npm run build
-BASE_PATH=/embodied-frontier node scripts/check-static-site.mjs dist
-BASE_PATH=/embodied-frontier node scripts/check-bundle-budget.mjs dist
-BASE_PATH=/embodied-frontier SITE_URL=http://127.0.0.1:4350/embodied-frontier/ npm run qa:browser
+BASE_PATH=/embodied-frontier SITE_URL=https://example.github.io/embodied-frontier/ npm run verify
 ```
 
 The built output passed static and bundle checks with
-`initialInteractiveGzip: 100283`, both lazy-package flags false, and the
-manifest present. A temporary prefix-aware static server mapped the real
-production `dist/` under `/embodied-frontier/` for the browser run; that run
-also passed with 190 assertions, 30 route checks, 0 console errors, and 0
-failures. The worktree was then rebuilt at the root base and the final root
-browser report was regenerated.
+`initialInteractiveGzip: 100377`, both lazy-package flags false, and the
+manifest present. The prefix-aware runner served the real production `dist/`
+under `/embodied-frontier/`; that run passed with 243 assertions, 33 route
+checks, 0 console errors, 0 resource/HTTP failures, and 0 failures.
 
 ## Artifacts
 
@@ -109,10 +123,10 @@ browser report was regenerated.
 
 ## Limitations
 
-- Astro’s stock preview server does not mount a configured `BASE_PATH` as a
-  URL prefix; the base-path browser run therefore used a temporary static
-  prefix adapter over the same production `dist/` bytes. Root preview was
-  verified directly with `astro preview`.
+- The unified runner uses the repository’s prefix-aware static server because
+  Astro’s stock preview server does not mount a configured `BASE_PATH` as a URL
+  prefix. It serves the same production `dist/` bytes and is started/stopped
+  inside the verification process.
 - External URLs are validated deterministically for scheme and safety, but no
   live internet availability check is performed by CI.
 - Browser evidence is local headless Chrome evidence; it does not claim an

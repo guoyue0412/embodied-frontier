@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-08-18T15:11:09.615Z",
-  "siteUrl": "http://127.0.0.1:4323/",
-  "artifactsDirectory": "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa",
+  "schemaVersion": 2,
+  "siteBasePath": "/",
+  "artifactsDirectory": "artifacts/browser-qa",
   "profiles": [
     {
       "name": "desktop",
@@ -53,22 +53,24 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/hero-static.webp",
-        "http://127.0.0.1:4323/favicon.ico",
-        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
-        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js",
-        "http://127.0.0.1:4323/_astro/GridDistortion.p13ceiq3.js",
-        "http://127.0.0.1:4323/_astro/three.module.CBZXipR7.js",
-        "http://127.0.0.1:4323/_astro/create-embodiment-scene.BARYRmG5.js"
-      ]
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp",
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/favicon.ico",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js",
+        "/_astro/GridDistortion.p13ceiq3.js",
+        "/_astro/three.module.CBZXipR7.js",
+        "/_astro/create-embodiment-scene.BARYRmG5.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -91,14 +93,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -115,20 +119,22 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
-        "minControlWidth": 46.890625,
+        "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -151,14 +157,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/openvla/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
-      ]
+        "/papers/openvla/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/ReadingProgress.Dd28ZutP.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/EvidenceLens.g0rON0BJ.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -181,9 +189,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/models/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/models/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -206,9 +216,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/datasets/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/datasets/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -231,14 +243,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -261,9 +275,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/roadmap/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/roadmap/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -286,9 +302,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/projects/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/projects/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -311,9 +329,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/about/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/about/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -336,21 +356,20 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/hero-static.webp",
-        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
-        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js",
-        "http://127.0.0.1:4323/_astro/GridDistortion.p13ceiq3.js",
-        "http://127.0.0.1:4323/_astro/three.module.CBZXipR7.js",
-        "http://127.0.0.1:4323/_astro/create-embodiment-scene.BARYRmG5.js"
-      ]
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp",
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -373,14 +392,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
@@ -403,14 +424,80 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "知识图谱 · 具身前沿",
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "知识图谱 · 具身前沿",
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -433,18 +520,12 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/hero-static.webp",
-        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
-        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -467,14 +548,24 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/papers/",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -497,14 +588,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -527,14 +620,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/openvla/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
-      ]
+        "/papers/openvla/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/ReadingProgress.Dd28ZutP.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/EvidenceLens.g0rON0BJ.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -557,9 +652,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/models/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/models/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -582,9 +679,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/datasets/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/datasets/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -607,14 +706,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -637,9 +738,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/roadmap/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/roadmap/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -662,9 +765,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/projects/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/projects/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -687,9 +792,47 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/about/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/about/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "具身智能研究坐标 · 具身前沿",
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp",
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
@@ -712,14 +855,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop-reduced-motion",
@@ -742,18 +887,20 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/hero-static.webp",
-        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
-        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp",
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop-reduced-motion",
@@ -776,14 +923,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop-reduced-motion",
@@ -806,14 +955,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/openvla/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
-      ]
+        "/papers/openvla/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/ReadingProgress.Dd28ZutP.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/EvidenceLens.g0rON0BJ.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "desktop-reduced-motion",
@@ -836,14 +987,16 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "no-javascript",
@@ -866,9 +1019,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/papers/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     },
     {
       "profile": "no-javascript",
@@ -891,9 +1046,11 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
     }
   ],
   "assertions": [
@@ -938,6 +1095,16 @@
     {
       "profile": "desktop",
       "route": "/",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -985,6 +1152,16 @@
     {
       "profile": "desktop",
       "route": "/papers",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1027,6 +1204,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -1079,6 +1266,16 @@
     {
       "profile": "desktop",
       "route": "/papers/openvla",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1121,6 +1318,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -1173,6 +1380,16 @@
     {
       "profile": "desktop",
       "route": "/datasets",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1215,6 +1432,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -1267,6 +1494,16 @@
     {
       "profile": "desktop",
       "route": "/roadmap",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1309,6 +1546,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -1361,6 +1608,16 @@
     {
       "profile": "desktop",
       "route": "/about",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1408,6 +1665,16 @@
     {
       "profile": "desktop",
       "route": "/",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1417,11 +1684,20 @@
     {
       "profile": "desktop",
       "route": "/",
-      "name": "hero effects initialize on desktop",
+      "name": "hero visual runtimes report ready or explicit fallback",
       "passed": true,
       "details": {
-        "enhanced": "true"
+        "dotState": "ready",
+        "distortionState": "true",
+        "embodimentState": "fallback-error"
       }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "hero static fallback remains available",
+      "passed": true,
+      "details": {}
     },
     {
       "profile": "desktop",
@@ -1459,6 +1735,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -1522,6 +1808,176 @@
     {
       "profile": "desktop",
       "route": "/graph",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "accessibility",
+      "route": "*",
+      "name": "keyboard Tab focuses .knowledge-graph__load",
+      "passed": true,
+      "details": {
+        "focused": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "outlineColor": "rgb(255, 207, 102)",
+        "focusVisible": true
+      }
+    },
+    {
+      "profile": "accessibility",
+      "route": "*",
+      "name": "keyboard focus ring is visible for .knowledge-graph__load",
+      "passed": true,
+      "details": {
+        "focused": true,
+        "outlineStyle": "solid",
+        "outlineWidth": "3px",
+        "outlineColor": "rgb(255, 207, 102)",
+        "focusVisible": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "Space activates the graph button",
+      "passed": true,
+      "details": {
+        "focused": true,
+        "ready": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "Enter activates the graph button",
+      "passed": true,
+      "details": {
+        "focused": true,
+        "ready": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "从孤立条目，回到研究关系。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1546,7 +2002,10 @@
         "loaded": true,
         "nodeCount": 11,
         "pathCount": 4,
-        "allTouchSized": true
+        "allTouchSized": true,
+        "activation": "mouse",
+        "clicked": true,
+        "ready": true
       }
     },
     {
@@ -1556,8 +2015,8 @@
       "passed": true,
       "details": {
         "after": [
-          "http://127.0.0.1:4323/_astro/KnowledgeMap.CyHtxkCQ.js",
-          "http://127.0.0.1:4323/_astro/cytoscape.esm.DJPTHK7J.js"
+          "/_astro/KnowledgeMap.CyHtxkCQ.js",
+          "/_astro/cytoscape.esm.DJPTHK7J.js"
         ]
       }
     },
@@ -1614,6 +2073,16 @@
     {
       "profile": "mobile-touch",
       "route": "/",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1680,6 +2149,16 @@
     {
       "profile": "mobile-touch",
       "route": "/papers",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1741,6 +2220,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -1807,6 +2296,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -1878,6 +2377,16 @@
     {
       "profile": "mobile-touch",
       "route": "/models",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -1944,6 +2453,16 @@
     {
       "profile": "mobile-touch",
       "route": "/datasets",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -2005,6 +2524,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -2076,6 +2605,16 @@
     {
       "profile": "mobile-touch",
       "route": "/roadmap",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -2137,6 +2676,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -2208,6 +2757,16 @@
     {
       "profile": "mobile-touch",
       "route": "/about",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -2231,6 +2790,63 @@
       "passed": true,
       "details": {
         "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
       }
     },
     {
@@ -2274,6 +2890,16 @@
     {
       "profile": "mobile-touch",
       "route": "/graph",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -2297,8 +2923,11 @@
       "details": {
         "loaded": true,
         "nodeCount": 11,
-        "pathCount": 4,
-        "allTouchSized": true
+        "pathCount": 2,
+        "allTouchSized": true,
+        "activation": "touch",
+        "clicked": true,
+        "ready": true
       }
     },
     {
@@ -2308,8 +2937,8 @@
       "passed": true,
       "details": {
         "after": [
-          "http://127.0.0.1:4323/_astro/KnowledgeMap.CyHtxkCQ.js",
-          "http://127.0.0.1:4323/_astro/cytoscape.esm.DJPTHK7J.js"
+          "/_astro/KnowledgeMap.CyHtxkCQ.js",
+          "/_astro/cytoscape.esm.DJPTHK7J.js"
         ]
       }
     },
@@ -2321,7 +2950,7 @@
       "details": {
         "loaded": true,
         "nodeCount": 11,
-        "pathCount": 4,
+        "pathCount": 2,
         "allTouchSized": true
       }
     },
@@ -2361,6 +2990,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -2439,6 +3078,16 @@
     {
       "profile": "desktop-reduced-motion",
       "route": "/papers",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -2492,6 +3141,16 @@
       "passed": true,
       "details": {
         "errors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
       }
     },
     {
@@ -2554,6 +3213,16 @@
     {
       "profile": "desktop-reduced-motion",
       "route": "/graph",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -2578,7 +3247,10 @@
         "loaded": true,
         "nodeCount": 11,
         "pathCount": 4,
-        "allTouchSized": true
+        "allTouchSized": true,
+        "activation": "mouse",
+        "clicked": true,
+        "ready": true
       }
     },
     {
@@ -2588,8 +3260,8 @@
       "passed": true,
       "details": {
         "after": [
-          "http://127.0.0.1:4323/_astro/KnowledgeMap.CyHtxkCQ.js",
-          "http://127.0.0.1:4323/_astro/cytoscape.esm.DJPTHK7J.js"
+          "/_astro/KnowledgeMap.CyHtxkCQ.js",
+          "/_astro/cytoscape.esm.DJPTHK7J.js"
         ]
       }
     },
@@ -2646,6 +3318,16 @@
     {
       "profile": "no-javascript",
       "route": "/papers",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -2659,7 +3341,6 @@
       "passed": true,
       "details": {
         "cards": 5,
-        "filtersPresent": true,
         "fallback": true
       }
     },
@@ -2704,6 +3385,16 @@
     {
       "profile": "no-javascript",
       "route": "/graph",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
       "name": "configured base prefixes internal links",
       "passed": true,
       "details": {
@@ -2727,362 +3418,481 @@
       "profile": "desktop",
       "route": "/",
       "requests": [
-        "http://127.0.0.1:4323/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/hero-static.webp",
-        "http://127.0.0.1:4323/favicon.ico",
-        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
-        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js",
-        "http://127.0.0.1:4323/_astro/GridDistortion.p13ceiq3.js",
-        "http://127.0.0.1:4323/_astro/three.module.CBZXipR7.js",
-        "http://127.0.0.1:4323/_astro/create-embodiment-scene.BARYRmG5.js"
-      ]
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp",
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/favicon.ico",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js",
+        "/_astro/GridDistortion.p13ceiq3.js",
+        "/_astro/three.module.CBZXipR7.js",
+        "/_astro/create-embodiment-scene.BARYRmG5.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/papers",
       "requests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/papers?q=视觉语言&status=verified",
       "requests": [
-        "http://127.0.0.1:4323/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/papers/openvla",
       "requests": [
-        "http://127.0.0.1:4323/papers/openvla/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
-      ]
+        "/papers/openvla/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/ReadingProgress.Dd28ZutP.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/EvidenceLens.g0rON0BJ.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/models",
       "requests": [
-        "http://127.0.0.1:4323/models/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/models/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/datasets",
       "requests": [
-        "http://127.0.0.1:4323/datasets/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/datasets/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/roadmap",
       "requests": [
-        "http://127.0.0.1:4323/roadmap/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/roadmap/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/projects",
       "requests": [
-        "http://127.0.0.1:4323/projects/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/projects/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/about",
       "requests": [
-        "http://127.0.0.1:4323/about/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/about/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/",
       "requests": [
-        "http://127.0.0.1:4323/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/hero-static.webp",
-        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
-        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js",
-        "http://127.0.0.1:4323/_astro/GridDistortion.p13ceiq3.js",
-        "http://127.0.0.1:4323/_astro/three.module.CBZXipR7.js",
-        "http://127.0.0.1:4323/_astro/create-embodiment-scene.BARYRmG5.js"
-      ]
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp",
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/papers",
       "requests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "requests": [
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "requests": [
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/",
       "requests": [
-        "http://127.0.0.1:4323/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/hero-static.webp",
-        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
-        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/papers",
       "requests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/papers/",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/papers?q=视觉语言&status=verified",
       "requests": [
-        "http://127.0.0.1:4323/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/papers/openvla",
       "requests": [
-        "http://127.0.0.1:4323/papers/openvla/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
-      ]
+        "/papers/openvla/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/ReadingProgress.Dd28ZutP.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/EvidenceLens.g0rON0BJ.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/models",
       "requests": [
-        "http://127.0.0.1:4323/models/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/models/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/datasets",
       "requests": [
-        "http://127.0.0.1:4323/datasets/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/datasets/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/graph",
       "requests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/roadmap",
       "requests": [
-        "http://127.0.0.1:4323/roadmap/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/roadmap/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/projects",
       "requests": [
-        "http://127.0.0.1:4323/projects/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/projects/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/about",
       "requests": [
-        "http://127.0.0.1:4323/about/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/about/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "requests": [
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp",
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "mobile-touch",
       "route": "/graph",
       "requests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop-reduced-motion",
       "route": "/",
       "requests": [
-        "http://127.0.0.1:4323/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/hero-static.webp",
-        "http://127.0.0.1:4323/_astro/HeroExperience.DZ_yDjAs.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/hero-visual-runtime.BUixr7_i.js",
-        "http://127.0.0.1:4323/_astro/embodiment-runtime.CT8Y0gs0.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/hero-static.webp",
+        "/_astro/HeroExperience.MwnXy4OI.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/hero-visual-runtime.BUixr7_i.js",
+        "/_astro/embodiment-runtime.CT8Y0gs0.js",
+        "/_astro/site-path.D4LAdXGx.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop-reduced-motion",
       "route": "/papers",
       "requests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/PaperExplorer.CRSgsrVO.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/site-path.D4LAdXGx.js"
-      ]
+        "/papers/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/PaperExplorer.CRSgsrVO.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/site-path.D4LAdXGx.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop-reduced-motion",
       "route": "/papers/openvla",
       "requests": [
-        "http://127.0.0.1:4323/papers/openvla/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/ReadingProgress.Dd28ZutP.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/EvidenceLens.g0rON0BJ.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js"
-      ]
+        "/papers/openvla/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/ReadingProgress.Dd28ZutP.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/EvidenceLens.g0rON0BJ.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "desktop-reduced-motion",
       "route": "/graph",
       "requests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css",
-        "http://127.0.0.1:4323/_astro/KnowledgeGraph.C9yil7HT.js",
-        "http://127.0.0.1:4323/_astro/client.DaM4frIg.js",
-        "http://127.0.0.1:4323/_astro/react.B55x3AmE.js",
-        "http://127.0.0.1:4323/_astro/jsx-runtime.BNuS5z-Y.js",
-        "http://127.0.0.1:4323/_astro/preload-helper.FdSXoe6B.js"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css",
+        "/_astro/KnowledgeGraph.C9yil7HT.js",
+        "/_astro/client.DaM4frIg.js",
+        "/_astro/react.B55x3AmE.js",
+        "/_astro/jsx-runtime.BNuS5z-Y.js",
+        "/_astro/preload-helper.FdSXoe6B.js"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "no-javascript",
       "route": "/papers",
       "requests": [
-        "http://127.0.0.1:4323/papers/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/papers/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     },
     {
       "profile": "no-javascript",
       "route": "/graph",
       "requests": [
-        "http://127.0.0.1:4323/graph/",
-        "http://127.0.0.1:4323/_astro/SiteLayout.BQNPv06P.css"
-      ]
+        "/graph/",
+        "/_astro/SiteLayout.BQNPv06P.css"
+      ],
+      "httpErrors": []
     }
   ],
+  "resourceFailures": [],
   "screenshots": [
-    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/desktop-home.png",
-    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/desktop-graph.png",
-    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/mobile-home.png",
-    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/reduced-motion-home.png",
-    "/Users/guoyue/gy_2026/skills_interview/embodied-frontier/.worktrees/github-visual-system-execution/artifacts/browser-qa/reduced-motion-graph.png"
+    {
+      "name": "desktop-home",
+      "profile": "desktop",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "artifacts/browser-qa/desktop-home.png"
+    },
+    {
+      "name": "desktop-graph",
+      "profile": "desktop",
+      "route": "/graph",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "artifacts/browser-qa/desktop-graph.png"
+    },
+    {
+      "name": "mobile-home",
+      "profile": "mobile-touch",
+      "route": "/",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "file": "artifacts/browser-qa/mobile-home.png"
+    },
+    {
+      "name": "reduced-motion-home",
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "artifacts/browser-qa/reduced-motion-home.png"
+    },
+    {
+      "name": "reduced-motion-graph",
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "artifacts/browser-qa/reduced-motion-graph.png"
+    }
   ],
   "failures": []
 }

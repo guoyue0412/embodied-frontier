@@ -237,6 +237,19 @@ function stripConfiguredBase(pathname, basePath) {
   return null;
 }
 
+function documentPathForFile(file, outputDir, basePath) {
+  const relative = path.relative(outputDir, file).replace(/\\/g, "/");
+  const withoutIndex = relative === "index.html"
+    ? ""
+    : relative.endsWith("/index.html")
+    ? relative.slice(0, -"index.html".length)
+    : relative.endsWith(".html")
+      ? relative.slice(0, -".html".length)
+      : relative;
+  const route = withoutIndex ? `/${withoutIndex.replace(/^\/+/, "")}` : "/";
+  return `${basePath === "/" ? "" : basePath.slice(0, -1)}${route.endsWith("/") ? route : `${route}/`}`;
+}
+
 function checkUrl({ value, node, attribute, file, outputDir, basePath, idsByFile, existingFiles, currentFile, errors }) {
   const raw = value.trim();
   if (!raw || raw.startsWith("#")) {
@@ -249,7 +262,8 @@ function checkUrl({ value, node, attribute, file, outputDir, basePath, idsByFile
   }
   let parsed;
   try {
-    parsed = new URL(raw, "https://static.invalid/");
+    const documentUrl = `https://static.invalid${documentPathForFile(currentFile, outputDir, basePath)}`;
+    parsed = new URL(raw, documentUrl);
   } catch {
     reportError(errors, file, node, `${attribute} is not a valid URL: ${raw}`);
     return;

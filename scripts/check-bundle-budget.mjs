@@ -1,5 +1,5 @@
 import { gzipSync } from "node:zlib";
-import { readFile, readdir } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { parseHtml, descendants } from "./check-static-site.mjs";
 
@@ -38,16 +38,27 @@ async function loadManifest(outputDir) {
     path.join(outputDir, "astro-manifest.json"),
     path.join(outputDir, "_astro", "manifest.json"),
   ];
+  let found = false;
   for (const file of candidates) {
     try {
+      await access(file);
+      found = true;
       const value = JSON.parse(await readFile(file, "utf8"));
-      if (value && typeof value === "object" && !Array.isArray(value)) return { value, file };
-    } catch {
-      // Static Astro builds normally remove the private .vite manifest. The
-      // emitted island attributes remain a stable, executable fallback.
+      if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("manifest root must be an object");
+      for (const [key, entry] of Object.entries(value)) {
+        if (!entry || typeof entry !== "object" || typeof entry.file !== "string" || !entry.file.trim()) {
+          throw new Error(`manifest entry ${key} has no emitted file`);
+        }
+        for (const field of ["imports", "dynamicImports"]) {
+          if (entry[field] !== undefined && !Array.isArray(entry[field])) throw new Error(`manifest entry ${key}.${field} must be an array`);
+        }
+      }
+      return { value, file };
+    } catch (error) {
+      if (found) throw new Error(`Astro client manifest is missing or unparseable at ${file}: ${error.message}`);
     }
   }
-  return null;
+  throw new Error(`Astro client manifest is missing in ${outputDir}; expected astro-manifest.json or .vite/manifest.json`);
 }
 
 function parseImports(source) {
@@ -60,9 +71,16 @@ function parseImports(source) {
   return { staticImports, dynamicImports };
 }
 
-function assetPathFromUrl(value, basePath) {
+function documentPathForFile(file, outputDir, basePath) {
+  const relative = path.relative(outputDir, file).replace(/\\/g, "/");
+  if (relative === "index.html") return basePath;
+  const route = relative.endsWith("/index.html") ? relative.slice(0, -"index.html".length) : relative;
+  return `${basePath}${route}`;
+}
+
+function assetPathFromUrl(value, basePath, currentFile, outputDir) {
   try {
-    const url = new URL(value, "https://static.invalid/");
+    const url = new URL(value, `https://static.invalid${documentPathForFile(currentFile, outputDir, basePath)}`);
     if (url.origin !== "https://static.invalid") return null;
     let pathname = decodeURIComponent(url.pathname);
     if (basePath !== "/") {
@@ -86,10 +104,18 @@ async function initialReferences(outputDir, basePath) {
   for (const htmlFile of await collectHtmlFiles(outputDir)) {
     const document = parseHtml(await readFile(htmlFile, "utf8"));
     for (const node of descendants(document)) {
-      for (const attribute of ["component-url", "renderer-url", "src"]) {
+      const modulePreload = node.tagName === "link" && /\bmodulepreload\b/i.test(node.attrs.get("rel") ?? "");
+      const scriptSource = node.tagName === "script" && node.attrs.has("src");
+      const islandSource = ["component-url", "renderer-url"].some((attribute) => node.attrs.has(attribute));
+      const attributes = [
+        ...(modulePreload ? ["href"] : []),
+        ...(scriptSource ? ["src"] : []),
+        ...(islandSource ? ["component-url", "renderer-url"] : []),
+      ];
+      for (const attribute of attributes) {
         const value = node.attrs.get(attribute);
         if (!value) continue;
-        const asset = assetPathFromUrl(value, basePath);
+        const asset = assetPathFromUrl(value, basePath, htmlFile, outputDir);
         if (asset) references.add(asset);
       }
     }
@@ -108,7 +134,8 @@ function manifestEntries(manifest) {
 function buildManifestIndexes(manifest) {
   const entries = manifestEntries(manifest);
   const byFile = new Map(entries.map(([key, value]) => [normalizeAssetPath(value.file), { key, value }]));
-  return { entries, byFile };
+  const byKey = new Map(entries);
+  return { entries, byFile, byKey };
 }
 
 function staticClosure(seedPaths, assets, manifestIndex) {
@@ -122,8 +149,7 @@ function staticClosure(seedPaths, assets, manifestIndex) {
     const manifestEntry = manifestIndex?.byFile.get(current)?.value;
     if (manifestEntry?.imports) {
       for (const importedKey of manifestEntry.imports) {
-        const imported = manifestIndex.byFile.get(normalizeAssetPath(manifestIndex.entries.find(([key]) => key === importedKey)?.[1]?.file ?? importedKey));
-        const target = imported?.value?.file ?? manifestIndex.byFile.get(normalizeAssetPath(importedKey))?.value?.file ?? importedKey;
+        const target = manifestIndex.byKey.get(importedKey)?.file ?? importedKey;
         if (assets.has(normalizeAssetPath(target))) queue.push(target);
       }
     }
@@ -157,7 +183,7 @@ export async function checkBundleBudget(outputDirectory = "dist", options = {}) 
   }
 
   const loadedManifest = await loadManifest(outputDir);
-  const manifestIndex = loadedManifest ? buildManifestIndexes(loadedManifest.value) : null;
+  const manifestIndex = buildManifestIndexes(loadedManifest.value);
   const references = await initialReferences(outputDir, basePath);
   const seedPaths = new Set([...references].filter((asset) => assets.has(asset)));
   if (!seedPaths.size && manifestIndex) {
@@ -179,17 +205,26 @@ export async function checkBundleBudget(outputDirectory = "dist", options = {}) 
     sharedIncludesCytoscape: packageNames.has("cytoscape"),
     assets: reportAssets,
     basePath,
-    manifest: loadedManifest?.file ?? null,
+    manifest: path.relative(process.cwd(), loadedManifest.file) || loadedManifest.file,
     initialEntries: [...seedPaths].toSorted(),
   };
+}
+
+export function enforceBundleBudget(report, budget = 120 * 1024) {
+  if (report.initialInteractiveGzip > budget) {
+    throw new Error(`Initial interactive gzip ${report.initialInteractiveGzip} exceeds ${budget}: ${JSON.stringify(report)}`);
+  }
+  if (report.sharedIncludesThree || report.sharedIncludesCytoscape) {
+    throw new Error(`Lazy package entered initial graph: ${JSON.stringify(report)}`);
+  }
+  return report;
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   try {
     const report = await checkBundleBudget(process.argv[2] ?? "dist");
     const budget = Number(process.env.INTERACTIVE_GZIP_BUDGET ?? 120 * 1024);
-    if (report.initialInteractiveGzip > budget) throw new Error(`Initial interactive gzip ${report.initialInteractiveGzip} exceeds ${budget}: ${JSON.stringify(report)}`);
-    if (report.sharedIncludesThree || report.sharedIncludesCytoscape) throw new Error(`Lazy package entered initial graph: ${JSON.stringify(report)}`);
+    enforceBundleBudget(report, budget);
     console.log(JSON.stringify({ ...report, budget, status: "ok" }, null, 2));
   } catch (error) {
     console.error(error.message);

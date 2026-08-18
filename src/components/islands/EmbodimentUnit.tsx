@@ -206,6 +206,8 @@ export default function EmbodimentUnit({ imageSrc = "/hero-static.webp" }: Embod
       className="embodiment-unit"
       data-embodiment-unit="true"
       data-embodiment-active={active && !failed ? "true" : "false"}
+      data-embodiment-state={active && !failed ? "ready" : failed ? "fallback-error" : "fallback"}
+      data-embodiment-failure={failed ? "true" : "false"}
       aria-hidden="true"
     >
       <StaticEmbodimentFallback imageSrc={imageSrc} />
