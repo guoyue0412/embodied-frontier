@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -42,4 +42,10 @@ test("browser artifact comparison normalizes output directory metadata and hashe
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("browser QA disables smooth scrolling before measuring pointer targets", async () => {
+  const source = await readFile("scripts/browser-qa.mjs", "utf8");
+  const selectorCenter = source.match(/async function selectorCenter\(selector\) \{[\s\S]*?\n\s{2}\}/)?.[0] ?? "";
+  assert.match(selectorCenter, /scrollIntoView\(\{[^}]*behavior:\s*["']instant["']/);
 });

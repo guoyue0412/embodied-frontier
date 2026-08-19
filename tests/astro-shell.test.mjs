@@ -9,6 +9,7 @@ const base = process.env.BASE_PATH && process.env.BASE_PATH !== "/"
   : "/";
 const path = (value) => base === "/" ? `/${value.replace(/^\/+/, "")}` : `${base}${value.replace(/^\/+/, "")}`;
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const siteOrigin = new URL(process.env.SITE_URL || "https://example.github.io").origin;
 
 test("the migration route consumes the shared shell landmarks exactly once", () => {
   assert.equal((html.match(/<header\b/g) ?? []).length, 1);
@@ -23,7 +24,7 @@ test("the built shell keeps internal links and the default OG image under the co
   for (const href of ["/", "/papers/", "/models/", "/datasets/", "/graph/", "/projects/", "/roadmap/", "/about/"]) {
     assert.match(html, new RegExp(`href="${path(href)}"`));
   }
-  assert.match(html, new RegExp(`property="og:image" content="https://example\\.github\\.io${escapeRegExp(withBase("/og.png", base))}"`));
+  assert.match(html, new RegExp(`property="og:image" content="${escapeRegExp(siteOrigin)}${escapeRegExp(withBase("/og.png", base))}"`));
   assert.match(html, /研究内容以仓库中的 Markdown/);
   if (process.env.PUBLIC_REPOSITORY_URL) {
     assert.match(html, new RegExp(`href="${process.env.PUBLIC_REPOSITORY_URL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));

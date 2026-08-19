@@ -500,7 +500,7 @@ a {
 .evidence-list p { margin: 0; color: var(--text-muted); font-size: 0.82rem; }
 
 .page-intro { padding-block: 68px 42px; border-bottom: 1px solid var(--panel-border); }
-.page-intro h1 { max-width: 850px; }
+.page-intro h1 { max-width: 850px; padding-inline-end: 0.2em; overflow-wrap: anywhere; }
 .page-section { padding-block: 54px 88px; }
 .group-heading { display: flex; align-items: baseline; justify-content: space-between; margin: 46px 0 16px; padding-bottom: 12px; border-bottom: 2px solid var(--panel-border); }
 .group-heading h2 { margin: 0; font-size: 1.45rem; }
@@ -879,8 +879,8 @@ a {
 @media (max-width: 680px) {
   .hero { padding-block: 58px 62px; }
   .hero::before { left: -18px; }
-  .hero__copy h1,
-  .page-intro h1 { font-size: clamp(2.5rem, 13vw, 4rem); }
+  .hero__copy h1 { font-size: clamp(2.5rem, 13vw, 4rem); }
+  .page-intro h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
   .section { padding-block: 66px; }
   .track-card,
   .paper-card,

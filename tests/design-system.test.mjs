@@ -37,6 +37,8 @@ test("the shared shell contract covers focus, provenance, controls, and mobile l
   assert.match(globalStyles, /min-height:\s*44px/);
   assert.match(globalStyles, /calc\(100% - 36px\)/);
   assert.match(globalStyles, /grid-template-columns:\s*1fr/);
+  assert.match(globalStyles, /\.page-intro h1\s*\{[^}]*overflow-wrap:\s*anywhere/);
+  assert.match(globalStyles, /@media \(max-width:\s*680px\)[\s\S]*?\.page-intro h1\s*\{[^}]*font-size:\s*clamp\([^,]+,\s*(?:1[01](?:\.\d+)?)vw,/);
   for (const match of globalStyles.matchAll(/border-radius:\s*([^;]+);/g)) {
     assert.match(match[1].trim(), /^var\(--radius-[\w-]+\)$/);
   }

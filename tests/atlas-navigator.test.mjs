@@ -56,9 +56,9 @@ test("the built homepage exposes one complete navigator link set", async () => {
   const base = (process.env.BASE_PATH || "/").replace(/\/+$/, "");
   const route = (path) => `${base}${path}` || path;
   assert.match(navigator, /data-atlas-navigator/);
-  assert.equal((navigator.match(/class="[^"]*\batlas-destination(?:\s|")/g) ?? []).length, 6);
+  assert.equal((navigator.match(/class="[^"]*\batlas-destination(?:\s|")/g) ?? []).length, 7);
   assert.equal((navigator.match(/data-atlas-navigator-static/g) ?? []).length, 0);
-  for (const destination of ["/papers/", "/models/", "/datasets/", "/graph/", "/roadmap/", "/projects/"]) {
+  for (const destination of ["/papers/", "/models/", "/datasets/", "/graph/", "/roadmap/", "/projects/", "/demos/"]) {
     assert.match(navigator, new RegExp(`href="${route(destination).replaceAll("/", "\\/")}"`));
   }
 });

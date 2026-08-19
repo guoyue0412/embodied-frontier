@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "siteBasePath": "/",
+  "siteBasePath": "/embodied-frontier",
   "artifactsDirectory": "artifacts/browser-qa",
   "profiles": [
     {
@@ -47,27 +47,29 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/",
-        "/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/create-embodiment-scene.HJEve4Cs.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/_astro/three.module.DZdaHwQM.js",
-        "/favicon.ico",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/GridDistortion.Qj5xHAnZ.js",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/create-embodiment-scene.HJEve4Cs.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/_astro/three.module.DZdaHwQM.js",
+        "/embodied-frontier/favicon.ico",
+        "/embodied-frontier/hero-static.webp"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -87,19 +89,20 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -119,19 +122,20 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -151,19 +155,20 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.875,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/EvidenceLens.kZoNCSvz.js",
-        "/_astro/ReadingProgress.CzwftwFW.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/papers/openvla/"
+        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
+        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/papers/openvla/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -183,14 +188,15 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/models/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/models/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -210,14 +216,15 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/datasets/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/datasets/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -237,20 +244,21 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -270,14 +278,15 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/roadmap/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/roadmap/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -297,14 +306,43 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/projects/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/projects/"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "Demo Lab / 作品实验室 · 具身前沿",
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -324,14 +362,16 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/about/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/about.DQcn3czC.css",
+        "/embodied-frontier/about/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -351,26 +391,56 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/",
-        "/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/create-embodiment-scene.HJEve4Cs.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/_astro/three.module.DZdaHwQM.js",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/GridDistortion.Qj5xHAnZ.js",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/create-embodiment-scene.HJEve4Cs.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/_astro/three.module.DZdaHwQM.js",
+        "/embodied-frontier/hero-static.webp"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "Demo Lab / 作品实验室 · 具身前沿",
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -390,19 +460,20 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -422,20 +493,21 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -455,20 +527,21 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -488,20 +561,21 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -521,23 +595,25 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/hero-static.webp"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -557,19 +633,20 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -589,19 +666,20 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -621,19 +699,20 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.875,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/EvidenceLens.kZoNCSvz.js",
-        "/_astro/ReadingProgress.CzwftwFW.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/papers/openvla/"
+        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
+        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/papers/openvla/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -653,14 +732,15 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/models/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/models/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -680,14 +760,15 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/datasets/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/datasets/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -707,20 +788,21 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -740,14 +822,15 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/roadmap/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/roadmap/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -767,14 +850,43 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/projects/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/projects/"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "Demo Lab / 作品实验室 · 具身前沿",
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -794,14 +906,16 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/about/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/about.DQcn3czC.css",
+        "/embodied-frontier/about/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -821,23 +935,53 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/hero-static.webp"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "Demo Lab / 作品实验室 · 具身前沿",
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -857,20 +1001,21 @@
         "scrollWidth": 360,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -890,23 +1035,53 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/hero-static.webp"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "Demo Lab / 作品实验室 · 具身前沿",
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -926,19 +1101,20 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -958,19 +1134,20 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.875,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/EvidenceLens.kZoNCSvz.js",
-        "/_astro/ReadingProgress.CzwftwFW.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/papers/openvla/"
+        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
+        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/papers/openvla/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -990,20 +1167,21 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1023,14 +1201,15 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 44,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/papers/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1050,15 +1229,74 @@
         "scrollWidth": 1440,
         "overflow": false,
         "clippedHeaderLinks": [],
+        "clippedHeadings": [],
         "minControlWidth": 46.890625,
         "minControlHeight": 44,
         "pathPrefixViolations": []
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/graph.CDK4cHh6.css",
-        "/graph/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/graph/"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 800
+      },
+      "assertions": {
+        "title": "具身智能研究坐标 · 具身前沿",
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 44,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/hero-static.webp"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "viewport": {
+        "width": 1440,
+        "height": 800
+      },
+      "assertions": {
+        "title": "Demo Lab / 作品实验室 · 具身前沿",
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1097,6 +1335,15 @@
     {
       "profile": "desktop",
       "route": "/",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -1124,6 +1371,16 @@
     },
     {
       "profile": "desktop",
+      "route": "/",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 44,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "desktop",
       "route": "/papers",
       "name": "single main landmark",
       "passed": true,
@@ -1146,6 +1403,15 @@
       "profile": "desktop",
       "route": "/papers",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -1181,6 +1447,16 @@
     },
     {
       "profile": "desktop",
+      "route": "/papers",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 44,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "desktop",
       "route": "/papers?q=视觉语言&status=verified",
       "name": "single main landmark",
       "passed": true,
@@ -1203,6 +1479,15 @@
       "profile": "desktop",
       "route": "/papers?q=视觉语言&status=verified",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -1234,6 +1519,16 @@
       "passed": true,
       "details": {
         "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
       }
     },
     {
@@ -1268,6 +1563,15 @@
     {
       "profile": "desktop",
       "route": "/papers/openvla",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -1291,6 +1595,16 @@
       "passed": true,
       "details": {
         "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers/openvla",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.875,
+        "minHeight": 44
       }
     },
     {
@@ -1325,6 +1639,15 @@
     {
       "profile": "desktop",
       "route": "/models",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -1348,6 +1671,16 @@
       "passed": true,
       "details": {
         "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/models",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 44,
+        "minHeight": 44
       }
     },
     {
@@ -1382,6 +1715,15 @@
     {
       "profile": "desktop",
       "route": "/datasets",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -1405,6 +1747,16 @@
       "passed": true,
       "details": {
         "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/datasets",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 44,
+        "minHeight": 44
       }
     },
     {
@@ -1439,6 +1791,15 @@
     {
       "profile": "desktop",
       "route": "/graph",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -1462,6 +1823,16 @@
       "passed": true,
       "details": {
         "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
       }
     },
     {
@@ -1496,6 +1867,15 @@
     {
       "profile": "desktop",
       "route": "/roadmap",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -1519,6 +1899,16 @@
       "passed": true,
       "details": {
         "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/roadmap",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 44,
+        "minHeight": 44
       }
     },
     {
@@ -1553,6 +1943,15 @@
     {
       "profile": "desktop",
       "route": "/projects",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/projects",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -1580,6 +1979,92 @@
     },
     {
       "profile": "desktop",
+      "route": "/projects",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "desktop",
       "route": "/about",
       "name": "single main landmark",
       "passed": true,
@@ -1602,6 +2087,15 @@
       "profile": "desktop",
       "route": "/about",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/about",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -1637,6 +2131,16 @@
     },
     {
       "profile": "desktop",
+      "route": "/about",
+      "name": "all visible controls meet 44px target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "desktop",
       "route": "/",
       "name": "single main landmark",
       "passed": true,
@@ -1659,6 +2163,15 @@
       "profile": "desktop",
       "route": "/",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -1714,6 +2227,307 @@
     },
     {
       "profile": "desktop",
+      "route": "/",
+      "name": "atlas chapter strip meets 44px minimum",
+      "passed": true,
+      "details": {
+        "chapterStripHeight": 62,
+        "gitTracked": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "atlas status exposes Git-tracked repository state",
+      "passed": true,
+      "details": {
+        "chapterStripHeight": 62,
+        "gitTracked": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "atlas navigator exposes one complete destination set",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "orbit",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "atlas navigator has a truthful hydration marker",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "orbit",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "atlas navigator does not publish false aria-current state",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "orbit",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "atlas active preview remains linked and live",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "orbit",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "atlas navigator stage accepts ArrowRight selection",
+      "passed": true,
+      "details": {
+        "stage": true,
+        "focused": true,
+        "tabFocused": false,
+        "before": "0",
+        "after": "1"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/",
+      "name": "atlas orbit pause and resume controls work",
+      "passed": true,
+      "details": {
+        "paused": true,
+        "resumed": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "Demo Lab gallery exposes an honest empty state or approved records",
+      "passed": true,
+      "details": {
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "gallery": true,
+        "emptyState": true,
+        "cards": 0,
+        "detailLinks": [],
+        "videos": 0,
+        "forbiddenFields": 0,
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": false,
+        "galleryHasEmptyState": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "Demo Lab does not expose organization identity fields",
+      "passed": true,
+      "details": {
+        "forbiddenFields": 0
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "Demo Lab listing does not preload playable videos",
+      "passed": true,
+      "details": {
+        "videos": 0,
+        "hasRecords": false
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "Demo Lab uses same-origin static assets without content-fetch dependencies",
+      "passed": true,
+      "details": {
+        "externalRequests": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "Demo Lab empty state remains truthful without JavaScript",
+      "passed": true,
+      "details": {
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "gallery": true,
+        "emptyState": true,
+        "cards": 0,
+        "detailLinks": [],
+        "videos": 0,
+        "forbiddenFields": 0,
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": false
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "name": "Demo Lab detail video check is correctly gated until records exist",
+      "passed": true,
+      "details": {
+        "gated": true
+      }
+    },
+    {
+      "profile": "desktop",
       "route": "/papers",
       "name": "single main landmark",
       "passed": true,
@@ -1736,6 +2550,15 @@
       "profile": "desktop",
       "route": "/papers",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/papers",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -1804,6 +2627,15 @@
       "profile": "desktop",
       "route": "/graph",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -1906,6 +2738,15 @@
     {
       "profile": "desktop",
       "route": "/graph",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -1966,6 +2807,15 @@
       "profile": "desktop",
       "route": "/graph",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -2060,7 +2910,7 @@
         "nodeReady": true,
         "nodeActivated": true,
         "pathReady": true,
-        "keyboardFallback": true
+        "keyboardFallback": false
       }
     },
     {
@@ -2070,8 +2920,8 @@
       "passed": true,
       "details": {
         "after": [
-          "/_astro/KnowledgeMap.C-KxTC21.js",
-          "/_astro/cytoscape.esm.DWdRIQSr.js"
+          "/embodied-frontier/_astro/KnowledgeMap.DK6Gjcs3.js",
+          "/embodied-frontier/_astro/cytoscape.esm.DWdRIQSr.js"
         ]
       }
     },
@@ -2119,6 +2969,15 @@
     {
       "profile": "mobile-touch",
       "route": "/",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -2195,6 +3054,15 @@
     {
       "profile": "mobile-touch",
       "route": "/papers",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -2263,6 +3131,15 @@
       "profile": "mobile-touch",
       "route": "/papers?q=视觉语言&status=verified",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers?q=视觉语言&status=verified",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -2339,6 +3216,15 @@
       "profile": "mobile-touch",
       "route": "/papers/openvla",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/papers/openvla",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -2423,6 +3309,15 @@
     {
       "profile": "mobile-touch",
       "route": "/models",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/models",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -2499,6 +3394,15 @@
     {
       "profile": "mobile-touch",
       "route": "/datasets",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/datasets",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -2567,6 +3471,15 @@
       "profile": "mobile-touch",
       "route": "/graph",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -2651,6 +3564,15 @@
     {
       "profile": "mobile-touch",
       "route": "/roadmap",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/roadmap",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -2727,6 +3649,15 @@
     {
       "profile": "mobile-touch",
       "route": "/projects",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/projects",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -2773,6 +3704,91 @@
     },
     {
       "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "all visible controls meet 44px touch target",
+      "passed": true,
+      "details": {
+        "minWidth": 46.890625,
+        "minHeight": 44
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "Three.js does not download on touch/narrow viewport",
+      "passed": true,
+      "details": {
+        "threeRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
       "route": "/about",
       "name": "single main landmark",
       "passed": true,
@@ -2795,6 +3811,15 @@
       "profile": "mobile-touch",
       "route": "/about",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/about",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -2879,6 +3904,15 @@
     {
       "profile": "mobile-touch",
       "route": "/",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -2906,6 +3940,324 @@
     },
     {
       "profile": "mobile-touch",
+      "route": "/",
+      "name": "atlas chapter strip meets 44px minimum",
+      "passed": true,
+      "details": {
+        "chapterStripHeight": 62
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "atlas navigator exposes one complete destination set",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "atlas navigator has a truthful hydration marker",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "atlas navigator does not publish false aria-current state",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "atlas active preview remains linked and live",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "atlas navigator reports static mode on this profile",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "static atlas navigator nodes have no transition",
+      "passed": true,
+      "details": {
+        "staticStyles": true,
+        "mode": "static"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/",
+      "name": "static atlas navigator phase remains frozen",
+      "passed": true,
+      "details": {
+        "phaseBefore": "",
+        "phaseAfter": "",
+        "mode": "static"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "Demo Lab gallery exposes an honest empty state or approved records",
+      "passed": true,
+      "details": {
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "gallery": true,
+        "emptyState": true,
+        "cards": 0,
+        "detailLinks": [],
+        "videos": 0,
+        "forbiddenFields": 0,
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": false,
+        "galleryHasEmptyState": true
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "Demo Lab does not expose organization identity fields",
+      "passed": true,
+      "details": {
+        "forbiddenFields": 0
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "Demo Lab listing does not preload playable videos",
+      "passed": true,
+      "details": {
+        "videos": 0,
+        "hasRecords": false
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "Demo Lab uses same-origin static assets without content-fetch dependencies",
+      "passed": true,
+      "details": {
+        "externalRequests": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "Demo Lab empty state remains truthful without JavaScript",
+      "passed": true,
+      "details": {
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "gallery": true,
+        "emptyState": true,
+        "cards": 0,
+        "detailLinks": [],
+        "videos": 0,
+        "forbiddenFields": 0,
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": false
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "name": "Demo Lab detail video check is correctly gated until records exist",
+      "passed": true,
+      "details": {
+        "gated": true
+      }
+    },
+    {
+      "profile": "mobile-touch",
       "route": "/graph",
       "name": "single main landmark",
       "passed": true,
@@ -2928,6 +4280,15 @@
       "profile": "mobile-touch",
       "route": "/graph",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -3032,8 +4393,8 @@
       "passed": true,
       "details": {
         "after": [
-          "/_astro/KnowledgeMap.C-KxTC21.js",
-          "/_astro/cytoscape.esm.DWdRIQSr.js"
+          "/embodied-frontier/_astro/KnowledgeMap.DK6Gjcs3.js",
+          "/embodied-frontier/_astro/cytoscape.esm.DWdRIQSr.js"
         ]
       }
     },
@@ -3073,6 +4434,15 @@
       "profile": "desktop-reduced-motion",
       "route": "/",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -3134,6 +4504,313 @@
     },
     {
       "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "atlas chapter strip meets 44px minimum",
+      "passed": true,
+      "details": {
+        "chapterStripHeight": 62
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "atlas navigator exposes one complete destination set",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "atlas navigator has a truthful hydration marker",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "atlas navigator does not publish false aria-current state",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "atlas active preview remains linked and live",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "atlas navigator reports static mode on this profile",
+      "passed": true,
+      "details": {
+        "exists": true,
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hrefs": [
+          "/embodied-frontier/papers/",
+          "/embodied-frontier/models/",
+          "/embodied-frontier/datasets/",
+          "/embodied-frontier/graph/",
+          "/embodied-frontier/roadmap/",
+          "/embodied-frontier/projects/",
+          "/embodied-frontier/demos/"
+        ],
+        "hasDemo": true,
+        "nodeCount": 7,
+        "ready": true,
+        "mode": "static",
+        "ariaCurrentCount": 0,
+        "activeLinkCount": 1,
+        "preview": true,
+        "activeDescribedBy": [
+          "atlas-active-preview"
+        ]
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/",
+      "name": "static atlas navigator nodes have no transition",
+      "passed": true,
+      "details": {
+        "staticStyles": true,
+        "mode": "static"
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。"
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "Demo Lab gallery exposes an honest empty state or approved records",
+      "passed": true,
+      "details": {
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "gallery": true,
+        "emptyState": true,
+        "cards": 0,
+        "detailLinks": [],
+        "videos": 0,
+        "forbiddenFields": 0,
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": false,
+        "galleryHasEmptyState": true
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "Demo Lab does not expose organization identity fields",
+      "passed": true,
+      "details": {
+        "forbiddenFields": 0
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "Demo Lab listing does not preload playable videos",
+      "passed": true,
+      "details": {
+        "videos": 0,
+        "hasRecords": false
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "Demo Lab uses same-origin static assets without content-fetch dependencies",
+      "passed": true,
+      "details": {
+        "externalRequests": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "Demo Lab empty state remains truthful without JavaScript",
+      "passed": true,
+      "details": {
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "gallery": true,
+        "emptyState": true,
+        "cards": 0,
+        "detailLinks": [],
+        "videos": 0,
+        "forbiddenFields": 0,
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": false
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "name": "Demo Lab detail video check is correctly gated until records exist",
+      "passed": true,
+      "details": {
+        "gated": true
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
       "route": "/papers",
       "name": "single main landmark",
       "passed": true,
@@ -3156,6 +4833,15 @@
       "profile": "desktop-reduced-motion",
       "route": "/papers",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -3232,6 +4918,15 @@
     {
       "profile": "desktop-reduced-motion",
       "route": "/papers/openvla",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/papers/openvla",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -3291,6 +4986,15 @@
       "profile": "desktop-reduced-motion",
       "route": "/graph",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -3395,8 +5099,8 @@
       "passed": true,
       "details": {
         "after": [
-          "/_astro/KnowledgeMap.C-KxTC21.js",
-          "/_astro/cytoscape.esm.DWdRIQSr.js"
+          "/embodied-frontier/_astro/KnowledgeMap.DK6Gjcs3.js",
+          "/embodied-frontier/_astro/cytoscape.esm.DWdRIQSr.js"
         ]
       }
     },
@@ -3436,6 +5140,15 @@
       "profile": "no-javascript",
       "route": "/papers",
       "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/papers",
+      "name": "headings fit within their content boxes",
       "passed": true,
       "details": {
         "clipped": []
@@ -3511,6 +5224,15 @@
     {
       "profile": "no-javascript",
       "route": "/graph",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/graph",
       "name": "no console errors",
       "passed": true,
       "details": {
@@ -3545,6 +5267,162 @@
         "relationshipList": 10,
         "fallback": true
       }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把具身智能研究，整理成可验证的坐标。"
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "name": "static atlas navigator retains the Demo Lab destination without JavaScript",
+      "passed": true,
+      "details": {
+        "linkCount": 7,
+        "uniqueLinks": 7,
+        "hasDemo": true,
+        "ariaCurrentCount": 0
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "name": "single main landmark",
+      "passed": true,
+      "details": {
+        "main": true,
+        "heading": "把参与过的问题，整理成可核验的演示。"
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "name": "Demo Lab remains readable without JavaScript",
+      "passed": true,
+      "details": {
+        "heading": "把参与过的问题，整理成可核验的演示。",
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "emptyState": true,
+        "scripts": 0
+      }
     }
   ],
   "consoleErrors": [],
@@ -3553,21 +5431,22 @@
       "profile": "desktop",
       "route": "/",
       "requests": [
-        "/",
-        "/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/create-embodiment-scene.HJEve4Cs.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/_astro/three.module.DZdaHwQM.js",
-        "/favicon.ico",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/GridDistortion.Qj5xHAnZ.js",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/create-embodiment-scene.HJEve4Cs.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/_astro/three.module.DZdaHwQM.js",
+        "/embodied-frontier/favicon.ico",
+        "/embodied-frontier/hero-static.webp"
       ],
       "httpErrors": []
     },
@@ -3575,13 +5454,13 @@
       "profile": "desktop",
       "route": "/papers",
       "requests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/"
       ],
       "httpErrors": []
     },
@@ -3589,13 +5468,13 @@
       "profile": "desktop",
       "route": "/papers?q=视觉语言&status=verified",
       "requests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
       ],
       "httpErrors": []
     },
@@ -3603,13 +5482,13 @@
       "profile": "desktop",
       "route": "/papers/openvla",
       "requests": [
-        "/_astro/EvidenceLens.kZoNCSvz.js",
-        "/_astro/ReadingProgress.CzwftwFW.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/papers/openvla/"
+        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
+        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/papers/openvla/"
       ],
       "httpErrors": []
     },
@@ -3617,8 +5496,8 @@
       "profile": "desktop",
       "route": "/models",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/models/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/models/"
       ],
       "httpErrors": []
     },
@@ -3626,8 +5505,8 @@
       "profile": "desktop",
       "route": "/datasets",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/datasets/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/datasets/"
       ],
       "httpErrors": []
     },
@@ -3635,14 +5514,14 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "httpErrors": []
     },
@@ -3650,8 +5529,8 @@
       "profile": "desktop",
       "route": "/roadmap",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/roadmap/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/roadmap/"
       ],
       "httpErrors": []
     },
@@ -3659,8 +5538,17 @@
       "profile": "desktop",
       "route": "/projects",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/projects/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/projects/"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "requests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "httpErrors": []
     },
@@ -3668,8 +5556,9 @@
       "profile": "desktop",
       "route": "/about",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/about/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/about.DQcn3czC.css",
+        "/embodied-frontier/about/"
       ],
       "httpErrors": []
     },
@@ -3677,20 +5566,30 @@
       "profile": "desktop",
       "route": "/",
       "requests": [
-        "/",
-        "/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/create-embodiment-scene.HJEve4Cs.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/_astro/three.module.DZdaHwQM.js",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/GridDistortion.Qj5xHAnZ.js",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/create-embodiment-scene.HJEve4Cs.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/_astro/three.module.DZdaHwQM.js",
+        "/embodied-frontier/hero-static.webp"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos",
+      "requests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "httpErrors": []
     },
@@ -3698,13 +5597,13 @@
       "profile": "desktop",
       "route": "/papers",
       "requests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/"
       ],
       "httpErrors": []
     },
@@ -3712,14 +5611,14 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "httpErrors": []
     },
@@ -3727,14 +5626,14 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "httpErrors": []
     },
@@ -3742,14 +5641,14 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "httpErrors": []
     },
@@ -3757,17 +5656,18 @@
       "profile": "mobile-touch",
       "route": "/",
       "requests": [
-        "/",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/hero-static.webp"
       ],
       "httpErrors": []
     },
@@ -3775,13 +5675,13 @@
       "profile": "mobile-touch",
       "route": "/papers",
       "requests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/"
       ],
       "httpErrors": []
     },
@@ -3789,13 +5689,13 @@
       "profile": "mobile-touch",
       "route": "/papers?q=视觉语言&status=verified",
       "requests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
       ],
       "httpErrors": []
     },
@@ -3803,13 +5703,13 @@
       "profile": "mobile-touch",
       "route": "/papers/openvla",
       "requests": [
-        "/_astro/EvidenceLens.kZoNCSvz.js",
-        "/_astro/ReadingProgress.CzwftwFW.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/papers/openvla/"
+        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
+        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/papers/openvla/"
       ],
       "httpErrors": []
     },
@@ -3817,8 +5717,8 @@
       "profile": "mobile-touch",
       "route": "/models",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/models/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/models/"
       ],
       "httpErrors": []
     },
@@ -3826,8 +5726,8 @@
       "profile": "mobile-touch",
       "route": "/datasets",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/datasets/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/datasets/"
       ],
       "httpErrors": []
     },
@@ -3835,14 +5735,14 @@
       "profile": "mobile-touch",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "httpErrors": []
     },
@@ -3850,8 +5750,8 @@
       "profile": "mobile-touch",
       "route": "/roadmap",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/roadmap/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/roadmap/"
       ],
       "httpErrors": []
     },
@@ -3859,8 +5759,17 @@
       "profile": "mobile-touch",
       "route": "/projects",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/projects/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/projects/"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "requests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "httpErrors": []
     },
@@ -3868,8 +5777,9 @@
       "profile": "mobile-touch",
       "route": "/about",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/about/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/about.DQcn3czC.css",
+        "/embodied-frontier/about/"
       ],
       "httpErrors": []
     },
@@ -3877,17 +5787,27 @@
       "profile": "mobile-touch",
       "route": "/",
       "requests": [
-        "/",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/hero-static.webp"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "requests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "httpErrors": []
     },
@@ -3895,14 +5815,14 @@
       "profile": "mobile-touch",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "httpErrors": []
     },
@@ -3910,17 +5830,27 @@
       "profile": "desktop-reduced-motion",
       "route": "/",
       "requests": [
-        "/",
-        "/_astro/HeroExperience.24DITgi5.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/embodiment-runtime._urjDPUx.js",
-        "/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/hero-static.webp"
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
+        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/hero-static.webp"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos",
+      "requests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "httpErrors": []
     },
@@ -3928,13 +5858,13 @@
       "profile": "desktop-reduced-motion",
       "route": "/papers",
       "requests": [
-        "/_astro/PaperExplorer.D6Yhivkb.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/_astro/site-path.BhND2ut3.js",
-        "/papers/"
+        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/_astro/site-path.CziSLApl.js",
+        "/embodied-frontier/papers/"
       ],
       "httpErrors": []
     },
@@ -3942,13 +5872,13 @@
       "profile": "desktop-reduced-motion",
       "route": "/papers/openvla",
       "requests": [
-        "/_astro/EvidenceLens.kZoNCSvz.js",
-        "/_astro/ReadingProgress.CzwftwFW.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/react.B_HGnlug.js",
-        "/papers/openvla/"
+        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
+        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/papers/openvla/"
       ],
       "httpErrors": []
     },
@@ -3956,14 +5886,14 @@
       "profile": "desktop-reduced-motion",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.0-SyMVFZ.js",
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/client.DGfagHgu.js",
-        "/_astro/graph.CDK4cHh6.css",
-        "/_astro/jsx-runtime.BpylDQ3P.js",
-        "/_astro/preload-helper.B1BWOGD0.js",
-        "/_astro/react.B_HGnlug.js",
-        "/graph/"
+        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/client.DGfagHgu.js",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
+        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
+        "/embodied-frontier/_astro/react.B_HGnlug.js",
+        "/embodied-frontier/graph/"
       ],
       "httpErrors": []
     },
@@ -3971,8 +5901,8 @@
       "profile": "no-javascript",
       "route": "/papers",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/papers/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/papers/"
       ],
       "httpErrors": []
     },
@@ -3980,9 +5910,29 @@
       "profile": "no-javascript",
       "route": "/graph",
       "requests": [
-        "/_astro/SiteLayout.DXyz4q0U.css",
-        "/_astro/graph.CDK4cHh6.css",
-        "/graph/"
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
+        "/embodied-frontier/graph/"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/",
+      "requests": [
+        "/embodied-frontier/",
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/_astro/index.BQSzPJIp.css",
+        "/embodied-frontier/hero-static.webp"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "no-javascript",
+      "route": "/demos",
+      "requests": [
+        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
+        "/embodied-frontier/demos/"
       ],
       "httpErrors": []
     }
@@ -3998,6 +5948,16 @@
         "height": 900
       },
       "file": "artifacts/browser-qa/desktop-home.png"
+    },
+    {
+      "name": "desktop-demos",
+      "profile": "desktop",
+      "route": "/demos",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "artifacts/browser-qa/desktop-demos.png"
     },
     {
       "name": "desktop-graph",
@@ -4018,6 +5978,16 @@
         "height": 800
       },
       "file": "artifacts/browser-qa/mobile-home.png"
+    },
+    {
+      "name": "mobile-demos",
+      "profile": "mobile-touch",
+      "route": "/demos",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "file": "artifacts/browser-qa/mobile-demos.png"
     },
     {
       "name": "reduced-motion-home",

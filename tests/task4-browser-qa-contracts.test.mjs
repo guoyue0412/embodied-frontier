@@ -19,6 +19,10 @@ test("Task 4 browser QA covers the Atlas and Demo Lab acceptance profiles", asyn
   assert.match(source, /data-atlas-navigator-mode/);
   assert.match(source, /navigator\.mode === "static"/);
   assert.match(source, /static atlas navigator nodes have no transition/);
+  assert.match(source, /getPropertyValue\(["']--atlas-phase["']\)/);
+  assert.match(source, /static atlas navigator phase remains frozen/);
+  assert.match(source, /clippedHeadings/);
+  assert.match(source, /headings fit within their content boxes/);
 
   for (const selector of ["data-demo-gallery", "data-demo-empty-state", "data-demo-card", "data-demo-detail"]) assert.match(source, new RegExp(selector));
   for (const selector of [".demos-grid", ".demo-empty", ".demo-card", ".demo-detail"]) assert.match(source, new RegExp(selector.replace(".", "\\.")));

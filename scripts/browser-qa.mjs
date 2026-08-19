@@ -259,7 +259,7 @@ try {
     return evaluate(`(() => {
       const element = document.querySelector(${JSON.stringify(selector)});
       if (!element) return null;
-      element.scrollIntoView({ block: 'center', inline: 'center' });
+      element.scrollIntoView({ block: 'center', inline: 'center', behavior: 'instant' });
       const rect = element.getBoundingClientRect();
       if (!rect.width || !rect.height) return null;
       return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
@@ -380,6 +380,7 @@ try {
         scrollWidth: rawScrollWidth > window.innerWidth ? rawScrollWidth : window.innerWidth,
         overflow: rawScrollWidth > window.innerWidth,
         clippedHeaderLinks: [...document.querySelectorAll('.site-header a')].filter((link) => { const rect = link.getBoundingClientRect(); return rect.left < 0 || rect.right > window.innerWidth; }).map((link) => link.textContent.trim()),
+        clippedHeadings: [...document.querySelectorAll('main h1, main h2')].filter(visible).filter((heading) => { const rect = heading.getBoundingClientRect(); return rect.left < -0.5 || rect.right > window.innerWidth + 0.5 || heading.scrollWidth > heading.clientWidth + 1; }).map((heading) => ({ text: heading.textContent?.trim().slice(0, 80) ?? '', clientWidth: heading.clientWidth, scrollWidth: heading.scrollWidth })),
         minControlWidth: sizes.length ? Math.min(...sizes.map(({ width }) => width)) : 0,
         minControlHeight: sizes.length ? Math.min(...sizes.map(({ height }) => height)) : 0,
         pathPrefixViolations: [...document.querySelectorAll('a[href^="/"]')].map((link) => link.getAttribute('href')).filter((href) => configuredPrefix && !href.startsWith(configuredPrefix)),
@@ -397,6 +398,7 @@ try {
     check(profileName, route, "single main landmark", metrics.main && metrics.heading.length > 0, { main: metrics.main, heading: metrics.heading });
     check(profileName, route, "no horizontal overflow", !metrics.overflow, { scrollWidth: metrics.scrollWidth, innerWidth: metrics.innerWidth });
     check(profileName, route, "header links remain in viewport", metrics.clippedHeaderLinks.length === 0, { clipped: metrics.clippedHeaderLinks });
+    check(profileName, route, "headings fit within their content boxes", metrics.clippedHeadings.length === 0, { clipped: metrics.clippedHeadings });
     check(profileName, route, "no console errors", capture.pageErrors.length === 0, { errors: capture.pageErrors });
     check(profileName, route, "all local resources load", routeResourceFailures.length === 0 && routeHttpErrors.length === 0, { resourceFailures: routeResourceFailures, httpErrors: portableHttpErrors });
     check(profileName, route, "configured base prefixes internal links", metrics.pathPrefixViolations.length === 0, { violations: metrics.pathPrefixViolations });
@@ -477,12 +479,12 @@ try {
     check(profileName, route, "atlas active preview remains linked and live", navigator.preview && navigator.activeLinkCount === 1 && navigator.activeDescribedBy[0] === "atlas-active-preview", navigator);
     if (options.staticMode) {
       const staticStyles = await evaluate(`(() => [...document.querySelectorAll("#navigator [data-atlas-node], #navigator .atlas-destination")].map((element) => getComputedStyle(element).transition).every((transition) => transition === "none" || transition.startsWith("none ")))()`);
-      const rafBefore = await evaluate("window.__BROWSER_QA_RAF_COUNT__ ?? null");
+      const phaseBefore = await evaluate("getComputedStyle(document.querySelector('[data-atlas-navigator-mode]')).getPropertyValue('--atlas-phase')");
       await new Promise((resolve) => setTimeout(resolve, 350));
-      const rafAfter = await evaluate("window.__BROWSER_QA_RAF_COUNT__ ?? null");
+      const phaseAfter = await evaluate("getComputedStyle(document.querySelector('[data-atlas-navigator-mode]')).getPropertyValue('--atlas-phase')");
       check(profileName, route, "atlas navigator reports static mode on this profile", navigator.mode === "static", navigator);
       check(profileName, route, "static atlas navigator nodes have no transition", staticStyles, { staticStyles, mode: navigator.mode });
-      if (profileName === "mobile-touch") check(profileName, route, "static atlas navigator schedules no additional animation frames", rafBefore !== null && rafAfter === rafBefore, { rafBefore, rafAfter, mode: navigator.mode });
+      if (profileName === "mobile-touch") check(profileName, route, "static atlas navigator phase remains frozen", phaseBefore === phaseAfter, { phaseBefore, phaseAfter, mode: navigator.mode });
     }
     return navigator;
   }
