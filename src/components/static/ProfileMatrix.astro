@@ -1,0 +1,72 @@
+---
+import profileSource from "../../content/profile.md?raw";
+import { parseProfileMarkdown } from "../../lib/profile-content.mjs";
+import { renderSafeMarkdown } from "../../lib/safe-markdown.mjs";
+import "../../styles/profile.css";
+
+const profile = parseProfileMarkdown(profileSource);
+const bodyHtml = renderSafeMarkdown(profile.body);
+---
+<section id="public-profile" class="profile-section section" aria-labelledby="profile-title">
+  <div class="page-shell">
+    <header class="profile-section__header">
+      <div>
+        <span class="eyebrow">{profile.eyebrow}</span>
+        <h2 id="profile-title">{profile.title}</h2>
+      </div>
+      <span class="profile-evidence" data-profile-evidence={profile.evidence}>{profile.evidence} · {profile.sourceLabel}</span>
+    </header>
+    <div class="profile-lead">
+      <div>
+        <p class="profile-name">{profile.name}</p>
+        <p class="profile-role">{profile.role}</p>
+        <p class="profile-summary">{profile.summary}</p>
+      </div>
+      <dl class="profile-education" aria-label="教育背景">
+        <div><dt>教育背景</dt><dd>{profile.education.join(" · ")}</dd></div>
+        <div><dt>证据范围</dt><dd>方向性 portfolio evidence · 未在本站独立复核</dd></div>
+      </dl>
+    </div>
+    <div class="profile-focus" aria-labelledby="profile-focus-title">
+      <div class="profile-subheading"><span class="profile-index">01</span><h3 id="profile-focus-title">研究主线</h3></div>
+      <div class="profile-focus__grid">
+        {profile.focus.map((item) => <article class="profile-focus__item">
+          <h4>{item.label}</h4>
+          <p>{item.detail}</p>
+          <div class="profile-tags" aria-label={`${item.label} 关键词`}>{item.tags.map((tag) => <span>{tag}</span>)}</div>
+        </article>)}
+      </div>
+    </div>
+    <div class="profile-honors" aria-labelledby="profile-honors-title">
+      <div class="profile-subheading"><span class="profile-index">02</span><h3 id="profile-honors-title">Selected honors</h3></div>
+      <ul class="profile-honors__list">
+        {profile.honors.map((honor) => <li data-profile-honor={honor} data-profile-evidence={profile.evidence}><span class="profile-honor__dot" aria-hidden="true"></span><span>{honor}</span><span class="profile-honor__status">{profile.evidence}</span></li>)}
+      </ul>
+    </div>
+    <div class="profile-capabilities" aria-labelledby="profile-capabilities-title">
+      <div class="profile-subheading"><span class="profile-index">03</span><h3 id="profile-capabilities-title">Capability matrix</h3></div>
+      <div class="profile-capabilities__grid">
+        {profile.capabilities.map((capability) => <article class="profile-capability" data-profile-capability={capability.id} data-profile-evidence={capability.evidence}>
+          <div class="profile-capability__top"><span class="profile-capability__status">{capability.evidence}</span><span class="profile-capability__code">{capability.id}</span></div>
+          <h4>{capability.label}</h4>
+          <p>{capability.summary}</p>
+          <ul>{capability.tools.map((tool) => <li>{tool}</li>)}</ul>
+        </article>)}
+      </div>
+    </div>
+    <div class="profile-practice" aria-labelledby="profile-practice-title">
+      <div class="profile-subheading"><span class="profile-index">04</span><h3 id="profile-practice-title">Practice evidence lanes</h3></div>
+      <div class="profile-practice__grid">
+        {profile.practiceLanes.map((lane) => <article class="profile-practice__lane" data-profile-practice-lane={lane.id} data-profile-evidence={lane.evidence}>
+          <div class="profile-practice__top"><span class="profile-practice__status">{lane.evidence}</span><span class="profile-capability__code">{lane.id}</span></div>
+          <h4>{lane.label}</h4>
+          <p>{lane.detail}</p>
+        </article>)}
+      </div>
+    </div>
+    <div class="profile-boundary" aria-labelledby="profile-boundary-title">
+      <div class="profile-subheading"><span class="profile-index">05</span><h3 id="profile-boundary-title">公开说明</h3></div>
+      <div class="profile-boundary__body prose" set:html={bodyHtml}></div>
+    </div>
+  </div>
+</section>

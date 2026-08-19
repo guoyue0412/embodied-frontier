@@ -1,6 +1,7 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import EvidenceBadge from "../components/static/EvidenceBadge.astro";
+import ProfileMatrix from "../components/static/ProfileMatrix.astro";
 ---
 <SiteLayout title="关于与证据约定" description="具身前沿的内容范围、证据语义、修订方式与人工审核规则。">
   <main id="main-content">
@@ -9,6 +10,7 @@ import EvidenceBadge from "../components/static/EvidenceBadge.astro";
       <h1>宁可保留缺口，<br />也不补全未经证实的结论。</h1>
       <p>具身前沿是一个以 Markdown 和 Git 为事实源的个人研究站，围绕 VLA、世界模型、数据与评测组织内容。</p>
     </header>
+    <ProfileMatrix />
     <div class="page-section page-shell about-grid">
       <section class="about-card"><h2>内容流程</h2><p>论文笔记、路线和项目都先写入仓库 Markdown，经字段校验、生产构建和人工审阅后发布。Git 历史保留每次修订。</p></section>
       <section class="about-card"><h2>纠错原则</h2><p>如果来源、数字或评测协议发生变化，修改原条目并保留提交记录。无法确认的内容降级为待核，而不是推测性补全。</p></section>
