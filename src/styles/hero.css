@@ -427,7 +427,7 @@
 
 .atlas-chapter-strip a {
   flex: 0 0 auto;
-  min-height: 42px;
+  min-height: 44px;
   gap: 7px;
   padding: 0 11px;
   border: 1px solid var(--panel-border);
@@ -666,7 +666,7 @@
 }
 
 .method-panel__head a {
-  min-height: 42px;
+  min-height: 44px;
   color: var(--energy-cyan);
   font-size: 0.65rem;
 }
@@ -861,6 +861,18 @@
   .atlas-hero__unit {
     min-height: 220px;
     order: -1;
+  }
+
+  .atlas-hero__unit-label {
+    top: 14px;
+    right: 16px;
+    max-width: none;
+  }
+
+  .atlas-hero__unit-coordinates {
+    top: 38px;
+    right: auto;
+    left: 16px;
   }
 
   .atlas-hero__rings,

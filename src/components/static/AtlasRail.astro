@@ -19,7 +19,7 @@ const { items, current = "atlas" } = Astro.props;
   <span class="atlas-rail__label">INDEX / 00—05</span>
   <ol>
     {items.map((item) => <li class:list={{ "is-current": item.id === current }}>
-      <a href={withBase(item.path)} aria-current={item.id === current ? "page" : undefined}>
+      <a href={withBase(item.path)}>
         <span>{item.code}</span><strong>{item.label}</strong>
       </a>
     </li>)}

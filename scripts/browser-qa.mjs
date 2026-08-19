@@ -343,7 +343,7 @@ try {
     capture.bufferedNetworkEvents = [];
     const pathname = new URL(pageUrl(route)).pathname;
     const routeSelector = pathname === sitePrefix || pathname === `${sitePrefix}/`
-      ? ".hero__copy h1"
+      ? ".atlas-hero__copy h1"
       : pathname.endsWith("/papers/") ? ".research-console"
       : pathname.includes("/papers/") ? ".detail-shell"
       : pathname.endsWith("/models/") || pathname.endsWith("/datasets/") ? ".comparison-table"
@@ -403,7 +403,7 @@ try {
 
   async function screenshot(name, profileName, route, viewport) {
     await evaluate("window.scrollTo(0, 0)");
-    await evaluate("(() => { const copy = document.querySelector('.hero__copy'); if (copy) { copy.style.transform = 'translateZ(0)'; void copy.offsetHeight; } })()");
+    await evaluate("(() => { const copy = document.querySelector('.atlas-hero__copy'); if (copy) { copy.style.transform = 'translateZ(0)'; void copy.offsetHeight; } })()");
     await waitFor("document.fonts?.status === 'loaded'", 5000);
     await evaluate("new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))");
     await call("Page.getLayoutMetrics");
@@ -503,7 +503,7 @@ try {
     const dot = document.querySelector('[data-dot-grid-state]');
     const distortion = document.querySelector('[data-visual-state]');
     const embodiment = document.querySelector('[data-embodiment-unit]');
-    const staticArt = document.querySelector('.hero__static-art');
+    const staticArt = document.querySelector('.atlas-hero__static-art');
     const staticStyle = staticArt ? getComputedStyle(staticArt) : null;
     const dotState = dot?.getAttribute('data-dot-grid-state');
     const distortionState = distortion?.getAttribute('data-visual-state');
@@ -520,7 +520,15 @@ try {
       : false;
   })()`, 6000);
   check(desktop.name, "/", "hero visual runtimes report ready or explicit fallback", Boolean(hero), hero || { missing: true });
-  check(desktop.name, "/", "hero static fallback remains available", await evaluate("Boolean(document.querySelector('[data-embodiment-fallback=\"true\"]') && document.querySelector('.hero__static-art'))"), {});
+  check(desktop.name, "/", "hero static fallback remains available", await evaluate("Boolean(document.querySelector('[data-embodiment-fallback=\"true\"]') && document.querySelector('.atlas-hero__static-art'))"), {});
+  const desktopAtlas = await evaluate(`(() => {
+    const strip = document.querySelector('.atlas-chapter-strip');
+    const status = document.querySelector('.atlas-status')?.textContent ?? '';
+    const rect = strip?.getBoundingClientRect();
+    return { chapterStripHeight: rect?.height ?? 0, gitTracked: /GIT-TRACKED/.test(status) };
+  })()`);
+  check(desktop.name, "/", "atlas chapter strip meets 44px minimum", desktopAtlas.chapterStripHeight >= 44, desktopAtlas);
+  check(desktop.name, "/", "atlas status exposes Git-tracked repository state", desktopAtlas.gitTracked, desktopAtlas);
   await screenshot("desktop-home", desktop.name, "/", desktop.viewport);
   await navigate("/papers", desktop.name, { height: desktop.viewport.height });
   await runSearch(desktop.name);
@@ -551,6 +559,12 @@ try {
     check(mobile.name, route, "Three.js does not download on touch/narrow viewport", !result.requests.some(isThreeRequest), { threeRequests: result.requests.filter(isThreeRequest) });
   }
   await navigate("/", mobile.name, { height: mobile.viewport.height });
+  const mobileAtlas = await evaluate(`(() => {
+    const strip = document.querySelector('.atlas-chapter-strip');
+    const rect = strip?.getBoundingClientRect();
+    return { chapterStripHeight: rect?.height ?? 0 };
+  })()`);
+  check(mobile.name, "/", "atlas chapter strip meets 44px minimum", mobileAtlas.chapterStripHeight >= 44, mobileAtlas);
   await screenshot("mobile-home", mobile.name, "/", mobile.viewport);
   await navigate("/graph", mobile.name, { height: mobile.viewport.height });
   const graphMobile = await runGraph(mobile.name, "/graph", "touch");
@@ -561,7 +575,7 @@ try {
   await configureViewport({ ...reduced.viewport, mobile: false, reduced: true });
   await navigate("/", reduced.name, { height: reduced.viewport.height });
   const reducedState = await evaluate(`(() => {
-    const staticArt = document.querySelector('.hero__static-art');
+    const staticArt = document.querySelector('.atlas-hero__static-art');
     const heroLayer = document.querySelector('[data-motion-only="true"]');
     const animationStyles = [...document.querySelectorAll('*')].map((element) => getComputedStyle(element)).filter((style) => style.animationName !== 'none');
     return {
@@ -574,6 +588,12 @@ try {
   })()`);
   check(reduced.name, "/", "reduced-motion keeps static hero visible", reducedState.matches && reducedState.staticVisible && reducedState.motionLayerHidden && reducedState.enhanced !== "true", reducedState);
   check(reduced.name, "/", "reduced-motion has no continuous animations", reducedState.continuousAnimations === 0, reducedState);
+  const reducedAtlas = await evaluate(`(() => {
+    const strip = document.querySelector('.atlas-chapter-strip');
+    const rect = strip?.getBoundingClientRect();
+    return { chapterStripHeight: rect?.height ?? 0 };
+  })()`);
+  check(reduced.name, "/", "atlas chapter strip meets 44px minimum", reducedAtlas.chapterStripHeight >= 44, reducedAtlas);
   await screenshot("reduced-motion-home", reduced.name, "/", reduced.viewport);
   await navigate("/papers", reduced.name, { height: reduced.viewport.height });
   await runSearch(reduced.name);

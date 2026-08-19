@@ -82,7 +82,7 @@ const wamRecords = [
 const dataRecords = [
   ...papers.filter((entry) => entry.data.track.toLowerCase().includes("data") || entry.data.track.toLowerCase().includes("eval")).map((entry) => laneRecord(entry, "PAPER", `/papers/${entry.data.slug}/`)),
   ...datasets.map((entry) => laneRecord(entry, "DATASET", `/datasets/#dataset-${entry.data.slug}`)),
-  ...projects.filter((entry) => searchable(entry).includes("rbench") || searchable(entry).includes("评测")).map((entry) => laneRecord(entry, "PROJECT", "/projects/")),
+  ...projects.filter((entry) => entry.data.slug === "rbench-evaluation").map((entry) => laneRecord(entry, "PROJECT", "/projects/")),
 ];
 
 const evidenceCopy = [
