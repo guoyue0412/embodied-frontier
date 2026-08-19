@@ -101,10 +101,43 @@ const roadmap = defineCollection({
   }),
 });
 
+const demoVideoAsset = z.string().regex(/^\/videos\/[a-z0-9/_-]+\.(?:webm|mp4)$/);
+const demoPosterAsset = z.string().regex(/^\/videos\/[a-z0-9/_-]+\.(?:webp|avif|jpg|jpeg|png)$/);
+const demoCaptionAsset = z.string().regex(/^\/videos\/[a-z0-9/_-]+\.vtt$/);
+const demoVideo = z.object({
+  webm: demoVideoAsset.regex(/\.webm$/).optional(),
+  mp4: demoVideoAsset.regex(/\.mp4$/).optional(),
+  poster: demoPosterAsset,
+  captions: demoCaptionAsset.optional(),
+}).refine((value) => Boolean(value.webm || value.mp4), { message: "video requires webm or mp4" });
+
+const demoDisclosure = "本页面为个人参与项目的匿名化演示或独立重建，不包含实习公司的名称、内部代码、私有数据和未公开产品信息，也不代表原公司的官方实现。";
+const demos = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/demos" }),
+  schema: z.object({
+    ...dated,
+    role: z.string().min(1),
+    period: z.string().regex(/^\d{4}(?: (?:Q[1-4]|上半年|下半年))?$/).optional(),
+    contributions: z.array(z.string().min(1)).min(1),
+    stack: z.array(z.string().min(1)).min(1),
+    video: demoVideo.optional(),
+    evidence: z.array(z.string().min(1)).min(1),
+    sources: z.array(source).default([]),
+    anonymized: z.literal(true),
+    disclosure: z.literal(demoDisclosure),
+    mediaRights: z.enum(["original", "authorized", "open-licensed"]),
+    public: z.literal(true),
+    company: z.never().optional(),
+    employer: z.never().optional(),
+    client: z.never().optional(),
+  }).strict(),
+});
+
 export const collections = {
   papers,
   models: defineCollection({ loader: glob({ pattern: "**/*.md", base: "./src/content/models" }), schema: model }),
   datasets: defineCollection({ loader: glob({ pattern: "**/*.md", base: "./src/content/datasets" }), schema: dataset }),
   projects,
   roadmap,
+  demos,
 };

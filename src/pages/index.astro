@@ -10,12 +10,13 @@ import SectionHeading from "../components/static/SectionHeading.astro";
 import { withBase } from "../lib/site-path.mjs";
 import "../styles/hero.css";
 
-const [paperEntries, modelEntries, datasetEntries, projectEntries, roadmapEntries] = await Promise.all([
+const [paperEntries, modelEntries, datasetEntries, projectEntries, roadmapEntries, demoEntries] = await Promise.all([
   getCollection("papers"),
   getCollection("models"),
   getCollection("datasets"),
   getCollection("projects"),
   getCollection("roadmap"),
+  getCollection("demos"),
 ]);
 
 const papers = paperEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
@@ -23,6 +24,7 @@ const models = modelEntries.toSorted((a, b) => b.data.updated.localeCompare(a.da
 const datasets = datasetEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
 const projects = projectEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
 const roadmap = roadmapEntries.toSorted((a, b) => a.data.order - b.data.order);
+const demos = demoEntries.filter((entry) => entry.data.public).toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
 const year = Number(papers[0]?.data.updated.slice(0, 4) ?? new Date().getFullYear());
 
 const chapters = [
@@ -31,7 +33,8 @@ const chapters = [
   { id: "vla", code: "02", label: "VLA", path: "#vla" },
   { id: "wam", code: "03", label: "WAM", path: "#wam" },
   { id: "data-eval", code: "04", label: "DATA / EVAL", path: "#data-eval" },
-  { id: "method", code: "05", label: "METHOD", path: "#method" },
+  { id: "demo-lab", code: "05", label: "DEMO LAB", path: "/demos/" },
+  { id: "method", code: "06", label: "METHOD", path: "#method" },
 ];
 
 const destinations = [
@@ -41,6 +44,7 @@ const destinations = [
   { code: "GRF", label: "GRAPH", description: "浏览显式论文、模型与数据关系。", path: "/graph/" },
   { code: "RDM", label: "ROADMAP", description: `${roadmap.length} 个阶段与可检查输出。`, path: "/roadmap/" },
   { code: "PRJ", label: "PROJECTS", description: `${projects.length} 个进行中的研究现场。`, path: "/projects/" },
+  { code: "DMO", label: "DEMO LAB", description: demos.length > 0 ? `${demos.length} 个已审核并公开的案例。` : "尚无已审核并公开的 Demo。", path: "/demos/" },
 ];
 
 const metrics = [
@@ -130,7 +134,7 @@ const evidenceCopy = [
 
     <section id="method" class="section section--method">
       <div class="page-shell">
-        <SectionHeading index="05" eyebrow="METHOD / EVIDENCE FIRST" title="让每条判断回到可检查的现场。">最近更新、学习路线、当前项目和证据状态在同一章收束；方法不是装饰，而是研究结果的边界。</SectionHeading>
+        <SectionHeading index="06" eyebrow="METHOD / EVIDENCE FIRST" title="让每条判断回到可检查的现场。">最近更新、学习路线、当前项目和证据状态在同一章收束；方法不是装饰，而是研究结果的边界。</SectionHeading>
 
         <div class="method-grid">
           <section class="method-panel method-panel--notes" aria-labelledby="method-notes-title">

@@ -1,0 +1,58 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import DemoVideo from "../../components/static/DemoVideo.astro";
+import { withBase } from "../../lib/site-path.mjs";
+
+export async function getStaticPaths() {
+  const demos = await getCollection("demos");
+  return demos
+    .filter((demo) => demo.data.public)
+    .map((demo) => ({ params: { slug: demo.data.slug }, props: { demo } }));
+}
+
+interface Props {
+  demo: CollectionEntry<"demos">;
+}
+
+const { demo } = Astro.props;
+const data = demo.data;
+---
+<SiteLayout title={data.title} description={data.summary}>
+  <main id="main-content" class="demo-detail page-shell" data-demo-detail>
+    <article>
+      <header class="demo-detail__header">
+        <span class="eyebrow">DEMO LAB / CASE STUDY</span>
+        <h1>{data.title}</h1>
+        <div class="demo-detail__meta"><span>{data.role}</span>{data.period && <span>{data.period}</span>}<time datetime={data.updated}>更新 {data.updated}</time></div>
+        <p class="demo-detail__summary">{data.summary}</p>
+      </header>
+
+      {data.video && <figure class="demo-detail__video"><DemoVideo title={data.title} video={data.video} /><figcaption>视频为辅助演示；文字说明与证据在视频不可用时仍然完整。</figcaption></figure>}
+
+      <div class="demo-detail__grid">
+        <section aria-labelledby="demo-contributions-title">
+          <h2 id="demo-contributions-title">个人贡献</h2>
+          <ul>{data.contributions.map((item) => <li>{item}</li>)}</ul>
+        </section>
+        <section aria-labelledby="demo-stack-title">
+          <h2 id="demo-stack-title">技术栈</h2>
+          <ul class="demo-detail__stack">{data.stack.map((item) => <li>{item}</li>)}</ul>
+        </section>
+      </div>
+
+      <section class="demo-detail__evidence" aria-labelledby="demo-evidence-title">
+        <h2 id="demo-evidence-title">证据与边界</h2>
+        <ul>{data.evidence.map((item) => <li>{item}</li>)}</ul>
+        {data.sources.length > 0 && <div class="demo-detail__sources"><h3>来源</h3><ul>{data.sources.map((source) => <li><a href={source.url} target="_blank" rel="noreferrer noopener">{source.label} ↗</a></li>)}</ul></div>}
+      </section>
+
+      <aside class="demo-disclosure" aria-label="匿名化披露">
+        <strong>DISCLOSURE / 匿名化说明</strong>
+        <p>{data.disclosure}</p>
+      </aside>
+
+      <a class="button button--secondary demo-detail__back" href={withBase("/demos/")}>← 返回 Demo Lab</a>
+    </article>
+  </main>
+</SiteLayout>

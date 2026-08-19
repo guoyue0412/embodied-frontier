@@ -1,0 +1,23 @@
+---
+import { withBase } from "../../lib/site-path.mjs";
+
+interface VideoAsset {
+  poster: string;
+  webm?: string;
+  mp4?: string;
+  captions?: string;
+}
+
+interface Props {
+  title: string;
+  video: VideoAsset;
+}
+
+const { title, video } = Astro.props;
+---
+<video controls playsinline preload="metadata" poster={withBase(video.poster)} aria-label={`${title} 演示视频`}>
+  {video.webm && <source src={withBase(video.webm)} type="video/webm" />}
+  {video.mp4 && <source src={withBase(video.mp4)} type="video/mp4" />}
+  {video.captions && <track kind="captions" src={withBase(video.captions)} srclang="zh" label="中文字幕" default />}
+  当前浏览器无法播放该视频，请阅读页面中的文字说明与证据。
+</video>
