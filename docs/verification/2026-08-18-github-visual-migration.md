@@ -1,9 +1,12 @@
 # GitHub-first visual migration verification
 
-Date: 2026-08-19  
-Review branch: `feat/github-visual-system`  
-Evidence source HEAD before this report commit: `4e13f2fbe4f3adcc5ec03420636deb4afcd397bc`  
-Base: `main` at `e3e6da014fe74c67b36a97dac1f6257dd67f4f54`  
+Date: 2026-08-19
+
+Review branch: `feat/github-visual-system`
+
+Evidence source HEAD before this report commit: `4e13f2fbe4f3adcc5ec03420636deb4afcd397bc`
+
+Base: `main` at `e3e6da014fe74c67b36a97dac1f6257dd67f4f54`
 GitHub remote: `https://github.com/guoyue0412/embodied-frontier.git`
 
 This is a local acceptance and review handoff. No push, pull request, merge,
