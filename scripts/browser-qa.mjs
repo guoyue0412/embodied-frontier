@@ -23,7 +23,7 @@ const profile = process.env.BROWSER_QA_PROFILE ?? "/tmp/embodied-frontier-browse
 const artifactsDirectory = path.resolve(process.env.BROWSER_QA_ARTIFACTS ?? "artifacts/browser-qa");
 const siteUrl = new URL(process.env.SITE_URL ?? "http://127.0.0.1:4321/");
 const sitePrefix = siteUrl.pathname.replace(/\/+$/g, "");
-const routes = ["/", "/papers", "/papers?q=视觉语言&status=verified", "/papers/openvla", "/models", "/datasets", "/graph", "/roadmap", "/projects", "/about"];
+const routes = ["/", "/papers", "/papers?q=视觉语言&status=verified", "/papers/openvla", "/models", "/datasets", "/graph", "/roadmap", "/projects", "/demos", "/about"];
 
 async function allocatePort() {
   if (requestedPort > 0) return requestedPort;
@@ -350,6 +350,8 @@ try {
       : pathname.endsWith("/graph/") ? ".relationship-list"
       : pathname.endsWith("/roadmap/") ? ".roadmap-full"
       : pathname.endsWith("/projects/") ? ".project-grid"
+      : pathname.endsWith("/demos/") ? "[data-demo-gallery], .demo-gallery, main h1"
+      : pathname.includes("/demos/") ? "[data-demo-detail], .demo-detail, main h1"
       : pathname.endsWith("/about/") ? ".about-grid"
       : "main h1";
     await waitFor(`location.pathname === ${JSON.stringify(pathname)} && document.readyState === 'complete' && Boolean(document.querySelector(${JSON.stringify(routeSelector)})) && (document.querySelector(${JSON.stringify(routeSelector)})?.getBoundingClientRect().height ?? 0) > 0`, options.timeout ?? 8000);
@@ -403,6 +405,7 @@ try {
 
   async function screenshot(name, profileName, route, viewport) {
     await evaluate("window.scrollTo(0, 0)");
+    await evaluate("(() => { if (document.querySelector('[data-browser-qa-freeze]')) return; const style = document.createElement('style'); style.dataset.browserQaFreeze = 'true'; style.textContent = '*,:before,:after { animation: none !important; transition: none !important; caret-color: transparent !important; }'; document.head.append(style); })()");
     await evaluate("(() => { const copy = document.querySelector('.atlas-hero__copy'); if (copy) { copy.style.transform = 'translateZ(0)'; void copy.offsetHeight; } })()");
     await waitFor("document.fonts?.status === 'loaded'", 5000);
     await evaluate("new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))");
@@ -411,7 +414,7 @@ try {
     let result;
     let previousData = null;
     let stable = false;
-    for (let attempt = 0; attempt < 8; attempt += 1) {
+    for (let attempt = 0; attempt < 16; attempt += 1) {
       const current = await call("Page.captureScreenshot", { format: "png", captureBeyondViewport: false, fromSurface: true });
       if (current.data === previousData) {
         result = current;
@@ -440,6 +443,149 @@ try {
     const result = await evaluate(`(() => { const url = location.search; const summary = document.querySelector('.research-console__count')?.textContent?.replace(/\\s+/g, ' ').trim() ?? ''; return { ok: Boolean(${Boolean(updated)} && url.includes('q=') && summary.startsWith('2 / 5')), url, summary }; })()`);
     check(profileName, "/papers", "search filters update URL and result count", result.ok && result.url.includes("q=") && result.summary.startsWith("2 / 5"), result);
     return result;
+  }
+
+  async function runNavigator(profileName, route = "/", options = {}) {
+    await selectorCenter("#navigator");
+    await waitFor("Boolean(document.querySelector('[data-atlas-navigator-ready=\"true\"]'))", 3000);
+    const navigator = await evaluate(`(() => {
+      const root = document.querySelector("#navigator");
+      const links = [...(root?.querySelectorAll("a[href]") ?? [])];
+      const hrefs = links.map((link) => new URL(link.href, location.href).pathname);
+      const nodes = [...(root?.querySelectorAll("[data-atlas-node], .atlas-destination") ?? [])];
+      const preview = document.querySelector("#atlas-active-preview");
+      const activeLinks = [...(root?.querySelectorAll('[data-atlas-active="true"]') ?? [])];
+      return {
+        exists: Boolean(root),
+        linkCount: links.length,
+        uniqueLinks: new Set(hrefs).size,
+        hrefs,
+        hasDemo: hrefs.some((href) => href.endsWith("/demos/")),
+        nodeCount: nodes.length,
+        ready: document.querySelector('[data-atlas-navigator-ready="true"]')?.getAttribute("data-atlas-navigator-ready") === "true",
+        mode: document.querySelector("[data-atlas-navigator-mode]")?.getAttribute("data-atlas-navigator-mode") ?? "missing",
+        ariaCurrentCount: root?.querySelectorAll("[aria-current]").length ?? 0,
+        activeLinkCount: activeLinks.length,
+        preview: Boolean(preview && preview.getAttribute("aria-live") === "polite"),
+        activeDescribedBy: activeLinks.map((link) => link.getAttribute("aria-describedby")),
+      };
+    })()`);
+    const expectedCount = options.expectedCount ?? 7;
+    check(profileName, route, "atlas navigator exposes one complete destination set", navigator.exists && navigator.linkCount === expectedCount && navigator.uniqueLinks === expectedCount && navigator.nodeCount === expectedCount && navigator.hasDemo, navigator);
+    check(profileName, route, "atlas navigator has a truthful hydration marker", navigator.ready, navigator);
+    check(profileName, route, "atlas navigator does not publish false aria-current state", navigator.ariaCurrentCount === 0, navigator);
+    check(profileName, route, "atlas active preview remains linked and live", navigator.preview && navigator.activeLinkCount === 1 && navigator.activeDescribedBy[0] === "atlas-active-preview", navigator);
+    if (options.staticMode) {
+      const staticStyles = await evaluate(`(() => [...document.querySelectorAll("#navigator [data-atlas-node], #navigator .atlas-destination")].map((element) => getComputedStyle(element).transition).every((transition) => transition === "none" || transition.startsWith("none ")))()`);
+      const rafBefore = await evaluate("window.__BROWSER_QA_RAF_COUNT__ ?? null");
+      await new Promise((resolve) => setTimeout(resolve, 350));
+      const rafAfter = await evaluate("window.__BROWSER_QA_RAF_COUNT__ ?? null");
+      check(profileName, route, "atlas navigator reports static mode on this profile", navigator.mode === "static", navigator);
+      check(profileName, route, "static atlas navigator nodes have no transition", staticStyles, { staticStyles, mode: navigator.mode });
+      if (profileName === "mobile-touch") check(profileName, route, "static atlas navigator schedules no additional animation frames", rafBefore !== null && rafAfter === rafBefore, { rafBefore, rafAfter, mode: navigator.mode });
+    }
+    return navigator;
+  }
+
+  async function runNavigatorInteractions(profileName, route = "/") {
+    const stage = await selectorCenter(".atlas-navigator__stage");
+    const before = await evaluate("document.querySelector('[data-atlas-active=\"true\"]')?.getAttribute('data-atlas-index') ?? null");
+    await evaluate("document.activeElement?.blur()");
+    const tabFocused = await focusWithTab(".atlas-navigator__stage");
+    const focused = tabFocused || await evaluate("(() => { const stage = document.querySelector('.atlas-navigator__stage'); stage?.focus(); return document.activeElement === stage; })()");
+    if (focused) {
+      await keyPress("ArrowRight", "ArrowRight", 39);
+      await evaluate("document.querySelector('.atlas-navigator__stage')?.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true, cancelable: true }))");
+    }
+    const after = await waitFor("document.querySelector('[data-atlas-active=\"true\"]')?.getAttribute('data-atlas-index') ?? null", 1500);
+    const moved = before !== null && after !== null && before !== after;
+    check(profileName, route, "atlas navigator stage accepts ArrowRight selection", Boolean(stage) && focused && moved, { stage: Boolean(stage), focused, tabFocused, before, after });
+    const pause = await evaluate("Boolean(document.querySelector('[data-atlas-navigator-control=\"pause\"]:not([hidden])'))");
+    if (!pause) {
+      check(profileName, route, "atlas orbit exposes pause and resume controls", false, { pause });
+      return;
+    }
+    await activateControl('[data-atlas-navigator-control="pause"]');
+    const paused = await waitFor("document.querySelector('[data-atlas-navigator-mode]')?.getAttribute('data-atlas-navigator-mode') === 'paused'", 1500);
+    await activateControl('[data-atlas-navigator-control="pause"]');
+    const resumed = await waitFor("document.querySelector('[data-atlas-navigator-mode]')?.getAttribute('data-atlas-navigator-mode') === 'orbit'", 1500);
+    check(profileName, route, "atlas orbit pause and resume controls work", paused && resumed, { paused, resumed });
+  }
+
+  async function runDemoLab(profileName, route = "/demos", options = {}) {
+    const gallery = await evaluate(`(() => {
+      const visible = (element) => {
+        if (!element) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
+      };
+      const galleryRoot = document.querySelector("[data-demo-gallery], .demo-gallery, .demos-grid, .demo-empty");
+      const emptyState = document.querySelector('[data-demo-empty-state], .demo-empty-state, .demo-empty');
+      const detailLinks = [...document.querySelectorAll("main a[href]")]
+        .map((link) => new URL(link.href, location.href).pathname)
+        .filter((href) => /\\/demos\\/[^/]+\\/$/.test(href));
+      const cards = document.querySelectorAll('[data-demo-card], .demo-card').length;
+      const videos = document.querySelectorAll("video").length;
+      const bodyText = document.body.textContent?.replace(/\\s+/g, " ").trim() ?? "";
+      return {
+        heading: document.querySelector("main h1")?.textContent?.trim() ?? "",
+        gallery: Boolean(galleryRoot),
+        emptyState: visible(emptyState) || bodyText.includes("尚无已审核并公开的 Demo"),
+        cards,
+        detailLinks: [...new Set(detailLinks)],
+        videos,
+        forbiddenFields: document.querySelectorAll('[data-demo-company], [data-demo-employer], [data-demo-client]').length,
+        bodyText,
+      };
+    })()`);
+    const hasRecords = gallery.cards > 0 || gallery.detailLinks.length > 0;
+    const galleryHasEmptyState = !hasRecords && gallery.emptyState;
+    const externalRequests = (activeCapture?.requests ?? []).filter((requestUrl) => {
+      if (requestUrl.startsWith("data:") || requestUrl.startsWith("blob:")) return false;
+      try { return new URL(requestUrl).origin !== siteUrl.origin; } catch { return false; }
+    });
+    check(profileName, route, "Demo Lab gallery exposes an honest empty state or approved records", gallery.gallery && (galleryHasEmptyState || hasRecords), { ...gallery, hasRecords, galleryHasEmptyState });
+    check(profileName, route, "Demo Lab does not expose organization identity fields", gallery.forbiddenFields === 0, { forbiddenFields: gallery.forbiddenFields });
+    check(profileName, route, "Demo Lab listing does not preload playable videos", gallery.videos === 0, { videos: gallery.videos, hasRecords });
+    check(profileName, route, "Demo Lab uses same-origin static assets without content-fetch dependencies", externalRequests.length === 0, { externalRequests: externalRequests.map(portableUrl) });
+    check(profileName, route, "Demo Lab empty state remains truthful without JavaScript", !hasRecords || gallery.cards > 0, { ...gallery, hasRecords });
+    if (!hasRecords) {
+      check(profileName, route, "Demo Lab detail video check is correctly gated until records exist", true, { gated: true });
+      return { gallery, hasRecords, detail: null };
+    }
+
+    const detailRoute = gallery.detailLinks[0].slice(sitePrefix.length).replace(/^\/+/, "/").replace(/\/$/, "") || "/";
+    await navigate(detailRoute, profileName, { height: options.height });
+    const detail = await evaluate(`(() => {
+      const videos = [...document.querySelectorAll("video")];
+      const sources = videos.flatMap((video) => [...video.querySelectorAll("source")].map((source) => source.getAttribute("src") ?? ""));
+      const tracks = videos.flatMap((video) => [...video.querySelectorAll('track[kind="captions"]')]);
+      const visible = (element) => {
+        if (!element) return false;
+        const style = getComputedStyle(element);
+        const rect = element.getBoundingClientRect();
+        return style.display !== "none" && style.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
+      };
+      const unsafe = [...document.querySelectorAll("iframe, video[autoplay], video[loop]")];
+      return {
+        heading: document.querySelector("main h1")?.textContent?.trim() ?? "",
+        videoCount: videos.length,
+        allVisible: videos.every(visible),
+        allControlled: videos.every((video) => video.hasAttribute("controls") && video.hasAttribute("playsinline") && video.getAttribute("preload") === "metadata"),
+        allPostered: videos.every((video) => Boolean(video.getAttribute("poster"))),
+        allLabeled: videos.every((video) => Boolean(video.getAttribute("aria-label")?.trim())),
+        sources,
+        sourcesBaseSafe: sources.length > 0 && sources.every((source) => !source.startsWith("/") || source.startsWith(${JSON.stringify(sitePrefix || "")})),
+        captions: tracks.length,
+        unsafeCount: unsafe.length,
+        fallbackText: videos.every((video) => (video.parentElement?.textContent?.trim().length ?? 0) > 0),
+      };
+    })()`);
+    check(profileName, detailRoute, "Demo detail has a visible native video when a record exists", detail.videoCount > 0 && detail.allVisible, detail);
+    check(profileName, detailRoute, "Demo detail video exposes accessible native controls", detail.videoCount > 0 && detail.allControlled && detail.allPostered && detail.allLabeled && detail.fallbackText, detail);
+    check(profileName, detailRoute, "Demo detail video sources are base-safe", detail.sourcesBaseSafe && detail.unsafeCount === 0, detail);
+    return { gallery, hasRecords, detail, detailRoute };
   }
 
   async function runGraph(profileName, route = "/graph", activation = "mouse") {
@@ -487,7 +633,7 @@ try {
   }
 
   await call("Page.enable");
-  await call("Page.addScriptToEvaluateOnNewDocument", { source: "Object.defineProperty(window, '__BROWSER_QA__', { value: true, configurable: false, enumerable: false, writable: false });" });
+  await call("Page.addScriptToEvaluateOnNewDocument", { source: "Object.defineProperty(window, '__BROWSER_QA__', { value: true, configurable: false, enumerable: false, writable: false }); const browserQaOriginalRaf = window.requestAnimationFrame?.bind(window); window.__BROWSER_QA_RAF_COUNT__ = 0; if (browserQaOriginalRaf) window.requestAnimationFrame = (callback) => { window.__BROWSER_QA_RAF_COUNT__ += 1; return browserQaOriginalRaf(callback); };" });
   await call("Runtime.enable");
   await call("Log.enable");
   await call("Network.enable");
@@ -495,7 +641,10 @@ try {
   const desktop = { name: "desktop", viewport: { width: 1440, height: 900 }, reducedMotion: false, touch: false };
   report.profiles.push(desktop);
   await configureViewport({ ...desktop.viewport, mobile: false, reduced: false });
-  for (const route of routes) await navigate(route, desktop.name, { height: desktop.viewport.height });
+  for (const route of routes) {
+    const result = await navigate(route, desktop.name, { height: desktop.viewport.height });
+    check(desktop.name, route, "all visible controls meet 44px target", result.metrics.minControlWidth >= 44 && result.metrics.minControlHeight >= 44, { minWidth: result.metrics.minControlWidth, minHeight: result.metrics.minControlHeight });
+  }
   await navigate("/", desktop.name, { height: desktop.viewport.height });
   const hero = await waitFor(`(() => {
     const root = document.querySelector('[data-hero-capability-state]');
@@ -529,7 +678,12 @@ try {
   })()`);
   check(desktop.name, "/", "atlas chapter strip meets 44px minimum", desktopAtlas.chapterStripHeight >= 44, desktopAtlas);
   check(desktop.name, "/", "atlas status exposes Git-tracked repository state", desktopAtlas.gitTracked, desktopAtlas);
+  await runNavigator(desktop.name);
+  await runNavigatorInteractions(desktop.name);
   await screenshot("desktop-home", desktop.name, "/", desktop.viewport);
+  await navigate("/demos", desktop.name, { height: desktop.viewport.height });
+  await runDemoLab(desktop.name, "/demos", { height: desktop.viewport.height });
+  await screenshot("desktop-demos", desktop.name, "/demos", desktop.viewport);
   await navigate("/papers", desktop.name, { height: desktop.viewport.height });
   await runSearch(desktop.name);
   await navigate("/graph", desktop.name, { height: desktop.viewport.height });
@@ -565,7 +719,11 @@ try {
     return { chapterStripHeight: rect?.height ?? 0 };
   })()`);
   check(mobile.name, "/", "atlas chapter strip meets 44px minimum", mobileAtlas.chapterStripHeight >= 44, mobileAtlas);
+  await runNavigator(mobile.name, "/", { staticMode: true });
   await screenshot("mobile-home", mobile.name, "/", mobile.viewport);
+  await navigate("/demos", mobile.name, { height: mobile.viewport.height });
+  await runDemoLab(mobile.name, "/demos", { height: mobile.viewport.height });
+  await screenshot("mobile-demos", mobile.name, "/demos", mobile.viewport);
   await navigate("/graph", mobile.name, { height: mobile.viewport.height });
   const graphMobile = await runGraph(mobile.name, "/graph", "touch");
   check(mobile.name, "/graph", "activated graph controls meet 44px touch target", graphMobile.graph.allTouchSized, graphMobile.graph);
@@ -594,7 +752,10 @@ try {
     return { chapterStripHeight: rect?.height ?? 0 };
   })()`);
   check(reduced.name, "/", "atlas chapter strip meets 44px minimum", reducedAtlas.chapterStripHeight >= 44, reducedAtlas);
+  await runNavigator(reduced.name, "/", { staticMode: true });
   await screenshot("reduced-motion-home", reduced.name, "/", reduced.viewport);
+  await navigate("/demos", reduced.name, { height: reduced.viewport.height });
+  await runDemoLab(reduced.name, "/demos", { height: reduced.viewport.height });
   await navigate("/papers", reduced.name, { height: reduced.viewport.height });
   await runSearch(reduced.name);
   await navigate("/papers/openvla", reduced.name, { height: reduced.viewport.height });
@@ -627,6 +788,32 @@ try {
     return { relationshipList: document.querySelectorAll('.relationship-list details').length, fallback: Boolean(list && rect?.width > 0 && rect?.height > 0 && /完整关系清单/.test(document.body.textContent)) };
   })()`);
   check("no-javascript", "/graph", "static graph relationship list remains usable without JavaScript", noJsGraph.relationshipList >= 1 && noJsGraph.fallback, noJsGraph);
+  await navigate("/", "no-javascript", { height: 800 });
+  const noJsHome = await evaluate(`(() => {
+    const root = document.querySelector("#navigator");
+    const links = [...(root?.querySelectorAll("a[href]") ?? [])];
+    const hrefs = links.map((link) => new URL(link.href, location.href).pathname);
+    return {
+      linkCount: links.length,
+      uniqueLinks: new Set(hrefs).size,
+      hasDemo: hrefs.some((href) => href.endsWith("/demos/")),
+      ariaCurrentCount: root?.querySelectorAll("[aria-current]").length ?? 0,
+    };
+  })()`);
+  check("no-javascript", "/", "static atlas navigator retains the Demo Lab destination without JavaScript", noJsHome.linkCount === 7 && noJsHome.uniqueLinks === 7 && noJsHome.hasDemo && noJsHome.ariaCurrentCount === 0, noJsHome);
+  await navigate("/demos", "no-javascript", { height: 800 });
+  const noJsDemos = await evaluate(`(() => {
+    const emptyState = document.querySelector('[data-demo-empty-state], .demo-empty-state, .demo-empty');
+    const bodyText = document.body.textContent?.replace(/\\s+/g, " ").trim() ?? "";
+    const rect = emptyState?.getBoundingClientRect();
+      return {
+        heading: document.querySelector("main h1")?.textContent?.trim() ?? "",
+        bodyText,
+        emptyState: Boolean(emptyState && rect?.width > 0 && rect?.height > 0) || bodyText.includes("尚无已审核并公开的 Demo"),
+      scripts: document.querySelectorAll("script").length,
+    };
+  })()`);
+  check("no-javascript", "/demos", "Demo Lab remains readable without JavaScript", /Demo Lab|作品实验室/.test(`${noJsDemos.heading} ${noJsDemos.bodyText}`) && noJsDemos.emptyState, noJsDemos);
   await call("Emulation.setScriptExecutionDisabled", { value: false });
 
   if (report.failures.length) process.exitCode = 1;
