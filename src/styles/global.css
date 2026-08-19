@@ -549,6 +549,13 @@ a {
 .formula-block pre { margin: 0; white-space: pre-wrap; }
 .formula-block code { color: var(--energy-cyan); }
 .formula-inline { display: inline-block; padding: 0 4px; color: var(--energy-cyan); font-family: var(--font-mono); }
+.prose-fallback figcaption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; gap: 8px 14px; }
+.prose-fallback__title { color: var(--text-primary); font-weight: 700; }
+.prose-fallback__description { flex: 1 1 100%; color: var(--text-muted); }
+.prose-fallback__source { color: var(--energy-cyan); }
+.prose-provenance-missing { color: var(--signal-amber); }
+.formula-inline-meta { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 5px; margin: 0 4px; color: var(--text-muted); font-size: 0.7rem; vertical-align: baseline; }
+.formula-inline-meta .prose-fallback__description { flex: 0 1 auto; }
 .media-lightbox { max-width: min(92vw, 1100px); padding: 18px; border: 1px solid var(--panel-border); background: var(--space-panel); color: var(--text-primary); }
 .media-lightbox::backdrop { background: rgba(3, 9, 17, 0.82); }
 .media-lightbox img { display: block; max-width: min(86vw, 1040px); max-height: 78vh; margin: 0 auto; }

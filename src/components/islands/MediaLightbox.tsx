@@ -17,6 +17,7 @@ export default function MediaLightbox() {
 
     const closeDialog = () => dialog.close();
     const openDialog = (event: Event) => {
+      if (typeof dialog.showModal !== "function") return;
       event.preventDefault();
       const link = event.currentTarget;
       if (!(link instanceof HTMLAnchorElement)) return;
@@ -24,7 +25,7 @@ export default function MediaLightbox() {
       image.src = source;
       image.alt = link.querySelector("img")?.getAttribute("alt") || "";
       caption.textContent = image.alt;
-      if (typeof dialog.showModal === "function") dialog.showModal();
+      dialog.showModal();
     };
     links.forEach((link) => link.addEventListener("click", openDialog));
     close.addEventListener("click", closeDialog);

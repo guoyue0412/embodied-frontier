@@ -18,7 +18,7 @@ interface Props {
 }
 
 const { paper } = Astro.props;
-const { html, headings, hasMedia } = renderSafeMarkdownDocument(paper.body ?? "");
+const { html, headings, hasMedia } = renderSafeMarkdownDocument(paper.body ?? "", { recordSources: paper.data.sources });
 ---
 <SiteLayout title={paper.data.title} description={paper.data.summary}>
   <main id="main-content" class="detail-shell">

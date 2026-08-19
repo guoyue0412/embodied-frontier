@@ -111,6 +111,7 @@ function parsePaper(data, content, file) {
   if (!evidenceStatusSet.has(status)) {
     fail(file, `status must be one of ${evidenceStatuses.join(", ")}`);
   }
+  const recordSources = sources(data, file);
   return {
     type: "paper",
     title: requiredString(data, "title", file),
@@ -122,10 +123,10 @@ function parsePaper(data, content, file) {
     status,
     tags: stringArray(data, "tags", file, { min: 1 }),
     summary: requiredString(data, "summary", file),
-    sources: sources(data, file),
+    sources: recordSources,
     relations: Array.isArray(data.relations) ? relations(data, file) : [],
     text: markdownToPlainText(content),
-    html: renderSafeMarkdown(content),
+    html: renderSafeMarkdown(content, { recordSources }),
   };
 }
 
