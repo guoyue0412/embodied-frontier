@@ -4,7 +4,7 @@ Date: 2026-08-19
 
 Review branch: `feat/github-visual-system`
 
-Evidence source HEAD before this report commit: `a6994a7` (`fix: close final visual acceptance gaps`)
+Evidence source HEAD before this report commit: `dfd8388` (`fix: complete paper media accessibility fallbacks`)
 
 Base: `origin/main` / `main` at `e3e6da014fe74c67b36a97dac1f6257dd67f4f54`
 
@@ -28,9 +28,15 @@ This acceptance pass closed the remaining review findings:
 
 - Paper Markdown now safely renders HTTP(S) figures with alt/title/source
   metadata, a native-dialog lightbox with keyboard close, and visible Mermaid
-  and formula fallbacks. The sanitizer rejects unsafe schemes, and the
-  lightbox is progressive enhancement only. A representative test fixture is
-  test-only and contains no paper claim or copied asset.
+  and formula fallbacks. Fenced Mermaid/math blocks use deterministic
+  `title`, `description`/`alt`, and optional HTTP(S) `source` info attributes;
+  inline `$...$` and standard `\(...\)` formulas support the same metadata via
+  a `{#formula ...}` annotation. Missing field metadata falls back to the
+  first validated paper record source, while missing record context remains
+  visibly `来源未提供`. The sanitizer preserves `role="math"` and
+  `aria-label`, rejects unsafe schemes, and the lightbox is progressive
+  enhancement only; legacy browsers retain the original link. A representative
+  test fixture is test-only and contains no paper claim or copied asset.
 - Comparison metadata and facts expose field/record provenance disclosures and
   an explicit missing reason. Field-level source values come only from the
   existing record facts; metadata without a field source is honestly labeled
@@ -69,7 +75,7 @@ and first-party `public/hero-static.webp` are intentional review evidence.
 Before this report commit, `git diff origin/main..HEAD --stat` reported:
 
 ```text
-178 files changed, 22554 insertions(+), 6782 deletions(-)
+179 files changed, 22894 insertions(+), 6783 deletions(-)
 ```
 
 The changed set is the research-station migration, its tests/CI, provenance,
@@ -89,12 +95,12 @@ npm run verify
 only pending optional install-script approval warnings for `esbuild`,
 `fsevents`, and `sharp`.
 
-`npm run verify` exited 0:
+The final root-path verifier exited 0 with `BASE_PATH=/ SITE_URL=https://example.github.io npm run verify`:
 
 - Content build: **PASS** — 5 papers, 3 roadmap stages, 3 projects, 3
   models, 3 datasets; search index 5 papers; graph 11 nodes and 16 edges.
 - Astro production build: **PASS** — 14 static pages.
-- Node tests: **PASS** — 90 passed, 0 failed, 0 cancelled, 0 skipped.
+- Node tests: **PASS** — 95 passed, 0 failed, 0 cancelled, 0 skipped.
 - ESLint: **PASS** — exit 0.
 - Static-site checker: **PASS** — 14 files, 0 errors.
 - Bundle checker: **PASS** — initial interactive gzip `100442` bytes against
@@ -102,12 +108,27 @@ only pending optional install-script approval warnings for `esbuild`,
   `sharedIncludesCytoscape: false`; Cytoscape, Three.js, and the lightbox
   remain non-initial/lazy assets.
 - Production verifier: **PASS** — browser report failures 0 and repeatability
-  reported `4942f768838cfb4d63fa6df307dd6d70e688fd0d07371ab2510dbe6b439fc533`
+  reported `3e8a55eed6fc54a73e3ae2b95c68e7e47c0469bbd8dd24d1954605d131043731`
   with 5 identical screenshots.
+
+The final GitHub Pages non-root verifier also exited 0 with
+`BASE_PATH=/embodied-frontier SITE_URL=https://example.github.io/embodied-frontier npm run verify`:
+
+- Astro/static output: **PASS** — 14 pages under `/embodied-frontier/`.
+- Node tests: **PASS** — 95 passed, 0 failed.
+- Static-site checker: **PASS** — 14 files, 0 errors.
+- Bundle checker: **PASS** — initial interactive gzip `100480` bytes against
+  the `122880` byte budget; `sharedIncludesThree: false`,
+  `sharedIncludesCytoscape: false`.
+- Production verifier: **PASS** — browser report failures 0 and repeatability
+  reported `f5d40e641b9b96430f2df0d5330b4eefb15e1b5db393a65cbf6d15cd101a2ac3`
+  with 5 identical screenshots; all recorded internal requests carried the
+  `/embodied-frontier/` prefix.
 
 ## 3. Browser verification
 
-The required standalone production sequence was also run:
+The required standalone production sequence from the preceding acceptance
+pass was also run:
 
 ```bash
 npm run preview -- --host 127.0.0.1
@@ -122,7 +143,8 @@ The final `artifacts/browser-qa/report.json` records:
 - Desktop reduced-motion: 1440×900 with
   `prefers-reduced-motion: reduce`.
 - Additional no-JavaScript checks for paper and graph fallbacks.
-- 33 route checks and **252 passed assertions, 0 failures**.
+- 33 route checks and **252 passed assertions, 0 failures** in the final root
+  report; the non-root report has the same counts.
 - `consoleErrors`: **0**; resource failures: **0**; HTTP errors: **0**.
 - Search URL synchronization returned 2/5 results for the tested Chinese query.
 - Graph activation passed after readiness waits, with 11 nodes and 4 path
@@ -148,7 +170,7 @@ desktop-graph.png         a727942c30db521b09fcae9105af3b5d2dff2310ad9009230c3da8
 mobile-home.png           5df89caf2497f080428cbd175325c03e0da867bf8715ffd1055661dd886a24f6
 reduced-motion-home.png   525ee87ac1a68e30a3eaec21120627b3be2a713bf7c9954a4dd111d8f691e346
 reduced-motion-graph.png  a727942c30db521b09fcae9105af3b5d2dff2310ad9009230c3da8cd4f9cfacc
-report.json               19d6b2cb8ec67a7af598878c0a72c6695d49483b6001b5da30d6f8730d8ab93a
+report.json               b09a10803b77b77cb7618ee45f0030f09b58e68c5140e2eb7e090dae90291df1
 ```
 
 ## 4. Deployment status
@@ -183,14 +205,15 @@ feat: migrate research station to GitHub-first visual architecture
 ## Verification
 
 - `npm ci` — passed from lockfile (703 packages).
-- `npm run verify` — passed: 90/90 tests, lint, 14-page static check, 100442-byte initial interactive gzip, and repeatable browser QA.
-- Standalone preview + `npm run qa:browser -- --base-url http://127.0.0.1:4321` — passed: 252/252 assertions, 0 console errors, 0 resource/HTTP errors.
+- `BASE_PATH=/ SITE_URL=https://example.github.io npm run verify` — passed: 95/95 tests, lint, 14-page static check, 100442-byte initial interactive gzip, and repeatable root browser QA.
+- `BASE_PATH=/embodied-frontier SITE_URL=https://example.github.io/embodied-frontier npm run verify` — passed: 95/95 tests, 14-page base-path static check, 100480-byte initial interactive gzip, and repeatable non-root browser QA.
+- Standalone preview + `npm run qa:browser -- --base-url http://127.0.0.1:4321` — passed in the preceding acceptance pass: 252/252 assertions, 0 console errors, 0 resource/HTTP errors.
 - Screenshots: `artifacts/browser-qa/{desktop-home,desktop-graph,mobile-home,reduced-motion-home,reduced-motion-graph}.png`.
 
 ## Review checklist
 
 - [ ] Human review of source links, evidence states, comparison provenance/missing reasons, and protocol boundaries.
-- [ ] Human review of paper figure source/title/alt rendering, lightbox keyboard behavior, Mermaid/formula fallbacks, and sanitizer/XSS boundaries.
+- [ ] Human review of paper figure source/title/alt rendering, lightbox keyboard behavior, Mermaid/formula metadata/fallbacks, and sanitizer/XSS boundaries.
 - [ ] Human review of deterministic graph clusters, keyboard/path navigation, static fallback, and desktop GPU/WebGL visuals.
 - [ ] Human review of third-party provenance/licenses and first-party asset ownership.
 - [ ] Confirm required `verify` status check and failure-artifact upload pass on GitHub.

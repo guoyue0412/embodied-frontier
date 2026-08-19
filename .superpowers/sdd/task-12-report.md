@@ -4,7 +4,7 @@ Status: **DONE**
 
 Branch: `feat/github-visual-system`
 
-Implementation evidence HEAD before this report commit: `a6994a7`
+Implementation evidence HEAD before this report commit: `dfd8388`
 
 Base: `origin/main` / `main` at `e3e6da014fe74c67b36a97dac1f6257dd67f4f54`
 
@@ -17,9 +17,15 @@ deployment, or online smoke test was performed.
 
 - Safe paper Markdown figures support HTTP(S)-only image URLs, alt/title/source
   metadata, progressive native-dialog lightbox behavior, and visible Mermaid
-  and formula fallbacks. Sanitizer/XSS, no-JS, reduced-motion, and base-path
-  behavior remain guarded. Coverage uses a test-only placeholder fixture and
-  invents no paper facts/assets.
+  and formula fallbacks. Fenced Mermaid/math metadata is deterministic
+  (`title`, `description`/`alt`, optional HTTP(S) `source`); inline `$...$` and
+  standard `\(...\)` formulas accept `{#formula ...}` metadata. Missing field
+  metadata falls back to the first validated paper record source; missing
+  record context is visibly `来源未提供`. Sanitizer/XSS, no-JS,
+  reduced-motion, and base-path behavior remain guarded, with `role="math"`
+  and accessible labels preserved. Legacy browsers keep the original image
+  link when dialog APIs are unavailable. Coverage uses a test-only placeholder
+  fixture and invents no paper facts/assets.
 - Models/datasets visible metadata and facts expose provenance disclosures and
   explicit missing reasons. Existing fact sources are field-level; metadata
   without a field source is explicitly record-level and not presented as
@@ -36,20 +42,28 @@ deployment, or online smoke test was performed.
 ## Exact gate evidence
 
 ```text
-npm ci: PASS — 703 packages installed from lockfile
-npm run verify: PASS
+npm ci: PASS — 703 packages installed from lockfile (clean-room evidence retained from the preceding acceptance pass)
+BASE_PATH=/ SITE_URL=https://example.github.io npm run verify: PASS
   content: 5 papers, 3 roadmap stages, 3 projects, 3 models, 3 datasets
   build: 14 static pages
-  tests: 90 passed, 0 failed, 0 skipped
+  tests: 95 passed, 0 failed, 0 skipped
   lint: PASS
   static: 14 files, 0 errors
   bundle: initialInteractiveGzip 100442 / 122880 bytes
           sharedIncludesThree false; sharedIncludesCytoscape false
-  browser repeatability: 4942f768838cfb4d63fa6df307dd6d70e688fd0d07371ab2510dbe6b439fc533
+  browser repeatability: 3e8a55eed6fc54a73e3ae2b95c68e7e47c0469bbd8dd24d1954605d131043731
+
+BASE_PATH=/embodied-frontier SITE_URL=https://example.github.io/embodied-frontier npm run verify: PASS
+  build/static: 14 pages under /embodied-frontier/
+  tests: 95 passed, 0 failed, 0 skipped
+  static: 14 files, 0 errors
+  bundle: initialInteractiveGzip 100480 / 122880 bytes
+          sharedIncludesThree false; sharedIncludesCytoscape false
+  browser repeatability: f5d40e641b9b96430f2df0d5330b4eefb15e1b5db393a65cbf6d15cd101a2ac3
 
 standalone preview + npm run qa:browser -- --base-url http://127.0.0.1:4321: PASS
   profiles: desktop 1440x900 mouse, mobile-touch 360x800, desktop reduced-motion
-  route checks: 33
+  route checks: 33 (root and non-root)
   assertions: 252 passed, 0 failed
   console errors: 0; resource failures: 0; HTTP errors: 0
   screenshots: 5
@@ -70,7 +84,7 @@ Source/license/security audit:
 - No tracked build artifacts, secrets, private keys, or runtime research API
   were found.
 - Before report commits, `git diff origin/main..HEAD --stat` was
-  `178 files changed, 22554 insertions(+), 6782 deletions(-)`; diff check
+  `179 files changed, 22894 insertions(+), 6783 deletions(-)`; diff check
   passed.
 
 ## Proposed PR handoff
@@ -93,13 +107,14 @@ Body/checklist:
 ## Verification
 
 - `npm ci` — passed from lockfile (703 packages).
-- `npm run verify` — passed: 90/90 tests, lint, 14-page static check, 100442-byte initial interactive gzip, and repeatable browser QA.
-- Standalone preview + `npm run qa:browser -- --base-url http://127.0.0.1:4321` — passed: 252/252 assertions, 0 console errors, 0 resource/HTTP errors.
+- `BASE_PATH=/ SITE_URL=https://example.github.io npm run verify` — passed: 95/95 tests, lint, 14-page static check, 100442-byte initial interactive gzip, and repeatable root browser QA.
+- `BASE_PATH=/embodied-frontier SITE_URL=https://example.github.io/embodied-frontier npm run verify` — passed: 95/95 tests, 14-page base-path static check, 100480-byte initial interactive gzip, and repeatable non-root browser QA.
+- Standalone preview + `npm run qa:browser -- --base-url http://127.0.0.1:4321` — passed in the preceding acceptance pass: 252/252 assertions, 0 console errors, 0 resource/HTTP errors.
 
 ## Review checklist
 
 - [ ] Human review of source links, evidence states, comparison provenance/missing reasons, and protocol boundaries.
-- [ ] Human review of paper figure source/title/alt, lightbox keyboard behavior, Mermaid/formula fallbacks, and sanitizer/XSS boundaries.
+- [ ] Human review of paper figure source/title/alt, lightbox keyboard behavior, Mermaid/formula metadata/fallbacks, and sanitizer/XSS boundaries.
 - [ ] Human review of deterministic graph clusters, keyboard/path navigation, static fallback, and GPU/WebGL visuals.
 - [ ] Human review of third-party provenance/licenses and first-party asset ownership.
 - [ ] Confirm required `verify` status and success/failure artifact uploads on GitHub.
