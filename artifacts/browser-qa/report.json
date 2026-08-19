@@ -55,7 +55,7 @@
       "networkRequests": [
         "/",
         "/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/create-embodiment-scene.HJEve4Cs.js",
@@ -359,7 +359,7 @@
       "networkRequests": [
         "/",
         "/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/create-embodiment-scene.HJEve4Cs.js",
@@ -528,7 +528,7 @@
       "consoleErrors": [],
       "networkRequests": [
         "/",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/embodiment-runtime._urjDPUx.js",
@@ -828,7 +828,7 @@
       "consoleErrors": [],
       "networkRequests": [
         "/",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/embodiment-runtime._urjDPUx.js",
@@ -897,7 +897,7 @@
       "consoleErrors": [],
       "networkRequests": [
         "/",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/embodiment-runtime._urjDPUx.js",
@@ -1698,9 +1698,11 @@
       "name": "hero visual runtimes report ready or explicit fallback",
       "passed": true,
       "details": {
+        "capabilityState": "enhanced",
         "dotState": "ready",
         "distortionState": "fallback",
-        "embodimentState": "fallback-error"
+        "embodimentState": "fallback-error",
+        "staticFallback": true
       }
     },
     {
@@ -3553,7 +3555,7 @@
       "requests": [
         "/",
         "/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/create-embodiment-scene.HJEve4Cs.js",
@@ -3677,7 +3679,7 @@
       "requests": [
         "/",
         "/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/create-embodiment-scene.HJEve4Cs.js",
@@ -3756,7 +3758,7 @@
       "route": "/",
       "requests": [
         "/",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/embodiment-runtime._urjDPUx.js",
@@ -3876,7 +3878,7 @@
       "route": "/",
       "requests": [
         "/",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/embodiment-runtime._urjDPUx.js",
@@ -3909,7 +3911,7 @@
       "route": "/",
       "requests": [
         "/",
-        "/_astro/HeroExperience.B83gFRUL.js",
+        "/_astro/HeroExperience.24DITgi5.js",
         "/_astro/SiteLayout.DXyz4q0U.css",
         "/_astro/client.DGfagHgu.js",
         "/_astro/embodiment-runtime._urjDPUx.js",

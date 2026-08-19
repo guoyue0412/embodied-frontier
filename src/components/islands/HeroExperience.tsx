@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import DotGrid from "../vendor/react-bits/DotGrid/DotGrid";
 import EmbodimentUnit from "./EmbodimentUnit";
 import { withBase } from "../../lib/site-path.mjs";
+import { evaluateHeroCapabilities } from "../../lib/hero-capabilities.mjs";
 
 const GridDistortion = lazy(() => import("../vendor/react-bits/GridDistortion/GridDistortion"));
 
@@ -24,13 +25,14 @@ class VisualErrorBoundary extends React.Component<React.PropsWithChildren, { fai
 }
 
 interface CapabilityState {
+  status: "initializing" | "enhanced" | "capability-fallback";
   enhanced: boolean;
 }
 
 function readCapabilities(): CapabilityState {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
-  return { enhanced: !reduced && finePointer && window.innerWidth >= 768 };
+  return evaluateHeroCapabilities({ reducedMotion: reduced, finePointer, viewportWidth: window.innerWidth });
 }
 
 interface HeroExperienceProps {
@@ -38,7 +40,7 @@ interface HeroExperienceProps {
 }
 
 export default function HeroExperience({ imageSrc = "/hero-static.webp" }: HeroExperienceProps) {
-  const [capabilities, setCapabilities] = useState<CapabilityState>({ enhanced: false });
+  const [capabilities, setCapabilities] = useState<CapabilityState>({ status: "initializing", enhanced: false });
 
   useEffect(() => {
     const reducedQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -58,7 +60,7 @@ export default function HeroExperience({ imageSrc = "/hero-static.webp" }: HeroE
   }, []);
 
   return (
-    <div className="hero-experience" aria-hidden="true" data-motion-only="true" data-enhanced={capabilities.enhanced ? "true" : "false"}>
+    <div className="hero-experience" aria-hidden="true" data-motion-only="true" data-hero-capability-state={capabilities.status} data-enhanced={capabilities.enhanced ? "true" : "false"}>
       {capabilities.enhanced && (
         <>
           <div className="hero-experience__dots">

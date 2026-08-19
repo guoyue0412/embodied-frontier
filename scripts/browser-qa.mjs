@@ -498,14 +498,25 @@ try {
   for (const route of routes) await navigate(route, desktop.name, { height: desktop.viewport.height });
   await navigate("/", desktop.name, { height: desktop.viewport.height });
   const hero = await waitFor(`(() => {
+    const root = document.querySelector('[data-hero-capability-state]');
+    const capabilityState = root?.getAttribute('data-hero-capability-state');
     const dot = document.querySelector('[data-dot-grid-state]');
     const distortion = document.querySelector('[data-visual-state]');
     const embodiment = document.querySelector('[data-embodiment-unit]');
+    const staticArt = document.querySelector('.hero__static-art');
+    const staticStyle = staticArt ? getComputedStyle(staticArt) : null;
     const dotState = dot?.getAttribute('data-dot-grid-state');
     const distortionState = distortion?.getAttribute('data-visual-state');
     const embodimentState = embodiment?.getAttribute('data-embodiment-state');
-    return dot && distortion && embodiment && ['ready', 'fallback'].includes(dotState) && ['ready', 'fallback'].includes(distortionState) && ['ready', 'fallback', 'fallback-error'].includes(embodimentState)
-      ? { dotState, distortionState, embodimentState }
+    const embodimentTerminal = ['ready', 'fallback', 'fallback-error'].includes(embodimentState);
+    if (!root || !['enhanced', 'capability-fallback'].includes(capabilityState) || !embodiment || !embodimentTerminal) return false;
+    if (capabilityState === 'capability-fallback') {
+      return staticArt && staticStyle && staticStyle.display !== 'none' && staticStyle.visibility !== 'hidden'
+        ? { capabilityState, dotState: null, distortionState: null, embodimentState, staticFallback: true }
+        : false;
+    }
+    return dot && distortion && ['ready', 'fallback'].includes(dotState) && ['ready', 'fallback'].includes(distortionState)
+      ? { capabilityState, dotState, distortionState, embodimentState, staticFallback: Boolean(staticArt) }
       : false;
   })()`, 6000);
   check(desktop.name, "/", "hero visual runtimes report ready or explicit fallback", Boolean(hero), hero || { missing: true });
