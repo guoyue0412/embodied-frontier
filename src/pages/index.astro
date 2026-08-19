@@ -1,29 +1,90 @@
 ---
 import { getCollection } from "astro:content";
 import SiteLayout from "../layouts/SiteLayout.astro";
+import AtlasHero from "../components/static/AtlasHero.astro";
 import EvidenceBadge from "../components/static/EvidenceBadge.astro";
 import PaperCard from "../components/static/PaperCard.astro";
 import ProjectCard from "../components/static/ProjectCard.astro";
-import ResearchTrackCard from "../components/static/ResearchTrackCard.astro";
+import ResearchLane from "../components/static/ResearchLane.astro";
 import SectionHeading from "../components/static/SectionHeading.astro";
-import HeroExperience from "../components/islands/HeroExperience";
 import { withBase } from "../lib/site-path.mjs";
 import "../styles/hero.css";
 
-const [paperEntries, roadmapEntries, projectEntries] = await Promise.all([
+const [paperEntries, modelEntries, datasetEntries, projectEntries, roadmapEntries] = await Promise.all([
   getCollection("papers"),
-  getCollection("roadmap"),
+  getCollection("models"),
+  getCollection("datasets"),
   getCollection("projects"),
+  getCollection("roadmap"),
 ]);
-const papers = paperEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
-const roadmap = roadmapEntries.toSorted((a, b) => a.data.order - b.data.order);
-const projects = projectEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
 
-const tracks = [
-  { code: "01 / VLA", title: "VLA", question: "视觉与语言如何转化为稳定、可泛化的机器人动作？", points: ["动作 token 与连续动作块", "通用预训练与下游适配", "快慢系统与闭环控制"] },
-  { code: "02 / WAM", title: "WAM", question: "预测未来是否真的能够改善动作选择与长时程规划？", points: ["像素未来与潜空间未来", "世界—动作联合建模", "预测指标与任务成功率"] },
-  { code: "03 / DATA", title: "Data & Eval", question: "什么数据和评测能够支持可信的机器人学习结论？", points: ["数据覆盖与泄漏边界", "同协议基准比较", "失败案例与可追溯证据"] },
+const papers = paperEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const models = modelEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const datasets = datasetEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const projects = projectEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const roadmap = roadmapEntries.toSorted((a, b) => a.data.order - b.data.order);
+const year = Number(papers[0]?.data.updated.slice(0, 4) ?? new Date().getFullYear());
+
+const chapters = [
+  { id: "atlas", code: "00", label: "ATLAS", path: "#atlas" },
+  { id: "navigator", code: "01", label: "NAVIGATOR", path: "#navigator" },
+  { id: "vla", code: "02", label: "VLA", path: "#vla" },
+  { id: "wam", code: "03", label: "WAM", path: "#wam" },
+  { id: "data-eval", code: "04", label: "DATA / EVAL", path: "#data-eval" },
+  { id: "method", code: "05", label: "METHOD", path: "#method" },
 ];
+
+const destinations = [
+  { code: "PPR", label: "PAPERS", description: `${papers.length} 条论文笔记与证据边界。`, path: "/papers/" },
+  { code: "MDL", label: "MODELS", description: `${models.length} 个模型记录与协议字段。`, path: "/models/" },
+  { code: "DAT", label: "DATASETS", description: `${datasets.length} 个数据集记录与规模口径。`, path: "/datasets/" },
+  { code: "GRF", label: "GRAPH", description: "浏览显式论文、模型与数据关系。", path: "/graph/" },
+  { code: "RDM", label: "ROADMAP", description: `${roadmap.length} 个阶段与可检查输出。`, path: "/roadmap/" },
+  { code: "PRJ", label: "PROJECTS", description: `${projects.length} 个进行中的研究现场。`, path: "/projects/" },
+];
+
+const metrics = [
+  { value: papers.length, label: "论文笔记", code: "papers" },
+  { value: models.length, label: "模型记录", code: "models" },
+  { value: datasets.length, label: "数据集", code: "datasets" },
+  { value: projects.length, label: "项目现场", code: "projects" },
+  { value: roadmap.length, label: "路线阶段", code: "roadmap" },
+];
+
+type SearchableEntry = {
+  data: {
+    title: string;
+    summary: string;
+    question?: string;
+    track?: string;
+    family?: string;
+    protocol?: string;
+  };
+};
+
+function searchable(entry: SearchableEntry) {
+  const data = entry.data;
+  return `${data.title} ${data.summary} ${data.question ?? ""} ${data.track ?? ""} ${data.family ?? ""} ${data.protocol ?? ""}`.toLowerCase();
+}
+
+function laneRecord(entry: SearchableEntry, kind: string, path: string) {
+  return { title: entry.data.title, kind, summary: entry.data.summary, path };
+}
+
+const vlaRecords = [
+  ...papers.filter((entry) => entry.data.track.toLowerCase().includes("vla")).map((entry) => laneRecord(entry, "PAPER", `/papers/${entry.data.slug}/`)),
+  ...models.filter((entry) => entry.data.family.toLowerCase().includes("vla")).map((entry) => laneRecord(entry, "MODEL", `/models/#model-${entry.data.slug}`)),
+];
+const wamRecords = [
+  ...papers.filter((entry) => searchable(entry).includes("wam") || searchable(entry).includes("world model")).map((entry) => laneRecord(entry, "PAPER", `/papers/${entry.data.slug}/`)),
+  ...projects.filter((entry) => searchable(entry).includes("wam") || searchable(entry).includes("世界")).map((entry) => laneRecord(entry, "PROJECT", "/projects/")),
+];
+const dataRecords = [
+  ...papers.filter((entry) => entry.data.track.toLowerCase().includes("data") || entry.data.track.toLowerCase().includes("eval")).map((entry) => laneRecord(entry, "PAPER", `/papers/${entry.data.slug}/`)),
+  ...datasets.map((entry) => laneRecord(entry, "DATASET", `/datasets/#dataset-${entry.data.slug}`)),
+  ...projects.filter((entry) => searchable(entry).includes("rbench") || searchable(entry).includes("评测")).map((entry) => laneRecord(entry, "PROJECT", "/projects/")),
+];
+
 const evidenceCopy = [
   { status: "verified" as const, copy: "论文、官方项目页或独立来源可以直接核验。" },
   { status: "self-reported" as const, copy: "能力或指标仅由作者、实验室或厂商报告。" },
@@ -32,76 +93,75 @@ const evidenceCopy = [
 ---
 <SiteLayout title="具身智能研究坐标" description="从 VLA、世界模型到数据与评测，以来源、协议和实验边界组织具身智能研究。">
   <main id="main-content">
-    <section class="hero page-shell" data-static-hero>
-      <img class="hero__static-art" src={withBase("/hero-static.webp")} alt="" aria-hidden="true" />
-      <HeroExperience client:idle imageSrc="/hero-static.webp" />
-      <div class="hero__copy">
-        <span class="eyebrow">EMBODIED INTELLIGENCE · FIELD NOTES</span>
-        <h1>把具身智能研究，<br />整理成可验证的坐标。</h1>
-        <p>不追逐链接数量。沿 VLA、世界模型、数据与评测三条主线，记录来源、协议、实验边界与仍未解决的问题。</p>
-        <div class="hero__actions">
-          <a class="button button--primary" href={withBase("/papers/")}>进入论文档案 <span aria-hidden="true">→</span></a>
-          <a class="button button--secondary" href={withBase("/roadmap/")}>查看研究路线</a>
+    <AtlasHero metrics={metrics} chapters={chapters} destinations={destinations} year={year} />
+
+    <ResearchLane
+      id="vla"
+      code="02"
+      title="VLA / 视觉—语言—动作"
+      question="视觉与语言如何转化为稳定、可泛化的机器人动作？"
+      boundary="记录动作 token、连续动作块与跨 embodiment 适配；每条结论回到论文或模型记录的协议。"
+      inputs={["RGB / language", "proprioception"]}
+      outputs={["action token", "continuous action chunk"]}
+      records={vlaRecords}
+    />
+
+    <ResearchLane
+      id="wam"
+      code="03"
+      title="WAM / 世界—动作模型"
+      question="预测未来是否真的能够改善动作选择与长时程规划？"
+      boundary="当前仓库只有 WAM 闭环评测的研究设计记录；预测质量与控制成功率仍是 coverage gap，不写成实验结果。"
+      inputs={["observation window", "action history"]}
+      outputs={["future prediction", "closed-loop success"]}
+      records={wamRecords}
+    />
+
+    <ResearchLane
+      id="data-eval"
+      code="04"
+      title="DATA / EVAL"
+      question="什么数据和评测能够支持可信的机器人学习结论？"
+      boundary="保留数据覆盖、切分协议、指标分母和 case-level 证据；规模数字不替代可复现的评测协议。"
+      inputs={["dataset schema", "task split", "judge source"]}
+      outputs={["protocol-aware metric", "traceable evidence"]}
+      records={dataRecords}
+    />
+
+    <section id="method" class="section section--method">
+      <div class="page-shell">
+        <SectionHeading index="05" eyebrow="METHOD / EVIDENCE FIRST" title="让每条判断回到可检查的现场。">最近更新、学习路线、当前项目和证据状态在同一章收束；方法不是装饰，而是研究结果的边界。</SectionHeading>
+
+        <div class="method-grid">
+          <section class="method-panel method-panel--notes" aria-labelledby="method-notes-title">
+            <div class="method-panel__head"><span class="eyebrow">LATEST NOTES</span><a href={withBase("/papers/")}>全部 {papers.length} 篇 ↗</a></div>
+            <h3 id="method-notes-title">最近更新的论文坐标</h3>
+            <div class="paper-grid">{papers.slice(0, 3).map((paper, index) => <PaperCard paper={paper.data} index={index + 1} />)}</div>
+          </section>
+
+          <section class="method-panel method-panel--path" aria-labelledby="method-path-title">
+            <div class="method-panel__head"><span class="eyebrow">LEARNING PATH</span><a href={withBase("/roadmap/")}>完整路线 ↗</a></div>
+            <h3 id="method-path-title">从读懂系统，到提出可证伪问题</h3>
+            <ol class="roadmap-preview">
+              {roadmap.map((stage) => <li>
+                <div class="roadmap-preview__number">{String(stage.data.order).padStart(2, "0")}</div>
+                <div><span>{stage.data.label} · {stage.data.duration}</span><h4>{stage.data.title}</h4><p>{stage.data.summary}</p></div>
+                <a href={withBase("/roadmap/")} aria-label={`查看${stage.data.title}`}>↗</a>
+              </li>)}
+            </ol>
+          </section>
         </div>
-      </div>
-      <aside class="hero__ledger" aria-label="站点研究概况">
-        <div class="ledger-label">CURRENT INDEX · 2026</div>
-        <dl>
-          <div><dt>研究主线</dt><dd>03</dd></div>
-          <div><dt>论文笔记</dt><dd>{String(papers.length).padStart(2, "0")}</dd></div>
-          <div><dt>项目现场</dt><dd>{String(projects.length).padStart(2, "0")}</dd></div>
-        </dl>
-        <p><span aria-hidden="true">●</span> 内容来自仓库 Markdown，修改记录由 Git 保留。</p>
-      </aside>
-    </section>
 
-    <section class="section section--ink">
-      <div class="page-shell">
-        <SectionHeading index="01" eyebrow="RESEARCH RADAR" title="沿问题，而不是发布日期浏览。">每条主线都从真实研究问题进入，再回到论文、系统和实验。</SectionHeading>
-        <div class="track-grid">{tracks.map((track) => <ResearchTrackCard {...track} />)}</div>
-      </div>
-    </section>
+        <section class="method-panel method-panel--projects" aria-labelledby="method-projects-title">
+          <div class="method-panel__head"><span class="eyebrow">ACTIVE WORK</span><a href={withBase("/projects/")}>全部项目 ↗</a></div>
+          <h3 id="method-projects-title">研究发生在可复现的现场</h3>
+          <div class="project-grid">{projects.map((project) => <ProjectCard project={project.data} />)}</div>
+        </section>
 
-    <section class="section page-shell">
-      <SectionHeading index="02" eyebrow="LATEST NOTES" title="最近更新的论文坐标。">先说明证据边界，再讨论贡献、性能与适用范围。</SectionHeading>
-      <div class="paper-grid">{papers.slice(0, 3).map((paper, index) => <PaperCard paper={paper.data} index={index + 1} />)}</div>
-      <div class="section-link"><a href={withBase("/papers/")}>查看全部 {papers.length} 篇笔记 <span aria-hidden="true">→</span></a></div>
-    </section>
-
-    <section class="section section--soft">
-      <div class="page-shell">
-        <SectionHeading index="03" eyebrow="LEARNING PATH" title="从读懂系统，到提出可证伪问题。">每一阶段都要求留下可检查的输出，而不是完成一份阅读清单。</SectionHeading>
-        <ol class="roadmap-preview">
-          {roadmap.map((stage) => <li>
-            <div class="roadmap-preview__number">{String(stage.data.order).padStart(2, "0")}</div>
-            <div><span>{stage.data.label} · {stage.data.duration}</span><h3>{stage.data.title}</h3><p>{stage.data.summary}</p></div>
-            <a href={withBase("/roadmap/")} aria-label={`查看${stage.data.title}`}>↗</a>
-          </li>)}
-        </ol>
-      </div>
-    </section>
-
-    <section class="section page-shell">
-      <SectionHeading index="04" eyebrow="KNOWLEDGE TOOLS" title="从检索，到可解释的关系。">全文索引、字段级对比与显式知识关系都由仓库内容在构建时生成。</SectionHeading>
-      <div class="tool-grid">
-        <a href={withBase("/papers/")}><span>01 / SEARCH</span><h3>检索论文档案</h3><p>组合关键词、方向、标签、年份、来源与证据状态。</p><b>进入检索 →</b></a>
-        <a href={withBase("/models/")}><span>02 / COMPARE</span><h3>模型与数据集对比</h3><p>逐字段显示单位、来源和可信度，不制造跨协议排名。</p><b>查看模型 →</b></a>
-        <a href={withBase("/graph/")}><span>03 / GRAPH</span><h3>浏览知识关系</h3><p>从论文连接到模型与数据集，并保留完整列表等价视图。</p><b>打开图谱 →</b></a>
-      </div>
-    </section>
-
-    <section class="section section--soft">
-      <div class="page-shell">
-        <SectionHeading index="05" eyebrow="ACTIVE WORK" title="研究发生在可复现的现场。">区分已经形成的证据、当前推断和下一步实验。</SectionHeading>
-        <div class="project-grid">{projects.slice(0, 2).map((project) => <ProjectCard project={project.data} />)}</div>
-        <div class="section-link"><a href={withBase("/projects/")}>进入全部项目 <span aria-hidden="true">→</span></a></div>
-      </div>
-    </section>
-
-    <section class="section section--evidence">
-      <div class="page-shell evidence-panel">
-        <div><span class="eyebrow">EVIDENCE FIRST</span><h2>可信度不是装饰标签，<br />而是每条结论的边界。</h2></div>
-        <div class="evidence-list">{evidenceCopy.map((item) => <div><EvidenceBadge status={item.status} /><p>{item.copy}</p></div>)}</div>
+        <section class="method-evidence" aria-labelledby="method-evidence-title">
+          <div><span class="eyebrow">EVIDENCE FIRST</span><h3 id="method-evidence-title">可信度是每条结论的边界。</h3></div>
+          <div class="evidence-list">{evidenceCopy.map((item) => <div><EvidenceBadge status={item.status} /><p>{item.copy}</p></div>)}</div>
+        </section>
       </div>
     </section>
   </main>

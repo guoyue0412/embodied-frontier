@@ -1,0 +1,94 @@
+---
+import { withBase } from "../../lib/site-path.mjs";
+import HeroExperience from "../islands/HeroExperience";
+import AtlasMetric from "./AtlasMetric.astro";
+import AtlasRail from "./AtlasRail.astro";
+
+interface Metric {
+  value: string | number;
+  label: string;
+  code: string;
+}
+
+interface Chapter {
+  id: string;
+  code: string;
+  label: string;
+  path: string;
+}
+
+interface Destination {
+  code: string;
+  label: string;
+  description: string;
+  path: string;
+}
+
+interface Props {
+  metrics: Metric[];
+  chapters: Chapter[];
+  destinations: Destination[];
+  year: number;
+}
+
+const { metrics, chapters, destinations, year } = Astro.props;
+---
+<section id="atlas" class="atlas-hero" data-static-hero>
+  <img class="atlas-hero__static-art" src={withBase("/hero-static.webp")} alt="" aria-hidden="true" />
+  <HeroExperience client:idle imageSrc="/hero-static.webp" />
+  <div class="page-shell atlas-hero__inner">
+    <AtlasRail items={chapters} />
+    <div class="atlas-hero__main">
+      <div class="atlas-status" role="status" aria-live="polite">
+        <span class="atlas-status__signal" aria-hidden="true">●</span>
+        <strong>SYSTEM ONLINE</strong>
+        <span>REPOSITORY / MARKDOWN / {year}</span>
+      </div>
+      <div class="atlas-hero__grid">
+        <div class="atlas-hero__copy">
+          <span class="eyebrow">EMBODIED FRONTIER / RESEARCH ATLAS</span>
+          <h1>把具身智能研究，<br /><em>整理成可验证的坐标。</em></h1>
+          <p>沿 VLA、世界模型、数据与评测建立可回到仓库的研究路径：先看问题，再看输入、输出、协议和证据边界。</p>
+          <div class="hero__actions atlas-hero__actions">
+            <a class="button button--primary" href={withBase("/papers/")}>进入论文档案 <span aria-hidden="true">→</span></a>
+            <a class="button button--secondary" href={withBase("/models/")}>比较模型与数据</a>
+            <a class="button button--secondary" href={withBase("/graph/")}>打开关系图谱</a>
+          </div>
+        </div>
+        <aside class="atlas-hero__unit" aria-label="Embodied Unit static view">
+          <span class="atlas-hero__unit-label">EMBODIED UNIT / STATIC FALLBACK</span>
+          <span class="atlas-hero__unit-coordinates">X 064 · Y 032 · Z 018</span>
+          <div class="atlas-hero__rings" aria-hidden="true"><i></i><i></i><i></i></div>
+          <span class="atlas-hero__unit-note">SOURCE / HERO-STATIC.WEBP</span>
+        </aside>
+      </div>
+      <div class="atlas-metrics" aria-label="Repository metrics">
+        {metrics.map((metric) => <AtlasMetric {...metric} />)}
+      </div>
+      <div class="atlas-chapter-strip" aria-label="Atlas chapter sequence">
+        <span class="atlas-chapter-strip__label">SEQUENCE</span>
+        {chapters.map((chapter) => <a href={withBase(chapter.path)}><span>{chapter.code}</span>{chapter.label}</a>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="navigator" class="atlas-navigator section" aria-labelledby="navigator-title">
+  <div class="page-shell">
+    <div class="atlas-navigator__heading">
+      <div>
+        <span class="eyebrow">01 / STATIC COMMAND DECK</span>
+        <h2 id="navigator-title">从入口定位研究现场。</h2>
+      </div>
+      <p>六个目的地都由仓库内容生成。静态链接是完整导航源，即使没有 JavaScript 也保留全部路径。</p>
+    </div>
+    <div class="atlas-destinations" data-atlas-navigator-static>
+      {destinations.map((destination) => <a class="atlas-destination" href={withBase(destination.path)}>
+        <span class="atlas-destination__code">{destination.code}</span>
+        <strong>{destination.label}</strong>
+        <p>{destination.description}</p>
+        <span class="atlas-destination__link">ENTER <span aria-hidden="true">↗</span></span>
+      </a>)}
+    </div>
+  </div>
+</section>
