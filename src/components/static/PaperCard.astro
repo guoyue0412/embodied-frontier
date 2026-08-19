@@ -1,0 +1,39 @@
+---
+import EvidenceBadge from "./EvidenceBadge.astro";
+import { withBase } from "../../lib/site-path.mjs";
+
+interface PaperCardData {
+  slug: string;
+  title: string;
+  track: string;
+  venue: string;
+  status: "verified" | "self-reported" | "unverified";
+  summary: string;
+  tags: string[];
+  updated: string;
+}
+
+interface Props {
+  paper: PaperCardData;
+  index?: number;
+}
+
+const { paper, index = 1 } = Astro.props;
+const paperUrl = withBase(`/papers/${paper.slug}/`);
+---
+<article class="paper-card" data-paper-slug={paper.slug}>
+  <div class="paper-card__top">
+    <span class="paper-card__number">{String(index).padStart(2, "0")}</span>
+    <EvidenceBadge status={paper.status} />
+  </div>
+  <div class="paper-card__meta"><span>{paper.track}</span><span>{paper.venue}</span></div>
+  <h3><a href={paperUrl}>{paper.title}</a></h3>
+  <p>{paper.summary}</p>
+  <div class="tag-list" aria-label="论文标签">
+    {paper.tags.slice(0, 3).map((tag) => <span>{tag}</span>)}
+  </div>
+  <div class="paper-card__foot">
+    <time datetime={paper.updated}>更新 {paper.updated}</time>
+    <a href={paperUrl} aria-label={`阅读 ${paper.title}`}>阅读全文 <span aria-hidden="true">→</span></a>
+  </div>
+</article>

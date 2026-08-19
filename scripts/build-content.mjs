@@ -3,7 +3,9 @@ import { fileURLToPath } from "node:url";
 import { compileContent } from "./content-core.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const contentDir = process.env.CONTENT_DIR ? path.resolve(process.env.CONTENT_DIR) : path.join(root, "content");
+const contentDir = process.env.CONTENT_DIR
+  ? path.resolve(process.env.CONTENT_DIR)
+  : path.join(root, "src", "content");
 const outputFile = process.env.CONTENT_OUTPUT
   ? path.resolve(process.env.CONTENT_OUTPUT)
   : path.join(root, "generated", "content.json");

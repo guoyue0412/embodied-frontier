@@ -35,7 +35,10 @@ yarn-error.log*
 .vercel
 
 /dist/
+/.astro/
 /.wrangler/
 /outputs/
 /work/
 /generated/
+/.worktrees/
+/.superpowers/

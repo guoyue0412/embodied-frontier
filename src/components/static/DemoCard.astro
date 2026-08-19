@@ -1,0 +1,32 @@
+---
+import { withBase } from "../../lib/site-path.mjs";
+
+interface DemoData {
+  slug: string;
+  title: string;
+  role: string;
+  period?: string;
+  summary: string;
+  contributions: string[];
+  stack: string[];
+  updated: string;
+  video?: { poster: string };
+}
+
+interface Props {
+  demo: DemoData;
+}
+
+const { demo } = Astro.props;
+---
+<article class="demo-card" data-demo-card>
+  {demo.video && <img class="demo-card__poster" src={withBase(demo.video.poster)} alt={`${demo.title} 演示预览`} loading="lazy" />}
+  <div class="demo-card__body">
+    <div class="demo-card__meta"><span>DEMO LAB</span><time datetime={demo.updated}>更新 {demo.updated}</time></div>
+    <h2><a href={withBase(`/demos/${demo.slug}/`)}>{demo.title}</a></h2>
+    <p class="demo-card__role">{demo.role}{demo.period && ` · ${demo.period}`}</p>
+    <p>{demo.summary}</p>
+    <ul class="demo-card__tags" aria-label="技术栈">{demo.stack.slice(0, 4).map((item) => <li>{item}</li>)}</ul>
+    <a class="demo-card__link" href={withBase(`/demos/${demo.slug}/`)}>查看案例 <span aria-hidden="true">→</span></a>
+  </div>
+</article>

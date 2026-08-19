@@ -1,8 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
-import { marked } from "marked";
-import sanitizeHtml from "sanitize-html";
+import { markdownToPlainText, renderSafeMarkdown } from "../src/lib/safe-markdown.mjs";
 
 export const evidenceStatuses = ["verified", "self-reported", "unverified"];
 const evidenceStatusSet = new Set(evidenceStatuses);
@@ -31,10 +30,18 @@ function stringArray(data, field, file, { min = 0 } = {}) {
 
 function isoDate(data, field, file) {
   const value = requiredString(data, field, file);
-  if (!datePattern.test(value) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) {
+  if (!isRealCalendarDate(value)) {
     fail(file, `${field} must be YYYY-MM-DD`);
   }
   return value;
+}
+
+function isRealCalendarDate(value) {
+  if (!datePattern.test(value)) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+  const daysInMonth = [31, leapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  return month >= 1 && month <= 12 && day >= 1 && day <= daysInMonth[month - 1];
 }
 
 function slug(data, file) {
@@ -92,31 +99,11 @@ function facts(data, file) {
     if (!factUnits.has(unit)) fail(file, `facts.${name} has unsupported unit ${unit}`);
     const status = requiredString(fact, "status", `${file} facts.${name}`);
     if (!evidenceStatusSet.has(status)) fail(file, `facts.${name}.status must be one of ${evidenceStatuses.join(", ")}`);
-    return [name, { value: fact.value, unit, status, source: httpUrl(fact.source, `facts.${name}.source`, file) }];
+    const missingReason = fact.value === null
+      ? (fact.missingReason === undefined ? "该字段未提供可核验值" : requiredString(fact, "missingReason", `${file} facts.${name}`))
+      : (fact.missingReason === undefined ? undefined : requiredString(fact, "missingReason", `${file} facts.${name}`));
+    return [name, { value: fact.value, unit, status, source: httpUrl(fact.source, `facts.${name}.source`, file), ...(missingReason ? { missingReason } : {}) }];
   }));
-}
-
-function safeMarkdown(markdown) {
-  const rendered = marked.parse(markdown, { async: false, gfm: true });
-  return sanitizeHtml(rendered, {
-    allowedTags: [
-      "h2", "h3", "h4", "p", "ul", "ol", "li", "blockquote", "strong", "em",
-      "code", "pre", "a", "hr", "table", "thead", "tbody", "tr", "th", "td",
-    ],
-    allowedAttributes: { a: ["href", "target", "rel"] },
-    allowedSchemes: ["http", "https", "mailto"],
-    transformTags: {
-      a: (_tagName, attribs) => ({
-        tagName: "a",
-        attribs: { ...attribs, target: "_blank", rel: "noreferrer noopener" },
-      }),
-    },
-  });
-}
-
-function plainText(markdown) {
-  const rendered = marked.parse(markdown, { async: false, gfm: true });
-  return sanitizeHtml(rendered, { allowedTags: [], allowedAttributes: {} }).replace(/\s+/g, " ").trim();
 }
 
 function parsePaper(data, content, file) {
@@ -124,6 +111,7 @@ function parsePaper(data, content, file) {
   if (!evidenceStatusSet.has(status)) {
     fail(file, `status must be one of ${evidenceStatuses.join(", ")}`);
   }
+  const recordSources = sources(data, file);
   return {
     type: "paper",
     title: requiredString(data, "title", file),
@@ -135,10 +123,10 @@ function parsePaper(data, content, file) {
     status,
     tags: stringArray(data, "tags", file, { min: 1 }),
     summary: requiredString(data, "summary", file),
-    sources: sources(data, file),
+    sources: recordSources,
     relations: Array.isArray(data.relations) ? relations(data, file) : [],
-    text: plainText(content),
-    html: safeMarkdown(content),
+    text: markdownToPlainText(content),
+    html: renderSafeMarkdown(content, { recordSources }),
   };
 }
 
@@ -157,7 +145,7 @@ function parseModel(data, content, file) {
     outputs: stringArray(data, "outputs", file, { min: 1 }),
     facts: facts(data, file),
     relations: relations(data, file),
-    html: safeMarkdown(content),
+    html: renderSafeMarkdown(content),
   };
 }
 
@@ -174,7 +162,7 @@ function parseDataset(data, content, file) {
     modalities: stringArray(data, "modalities", file, { min: 1 }),
     facts: facts(data, file),
     relations: relations(data, file),
-    html: safeMarkdown(content),
+    html: renderSafeMarkdown(content),
   };
 }
 
@@ -192,7 +180,7 @@ function parseRoadmap(data, content, file) {
     goals: stringArray(data, "goals", file, { min: 1 }),
     outputs: stringArray(data, "outputs", file, { min: 1 }),
     reading: stringArray(data, "reading", file, { min: 1 }),
-    html: safeMarkdown(content),
+    html: renderSafeMarkdown(content),
   };
 }
 
@@ -207,7 +195,7 @@ function parseProject(data, content, file) {
     summary: requiredString(data, "summary", file),
     evidence: stringArray(data, "evidence", file, { min: 1 }),
     next: requiredString(data, "next", file),
-    html: safeMarkdown(content),
+    html: renderSafeMarkdown(content),
   };
 }
 

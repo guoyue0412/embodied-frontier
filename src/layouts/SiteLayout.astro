@@ -1,0 +1,38 @@
+---
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/motion.css";
+import SiteHeader from "../components/static/SiteHeader.astro";
+import SiteFooter from "../components/static/SiteFooter.astro";
+import { withBase } from "../lib/site-path.mjs";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+}
+
+const { title, description, image = "/og.png" } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image.startsWith("http://") || image.startsWith("https://") ? image : withBase(image);
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" href={withBase("/favicon.ico")} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <title>{title} · 具身前沿</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到正文</a>
+    <SiteHeader />
+    <slot />
+    <SiteFooter />
+  </body>
+</html>

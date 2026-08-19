@@ -1,0 +1,197 @@
+---
+import type { EvidenceFact } from "../../../lib/content/types";
+import EvidenceBadge from "./EvidenceBadge.astro";
+import ProtocolLock from "./ProtocolLock.astro";
+import { comparisonGate, protocolMismatch, protocolsCompatible } from "../../lib/comparison-core.mjs";
+
+interface ComparisonRecord {
+  slug: string;
+  title: string;
+  summary: string;
+  [key: string]: unknown;
+  facts: Record<string, EvidenceFact>;
+}
+type Field = { key: string; label: string; kind?: "fact" | "list" };
+
+interface Props {
+  records: ComparisonRecord[];
+  fields: Field[];
+  caption: string;
+  idPrefix?: string;
+}
+
+const units: Record<string, string> = {
+  "billion-parameters": "B 参数",
+  steps: "步",
+  trajectories: "条轨迹",
+  episodes: "段 episode",
+  hours: "小时",
+  tasks: "项任务",
+  environments: "个环境",
+  embodiments: "种本体",
+  percent: "%",
+};
+
+const { records, fields, caption, idPrefix = "record" } = Astro.props;
+
+function valueFor(record: ComparisonRecord, field: Field) {
+  const value = record[field.key];
+  return Array.isArray(value) ? value.join(" · ") : String(value ?? "—");
+}
+
+function factFor(record: ComparisonRecord, field: Field) {
+  return record.facts[field.key];
+}
+
+function factText(fact?: EvidenceFact) {
+  if (!fact || fact.value === null) return "暂无可靠值";
+  return `${new Intl.NumberFormat("zh-CN").format(fact.value)} ${units[fact.unit] ?? fact.unit}`;
+}
+
+function recordSources(record: ComparisonRecord) {
+  return [...new Set(Object.values(record.facts ?? {}).map((fact) => fact?.source).filter((source): source is string => Boolean(source)))];
+}
+
+function provenanceFor(record: ComparisonRecord, field: Field) {
+  const fact = factFor(record, field);
+  if (fact) {
+    return {
+      level: "field",
+      label: "字段级来源",
+      sources: [fact.source],
+      reason: fact.value === null ? (fact.missingReason ?? "字段来源未提供可核验值") : "无缺口：字段值已提供；仍需按来源核对定义。",
+    };
+  }
+  const sources = recordSources(record);
+  return {
+    level: "record",
+    label: "记录级来源（未逐字段核验）",
+    sources,
+    reason: "字段级来源未声明；该值仅在记录级来源范围内展示，不能视为逐字段核验。",
+  };
+}
+
+const anchorIdFor = (record: ComparisonRecord) => `${idPrefix}-${record.slug}`;
+const rankable = (field: Field) => {
+  if (field.kind !== "fact") return false;
+  const candidates = records
+    .map((record) => {
+      const fact = factFor(record, field);
+      return { field: field.key, protocol: record.protocol, unit: fact?.unit, value: fact?.value };
+    });
+  const numericCount = candidates.filter((candidate) => Number.isFinite(candidate.value)).length;
+  return numericCount >= 2 && comparisonGate(candidates).compatible;
+};
+const compatible = protocolsCompatible(records);
+const protocolExplanation = protocolMismatch(records) ?? "协议键一致；仍需字段单位与数值同时一致，才会提供排序。";
+---
+<div class="comparison-wrap">
+  <ProtocolLock compatible={compatible} explanation={protocolExplanation} />
+  <div class="protocol-notice">
+    <strong>对比协议</strong>
+    <p>只并列呈现事实字段。协议键不同的记录不会生成跨协议排名；空值明确显示，不以推测补齐。</p>
+  </div>
+  <div class="comparison-tools" aria-label={`${caption}排序工具`}>
+    {fields.map((field) => rankable(field) && <button class="comparison-sort" type="button" data-sort-field={field.key} data-sort-direction="desc" aria-label={`按${field.label}从高到低排序`}>
+      按{field.label}从高到低
+    </button>)}
+  </div>
+  <table class="comparison-table">
+    <caption>{caption} · 字段级证据</caption>
+    <thead><tr><th scope="col">记录</th>{fields.map((field) => <th scope="col">{field.label}</th>)}</tr></thead>
+    <tbody>
+      {records.map((record) => <tr id={anchorIdFor(record)} data-comparison-anchor={anchorIdFor(record)}>
+        <th scope="row"><strong>{record.title}</strong><small>{record.summary}</small></th>
+        {fields.map((field) => <td>
+          {field.kind === "fact" ? <div class="fact-cell" data-comparison-field={field.key} data-comparison-value={typeof factFor(record, field)?.value === "number" ? String(factFor(record, field)?.value) : undefined}>
+            <strong class={factFor(record, field)?.value === null || !factFor(record, field) ? "missing-value" : undefined}>{factText(factFor(record, field))}</strong>
+            {factFor(record, field) && <><EvidenceBadge status={factFor(record, field)!.status} /><a href={factFor(record, field)!.source} target="_blank" rel="noreferrer noopener">来源 ↗</a></>}
+          </div> : <span>{valueFor(record, field)}</span>}
+          {(() => { const provenance = provenanceFor(record, field); return <details class="field-provenance" data-provenance-level={provenance.level} data-missing-reason={provenance.reason}>
+            <summary>字段来源与缺口</summary>
+            <div class="field-provenance__body"><strong>{provenance.label}</strong>
+              {provenance.sources.length > 0 ? <ul>{provenance.sources.map((source, index) => <li><a href={source} target="_blank" rel="noreferrer noopener">来源 {index + 1} ↗</a></li>)}</ul> : <span>来源未声明</span>}
+              <p>缺口说明：{provenance.reason}</p>
+            </div>
+          </details>; })()}
+        </td>)}
+      </tr>)}
+    </tbody>
+  </table>
+  <div class="comparison-cards" aria-label={`${caption} · 字段级证据`}>
+    {records.map((record) => <article data-comparison-anchor={anchorIdFor(record)}>
+      <h2>{record.title}</h2>
+      <p>{record.summary}</p>
+      <dl>{fields.map((field) => <div>
+        <dt>{field.label}</dt>
+        <dd>
+          {field.kind === "fact" ? <div class="fact-cell" data-comparison-field={field.key} data-comparison-value={typeof factFor(record, field)?.value === "number" ? String(factFor(record, field)?.value) : undefined}>
+            <strong class={factFor(record, field)?.value === null || !factFor(record, field) ? "missing-value" : undefined}>{factText(factFor(record, field))}</strong>
+            {factFor(record, field) && <><EvidenceBadge status={factFor(record, field)!.status} /><a href={factFor(record, field)!.source} target="_blank" rel="noreferrer noopener">来源 ↗</a></>}
+          </div> : <span>{valueFor(record, field)}</span>}
+          {(() => { const provenance = provenanceFor(record, field); return <details class="field-provenance" data-provenance-level={provenance.level} data-missing-reason={provenance.reason}>
+            <summary>字段来源与缺口</summary>
+            <div class="field-provenance__body"><strong>{provenance.label}</strong>
+              {provenance.sources.length > 0 ? <ul>{provenance.sources.map((source, index) => <li><a href={source} target="_blank" rel="noreferrer noopener">来源 {index + 1} ↗</a></li>)}</ul> : <span>来源未声明</span>}
+              <p>缺口说明：{provenance.reason}</p>
+            </div>
+          </details>; })()}
+        </dd>
+      </div>)}</dl>
+    </article>)}
+  </div>
+</div>
+<script is:inline>
+  const focusComparisonAnchor = () => {
+    const requestedId = window.location.hash.slice(1);
+    if (!requestedId) return;
+    const target = [...document.querySelectorAll("[data-comparison-anchor]")].find((element) => {
+      if (element.getAttribute("data-comparison-anchor") !== requestedId) return false;
+      const styles = window.getComputedStyle(element);
+      const rect = element.getBoundingClientRect();
+      return styles.display !== "none" && styles.visibility !== "hidden" && rect.width > 0 && rect.height > 0;
+    });
+    if (!(target instanceof HTMLElement)) return;
+    target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: "start", inline: "nearest" });
+  };
+
+  window.addEventListener("hashchange", focusComparisonAnchor);
+  window.addEventListener("load", focusComparisonAnchor, { once: true });
+  requestAnimationFrame(focusComparisonAnchor);
+
+  const sortComparisonRecords = (button) => {
+    const wrap = button.closest(".comparison-wrap");
+    const field = button.dataset.sortField;
+    if (!wrap || !field) return;
+    const direction = button.dataset.sortDirection === "asc" ? "asc" : "desc";
+    const readValue = (record) => {
+      const cell = [...record.querySelectorAll("[data-comparison-field]")]
+        .find((candidate) => candidate.getAttribute("data-comparison-field") === field);
+      const value = Number(cell?.getAttribute("data-comparison-value"));
+      return Number.isFinite(value) ? value : null;
+    };
+    const compare = (left, right) => {
+      const a = readValue(left);
+      const b = readValue(right);
+      if (a === null && b === null) return 0;
+      if (a === null) return 1;
+      if (b === null) return -1;
+      return (b - a) * (direction === "desc" ? 1 : -1);
+    };
+    const body = wrap.querySelector(".comparison-table tbody");
+    if (body) [...body.children].sort(compare).forEach((row) => body.append(row));
+    const cards = wrap.querySelector(".comparison-cards");
+    if (cards) [...cards.children].sort(compare).forEach((card) => cards.append(card));
+    const nextDirection = direction === "desc" ? "asc" : "desc";
+    const fieldLabel = button.textContent.replace(/^按/, "").replace(/从高到低|从低到高/g, "");
+    button.dataset.sortDirection = nextDirection;
+    button.textContent = `按${fieldLabel}从${nextDirection === "desc" ? "高到低" : "低到高"}`;
+    button.setAttribute("aria-label", button.textContent);
+  };
+
+  document.querySelectorAll(".comparison-sort").forEach((button) => {
+    button.addEventListener("click", () => sortComparisonRecords(button));
+  });
+</script>

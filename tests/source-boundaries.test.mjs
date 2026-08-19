@@ -9,19 +9,26 @@ async function sourceFiles(directory) {
   const absolute = new URL(`${directory}/`, root);
   const entries = await readdir(absolute, { withFileTypes: true, recursive: true });
   return entries
-    .filter((entry) => entry.isFile() && /\.(ts|tsx|css)$/.test(entry.name))
+    .filter((entry) => entry.isFile() && /\.(astro|mjs|ts|tsx|css)$/.test(entry.name))
+    .filter((entry) => !/(?:^|[\\/])(?:generated|dist|vendor|node_modules)(?:[\\/]|$)/.test(entry.parentPath))
     .map((entry) => path.join(entry.parentPath, entry.name));
 }
 
-test("keeps the stage-one runtime lightweight and independently branded", async () => {
-  const files = (await Promise.all([sourceFiles("app"), sourceFiles("components"), sourceFiles("lib")])).flat();
+test("keeps runtime dependencies bounded and independently branded", async () => {
+  // Quality gates are intentionally allowed to mention their own package
+  // boundaries; this assertion protects the shipped runtime source tree.
+  const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib")])).flat();
   const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).join("\n");
-  assert.doesNotMatch(source, /three(?:\.js)?|WebGL|react-loading-skeleton|GridDistortion|具身星图/i);
+  const allowedThreeConsumers = files.filter((file) => /src[\\/]lib[\\/]three[\\/]create-embodiment-scene\.ts$|src[\\/]components[\\/]islands[\\/]EmbodimentUnit\.tsx$|src[\\/]components[\\/]vendor[\\/]react-bits[\\/]GridDistortion[\\/]GridDistortion\.tsx$/.test(file));
+  const boundedSource = (await Promise.all(files.filter((file) => !allowedThreeConsumers.includes(file)).map((file) => readFile(file, "utf8")))).join("\n");
+  assert.doesNotMatch(boundedSource, /three(?:\.js)?|WebGL|react-loading-skeleton|具身星图/i);
+  assert.match(source, /createEmbodimentScene/);
   assert.doesNotMatch(source, /zhuyun97|embodied-ai-learning/i);
 });
 
 test("does not request research content from a runtime API", async () => {
-  const files = (await Promise.all([sourceFiles("app"), sourceFiles("components"), sourceFiles("lib")])).flat();
+  // Browser QA and build scripts are tooling; only the shipped source tree is a runtime boundary.
+  const files = (await Promise.all([sourceFiles("src"), sourceFiles("lib")])).flat();
   const source = (await Promise.all(files.map((file) => readFile(file, "utf8")))).join("\n");
   assert.doesNotMatch(source, /fetch\s*\(|XMLHttpRequest|WebSocket|EventSource/);
 });

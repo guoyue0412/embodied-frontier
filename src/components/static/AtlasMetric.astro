@@ -1,0 +1,15 @@
+---
+interface Props {
+  value: string | number;
+  label: string;
+  code: string;
+}
+
+const { value, label, code } = Astro.props;
+---
+<div class="atlas-metric" data-atlas-metric={code} role="group" aria-label={`${label}: ${value}`}>
+  <span class="atlas-metric__code">{code}</span>
+  <strong>{value}</strong>
+  <small>{label}</small>
+  <dl class="atlas-metric__compat" aria-hidden="true"><div><dt>{label}</dt><dd>{String(value).padStart(2, "0")}</dd></div></dl>
+</div>

@@ -1,0 +1,22 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import RelationshipList from "../components/static/RelationshipList.astro";
+import KnowledgeGraph from "../components/islands/KnowledgeGraph";
+import { getBasePath } from "../lib/site-path.mjs";
+import { getKnowledgeGraph } from "../../lib/graph";
+
+const graph = getKnowledgeGraph();
+---
+<SiteLayout title="知识图谱" description="浏览论文、模型与数据集之间由 Markdown 显式声明的关系。">
+  <main id="main-content">
+    <header class="page-intro page-shell">
+      <span class="eyebrow">KNOWLEDGE RELATIONS</span>
+      <h1>从孤立条目，<br />回到研究关系。</h1>
+      <p>{graph.nodes.length} 个节点、{graph.edges.length} 条显式关系；拒绝从关键词共现自动臆测连接。</p>
+    </header>
+    <div class="page-section page-shell">
+      <KnowledgeGraph client:load graph={graph} basePath={getBasePath()} />
+      <RelationshipList graph={graph} />
+    </div>
+  </main>
+</SiteLayout>

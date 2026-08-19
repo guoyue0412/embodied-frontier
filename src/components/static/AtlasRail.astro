@@ -1,0 +1,27 @@
+---
+import { withBase } from "../../lib/site-path.mjs";
+
+interface RailItem {
+  id: string;
+  code: string;
+  label: string;
+  path: string;
+}
+
+interface Props {
+  items: RailItem[];
+  current?: string;
+}
+
+const { items, current = "atlas" } = Astro.props;
+---
+<nav class="atlas-rail" aria-label="Atlas chapters" data-atlas-rail>
+  <span class="atlas-rail__label">INDEX / 00—06</span>
+  <ol>
+    {items.map((item) => <li class:list={{ "is-current": item.id === current }}>
+      <a href={withBase(item.path)}>
+        <span>{item.code}</span><strong>{item.label}</strong>
+      </a>
+    </li>)}
+  </ol>
+</nav>

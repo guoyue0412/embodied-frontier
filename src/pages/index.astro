@@ -1,0 +1,172 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import AtlasHero from "../components/static/AtlasHero.astro";
+import EvidenceBadge from "../components/static/EvidenceBadge.astro";
+import PaperCard from "../components/static/PaperCard.astro";
+import ProjectCard from "../components/static/ProjectCard.astro";
+import ResearchLane from "../components/static/ResearchLane.astro";
+import SectionHeading from "../components/static/SectionHeading.astro";
+import { withBase } from "../lib/site-path.mjs";
+import "../styles/hero.css";
+
+const [paperEntries, modelEntries, datasetEntries, projectEntries, roadmapEntries, demoEntries] = await Promise.all([
+  getCollection("papers"),
+  getCollection("models"),
+  getCollection("datasets"),
+  getCollection("projects"),
+  getCollection("roadmap"),
+  getCollection("demos"),
+]);
+
+const papers = paperEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const models = modelEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const datasets = datasetEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const projects = projectEntries.toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const roadmap = roadmapEntries.toSorted((a, b) => a.data.order - b.data.order);
+const demos = demoEntries.filter((entry) => entry.data.public).toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const year = Number(papers[0]?.data.updated.slice(0, 4) ?? new Date().getFullYear());
+
+const chapters = [
+  { id: "atlas", code: "00", label: "ATLAS", path: "#atlas" },
+  { id: "navigator", code: "01", label: "NAVIGATOR", path: "#navigator" },
+  { id: "vla", code: "02", label: "VLA", path: "#vla" },
+  { id: "wam", code: "03", label: "WAM", path: "#wam" },
+  { id: "data-eval", code: "04", label: "DATA / EVAL", path: "#data-eval" },
+  { id: "demo-lab", code: "05", label: "DEMO LAB", path: "/demos/" },
+  { id: "method", code: "06", label: "METHOD", path: "#method" },
+];
+
+const destinations = [
+  { code: "PPR", label: "PAPERS", description: `${papers.length} 条论文笔记与证据边界。`, path: "/papers/" },
+  { code: "MDL", label: "MODELS", description: `${models.length} 个模型记录与协议字段。`, path: "/models/" },
+  { code: "DAT", label: "DATASETS", description: `${datasets.length} 个数据集记录与规模口径。`, path: "/datasets/" },
+  { code: "GRF", label: "GRAPH", description: "浏览显式论文、模型与数据关系。", path: "/graph/" },
+  { code: "RDM", label: "ROADMAP", description: `${roadmap.length} 个阶段与可检查输出。`, path: "/roadmap/" },
+  { code: "PRJ", label: "PROJECTS", description: `${projects.length} 个进行中的研究现场。`, path: "/projects/" },
+  { code: "DMO", label: "DEMO LAB", description: demos.length > 0 ? `${demos.length} 个已审核并公开的案例。` : "尚无已审核并公开的 Demo。", path: "/demos/" },
+];
+
+const metrics = [
+  { value: papers.length, label: "论文笔记", code: "papers" },
+  { value: models.length, label: "模型记录", code: "models" },
+  { value: datasets.length, label: "数据集", code: "datasets" },
+  { value: projects.length, label: "项目现场", code: "projects" },
+  { value: roadmap.length, label: "路线阶段", code: "roadmap" },
+];
+
+type SearchableEntry = {
+  data: {
+    title: string;
+    summary: string;
+    question?: string;
+    track?: string;
+    family?: string;
+    protocol?: string;
+  };
+};
+
+function searchable(entry: SearchableEntry) {
+  const data = entry.data;
+  return `${data.title} ${data.summary} ${data.question ?? ""} ${data.track ?? ""} ${data.family ?? ""} ${data.protocol ?? ""}`.toLowerCase();
+}
+
+function laneRecord(entry: SearchableEntry, kind: string, path: string) {
+  return { title: entry.data.title, kind, summary: entry.data.summary, path };
+}
+
+const vlaRecords = [
+  ...papers.filter((entry) => entry.data.track.toLowerCase().includes("vla")).map((entry) => laneRecord(entry, "PAPER", `/papers/${entry.data.slug}/`)),
+  ...models.filter((entry) => entry.data.family.toLowerCase().includes("vla")).map((entry) => laneRecord(entry, "MODEL", `/models/#model-${entry.data.slug}`)),
+];
+const wamRecords = [
+  ...papers.filter((entry) => searchable(entry).includes("wam") || searchable(entry).includes("world model")).map((entry) => laneRecord(entry, "PAPER", `/papers/${entry.data.slug}/`)),
+  ...projects.filter((entry) => searchable(entry).includes("wam") || searchable(entry).includes("世界")).map((entry) => laneRecord(entry, "PROJECT", "/projects/")),
+];
+const dataRecords = [
+  ...papers.filter((entry) => entry.data.track.toLowerCase().includes("data") || entry.data.track.toLowerCase().includes("eval")).map((entry) => laneRecord(entry, "PAPER", `/papers/${entry.data.slug}/`)),
+  ...datasets.map((entry) => laneRecord(entry, "DATASET", `/datasets/#dataset-${entry.data.slug}`)),
+  ...projects.filter((entry) => entry.data.slug === "rbench-evaluation").map((entry) => laneRecord(entry, "PROJECT", "/projects/")),
+];
+
+const evidenceCopy = [
+  { status: "verified" as const, copy: "论文、官方项目页或独立来源可以直接核验。" },
+  { status: "self-reported" as const, copy: "能力或指标仅由作者、实验室或厂商报告。" },
+  { status: "unverified" as const, copy: "来源不足、口径不清或仍等待进一步确认。" },
+];
+---
+<SiteLayout title="具身智能研究坐标" description="从 VLA、世界模型到数据与评测，以来源、协议和实验边界组织具身智能研究。">
+  <main id="main-content">
+    <AtlasHero metrics={metrics} chapters={chapters} destinations={destinations} year={year} />
+
+    <ResearchLane
+      id="vla"
+      code="02"
+      title="VLA / 视觉—语言—动作"
+      question="视觉与语言如何转化为稳定、可泛化的机器人动作？"
+      boundary="记录动作 token、连续动作块与跨 embodiment 适配；每条结论回到论文或模型记录的协议。"
+      inputs={["RGB / language", "proprioception"]}
+      outputs={["action token", "continuous action chunk"]}
+      records={vlaRecords}
+    />
+
+    <ResearchLane
+      id="wam"
+      code="03"
+      title="WAM / 世界—动作模型"
+      question="预测未来是否真的能够改善动作选择与长时程规划？"
+      boundary="当前仓库只有 WAM 闭环评测的研究设计记录；预测质量与控制成功率仍是 coverage gap，不写成实验结果。"
+      inputs={["observation window", "action history"]}
+      outputs={["future prediction", "closed-loop success"]}
+      records={wamRecords}
+    />
+
+    <ResearchLane
+      id="data-eval"
+      code="04"
+      title="DATA / EVAL"
+      question="什么数据和评测能够支持可信的机器人学习结论？"
+      boundary="保留数据覆盖、切分协议、指标分母和 case-level 证据；规模数字不替代可复现的评测协议。"
+      inputs={["dataset schema", "task split", "judge source"]}
+      outputs={["protocol-aware metric", "traceable evidence"]}
+      records={dataRecords}
+    />
+
+    <section id="method" class="section section--method">
+      <div class="page-shell">
+        <SectionHeading index="06" eyebrow="METHOD / EVIDENCE FIRST" title="让每条判断回到可检查的现场。">最近更新、学习路线、当前项目和证据状态在同一章收束；方法不是装饰，而是研究结果的边界。</SectionHeading>
+
+        <div class="method-grid">
+          <section class="method-panel method-panel--notes" aria-labelledby="method-notes-title">
+            <div class="method-panel__head"><span class="eyebrow">LATEST NOTES</span><a href={withBase("/papers/")}>全部 {papers.length} 篇 ↗</a></div>
+            <h3 id="method-notes-title">最近更新的论文坐标</h3>
+            <div class="paper-grid">{papers.slice(0, 3).map((paper, index) => <PaperCard paper={paper.data} index={index + 1} />)}</div>
+          </section>
+
+          <section class="method-panel method-panel--path" aria-labelledby="method-path-title">
+            <div class="method-panel__head"><span class="eyebrow">LEARNING PATH</span><a href={withBase("/roadmap/")}>完整路线 ↗</a></div>
+            <h3 id="method-path-title">从读懂系统，到提出可证伪问题</h3>
+            <ol class="roadmap-preview">
+              {roadmap.map((stage) => <li>
+                <div class="roadmap-preview__number">{String(stage.data.order).padStart(2, "0")}</div>
+                <div><span>{stage.data.label} · {stage.data.duration}</span><h4>{stage.data.title}</h4><p>{stage.data.summary}</p></div>
+                <a href={withBase("/roadmap/")} aria-label={`查看${stage.data.title}`}>↗</a>
+              </li>)}
+            </ol>
+          </section>
+        </div>
+
+        <section class="method-panel method-panel--projects" aria-labelledby="method-projects-title">
+          <div class="method-panel__head"><span class="eyebrow">ACTIVE WORK</span><a href={withBase("/projects/")}>全部项目 ↗</a></div>
+          <h3 id="method-projects-title">研究发生在可复现的现场</h3>
+          <div class="project-grid">{projects.map((project) => <ProjectCard project={project.data} />)}</div>
+        </section>
+
+        <section class="method-evidence" aria-labelledby="method-evidence-title">
+          <div><span class="eyebrow">EVIDENCE FIRST</span><h3 id="method-evidence-title">可信度是每条结论的边界。</h3></div>
+          <div class="evidence-list">{evidenceCopy.map((item) => <div><EvidenceBadge status={item.status} /><p>{item.copy}</p></div>)}</div>
+        </section>
+      </div>
+    </section>
+  </main>
+</SiteLayout>

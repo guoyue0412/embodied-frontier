@@ -1,0 +1,17 @@
+---
+import { withBase } from "../../lib/site-path.mjs";
+
+const repositoryUrl = import.meta.env.PUBLIC_REPOSITORY_URL;
+---
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <strong>具身前沿 · Embodied Frontier</strong>
+      <p>研究内容以仓库中的 Markdown、来源与可验证证据为准。</p>
+    </div>
+    <nav class="site-footer__links" aria-label="页脚导航">
+      <a href={withBase("/about/")}>关于本站</a>
+      {repositoryUrl && <a href={repositoryUrl} rel="noreferrer">仓库</a>}
+    </nav>
+  </div>
+</footer>

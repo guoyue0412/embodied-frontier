@@ -1,0 +1,61 @@
+---
+import { withBase } from "../../lib/site-path.mjs";
+
+interface LaneRecord {
+  title: string;
+  kind: string;
+  summary: string;
+  path: string;
+}
+
+interface Props {
+  id: string;
+  code: string;
+  title: string;
+  question: string;
+  boundary: string;
+  inputs: string[];
+  outputs: string[];
+  records: LaneRecord[];
+}
+
+const { id, code, title, question, boundary, inputs, outputs, records } = Astro.props;
+---
+<section id={id} class="atlas-lane section" data-research-lane={id}>
+  <div class="page-shell">
+    <div class="atlas-lane__heading">
+      <div>
+        <span class="eyebrow">{code} / RESEARCH LANE</span>
+        <h2>{title}</h2>
+      </div>
+      <p class="atlas-lane__question">{question}</p>
+    </div>
+    <div class="atlas-lane__body">
+      <aside class="atlas-lane__boundary" aria-label={`${title} research boundary`}>
+        <span class="atlas-lane__label">BOUNDARY</span>
+        <p>{boundary}</p>
+        <dl>
+          <div><dt>INPUTS</dt><dd>{inputs.join(" · ")}</dd></div>
+          <div><dt>OUTPUTS</dt><dd>{outputs.join(" · ")}</dd></div>
+        </dl>
+      </aside>
+      <div class="atlas-lane__records">
+        <div class="atlas-lane__records-head">
+          <span class="atlas-lane__label">REPOSITORY RECORDS</span>
+          <span>{records.length} linked {records.length === 1 ? "record" : "records"}</span>
+        </div>
+        {records.length > 0 ? <div class="atlas-lane__grid">
+          {records.map((record, index) => <a class="atlas-record" href={withBase(record.path)}>
+            <span class="atlas-record__index">{String(index + 1).padStart(2, "0")} / {record.kind}</span>
+            <strong>{record.title}</strong>
+            <p>{record.summary}</p>
+            <span class="atlas-record__link">OPEN RECORD <span aria-hidden="true">↗</span></span>
+          </a>)}
+        </div> : <div class="atlas-lane__empty">
+          <strong>COVERAGE GAP</strong>
+          <p>仓库当前没有可直接链接的 {title} 记录；这一空白保留为研究边界，不用推断补齐。</p>
+        </div>}
+      </div>
+    </div>
+  </div>
+</section>

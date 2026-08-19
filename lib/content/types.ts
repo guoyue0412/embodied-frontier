@@ -23,7 +23,7 @@ export interface PaperRecord {
 }
 
 export interface Relation { target: string; type: string }
-export interface EvidenceFact { value: number | null; unit: string; status: EvidenceStatus; source: string }
+export interface EvidenceFact { value: number | null; unit: string; status: EvidenceStatus; source: string; missingReason?: string }
 
 export interface ModelRecord {
   type: "model"; title: string; slug: string; updated: string; family: string;

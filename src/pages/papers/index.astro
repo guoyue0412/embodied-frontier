@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import PaperExplorer from "../../components/islands/PaperExplorer";
+import { getSearchIndex } from "../../../lib/search-index";
+
+const paperEntries = (await getCollection("papers")).toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+const searchIndex = getSearchIndex();
+const paperRecords = paperEntries.map((paper) => paper.data);
+---
+<SiteLayout title="论文档案" description="按研究方向浏览具身智能论文笔记，并保留来源与证据状态。">
+  <main id="main-content">
+    <header class="page-intro page-shell">
+      <span class="eyebrow">PAPER DOSSIERS</span>
+      <h1>论文不是条目，<br />而是一组可核验的主张。</h1>
+      <p>按研究方向整理贡献、实现接口、评测协议和证据边界。检索与筛选全部在本地执行，并可通过 URL 恢复。</p>
+    </header>
+    <div class="page-section page-shell">
+      <PaperExplorer client:load papers={paperRecords} index={searchIndex} initialFilters={{}} />
+      <noscript><p class="paper-noscript-note">完整论文列表已由页面静态输出。</p></noscript>
+    </div>
+  </main>
+</SiteLayout>

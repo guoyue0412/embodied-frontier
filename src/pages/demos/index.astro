@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import DemoCard from "../../components/static/DemoCard.astro";
+
+const demos = (await getCollection("demos"))
+  .filter((demo) => demo.data.public)
+  .toSorted((a, b) => b.data.updated.localeCompare(a.data.updated));
+---
+<SiteLayout title="Demo Lab / 作品实验室" description="匿名化、经审核的个人参与项目演示与独立重建。">
+  <main id="main-content">
+    <header class="page-intro page-shell demo-lab-intro">
+      <span class="eyebrow">DEMO LAB / 作品实验室</span>
+      <h1>把参与过的问题，整理成可核验的演示。</h1>
+      <p>这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。</p>
+    </header>
+    {demos.length > 0 ? <section class="page-section page-shell demo-gallery" data-demo-gallery>
+      <div class="demos-grid">
+        {demos.map((demo) => <DemoCard demo={demo.data} />)}
+      </div>
+    </section> : <section class="page-section page-shell demo-gallery demo-empty" data-demo-gallery data-demo-empty-state aria-labelledby="demo-empty-title">
+      <div class="lab-panel">
+        <span class="eyebrow">COVERAGE GAP / NO PUBLISHED RECORDS</span>
+        <h2 id="demo-empty-title">尚无已审核并公开的 Demo。</h2>
+        <p>内容将在完成匿名化与媒体授权检查后发布。</p>
+        <p>在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。</p>
+      </div>
+    </section>}
+  </main>
+</SiteLayout>

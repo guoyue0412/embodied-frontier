@@ -7,45 +7,44 @@
   },
   "scripts": {
     "content:build": "node scripts/build-content.mjs && node scripts/build-search-index.mjs && node scripts/build-graph.mjs",
-    "predev": "npm run content:build",
-    "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
-    "prebuild": "npm run content:build",
-    "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
-    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
+    "content:validate": "ASTRO_TELEMETRY_DISABLED=1 astro check && node scripts/build-content.mjs && node scripts/build-search-index.mjs && node scripts/build-graph.mjs",
+    "dev": "astro dev",
+    "build": "npm run content:build && astro build",
+    "preview": "astro preview",
     "qa:browser": "node scripts/browser-qa.mjs",
+    "qa:compare": "node scripts/compare-browser-qa.mjs",
     "test": "npm run build && node --test tests/*.test.mjs",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern generated"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern generated --ignore-pattern .astro",
+    "verify": "node scripts/verify-production.mjs"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/mdx": "^7.0.5",
+    "@astrojs/react": "^6.0.2",
+    "@gsap/react": "^2.1.2",
+    "astro": "^7.2.2",
+    "cytoscape": "3.34.1",
     "gray-matter": "^4.0.3",
+    "gsap": "^3.15.0",
     "marked": "^16.4.2",
     "react": "19.2.6",
     "react-dom": "19.2.6",
-    "sanitize-html": "^2.17.7"
+    "sanitize-html": "^2.17.7",
+    "three": "^0.180.0"
   },
   "devDependencies": {
-    "@cloudflare/vite-plugin": "1.37.1",
     "@eslint/js": "9.39.4",
-    "@next/eslint-plugin-next": "16.2.6",
-    "@openai/sites-vite-plugin": "0.1.0",
-    "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "6.0.2",
-    "@vitejs/plugin-rsc": "0.5.26",
+    "@types/three": "^0.180.0",
     "eslint": "9.39.4",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.1.1",
     "globals": "16.4.0",
-    "react-server-dom-webpack": "19.2.6",
-    "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.59.3",
-    "vinext": "1.0.0-beta.2",
-    "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "typescript-eslint": "8.59.3"
   },
   "type": "module"
 }
