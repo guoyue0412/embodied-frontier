@@ -67,6 +67,7 @@ function applyGraphState(cy: cytoscape.Core, { visibleIds, selectedId }: GraphVi
 
 export default function KnowledgeMap({ graph, basePath, onError }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const mapRootRef = useRef<HTMLElement>(null);
   const cyRef = useRef<cytoscape.Core | null>(null);
   const stateSynchronizerRef = useRef<ReturnType<typeof createKnowledgeGraphStateSynchronizer> | null>(null);
   const [query, setQuery] = useState("");
@@ -87,6 +88,11 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
   const selectedEdges = selectedId
     ? graph.edges.filter((edge) => edge.source === selectedId || edge.target === selectedId)
     : [];
+
+  useEffect(() => {
+    // The map controls are listener-backed once this hydrated island effect runs.
+    mapRootRef.current?.setAttribute("data-knowledge-graph-controls-ready", "true");
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -203,7 +209,7 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
   }, [selectedId, visibleIds, ready]);
 
   return (
-    <section className="knowledge-map" aria-labelledby="knowledge-map-title" data-knowledge-map-ready={ready ? "true" : "false"}>
+    <section ref={mapRootRef} className="knowledge-map" aria-labelledby="knowledge-map-title" data-knowledge-graph-controls-ready="false" data-knowledge-map-ready={ready ? "true" : "false"}>
       <div className="knowledge-map__heading">
         <div>
           <span className="eyebrow">INTERACTIVE RELATIONS</span>

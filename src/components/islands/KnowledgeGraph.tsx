@@ -1,4 +1,4 @@
-import { useCallback, useState, type ComponentType } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 import type { KnowledgeGraphData } from "../../lib/graph-core.mjs";
 import "../../styles/knowledge-graph.css";
 
@@ -13,6 +13,13 @@ type GraphState = "idle" | "loading" | "ready" | "error";
 export default function KnowledgeGraph({ graph, basePath }: { graph: KnowledgeGraphData; basePath: string }) {
   const [state, setState] = useState<GraphState>("idle");
   const [KnowledgeMap, setKnowledgeMap] = useState<ComponentType<KnowledgeMapProps> | null>(null);
+  const shellRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // React attaches the button listener during hydration before effects run.
+    // This marker gives browser QA a race-free boundary before activation.
+    shellRef.current?.setAttribute("data-knowledge-graph-controls-ready", "true");
+  }, []);
 
   const handleError = useCallback((error: unknown) => {
     console.warn("[KnowledgeGraph] optional Cytoscape enhancement disabled; relationship list remains available.", error);
@@ -41,9 +48,11 @@ export default function KnowledgeGraph({ graph, basePath }: { graph: KnowledgeGr
   const buttonLabel = state === "error" ? "重试加载交互图谱" : "加载交互图谱";
   return (
     <section
+      ref={shellRef}
       className="graph-loader knowledge-graph"
       aria-labelledby="graph-visual-title"
       data-knowledge-graph-state={state}
+      data-knowledge-graph-controls-ready="false"
       aria-busy={state === "loading" ? "true" : "false"}
     >
       <div className="knowledge-graph__intro">

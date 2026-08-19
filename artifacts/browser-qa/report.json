@@ -243,7 +243,7 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -427,7 +427,7 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -459,7 +459,7 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -491,7 +491,7 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -709,7 +709,7 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -858,7 +858,7 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -990,7 +990,7 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -1859,6 +1859,7 @@
       "name": "Space activates the graph button",
       "passed": true,
       "details": {
+        "controlsReady": true,
         "focused": true,
         "ready": true
       }
@@ -1926,6 +1927,7 @@
       "name": "Enter activates the graph button",
       "passed": true,
       "details": {
+        "controlsReady": true,
         "focused": true,
         "ready": true
       }
@@ -1990,6 +1992,16 @@
     {
       "profile": "desktop",
       "route": "/graph",
+      "name": "graph controls are hydrated before activation",
+      "passed": true,
+      "details": {
+        "controlsReady": true,
+        "button": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/graph",
       "name": "Cytoscape is absent before explicit activation",
       "passed": true,
       "details": {
@@ -2007,6 +2019,7 @@
         "pathCount": 4,
         "allTouchSized": true,
         "activation": "mouse",
+        "controlsReady": true,
         "clicked": true,
         "ready": true,
         "pathReady": true
@@ -2019,7 +2032,7 @@
       "passed": true,
       "details": {
         "after": [
-          "/_astro/KnowledgeMap.DnQG4yxE.js",
+          "/_astro/KnowledgeMap.DUpQN_Bg.js",
           "/_astro/cytoscape.esm.DJPTHK7J.js"
         ]
       }
@@ -2913,6 +2926,16 @@
     {
       "profile": "mobile-touch",
       "route": "/graph",
+      "name": "graph controls are hydrated before activation",
+      "passed": true,
+      "details": {
+        "controlsReady": true,
+        "button": true
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/graph",
       "name": "Cytoscape is absent before explicit activation",
       "passed": true,
       "details": {
@@ -2930,6 +2953,7 @@
         "pathCount": 2,
         "allTouchSized": true,
         "activation": "touch",
+        "controlsReady": true,
         "clicked": true,
         "ready": true,
         "pathReady": true
@@ -2942,7 +2966,7 @@
       "passed": true,
       "details": {
         "after": [
-          "/_astro/KnowledgeMap.DnQG4yxE.js",
+          "/_astro/KnowledgeMap.DUpQN_Bg.js",
           "/_astro/cytoscape.esm.DJPTHK7J.js"
         ]
       }
@@ -3237,6 +3261,16 @@
     {
       "profile": "desktop-reduced-motion",
       "route": "/graph",
+      "name": "graph controls are hydrated before activation",
+      "passed": true,
+      "details": {
+        "controlsReady": true,
+        "button": true
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/graph",
       "name": "Cytoscape is absent before explicit activation",
       "passed": true,
       "details": {
@@ -3254,6 +3288,7 @@
         "pathCount": 4,
         "allTouchSized": true,
         "activation": "mouse",
+        "controlsReady": true,
         "clicked": true,
         "ready": true,
         "pathReady": true
@@ -3266,7 +3301,7 @@
       "passed": true,
       "details": {
         "after": [
-          "/_astro/KnowledgeMap.DnQG4yxE.js",
+          "/_astro/KnowledgeMap.DUpQN_Bg.js",
           "/_astro/cytoscape.esm.DJPTHK7J.js"
         ]
       }
@@ -3506,7 +3541,7 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -3582,7 +3617,7 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -3596,7 +3631,7 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -3610,7 +3645,7 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -3702,7 +3737,7 @@
       "profile": "mobile-touch",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -3761,7 +3796,7 @@
       "profile": "mobile-touch",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",
@@ -3821,7 +3856,7 @@
       "profile": "desktop-reduced-motion",
       "route": "/graph",
       "requests": [
-        "/_astro/KnowledgeGraph.C-zBke0L.js",
+        "/_astro/KnowledgeGraph.C3PHvhys.js",
         "/_astro/SiteLayout.BQNPv06P.css",
         "/_astro/client.DaM4frIg.js",
         "/_astro/jsx-runtime.BNuS5z-Y.js",

@@ -78,7 +78,7 @@ async function startDistServer() {
     if (child.exitCode === null) child.kill("SIGTERM");
     if (!(await waitForExit(child))) {
       child.kill("SIGKILL");
-      await waitForExit(child);
+      if (!(await waitForExit(child))) throw new Error("Production dist server did not exit after SIGKILL");
     }
     throw error;
   }

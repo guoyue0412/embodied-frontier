@@ -66,8 +66,26 @@ test("static checker treats target=_BLANK as an external blank link", async () =
     await writeFile(path.join(root, "index.html"), '<!doctype html><html lang="en"><head><title>fixture</title></head><body><main><h1>Fixture</h1><a href="https://example.com" target="_BLANK">External</a></main></body></html>');
     await assert.rejects(
       () => checkStaticSite(root, { basePath: "/" }),
-      (error) => error.report?.errors.some((message) => message.includes("target=_blank link is missing rel=noopener")),
+      (error) => error.report?.errors.some((message) => message.includes("target=_blank link is missing exact rel=noopener")),
     );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("static checker tokenizes blank-link rel values by HTML whitespace", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "embodied-frontier-static-rel-tokens-"));
+  try {
+    const page = (rel) => `<!doctype html><html lang="en"><head><title>fixture</title></head><body><main><h1>Fixture</h1><a href="https://example.com" target="_BLANK" rel="${rel}">External</a></main></body></html>`;
+    await writeFile(path.join(root, "index.html"), page("NoOpEnEr\n\tnoreferrer"));
+    assert.equal((await checkStaticSite(root, { basePath: "/" })).errors.length, 0);
+    for (const rel of ["noopener-evil noreferrer", "noopener, noreferrer", "noopener", "noreferrer"]) {
+      await writeFile(path.join(root, "index.html"), page(rel));
+      await assert.rejects(
+        () => checkStaticSite(root, { basePath: "/" }),
+        (error) => error.report?.errors.some((message) => message.includes("missing exact rel=noopener")),
+      );
+    }
   } finally {
     await rm(root, { recursive: true, force: true });
   }

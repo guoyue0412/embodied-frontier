@@ -8,6 +8,8 @@ test("search QA waits for an explicit hydrated controls-ready marker", async () 
   assert.match(component, /data-search-controls-ready=\{hydrated \? ["']true["'] : ["']false["']\}/);
   assert.match(browserQa, /data-search-controls-ready=["']true["']/);
   assert.match(browserQa, /waitFor\([^\n]*search-controls-ready/);
+  assert.match(browserQa, /document\.activeElement === document\.querySelector/);
+  assert.doesNotMatch(browserQa, /\{ ok: true, url: location\.search/);
 });
 
 test("hero visual QA exposes terminal distortion state and can freeze canvas animation", async () => {

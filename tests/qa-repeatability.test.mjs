@@ -22,8 +22,23 @@ test("browser artifact comparison normalizes output directory metadata and hashe
     assert.equal(result.status, "ok");
     assert.equal(result.screenshots["desktop-home.png"].equal, true);
 
+    await writeFile(path.join(second, "report.json"), JSON.stringify({
+      ...report,
+      artifactsDirectory: "/tmp/second",
+      assertions: [{ passed: true, name: "ready", details: { route: "/changed" } }],
+    }));
+    await assert.rejects(() => compareBrowserArtifacts(first, second), /normalized report/);
+    await writeFile(path.join(second, "report.json"), JSON.stringify({ ...report, artifactsDirectory: "/tmp/second" }));
+
+    await writeFile(path.join(second, "extra.png"), Buffer.from("unexpected screenshot"));
+    await assert.rejects(() => compareBrowserArtifacts(first, second), /screenshot extra\.png/);
+    await rm(path.join(second, "extra.png"), { force: true });
+    await rm(path.join(second, "desktop-home.png"), { force: true });
+    await assert.rejects(() => compareBrowserArtifacts(first, second), /screenshot desktop-home\.png/);
+    await writeFile(path.join(second, "desktop-home.png"), Buffer.from("same screenshot"));
+
     await writeFile(path.join(second, "desktop-home.png"), Buffer.from("different screenshot"));
-    await assert.rejects(() => compareBrowserArtifacts(first, second), /artifact mismatch/);
+    await assert.rejects(() => compareBrowserArtifacts(first, second), /screenshot desktop-home\.png/);
   } finally {
     await rm(root, { recursive: true, force: true });
   }

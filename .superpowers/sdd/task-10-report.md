@@ -9,15 +9,19 @@ configured GitHub Pages base path.
 ## Delivered gates
 
 - `scripts/check-bundle-budget.mjs` fails closed when the Astro manifest is
-  missing or malformed. It collects every initial `script[type=module][src]`
-  and `link[rel=modulepreload]`, follows their static import closure, applies
-  the gzip budget, and rejects initial Three.js/Cytoscape leakage. Tests cover
-  missing manifests and an oversized preload fixture.
+  missing, malformed, or references an absent manifest/disk asset. It collects
+  every initial `script[type=module][src]` and
+  `link[rel=modulepreload]`, follows their static import closure, applies the
+  gzip budget, and rejects initial Three.js/Cytoscape leakage. Tests cover
+  missing manifests, oversized preloads, ghost manifest imports, and ghost
+  static imports.
 - `scripts/check-static-site.mjs` parses every built HTML document, checks
   landmarks, language, image alternatives, control names, iframe titles, URL
   schemes, internal files/fragments, nested-document relative links, and
-  external `_blank` rel safety. The safety check is case-insensitive and has a
-  `target="_BLANK"` negative fixture.
+  external `_blank` rel safety. The safety check tokenizes HTML whitespace,
+  compares exact case-insensitive `noopener`/`noreferrer` tokens, and rejects
+  near-misses such as `noopener-evil` and `noopener,`; fixtures cover all of
+  these cases.
 - `scripts/browser-qa.mjs` uses real headless Chrome CDP evidence for keyboard
   Tab focus, visible focus rings, Space/Enter activation, pointer activation,
   touch activation, search URL/result updates, no-JS fallbacks, reduced motion,
@@ -32,6 +36,9 @@ configured GitHub Pages base path.
 - Navigation creates a fresh per-route/profile capture after the previous
   capture reaches network idle, attributes requests by loader ID, waits for a
   route readiness selector and URL, and resets scroll before screenshots.
+  KnowledgeGraph exposes an explicit
+  `data-knowledge-graph-controls-ready="true"` marker only after hydration and
+  listeners exist; graph activation waits for it and for the map-ready marker.
   Search waits for the explicit
   `[data-search-controls-ready="true"]` island marker and uses condition-based
   URL/result waits; it does not use DOM `.click()` shortcuts.
@@ -66,13 +73,13 @@ configured GitHub Pages base path.
 ASTRO_TELEMETRY_DISABLED=1 npm run verify
 ```
 
-Result: exit 0. The latest run passed 73/73 Node tests, ESLint, all 14 static
-HTML documents, the bundle checker, and production browser QA with 243
+Result: exit 0. The latest run passed 76/76 Node tests, ESLint, all 14 static
+HTML documents, the bundle checker, and production browser QA with 246
 assertions, 33 route checks, 0 console errors, 0 resource failures, 0 HTTP
 errors, 0 failures, and 5 screenshots. Final bundle evidence was:
 
 ```text
-initialInteractiveGzip: 100393 bytes
+initialInteractiveGzip: 100459 bytes
 budget: 122880 bytes
 sharedIncludesThree: false
 sharedIncludesCytoscape: false
@@ -82,23 +89,23 @@ manifest: dist/astro-manifest.json
 The verifier's second same-build QA pass reported:
 
 ```text
-browser QA repeatability: report 5238184999ad0ced324cedb5f590ad2851b531703189af476ac897b225440055; screenshots 5 identical
+browser QA repeatability: report 71c390e72b2744857d4b9b4b94310ba9a36df2230e3e6f84ddc45e2b25a0bbc3; screenshots 5 identical
 ```
 
-### GitHub Pages base-path gate (run twice)
+### GitHub Pages base-path gate (three consecutive runs)
 
 ```bash
 BASE_PATH=/embodied-frontier SITE_URL=https://example.github.io/embodied-frontier/ ASTRO_TELEMETRY_DISABLED=1 npm run verify
 ```
 
-Both runs exited 0 with 73/73 tests, 243 assertions, 33 route checks, no
+All three runs exited 0 with 76/76 tests, 246 assertions, 33 route checks, no
 console/resource/HTTP failures, and the same normalized repeatability hash:
 
 ```text
-dba5f5293f3c55d5f6586d23ee166adccc2e85fc3e78bb3b4b45d0a2f174e302
+dff95df6c2fc0f377ff382165bc7684fce2359007858127a29c72a44be32c643
 ```
 
-The base-path bundle remained within budget (`initialInteractiveGzip: 100425`)
+The base-path bundle remained within budget (`initialInteractiveGzip: 100490`)
 with both lazy-package flags false and a present manifest.
 
 ### Focused checks
@@ -109,7 +116,7 @@ ASTRO_TELEMETRY_DISABLED=1 npm run lint
 git diff --check
 ```
 
-Results: 73/73 tests passed, lint passed, and the diff had no whitespace
+Results: 76/76 tests passed, lint passed, and the diff had no whitespace
 errors. The unified verifier also invokes
 `node scripts/compare-browser-qa.mjs` against a second temporary artifact
 directory and removes that directory after comparison.
@@ -124,7 +131,7 @@ directory and removes that directory after comparison.
 - `artifacts/browser-qa/reduced-motion-home.png`
 - `artifacts/browser-qa/reduced-motion-graph.png`
 
-The committed root report has schema version 2, base path `/`, 243 assertions,
+The committed root report has schema version 2, base path `/`, 246 assertions,
 33 route checks, and zero failures. Its screenshot SHA-256 values are:
 
 ```text
@@ -137,7 +144,13 @@ reduced-motion-graph.png     751ab0b273923c90671325fe1f3eebfdc8557a29489f23c3035
 
 The normalized report hash is the repeatability hash above; the raw committed
 `report.json` file SHA-256 is
-`1e5e8b6a47a2e58d679b8d7cd2421b3d3b0634f6252c8f758b01e9cbdd1352ae`.
+`6aea860088a9d91fe21e3cd70f36c5d5fd8ff69d985a3b779bbef212605bdd4a`.
+
+The compared report deliberately omits wall-clock timestamps. Route/profile,
+viewport, touch/reduced-motion settings, network evidence, assertions, and
+screenshot metadata are retained and normalized; adding a timestamp would
+make the repeatability evidence nondeterministic without strengthening the
+gate.
 
 ## Limitations
 

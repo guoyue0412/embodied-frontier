@@ -138,6 +138,29 @@ function buildManifestIndexes(manifest) {
   return { entries, byFile, byKey };
 }
 
+function resolveManifestReference(reference, owner, field, assets, manifestIndex) {
+  const normalizedReference = normalizeAssetPath(reference);
+  const manifestRecord = manifestIndex.byKey.get(reference) ?? manifestIndex.byKey.get(normalizedReference);
+  const target = normalizeAssetPath(manifestRecord?.[1]?.file ?? normalizedReference);
+  if (!manifestRecord && !assets.has(target)) {
+    throw new Error(`Manifest ${field} reference ${reference} from ${owner} is missing from the manifest and disk`);
+  }
+  if (!assets.has(target)) {
+    throw new Error(`Manifest ${field} reference ${reference} from ${owner} points to missing disk asset ${target}`);
+  }
+  return target;
+}
+
+function validateManifestReferences(manifestIndex, assets) {
+  for (const [key, entry] of manifestIndex.entries) {
+    const entryPath = normalizeAssetPath(entry.file);
+    if (!assets.has(entryPath)) throw new Error(`Manifest entry ${key} points to missing disk asset ${entryPath}`);
+    for (const field of ["imports", "dynamicImports"]) {
+      for (const reference of entry[field] ?? []) resolveManifestReference(reference, key, field, assets, manifestIndex);
+    }
+  }
+}
+
 function staticClosure(seedPaths, assets, manifestIndex) {
   const visited = new Set();
   const queue = [...seedPaths];
@@ -149,14 +172,15 @@ function staticClosure(seedPaths, assets, manifestIndex) {
     const manifestEntry = manifestIndex?.byFile.get(current)?.value;
     if (manifestEntry?.imports) {
       for (const importedKey of manifestEntry.imports) {
-        const target = manifestIndex.byKey.get(importedKey)?.file ?? importedKey;
-        if (assets.has(normalizeAssetPath(target))) queue.push(target);
+        queue.push(resolveManifestReference(importedKey, manifestEntry.file, "imports", assets, manifestIndex));
       }
     }
-    if (!asset) continue;
+    if (!asset) throw new Error(`Initial JavaScript asset is missing from disk: ${current}`);
     for (const specifier of parseImports(asset.source).staticImports) {
       const target = relativeImport(current, specifier);
-      if (target && assets.has(target)) queue.push(target);
+      if (!target) continue;
+      if (!assets.has(target)) throw new Error(`Static import ${specifier} from ${current} is missing from disk: ${target}`);
+      queue.push(target);
     }
   }
   return visited;
@@ -176,6 +200,7 @@ export async function checkBundleBudget(outputDirectory = "dist", options = {}) 
   const outputDir = path.resolve(outputDirectory);
   const basePath = normalizeBasePath(options.basePath ?? process.env.BASE_PATH ?? "/");
   const files = await collectFiles(outputDir);
+  const emittedFiles = new Set(files.map((file) => normalizeAssetPath(path.relative(outputDir, file))));
   const emitted = emittedAssetMap(outputDir, files);
   const assets = new Map();
   for (const [assetPath, file] of emitted) {
@@ -184,8 +209,13 @@ export async function checkBundleBudget(outputDirectory = "dist", options = {}) 
 
   const loadedManifest = await loadManifest(outputDir);
   const manifestIndex = buildManifestIndexes(loadedManifest.value);
+  validateManifestReferences(manifestIndex, emitted);
   const references = await initialReferences(outputDir, basePath);
-  const seedPaths = new Set([...references].filter((asset) => assets.has(asset)));
+  for (const reference of references) {
+    if (!emittedFiles.has(reference)) throw new Error(`Initial JavaScript reference is missing from disk: ${reference}`);
+    if (!assets.has(reference)) throw new Error(`Initial JavaScript reference is not an emitted JavaScript asset: ${reference}`);
+  }
+  const seedPaths = new Set(references);
   if (!seedPaths.size && manifestIndex) {
     for (const [, entry] of manifestIndex.entries) if (entry.isEntry && assets.has(normalizeAssetPath(entry.file))) seedPaths.add(normalizeAssetPath(entry.file));
   }

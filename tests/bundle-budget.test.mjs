@@ -39,3 +39,29 @@ test("modulepreload assets count toward the budget and oversized preload fails",
     await rm(root, { recursive: true, force: true });
   }
 });
+
+test("bundle checker fails closed on a manifest ghost import", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "embodied-frontier-bundle-ghost-manifest-"));
+  try {
+    await mkdir(path.join(root, "_astro"));
+    await writeFile(path.join(root, "index.html"), '<!doctype html><html lang="en"><head></head><body><main><h1>Fixture</h1><script type="module" src="/_astro/entry.js"></script></main></body></html>');
+    await writeFile(path.join(root, "_astro", "entry.js"), "export const entry = true;");
+    await writeFile(path.join(root, "astro-manifest.json"), JSON.stringify({ entry: { file: "_astro/entry.js", imports: ["ghost-entry"], dynamicImports: [], isEntry: true } }));
+    await assert.rejects(() => checkBundleBudget(root), /missing from the manifest and disk/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("bundle checker fails closed on a missing static import", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "embodied-frontier-bundle-ghost-static-"));
+  try {
+    await mkdir(path.join(root, "_astro"));
+    await writeFile(path.join(root, "index.html"), '<!doctype html><html lang="en"><head></head><body><main><h1>Fixture</h1><script type="module" src="/_astro/entry.js"></script></main></body></html>');
+    await writeFile(path.join(root, "_astro", "entry.js"), "import './ghost.js'; export const entry = true;");
+    await writeFile(path.join(root, "astro-manifest.json"), JSON.stringify({ entry: { file: "_astro/entry.js", imports: [], dynamicImports: [], isEntry: true } }));
+    await assert.rejects(() => checkBundleBudget(root), /Static import .*missing from disk/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

@@ -69,7 +69,7 @@ function portableUrl(value) {
 }
 
 function portablePath(value) {
-  return path.relative(process.cwd(), value).replace(/\\/g, "/");
+  return `artifacts/browser-qa/${path.basename(value)}`;
 }
 
 function portableRequests(values) {
@@ -108,21 +108,26 @@ async function waitForJson(requestPath, browserProcess) {
 }
 
 function waitForExit(processHandle, timeout = 2000) {
-  if (!processHandle || processHandle.exitCode !== null) return Promise.resolve();
+  if (!processHandle || processHandle.exitCode !== null) return Promise.resolve(true);
   return new Promise((resolve) => {
     let timer;
-    const done = () => {
+    const done = (exited) => {
       clearTimeout(timer);
       processHandle.removeListener("exit", done);
-      resolve();
+      resolve(exited);
     };
-    processHandle.once("exit", done);
-    timer = setTimeout(() => {
-      if (processHandle.exitCode === null) processHandle.kill("SIGKILL");
-      done();
-    }, timeout);
+    processHandle.once("exit", () => done(true));
+    timer = setTimeout(() => done(false), timeout);
     timer.unref();
   });
+}
+
+async function stopBrowserProcess(processHandle) {
+  if (!processHandle || processHandle.exitCode !== null) return;
+  processHandle.kill("SIGTERM");
+  if (await waitForExit(processHandle)) return;
+  processHandle.kill("SIGKILL");
+  if (!(await waitForExit(processHandle))) throw new Error("Chrome did not exit after SIGKILL");
 }
 
 const report = {
@@ -165,11 +170,34 @@ try {
       resourceFailures: [],
       httpErrors: [],
       lastNetworkEventAt: Date.now(),
+      bufferedNetworkEvents: [],
     };
   }
-  function currentCaptureAccepts(params) {
-    if (!activeCapture) return false;
-    return !activeCapture.loaderId || !params.loaderId || params.loaderId === activeCapture.loaderId;
+  function currentCaptureAccepts(params, capture = activeCapture) {
+    return Boolean(capture?.loaderId && params.loaderId && params.loaderId === capture.loaderId);
+  }
+  function recordNetworkEvent(message, capture) {
+    const { method, params } = message;
+    if (!capture) return;
+    if (method === "Network.requestWillBeSent" && currentCaptureAccepts(params, capture)) {
+      capture.requests.push(params.request.url);
+      capture.requestUrls.set(params.requestId, params.request.url);
+      capture.pendingRequests.add(params.requestId);
+      capture.lastNetworkEventAt = Date.now();
+    }
+    if (method === "Network.loadingFinished" && capture.requestUrls.has(params.requestId)) {
+      capture.pendingRequests.delete(params.requestId);
+      capture.lastNetworkEventAt = Date.now();
+    }
+    if (method === "Network.loadingFailed" && capture.requestUrls.has(params.requestId)) {
+      capture.pendingRequests.delete(params.requestId);
+      capture.resourceFailures.push({ url: capture.requestUrls.get(params.requestId) ?? "<unknown>", error: params.errorText, canceled: params.canceled === true });
+      capture.lastNetworkEventAt = Date.now();
+    }
+    if (method === "Network.responseReceived" && currentCaptureAccepts(params, capture) && params.response.status >= 400) {
+      capture.httpErrors.push({ url: params.response.url, status: params.response.status });
+      capture.lastNetworkEventAt = Date.now();
+    }
   }
   socket.addEventListener("message", ({ data }) => {
     const message = JSON.parse(data);
@@ -184,24 +212,9 @@ try {
       const { text, url } = message.params.entry;
       if (activeCapture && !url?.includes("/.well-known/appspecific/com.chrome.devtools.json")) activeCapture.pageErrors.push({ type: "console", text, url: url ?? "" });
     }
-    if (message.method === "Network.requestWillBeSent" && currentCaptureAccepts(message.params)) {
-      activeCapture.requests.push(message.params.request.url);
-      activeCapture.requestUrls.set(message.params.requestId, message.params.request.url);
-      activeCapture.pendingRequests.add(message.params.requestId);
-      activeCapture.lastNetworkEventAt = Date.now();
-    }
-    if (message.method === "Network.loadingFinished" && activeCapture?.requestUrls.has(message.params.requestId)) {
-      activeCapture.pendingRequests.delete(message.params.requestId);
-      activeCapture.lastNetworkEventAt = Date.now();
-    }
-    if (message.method === "Network.loadingFailed" && activeCapture?.requestUrls.has(message.params.requestId)) {
-      activeCapture.pendingRequests.delete(message.params.requestId);
-      activeCapture.resourceFailures.push({ url: activeCapture.requestUrls.get(message.params.requestId) ?? "<unknown>", error: message.params.errorText, canceled: message.params.canceled === true });
-      activeCapture.lastNetworkEventAt = Date.now();
-    }
-    if (message.method === "Network.responseReceived" && currentCaptureAccepts(message.params) && message.params.response.status >= 400) {
-      activeCapture.httpErrors.push({ url: message.params.response.url, status: message.params.response.status });
-      activeCapture.lastNetworkEventAt = Date.now();
+    if (message.method?.startsWith("Network.") && activeCapture) {
+      if (!activeCapture.loaderId) activeCapture.bufferedNetworkEvents.push(message);
+      else recordNetworkEvent(message, activeCapture);
     }
   });
 
@@ -324,7 +337,10 @@ try {
     const capture = createCapture(route, profileName);
     activeCapture = capture;
     const navigation = await call("Page.navigate", { url: pageUrl(route) });
-    capture.loaderId = navigation.loaderId ?? null;
+    if (!navigation.loaderId) throw new Error(`Navigation did not provide a loaderId for ${profileName}:${route}`);
+    capture.loaderId = navigation.loaderId;
+    for (const message of capture.bufferedNetworkEvents) recordNetworkEvent(message, capture);
+    capture.bufferedNetworkEvents = [];
     const pathname = new URL(pageUrl(route)).pathname;
     const routeSelector = pathname === sitePrefix || pathname === `${sitePrefix}/`
       ? ".hero__copy h1"
@@ -350,13 +366,17 @@ try {
         const rect = element.getBoundingClientRect();
         return { tag: element.tagName, width: rect.width, height: rect.height, text: element.textContent?.trim().slice(0, 48) ?? '' };
       });
+      const rawScrollWidth = document.documentElement.scrollWidth;
       return {
         title: document.title,
         main: Boolean(document.querySelector('main')),
         heading: document.querySelector('h1')?.textContent?.trim() ?? '',
         innerWidth: window.innerWidth,
-        scrollWidth: document.documentElement.scrollWidth,
-        overflow: document.documentElement.scrollWidth > window.innerWidth,
+        // A non-overlay vertical scrollbar can reduce scrollWidth by its
+        // platform width without representing horizontal overflow. Normalize
+        // that benign difference while retaining the real overflow boolean.
+        scrollWidth: rawScrollWidth > window.innerWidth ? rawScrollWidth : window.innerWidth,
+        overflow: rawScrollWidth > window.innerWidth,
         clippedHeaderLinks: [...document.querySelectorAll('.site-header a')].filter((link) => { const rect = link.getBoundingClientRect(); return rect.left < 0 || rect.right > window.innerWidth; }).map((link) => link.textContent.trim()),
         minControlWidth: sizes.length ? Math.min(...sizes.map(({ width }) => width)) : 0,
         minControlHeight: sizes.length ? Math.min(...sizes.map(({ height }) => height)) : 0,
@@ -410,38 +430,41 @@ try {
   }
 
   async function runSearch(profileName) {
-    await waitFor("Boolean(document.querySelector('[data-search-controls-ready=\"true\"] input[type=\"search\"]'))", 5000);
+    await waitFor("Boolean(document.querySelector('[data-search-controls-ready=\"true\"]:not([hidden]) input[type=\"search\"]'))", 5000);
     const input = await selectorCenter('[data-search-controls-ready="true"] input[type="search"]');
     if (!input) throw new Error('搜索控件缺失');
     await pointerActivate('[data-search-controls-ready="true"] input[type="search"]');
+    await waitFor("document.activeElement === document.querySelector('[data-search-controls-ready=\"true\"] input[type=\"search\"]')", 2000);
     await call("Input.insertText", { text: "视觉语言" });
-    await waitFor("location.search.includes('q=') && document.querySelector('.research-console__count')?.textContent.includes('2 / 5')", 5000);
-    const result = await evaluate(`(() => ({ ok: true, url: location.search, summary: document.querySelector('.research-console__count')?.textContent?.replace(/\\s+/g, ' ').trim() ?? '' }))()`);
+    const updated = await waitFor("location.search.includes('q=') && document.querySelector('.research-console__count')?.textContent.includes('2 / 5')", 5000);
+    const result = await evaluate(`(() => { const url = location.search; const summary = document.querySelector('.research-console__count')?.textContent?.replace(/\\s+/g, ' ').trim() ?? ''; return { ok: Boolean(${Boolean(updated)} && url.includes('q=') && summary.startsWith('2 / 5')), url, summary }; })()`);
     check(profileName, "/papers", "search filters update URL and result count", result.ok && result.url.includes("q=") && result.summary.startsWith("2 / 5"), result);
     return result;
   }
 
   async function runGraph(profileName, route = "/graph", activation = "mouse") {
     const before = portableRequests(activeCapture?.requests ?? []);
+    const controlsReady = await waitFor("Boolean(document.querySelector('[data-knowledge-graph-controls-ready=\"true\"] .knowledge-graph__load, [data-knowledge-graph-controls-ready=\"true\"]'))", 6000);
     const button = await selectorCenter('.knowledge-graph__load');
     const clicked = Boolean(button);
     if (clicked) await activateControl('.knowledge-graph__load', activation);
-    let ready = await waitFor("document.querySelector('[data-knowledge-map-ready=\"true\"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0", 6000);
+    let ready = await waitFor("document.querySelector('[data-knowledge-graph-controls-ready=\"true\"][data-knowledge-map-ready=\"true\"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0", 6000);
     if (!ready && activation === "touch") {
       await activateControl('.knowledge-graph__load', activation);
-      ready = await waitFor("document.querySelector('[data-knowledge-map-ready=\"true\"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0", 6000);
+      ready = await waitFor("document.querySelector('[data-knowledge-graph-controls-ready=\"true\"][data-knowledge-map-ready=\"true\"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0", 6000);
     }
     if (await selectorCenter('.knowledge-map__nodes button')) await activateControl('.knowledge-map__nodes button', activation === "touch" ? "keyboard" : activation);
     const pathReady = await waitFor("document.querySelectorAll('.knowledge-map__path a').length > 0", 3000);
     const after = portableRequests(activeCapture?.requests ?? []);
     const graph = await evaluate(`(() => ({
-      loaded: Boolean(document.querySelector('[data-knowledge-map-ready="true"]')),
+      loaded: Boolean(document.querySelector('[data-knowledge-graph-controls-ready="true"][data-knowledge-map-ready="true"]')),
       nodeCount: document.querySelectorAll('.knowledge-map__nodes button').length,
       pathCount: document.querySelectorAll('.knowledge-map__path a').length,
       allTouchSized: [...document.querySelectorAll('.knowledge-map__controls input, .knowledge-map__controls select, .knowledge-map__nodes button')].every((element) => { const rect = element.getBoundingClientRect(); return rect.width >= 44 && rect.height >= 44; }),
     }))()`);
+    check(profileName, route, "graph controls are hydrated before activation", controlsReady && Boolean(button), { controlsReady, button: Boolean(button) });
     check(profileName, route, "Cytoscape is absent before explicit activation", !before.some(isCytoscapeRequest), { before: before.filter(isCytoscapeRequest) });
-    check(profileName, route, "graph loads after explicit activation", clicked && ready && pathReady && graph.loaded && graph.nodeCount > 0 && graph.pathCount > 0, { ...graph, activation, clicked, ready, pathReady });
+    check(profileName, route, "graph loads after explicit activation", controlsReady && clicked && ready && pathReady && graph.loaded && graph.nodeCount > 0 && graph.pathCount > 0, { ...graph, activation, controlsReady, clicked, ready, pathReady });
     check(profileName, route, "Cytoscape request follows explicit activation", after.some(isCytoscapeRequest), { after: after.filter(isCytoscapeRequest) });
     return { before, after, graph };
   }
@@ -474,16 +497,18 @@ try {
   await navigate("/papers", desktop.name, { height: desktop.viewport.height });
   await runSearch(desktop.name);
   await navigate("/graph", desktop.name, { height: desktop.viewport.height });
+  const spaceControlsReady = await waitFor("Boolean(document.querySelector('[data-knowledge-graph-controls-ready=\"true\"] .knowledge-graph__load'))", 6000);
   await focusEvidence(".knowledge-graph__load");
   const spaceFocused = await focusWithTab(".knowledge-graph__load");
   if (spaceFocused) await keyPress(" ", "Space", 32);
   const spaceReady = await waitFor("Boolean(document.querySelector('[data-knowledge-map-ready=\"true\"]'))", 6000);
-  check(desktop.name, "/graph", "Space activates the graph button", spaceFocused && spaceReady, { focused: spaceFocused, ready: spaceReady });
+  check(desktop.name, "/graph", "Space activates the graph button", spaceControlsReady && spaceFocused && spaceReady, { controlsReady: spaceControlsReady, focused: spaceFocused, ready: spaceReady });
   await navigate("/graph", desktop.name, { height: desktop.viewport.height });
+  const enterControlsReady = await waitFor("Boolean(document.querySelector('[data-knowledge-graph-controls-ready=\"true\"] .knowledge-graph__load'))", 6000);
   const enterFocused = await focusWithTab(".knowledge-graph__load");
   if (enterFocused) await keyPress("Enter", "Enter", 13);
   const enterReady = await waitFor("Boolean(document.querySelector('[data-knowledge-map-ready=\"true\"]'))", 6000);
-  check(desktop.name, "/graph", "Enter activates the graph button", enterFocused && enterReady, { focused: enterFocused, ready: enterReady });
+  check(desktop.name, "/graph", "Enter activates the graph button", enterControlsReady && enterFocused && enterReady, { controlsReady: enterControlsReady, focused: enterFocused, ready: enterReady });
   await navigate("/graph", desktop.name, { height: desktop.viewport.height });
   const desktopGraph = await runGraph(desktop.name);
   check(desktop.name, "/graph", "desktop graph has visible node/path controls", desktopGraph.graph.allTouchSized && desktopGraph.graph.nodeCount > 0, desktopGraph.graph);
@@ -569,7 +594,6 @@ try {
     process.exitCode = 1;
   }
   socket?.close();
-  if (child.exitCode === null) child.kill("SIGTERM");
-  await waitForExit(child);
+  await stopBrowserProcess(child);
   console.log(JSON.stringify(report, null, 2));
 }

@@ -41,9 +41,15 @@ test("graph island serializes the configured base for client navigation", async 
 
 test("graph client QA targets the current map controls and path contract", async () => {
   const browserQa = await readFile("scripts/browser-qa.mjs", "utf8");
+  const graphShell = await readFile("src/components/islands/KnowledgeGraph.tsx", "utf8");
   const mapSource = await readFile("src/components/islands/KnowledgeMap.tsx", "utf8");
-  for (const selector of [".knowledge-graph__load", ".knowledge-map__nodes button", ".knowledge-map__path a", "data-knowledge-map-ready"])
+  for (const selector of [".knowledge-graph__load", ".knowledge-map__nodes button", ".knowledge-map__path a", "data-knowledge-graph-controls-ready", "data-knowledge-map-ready"])
     assert.match(browserQa, new RegExp(escapeRegExp(selector)));
+  assert.match(graphShell, /data-knowledge-graph-controls-ready/);
+  assert.match(graphShell, /useEffect\(\(\) =>/);
+  assert.match(browserQa, /graph controls are hydrated before activation/);
+  assert.match(browserQa, /Navigation did not provide a loaderId/);
+  assert.match(browserQa, /bufferedNetworkEvents/);
   assert.match(browserQa, /nodeCount\s*>\s*0/);
   assert.match(browserQa, /pathCount\s*>\s*0/);
   assert.match(browserQa, /graphMobile/);

@@ -218,6 +218,10 @@ function isInteractive(node) {
   return INTERACTIVE_ROLES.has(node.attrs.get("role") ?? "") || node.attrs.get("contenteditable") === "true";
 }
 
+function relTokens(value = "") {
+  return new Set(String(value).trim().split(/\s+/u).filter(Boolean).map((token) => token.toLowerCase()));
+}
+
 function routeFileForPath(outputDir, pathname) {
   const cleanPath = pathname.replace(/^\/+/, "");
   const candidates = [];
@@ -336,7 +340,10 @@ export async function checkStaticSite(outputDirectory = "dist", options = {}) {
       if (isInteractive(node) && !accessibleName(node, idMap)) reportError(errors, displayFile, node, "interactive control has no accessible name");
       if (node.tagName === "iframe" && !node.attrs.get("title")?.trim()) reportError(errors, displayFile, node, "iframe is missing a title");
       if (node.attrs.has("onclick") || node.attrs.has("onkeydown") || node.attrs.has("onkeyup")) reportError(errors, displayFile, node, "inline event handlers are not allowed");
-      if (node.tagName === "a" && node.attrs.get("target")?.toLowerCase() === "_blank" && !/\bnoopener\b/i.test(node.attrs.get("rel") ?? "")) reportError(errors, displayFile, node, "target=_blank link is missing rel=noopener");
+      if (node.tagName === "a" && node.attrs.get("target")?.toLowerCase() === "_blank") {
+        const rel = relTokens(node.attrs.get("rel"));
+        if (!rel.has("noopener") || !rel.has("noreferrer")) reportError(errors, displayFile, node, "target=_blank link is missing exact rel=noopener and rel=noreferrer tokens");
+      }
     }
   }
 
