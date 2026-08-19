@@ -968,7 +968,7 @@
   }
 }
 
-/* Progressive orbital navigator. The React island owns the same six links
+/* Progressive orbital navigator. The React island owns the same seven links
    that are rendered on the server, then adds orbit geometry and controls. */
 .atlas-navigator__island {
   display: grid;
