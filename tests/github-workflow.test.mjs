@@ -30,12 +30,24 @@ test("verification runs on pull requests with a read-only contents permission", 
 test("Pages deploys only from main with official artifact actions", async () => {
   const yaml = await readFile(".github/workflows/deploy-pages.yml", "utf8");
   assert.match(yaml, /branches:\s*\[main\]/);
+  assert.match(yaml, /workflow_dispatch:/);
   assert.match(yaml, /actions\/checkout@v4/);
   assert.match(yaml, /actions\/setup-node@v4/);
   assert.match(yaml, /actions\/configure-pages@v5/);
   assert.match(yaml, /actions\/upload-pages-artifact@v4/);
   assert.match(yaml, /actions\/deploy-pages@v4/);
   assert.match(yaml, /environment:[\s\S]*github-pages/);
+});
+
+test("manual Pages dispatch cannot deploy from a non-main ref", async () => {
+  const yaml = await readFile(".github/workflows/deploy-pages.yml", "utf8");
+  const mainGuard = "if: github.ref == 'refs/heads/main'";
+  assert.equal(yaml.split(mainGuard).length - 1, 2, "build and deploy must both guard the main ref");
+  const buildJob = yaml.match(/\n {2}build:\n([\s\S]*?)\n {2}deploy:/)?.[1] ?? "";
+  const deployJob = yaml.match(/\n {2}deploy:\n([\s\S]*)$/)?.[1] ?? "";
+  assert.match(buildJob, new RegExp(mainGuard.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")));
+  assert.match(deployJob, new RegExp(mainGuard.replace(/[.*+?^${}()|[\\]\\]/g, "\\$&")));
+  assert.match(deployJob, /needs:\s*build/);
 });
 
 test("PR template records source, evidence, visual, verification, and deployment review", async () => {

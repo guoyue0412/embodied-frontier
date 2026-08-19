@@ -5,7 +5,7 @@ Date: 2026-08-19
 ## Completed locally
 
 - Hardened `.github/workflows/verify.yml` with Node 22, npm cache, `npm ci`, `npm run verify`, read-only `contents` permission, and success-only nonproduction uploads for `dist/` and `artifacts/browser-qa/`.
-- Added `.github/workflows/deploy-pages.yml` for `main` and manual dispatch, with the official GitHub Pages configure/upload/deploy actions and the `github-pages` environment.
+- Added `.github/workflows/deploy-pages.yml` for `main` and manual dispatch, with the official GitHub Pages configure/upload/deploy actions and the `github-pages` environment; both jobs explicitly guard `github.ref == 'refs/heads/main'` so manual dispatch cannot publish another ref.
 - Added `.github/pull_request_template.md` with content-source, evidence-status, third-party-license, desktop/mobile screenshot, reduced-motion, verification, and deployment-impact checkboxes.
 - Added `scripts/write-codeowners.mjs`, which accepts only an explicit `@github-owner`, rejects missing or guessed owners, and writes all required ownership patterns when invoked in a target checkout.
 - Updated `README.md` with clone/install/dev instructions, `src/content` ownership, branch and PR flow, Pages setup, required `verify` status, manual-review policy, and the distinction between local build output and deployment evidence.
@@ -15,11 +15,11 @@ Date: 2026-08-19
 
 | Check | Result |
 | --- | --- |
-| `node --test tests/github-workflow.test.mjs` | PASS, 6/6 |
-| `npm run verify` | PASS |
+| `node --test tests/github-workflow.test.mjs` | PASS, 7/7 |
+| `npm run verify` | PASS, 83/83 tests inside the production gate |
 | Production build | PASS, 14 static pages |
 | Content build | PASS, 5 papers, 3 roadmap stages, 3 projects, 3 models, 3 datasets |
-| Full test suite inside `verify` | PASS, 82/82 |
+| Full test suite inside `verify` | PASS, 83/83 |
 | ESLint | PASS |
 | Static-site checker | PASS, 14 files, zero errors |
 | Bundle budget | PASS, initial interactive gzip 100459 bytes / 122880-byte budget; shared bundles exclude Three.js and Cytoscape |
