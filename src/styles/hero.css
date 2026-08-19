@@ -1232,6 +1232,7 @@
     width: auto;
     min-height: 88px;
     transform: none;
+    transition: none;
   }
 
   .atlas-navigator__node-content {
@@ -1271,6 +1272,7 @@
     width: auto;
     min-height: 88px;
     transform: none;
+    transition: none;
   }
 
   .atlas-navigator__node-content {

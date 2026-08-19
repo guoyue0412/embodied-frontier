@@ -15,6 +15,7 @@ interface AtlasNavigatorProps {
 type AtlasStyle = CSSProperties & Record<`--atlas-${string}`, string>;
 
 const ORBIT_RADIUS = 148;
+const STATIC_CAPABILITY_QUERY = "(max-width: 767px), (pointer: coarse)";
 
 function positionStyle(x: number, y: number): AtlasStyle {
   return {
@@ -32,6 +33,7 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
   const visibleRef = useRef(true);
   const documentHiddenRef = useRef(false);
   const reducedMotionRef = useRef(false);
+  const staticCapabilityRef = useRef(false);
   const animationSyncRef = useRef<(() => void) | null>(null);
   const frameRef = useRef<number | null>(null);
   const phaseRef = useRef(0);
@@ -41,6 +43,7 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
   const [hydrated, setHydrated] = useState(false);
   const [suspended, setSuspended] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [staticCapability, setStaticCapability] = useState(false);
   const positions = useMemo(() => computeAtlasPositions(destinations.length, ORBIT_RADIUS), [destinations.length]);
   const activeDestination = destinations[activeIndex] ?? destinations[0];
 
@@ -52,9 +55,14 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
     const motionQuery = typeof window.matchMedia === "function"
       ? window.matchMedia("(prefers-reduced-motion: reduce)")
       : null;
+    const staticCapabilityQuery = typeof window.matchMedia === "function"
+      ? window.matchMedia(STATIC_CAPABILITY_QUERY)
+      : null;
     reducedMotionRef.current = motionQuery?.matches ?? false;
+    staticCapabilityRef.current = staticCapabilityQuery?.matches ?? false;
     documentHiddenRef.current = document.hidden;
     setReducedMotion(reducedMotionRef.current);
+    setStaticCapability(staticCapabilityRef.current);
 
     const stopAnimation = () => {
       if (frameRef.current !== null) {
@@ -66,7 +74,7 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
 
     const tick = (timestamp: number) => {
       frameRef.current = null;
-      if (pausedRef.current || !visibleRef.current || documentHiddenRef.current || reducedMotionRef.current) return;
+      if (pausedRef.current || !visibleRef.current || documentHiddenRef.current || reducedMotionRef.current || staticCapabilityRef.current) return;
 
       const previous = lastFrameRef.current ?? timestamp;
       const delta = Math.min(timestamp - previous, 64);
@@ -77,11 +85,12 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
     };
 
     const syncAnimation = () => {
-      const staticMode = pausedRef.current || !visibleRef.current || documentHiddenRef.current || reducedMotionRef.current;
+      const staticMode = staticCapabilityRef.current || reducedMotionRef.current;
       const shouldSuspend = !visibleRef.current || documentHiddenRef.current;
+      const shouldStop = staticMode || pausedRef.current || shouldSuspend;
       setSuspended(shouldSuspend);
       root.dataset.atlasNavigatorSuspended = shouldSuspend ? "true" : "false";
-      root.dataset.atlasNavigatorMode = reducedMotionRef.current
+      root.dataset.atlasNavigatorMode = staticMode
         ? "static"
         : pausedRef.current
           ? "paused"
@@ -89,7 +98,7 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
             ? "suspended"
             : "orbit";
 
-      if (staticMode) {
+      if (shouldStop) {
         stopAnimation();
       } else if (frameRef.current === null) {
         lastFrameRef.current = null;
@@ -110,8 +119,15 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
       syncAnimation();
     };
 
+    const onStaticCapabilityChange = (event: MediaQueryListEvent) => {
+      staticCapabilityRef.current = event.matches;
+      setStaticCapability(event.matches);
+      syncAnimation();
+    };
+
     document.addEventListener("visibilitychange", onDocumentVisibility);
     motionQuery?.addEventListener("change", onMotionChange);
+    staticCapabilityQuery?.addEventListener("change", onStaticCapabilityChange);
 
     const observer = typeof window.IntersectionObserver === "function"
       ? new window.IntersectionObserver(([entry]) => {
@@ -125,6 +141,7 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
     return () => {
       document.removeEventListener("visibilitychange", onDocumentVisibility);
       motionQuery?.removeEventListener("change", onMotionChange);
+      staticCapabilityQuery?.removeEventListener("change", onStaticCapabilityChange);
       observer?.disconnect();
       stopAnimation();
       animationSyncRef.current = null;
@@ -168,12 +185,12 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
       data-atlas-navigator="true"
       data-atlas-navigator-ready={hydrated ? "true" : "false"}
       data-atlas-navigator-suspended={suspended ? "true" : "false"}
-      data-atlas-navigator-mode={reducedMotion ? "static" : paused ? "paused" : suspended ? "suspended" : "orbit"}
+      data-atlas-navigator-mode={staticCapability || reducedMotion ? "static" : paused ? "paused" : suspended ? "suspended" : "orbit"}
     >
       <div className="atlas-navigator__stage-wrap">
-        <div className="atlas-navigator__toolbar" hidden={!hydrated}>
+        <div className="atlas-navigator__toolbar" hidden={!hydrated || staticCapability || reducedMotion}>
           <span className="atlas-navigator__state" data-atlas-navigator-state aria-live="polite">
-            {reducedMotion ? "STATIC LAYOUT" : paused ? "ORBIT PAUSED" : suspended ? "ORBIT SUSPENDED" : "ORBIT ACTIVE"}
+            {staticCapability || reducedMotion ? "STATIC LAYOUT" : paused ? "ORBIT PAUSED" : suspended ? "ORBIT SUSPENDED" : "ORBIT ACTIVE"}
           </span>
           <button
             className="atlas-navigator__pause"
@@ -211,7 +228,7 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
                   data-atlas-index={index}
                   data-atlas-active={isActive ? "true" : "false"}
                   href={destination.href}
-                  aria-current={isActive ? "true" : undefined}
+                  aria-describedby={isActive ? "atlas-active-preview" : undefined}
                   onFocus={() => activate(index)}
                   onPointerEnter={() => activate(index)}
                   style={positionStyle(position.x, position.y)}
@@ -227,7 +244,7 @@ export default function AtlasNavigator({ destinations }: AtlasNavigatorProps) {
           </div>
         </div>
       </div>
-      <aside className="atlas-navigator__preview" aria-live="polite" aria-label="Active destination preview">
+      <aside id="atlas-active-preview" className="atlas-navigator__preview" aria-live="polite" aria-label="Active destination preview">
         <span className="atlas-navigator__preview-code">ACTIVE / {activeDestination.code}</span>
         <h3>{activeDestination.label}</h3>
         <p>{activeDestination.description}</p>

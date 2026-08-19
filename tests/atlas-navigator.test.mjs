@@ -33,6 +33,23 @@ test("the navigator source stays static-first and lifecycle-aware", async () => 
   assert.doesNotMatch(source, /fetch\s*\(|XMLHttpRequest|WebSocket|EventSource/);
 });
 
+test("mobile capability evaluation keeps the navigator static and preview semantics stay honest", async () => {
+  const source = await readFile("src/components/islands/AtlasNavigator.tsx", "utf8");
+  const styles = await readFile("src/styles/hero.css", "utf8");
+  const html = await readFile("dist/index.html", "utf8");
+  const navigator = html.match(/<section id="navigator"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(source, /max-width:\s*767px.*pointer:\s*coarse/);
+  assert.match(source, /staticCapabilityRef/);
+  assert.match(source, /data-atlas-navigator-mode/);
+  assert.match(source, /const shouldStop = staticMode \|\| pausedRef\.current \|\| shouldSuspend/);
+  assert.match(source, /if \(shouldStop\) \{[\s\S]*?stopAnimation\(\)/);
+  assert.match(styles, /@media \(prefers-reduced-motion:\s*reduce\)[\s\S]*?\.atlas-navigator__node\s*\{[\s\S]*?transition:\s*none/);
+  assert.doesNotMatch(source, /aria-current/);
+  assert.match(source, /aria-describedby/);
+  assert.doesNotMatch(navigator, /aria-current=/);
+  assert.match(navigator, /aria-describedby="atlas-active-preview"/);
+});
+
 test("the built homepage exposes one complete navigator link set", async () => {
   const html = await readFile("dist/index.html", "utf8");
   const navigator = html.match(/<section id="navigator"[\s\S]*?<\/section>/)?.[0] ?? "";
