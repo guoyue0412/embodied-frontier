@@ -39,6 +39,18 @@ test("Pages deploys only from main with official artifact actions", async () => 
   assert.match(yaml, /environment:[\s\S]*github-pages/);
 });
 
+test("CODEOWNERS assigns the real repository owner to every protected scope", async () => {
+  const codeowners = await readFile(".github/CODEOWNERS", "utf8");
+  assert.equal(
+    codeowners,
+    "* @guoyue0412\n" +
+      "src/content/ @guoyue0412\n" +
+      ".github/workflows/ @guoyue0412\n" +
+      "src/components/islands/ @guoyue0412\n" +
+      "src/components/vendor/ @guoyue0412\n",
+  );
+});
+
 test("manual Pages dispatch cannot deploy from a non-main ref", async () => {
   const yaml = await readFile(".github/workflows/deploy-pages.yml", "utf8");
   const mainGuard = "if: github.ref == 'refs/heads/main'";
