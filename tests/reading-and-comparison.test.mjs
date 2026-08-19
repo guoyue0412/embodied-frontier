@@ -11,6 +11,19 @@ test("comparison pages explain incompatible protocols", async () => {
   assert.doesNotMatch(html, /data-sort-field=/);
 });
 
+test("comparison pages disclose provenance and explicit missing reasons for every visible field", async () => {
+  const html = await readFile("dist/models/index.html", "utf8");
+  assert.match(html, /字段来源与缺口/);
+  assert.match(html, /字段级来源/);
+  assert.match(html, /记录级来源/);
+  assert.match(html, /未逐字段核验/);
+  assert.match(html, /data-provenance-level="field"/);
+  assert.match(html, /data-provenance-level="record"/);
+  assert.match(html, /data-missing-reason/);
+  assert.match(html, /未披露可核验|字段级来源未声明/);
+  assert.match(html, /<details[^>]*class="field-provenance"/);
+});
+
 test("paper pages expose progressive reading tools without hiding prose", async () => {
   const html = await readFile("dist/papers/openvla/index.html", "utf8");
   assert.match(html, /阅读进度/);

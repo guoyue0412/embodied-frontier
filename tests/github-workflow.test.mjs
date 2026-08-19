@@ -21,7 +21,8 @@ test("verification runs on pull requests with a read-only contents permission", 
   assert.match(yaml, /npm ci/);
   assert.match(yaml, /npm run verify/);
   assert.match(yaml, /contents:\s*read/);
-  assert.match(yaml, /if:\s*success\(\)/);
+  assert.match(yaml, /if:\s*always\(\)/);
+  assert.doesNotMatch(yaml, /if:\s*success\(\)/);
   assert.match(yaml, /path:\s*dist\//);
   assert.match(yaml, /path:\s*artifacts\/browser-qa\//);
   assert.doesNotMatch(yaml, /pages:\s*write/);
@@ -37,6 +38,7 @@ test("Pages deploys only from main with official artifact actions", async () => 
   assert.match(yaml, /actions\/upload-pages-artifact@v4/);
   assert.match(yaml, /actions\/deploy-pages@v4/);
   assert.match(yaml, /environment:[\s\S]*github-pages/);
+  assert.match(yaml, /PUBLIC_REPOSITORY_URL:\s*https:\/\/github\.com\/\$\{\{ github\.repository \}\}/);
 });
 
 test("CODEOWNERS assigns the real repository owner to every protected scope", async () => {

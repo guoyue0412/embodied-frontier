@@ -207,7 +207,7 @@ try {
       if (message.error) reject(new Error(message.error.message));
       else resolve(message.result);
     }
-    if (message.method === "Runtime.exceptionThrown" && activeCapture) activeCapture.pageErrors.push({ type: "exception", text: message.params.exceptionDetails.text });
+    if (message.method === "Runtime.exceptionThrown" && activeCapture) activeCapture.pageErrors.push({ type: "exception", text: message.params.exceptionDetails.text, description: message.params.exceptionDetails.exception?.description ?? "" });
     if (message.method === "Log.entryAdded" && message.params.entry.level === "error") {
       const { text, url } = message.params.entry;
       if (activeCapture && !url?.includes("/.well-known/appspecific/com.chrome.devtools.json")) activeCapture.pageErrors.push({ type: "console", text, url: url ?? "" });
@@ -445,16 +445,31 @@ try {
   async function runGraph(profileName, route = "/graph", activation = "mouse") {
     const before = portableRequests(activeCapture?.requests ?? []);
     const controlsReady = await waitFor("Boolean(document.querySelector('[data-knowledge-graph-controls-ready=\"true\"] .knowledge-graph__load, [data-knowledge-graph-controls-ready=\"true\"]'))", 6000);
+    const buttonReady = await waitFor("Boolean(document.querySelector('[data-knowledge-graph-controls-ready=\"true\"] .knowledge-graph__load:not([disabled])'))", 3000);
     const button = await selectorCenter('.knowledge-graph__load');
-    const clicked = Boolean(button);
-    if (clicked) await activateControl('.knowledge-graph__load', activation);
+    const clicked = Boolean(button && buttonReady);
+    let activationObserved = false;
+    if (clicked) {
+      await activateControl('.knowledge-graph__load', activation);
+      activationObserved = await waitFor("Boolean(document.querySelector('[data-knowledge-graph-state=\"loading\"], [data-knowledge-map-ready=\"true\"]'))", 2500);
+    }
     let ready = await waitFor("document.querySelector('[data-knowledge-graph-controls-ready=\"true\"][data-knowledge-map-ready=\"true\"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0", 6000);
     if (!ready && activation === "touch") {
       await activateControl('.knowledge-graph__load', activation);
+      activationObserved = await waitFor("Boolean(document.querySelector('[data-knowledge-graph-state=\"loading\"], [data-knowledge-map-ready=\"true\"]'))", 2500);
       ready = await waitFor("document.querySelector('[data-knowledge-graph-controls-ready=\"true\"][data-knowledge-map-ready=\"true\"]') && document.querySelectorAll('.knowledge-map__nodes button').length > 0", 6000);
     }
-    if (await selectorCenter('.knowledge-map__nodes button')) await activateControl('.knowledge-map__nodes button', activation === "touch" ? "keyboard" : activation);
-    const pathReady = await waitFor("document.querySelectorAll('.knowledge-map__path a').length > 0", 3000);
+    const nodeReady = await waitFor("Boolean(document.querySelector('.knowledge-map__nodes button') && (() => { const rect = document.querySelector('.knowledge-map__nodes button').getBoundingClientRect(); return rect.width >= 44 && rect.height >= 44; })())", 3000);
+    let nodeActivated = false;
+    if (nodeReady && await selectorCenter('.knowledge-map__nodes button')) {
+      nodeActivated = await activateControl('.knowledge-map__nodes button', activation === "touch" ? "keyboard" : activation);
+    }
+    let pathReady = await waitFor("document.querySelectorAll('.knowledge-map__path a').length > 0", 3000);
+    let keyboardFallback = false;
+    if (!pathReady && nodeReady && activation === "mouse") {
+      keyboardFallback = await activateControl('.knowledge-map__nodes button', "keyboard");
+      pathReady = await waitFor("document.querySelectorAll('.knowledge-map__path a').length > 0", 3000);
+    }
     const after = portableRequests(activeCapture?.requests ?? []);
     const graph = await evaluate(`(() => ({
       loaded: Boolean(document.querySelector('[data-knowledge-graph-controls-ready="true"][data-knowledge-map-ready="true"]')),
@@ -462,9 +477,11 @@ try {
       pathCount: document.querySelectorAll('.knowledge-map__path a').length,
       allTouchSized: [...document.querySelectorAll('.knowledge-map__controls input, .knowledge-map__controls select, .knowledge-map__nodes button')].every((element) => { const rect = element.getBoundingClientRect(); return rect.width >= 44 && rect.height >= 44; }),
     }))()`);
-    check(profileName, route, "graph controls are hydrated before activation", controlsReady && Boolean(button), { controlsReady, button: Boolean(button) });
+    check(profileName, route, "graph controls are hydrated before activation", controlsReady && buttonReady && Boolean(button), { controlsReady, buttonReady, button: Boolean(button) });
     check(profileName, route, "Cytoscape is absent before explicit activation", !before.some(isCytoscapeRequest), { before: before.filter(isCytoscapeRequest) });
-    check(profileName, route, "graph loads after explicit activation", controlsReady && clicked && ready && pathReady && graph.loaded && graph.nodeCount > 0 && graph.pathCount > 0, { ...graph, activation, controlsReady, clicked, ready, pathReady });
+    check(profileName, route, "graph activation reports a loading or ready state", !clicked || activationObserved, { activation, clicked, activationObserved });
+    check(profileName, route, "graph node navigation is ready before activation", !ready || nodeReady, { activation, ready, nodeReady });
+    check(profileName, route, "graph loads after explicit activation", controlsReady && buttonReady && clicked && activationObserved && ready && nodeReady && nodeActivated && pathReady && graph.loaded && graph.nodeCount > 0 && graph.pathCount > 0, { ...graph, activation, controlsReady, buttonReady, clicked, activationObserved, ready, nodeReady, nodeActivated, pathReady, keyboardFallback });
     check(profileName, route, "Cytoscape request follows explicit activation", after.some(isCytoscapeRequest), { after: after.filter(isCytoscapeRequest) });
     return { before, after, graph };
   }

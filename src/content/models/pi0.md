@@ -10,8 +10,8 @@ summary: "使用 flow matching 生成连续动作块，面向跨机器人形态�
 inputs: ["multi-view RGB", "language instruction", "proprioception"]
 outputs: ["continuous action chunk"]
 facts:
-  parameters: { value: null, unit: "billion-parameters", status: "unverified", source: "https://www.physicalintelligence.company/blog/pi0" }
-  action_horizon: { value: null, unit: "steps", status: "unverified", source: "https://arxiv.org/abs/2410.24164" }
+  parameters: { value: null, unit: "billion-parameters", status: "unverified", source: "https://www.physicalintelligence.company/blog/pi0", missingReason: "公开材料未披露可核验的参数规模" }
+  action_horizon: { value: null, unit: "steps", status: "unverified", source: "https://arxiv.org/abs/2410.24164", missingReason: "公开材料未披露可核验的动作跨度" }
 relations:
   - { target: "paper:pi0", type: "described-by" }
   - { target: "dataset:open-x-embodiment", type: "related-data" }

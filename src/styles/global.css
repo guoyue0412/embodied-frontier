@@ -423,7 +423,10 @@ a {
 .paper-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .project-grid,
 .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
-.track-card { min-height: 365px; padding: 26px; border: 1px solid var(--panel-border); background: var(--space-void); }
+.track-card { position: relative; min-height: 365px; padding: 26px; overflow: hidden; border: 1px solid var(--panel-border); background: var(--space-void); transform: perspective(900px) rotateX(var(--track-card-rotate-x, 0deg)) rotateY(var(--track-card-rotate-y, 0deg)); transition: transform 180ms ease, border-color 180ms ease; }
+.track-card::before { position: absolute; inset: 0; z-index: 0; background: radial-gradient(circle at var(--track-card-pointer-x, 50%) var(--track-card-pointer-y, 35%), rgba(47, 212, 232, 0.18), transparent 38%); content: ""; pointer-events: none; }
+.track-card > * { position: relative; z-index: 1; }
+.track-card:hover { border-color: color-mix(in srgb, var(--energy-cyan) 55%, var(--panel-border)); }
 .track-card__code,
 .paper-card__meta,
 .roadmap-preview span,
@@ -435,6 +438,15 @@ a {
 .track-card li::before { margin-right: 8px; color: var(--signal-amber); content: "+"; }
 .track-card a,
 .section-link a { color: var(--energy-cyan); font-size: 0.82rem; font-weight: 700; }
+
+@media (hover: none), (pointer: coarse) {
+  .track-card::before { opacity: 0.6; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track-card { transform: none; transition: none; }
+  .track-card::before { opacity: 0.35; }
+}
 
 .section-heading { margin-bottom: 38px; }
 .section-heading h2 { color: var(--text-primary); }
@@ -526,6 +538,25 @@ a {
 .prose h3 { color: var(--text-primary); }
 .prose a { color: var(--energy-cyan); text-decoration: underline; text-underline-offset: 3px; }
 .prose code { padding: 2px 5px; background: var(--space-panel-raised); font-family: var(--font-mono); }
+.prose-figure { margin: 34px 0; }
+.prose-figure__lightbox { display: block; border: 1px solid var(--panel-border); background: var(--space-panel-raised); }
+.prose-figure img { display: block; width: 100%; height: auto; max-height: 620px; object-fit: contain; }
+.prose-figure figcaption { display: flex; justify-content: space-between; gap: 12px; padding-top: 8px; color: var(--text-muted); font-size: 0.74rem; }
+.prose-figure figcaption a { color: var(--energy-cyan); }
+.mermaid-diagram,
+.formula-block { margin: 22px 0; padding: 16px; overflow-x: auto; border: 1px solid var(--panel-border); background: var(--space-panel-raised); }
+.mermaid-diagram pre,
+.formula-block pre { margin: 0; white-space: pre-wrap; }
+.formula-block code { color: var(--energy-cyan); }
+.formula-inline { display: inline-block; padding: 0 4px; color: var(--energy-cyan); font-family: var(--font-mono); }
+.media-lightbox { max-width: min(92vw, 1100px); padding: 18px; border: 1px solid var(--panel-border); background: var(--space-panel); color: var(--text-primary); }
+.media-lightbox::backdrop { background: rgba(3, 9, 17, 0.82); }
+.media-lightbox img { display: block; max-width: min(86vw, 1040px); max-height: 78vh; margin: 0 auto; }
+.media-lightbox p { margin: 10px 0 0; color: var(--text-muted); font-size: 0.78rem; }
+.media-lightbox__close { display: block; margin-left: auto; min-width: 44px; min-height: 44px; border: 1px solid var(--panel-border); background: transparent; color: var(--text-primary); font-size: 1.4rem; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) {
+  .media-lightbox { scroll-behavior: auto; }
+}
 .detail-aside { position: sticky; top: 94px; align-self: start; }
 .detail-aside nav,
 .detail-aside section { margin-bottom: 16px; padding: 16px; }
@@ -583,6 +614,13 @@ a {
 .fact-cell > strong { font-size: 0.76rem; }
 .fact-cell > a { color: var(--energy-cyan); text-decoration: underline; text-underline-offset: 2px; }
 .missing-value { color: var(--text-muted); font-weight: 500; }
+.field-provenance { margin-top: 8px; font-size: 0.68rem; }
+.field-provenance summary { color: var(--energy-cyan); cursor: pointer; }
+.field-provenance__body { margin-top: 7px; padding: 8px; border-left: 2px solid var(--panel-border); color: var(--text-muted); }
+.field-provenance__body strong { color: var(--text-primary); }
+.field-provenance__body ul { margin: 5px 0; padding-left: 16px; }
+.field-provenance__body a { color: var(--energy-cyan); }
+.field-provenance__body p { margin: 5px 0 0; line-height: 1.4; }
 .comparison-cards { display: none; }
 .graph-loader { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; padding: 24px; }
 .graph-loader h2 { margin: 9px 0 4px; font-size: 1.5rem; }

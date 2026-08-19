@@ -48,6 +48,29 @@ function factText(fact?: EvidenceFact) {
   return `${new Intl.NumberFormat("zh-CN").format(fact.value)} ${units[fact.unit] ?? fact.unit}`;
 }
 
+function recordSources(record: ComparisonRecord) {
+  return [...new Set(Object.values(record.facts ?? {}).map((fact) => fact?.source).filter((source): source is string => Boolean(source)))];
+}
+
+function provenanceFor(record: ComparisonRecord, field: Field) {
+  const fact = factFor(record, field);
+  if (fact) {
+    return {
+      level: "field",
+      label: "字段级来源",
+      sources: [fact.source],
+      reason: fact.value === null ? (fact.missingReason ?? "字段来源未提供可核验值") : "无缺口：字段值已提供；仍需按来源核对定义。",
+    };
+  }
+  const sources = recordSources(record);
+  return {
+    level: "record",
+    label: "记录级来源（未逐字段核验）",
+    sources,
+    reason: "字段级来源未声明；该值仅在记录级来源范围内展示，不能视为逐字段核验。",
+  };
+}
+
 const anchorIdFor = (record: ComparisonRecord) => `${idPrefix}-${record.slug}`;
 const rankable = (field: Field) => {
   if (field.kind !== "fact") return false;
@@ -83,7 +106,14 @@ const protocolExplanation = protocolMismatch(records) ?? "协议键一致；仍�
           {field.kind === "fact" ? <div class="fact-cell" data-comparison-field={field.key} data-comparison-value={typeof factFor(record, field)?.value === "number" ? String(factFor(record, field)?.value) : undefined}>
             <strong class={factFor(record, field)?.value === null || !factFor(record, field) ? "missing-value" : undefined}>{factText(factFor(record, field))}</strong>
             {factFor(record, field) && <><EvidenceBadge status={factFor(record, field)!.status} /><a href={factFor(record, field)!.source} target="_blank" rel="noreferrer noopener">来源 ↗</a></>}
-          </div> : valueFor(record, field)}
+          </div> : <span>{valueFor(record, field)}</span>}
+          {(() => { const provenance = provenanceFor(record, field); return <details class="field-provenance" data-provenance-level={provenance.level} data-missing-reason={provenance.reason}>
+            <summary>字段来源与缺口</summary>
+            <div class="field-provenance__body"><strong>{provenance.label}</strong>
+              {provenance.sources.length > 0 ? <ul>{provenance.sources.map((source, index) => <li><a href={source} target="_blank" rel="noreferrer noopener">来源 {index + 1} ↗</a></li>)}</ul> : <span>来源未声明</span>}
+              <p>缺口说明：{provenance.reason}</p>
+            </div>
+          </details>; })()}
         </td>)}
       </tr>)}
     </tbody>
@@ -98,7 +128,14 @@ const protocolExplanation = protocolMismatch(records) ?? "协议键一致；仍�
           {field.kind === "fact" ? <div class="fact-cell" data-comparison-field={field.key} data-comparison-value={typeof factFor(record, field)?.value === "number" ? String(factFor(record, field)?.value) : undefined}>
             <strong class={factFor(record, field)?.value === null || !factFor(record, field) ? "missing-value" : undefined}>{factText(factFor(record, field))}</strong>
             {factFor(record, field) && <><EvidenceBadge status={factFor(record, field)!.status} /><a href={factFor(record, field)!.source} target="_blank" rel="noreferrer noopener">来源 ↗</a></>}
-          </div> : valueFor(record, field)}
+          </div> : <span>{valueFor(record, field)}</span>}
+          {(() => { const provenance = provenanceFor(record, field); return <details class="field-provenance" data-provenance-level={provenance.level} data-missing-reason={provenance.reason}>
+            <summary>字段来源与缺口</summary>
+            <div class="field-provenance__body"><strong>{provenance.label}</strong>
+              {provenance.sources.length > 0 ? <ul>{provenance.sources.map((source, index) => <li><a href={source} target="_blank" rel="noreferrer noopener">来源 {index + 1} ↗</a></li>)}</ul> : <span>来源未声明</span>}
+              <p>缺口说明：{provenance.reason}</p>
+            </div>
+          </details>; })()}
         </dd>
       </div>)}</dl>
     </article>)}

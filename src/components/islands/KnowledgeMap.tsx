@@ -43,8 +43,19 @@ function matchesNode(node: GraphNode, query: string, group: string) {
 }
 
 function applyGraphState(cy: cytoscape.Core, { visibleIds, selectedId }: GraphViewState) {
+  const visibleClusterIds = new Set<string>();
+  cy.nodes(".track-cluster").forEach((cluster) => {
+    const clusterNode = cluster as unknown as cytoscape.NodeSingular;
+    let hasVisibleDescendant = false;
+    clusterNode.descendants().forEach((node) => {
+      const child = node as unknown as cytoscape.NodeSingular;
+      if (visibleIds.has(child.id())) hasVisibleDescendant = true;
+    });
+    if (hasVisibleDescendant) visibleClusterIds.add(clusterNode.id());
+  });
   cy.nodes().forEach((node) => {
-    node.toggleClass("is-filtered", !visibleIds.has(node.id()));
+    const visible = node.hasClass("track-cluster") ? visibleClusterIds.has(node.id()) : visibleIds.has(node.id());
+    node.toggleClass("is-filtered", !visible);
   });
   cy.edges().forEach((edge) => {
     edge.toggleClass("is-filtered", !visibleIds.has(edge.source().id()) || !visibleIds.has(edge.target().id()));
@@ -112,16 +123,17 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
         const module = await import("cytoscape");
         if (cancelled || !containerRef.current) return;
         const createCytoscape = (module.default ?? module) as unknown as typeof cytoscape;
-        const positions = Object.fromEntries(graph.nodes.map((node, index) => [
-          node.id,
-          { x: 120 + (index % 4) * 180, y: 100 + Math.floor(index / 4) * 130 },
-        ]));
         instance = createCytoscape({
           container,
           elements: [
+            ...graph.clusters.map((cluster) => ({
+              group: "nodes" as const,
+              data: { id: cluster.id, label: cluster.label, isCluster: true },
+              classes: `track-cluster track-${slugClass(cluster.label)}`,
+            })),
             ...graph.nodes.map((node) => ({
               group: "nodes" as const,
-              data: { id: node.id, title: node.title, type: node.type, group: node.group },
+              data: { id: node.id, title: node.title, type: node.type, group: node.group, parent: node.clusterId },
               classes: `node-${slugClass(node.type)} track-${slugClass(node.group)}`,
             })),
             ...graph.edges.map((edge) => ({
@@ -152,6 +164,24 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
             { selector: ".node-model", style: { "background-color": "#ffbb65" } },
             { selector: ".node-dataset", style: { "background-color": "#9caec5" } },
             {
+              selector: ".track-cluster",
+              style: {
+                label: "data(label)",
+                "text-valign": "top",
+                "text-halign": "center",
+                "font-size": 12,
+                "font-weight": 700,
+                color: "#b9ccdf",
+                "background-color": "#173252",
+                "background-opacity": 0.36,
+                "border-width": 1,
+                "border-color": "#3d6f9c",
+                "border-opacity": 0.9,
+                "padding": "24",
+                shape: "roundrectangle",
+              },
+            },
+            {
               selector: "edge",
               style: {
                 width: 1.5,
@@ -172,7 +202,7 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
             { selector: ".is-selected", style: { "border-width": 5, "border-color": "#ffffff", "overlay-color": "#2fd4e8", "overlay-opacity": 0.2 } },
             { selector: ".is-neighbor", style: { opacity: 1, "border-color": "#ffbb65" } },
           ],
-          layout: { name: "preset", positions: positions, animate: false, fit: true, padding: 30 },
+          layout: { name: "preset", positions: graph.positions, animate: false, fit: true, padding: 30 },
           minZoom: 0.45,
           maxZoom: 2.5,
         });
@@ -181,12 +211,15 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
           instance = null;
           return;
         }
-        instance.on("tap", "node", (event) => setSelectedId(event.target.id()));
+        instance.on("tap", "node:not(.track-cluster)", (event) => setSelectedId(event.target.id()));
         cyRef.current = instance;
         synchronizer.setReady(true);
         setReady(true);
       } catch (error) {
-        if (!cancelled) onError?.(error);
+        if (!cancelled) {
+          console.error("[KnowledgeMap] Cytoscape initialization failed", error);
+          onError?.(error);
+        }
       }
     }
 
@@ -232,6 +265,14 @@ export default function KnowledgeMap({ graph, basePath, onError }: Props) {
           </select>
         </label>
       </div>
+
+      <section className="knowledge-map__clusters" aria-labelledby="knowledge-clusters-title">
+        <h3 id="knowledge-clusters-title">研究方向聚类</h3>
+        <ul>
+          {graph.clusters.map((cluster) => <li key={cluster.id} data-cluster-id={cluster.id}><strong>{cluster.label}</strong><span>{cluster.nodeIds.length} 个节点</span></li>)}
+        </ul>
+        <p>聚类由记录中的研究方向及显式关系确定；未声明方向的节点保持可见的未分配区域。</p>
+      </section>
 
       <div className="knowledge-map__workspace">
         <div ref={containerRef} className="knowledge-map__canvas" role="img" aria-label="论文、模型与数据集的关系图谱" />

@@ -10,7 +10,7 @@ modalities: ["stereo RGB", "wrist RGB", "proprioception", "actions", "language"]
 facts:
   trajectories: { value: 76000, unit: "trajectories", status: "self-reported", source: "https://droid-dataset.github.io/" }
   environments: { value: 564, unit: "environments", status: "self-reported", source: "https://arxiv.org/abs/2403.12945" }
-  embodiments: { value: null, unit: "embodiments", status: "unverified", source: "https://droid-dataset.github.io/" }
+  embodiments: { value: null, unit: "embodiments", status: "unverified", source: "https://droid-dataset.github.io/", missingReason: "现有数据集记录未披露可核验的本体数量" }
 relations:
   - { target: "dataset:open-x-embodiment", type: "complements" }
 ---

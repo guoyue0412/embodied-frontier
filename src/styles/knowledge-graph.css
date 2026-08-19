@@ -117,6 +117,19 @@
   gap: 16px;
 }
 
+.knowledge-map__clusters {
+  padding: 14px 16px;
+  border: 1px solid var(--panel-border);
+  background: var(--space-panel-raised);
+}
+
+.knowledge-map__clusters h3 { margin: 0; }
+.knowledge-map__clusters ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.knowledge-map__clusters li { display: grid; gap: 2px; padding: 8px 10px; border: 1px solid var(--panel-border); }
+.knowledge-map__clusters li span,
+.knowledge-map__clusters p { color: var(--text-muted); font-size: 0.72rem; }
+.knowledge-map__clusters p { margin: 10px 0 0; }
+
 .knowledge-map__canvas {
   min-height: 520px;
   border: 1px solid var(--panel-border);

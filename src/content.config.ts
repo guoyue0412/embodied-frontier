@@ -28,6 +28,7 @@ const fact = z.object({
   unit: z.enum(["billion-parameters", "steps", "trajectories", "episodes", "hours", "tasks", "environments", "embodiments", "percent"]),
   status: evidence,
   source: httpUrl,
+  missingReason: z.string().min(1).optional(),
 });
 const identity = {
   title: z.string().min(1),

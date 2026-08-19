@@ -10,7 +10,7 @@ summary: "将机器人动作编码为文本 token，并利用视觉语言预训�
 inputs: ["RGB image", "language instruction"]
 outputs: ["discrete action token"]
 facts:
-  parameters: { value: null, unit: "billion-parameters", status: "unverified", source: "https://robotics-transformer2.github.io/" }
+  parameters: { value: null, unit: "billion-parameters", status: "unverified", source: "https://robotics-transformer2.github.io/", missingReason: "公开材料未披露可核验的参数规模" }
   action_horizon: { value: 1, unit: "steps", status: "verified", source: "https://arxiv.org/abs/2307.15818" }
 relations:
   - { target: "paper:rt2", type: "described-by" }

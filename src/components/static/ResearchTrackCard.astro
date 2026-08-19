@@ -11,10 +11,37 @@ interface Props {
 const { code, title, question, points } = Astro.props;
 const archiveUrl = withBase(`/papers/?track=${encodeURIComponent(title)}`);
 ---
-<article class="track-card">
+<article class="track-card" data-track-card>
   <div class="track-card__code">{code}</div>
   <h3>{title}</h3>
   <p>{question}</p>
   <ul>{points.map((point) => <li>{point}</li>)}</ul>
   <a href={archiveUrl}>查看研究档案 <span aria-hidden="true">↗</span></a>
 </article>
+<script>
+  const setupTrackCardSpotlight = () => {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const finePointer = window.matchMedia("(pointer: fine)");
+    if (reducedMotion.matches || !finePointer.matches) return;
+    document.querySelectorAll<HTMLElement>("[data-track-card]").forEach((card) => {
+      const reset = () => {
+        card.style.setProperty("--track-card-pointer-x", "50%");
+        card.style.setProperty("--track-card-pointer-y", "35%");
+        card.style.setProperty("--track-card-rotate-x", "0deg");
+        card.style.setProperty("--track-card-rotate-y", "0deg");
+      };
+      card.addEventListener("pointermove", (event) => {
+        const bounds = card.getBoundingClientRect();
+        const x = Math.max(0, Math.min(bounds.width, event.clientX - bounds.left));
+        const y = Math.max(0, Math.min(bounds.height, event.clientY - bounds.top));
+        card.style.setProperty("--track-card-pointer-x", `${x}px`);
+        card.style.setProperty("--track-card-pointer-y", `${y}px`);
+        card.style.setProperty("--track-card-rotate-y", `${((x / bounds.width) - 0.5) * 2.2}deg`);
+        card.style.setProperty("--track-card-rotate-x", `${((0.5 - y / bounds.height) * 1.6)}deg`);
+      }, { passive: true });
+      card.addEventListener("pointerleave", reset, { passive: true });
+      reset();
+    });
+  };
+  setupTrackCardSpotlight();
+</script>

@@ -31,6 +31,7 @@ jobs:
         env:
           SITE_URL: ${{ steps.pages.outputs.origin }}
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          PUBLIC_REPOSITORY_URL: https://github.com/${{ github.repository }}
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

@@ -99,7 +99,10 @@ function facts(data, file) {
     if (!factUnits.has(unit)) fail(file, `facts.${name} has unsupported unit ${unit}`);
     const status = requiredString(fact, "status", `${file} facts.${name}`);
     if (!evidenceStatusSet.has(status)) fail(file, `facts.${name}.status must be one of ${evidenceStatuses.join(", ")}`);
-    return [name, { value: fact.value, unit, status, source: httpUrl(fact.source, `facts.${name}.source`, file) }];
+    const missingReason = fact.value === null
+      ? (fact.missingReason === undefined ? "该字段未提供可核验值" : requiredString(fact, "missingReason", `${file} facts.${name}`))
+      : (fact.missingReason === undefined ? undefined : requiredString(fact, "missingReason", `${file} facts.${name}`));
+    return [name, { value: fact.value, unit, status, source: httpUrl(fact.source, `facts.${name}.source`, file), ...(missingReason ? { missingReason } : {}) }];
   }));
 }
 
