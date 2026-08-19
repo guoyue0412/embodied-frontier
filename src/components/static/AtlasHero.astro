@@ -1,5 +1,6 @@
 ---
 import { withBase } from "../../lib/site-path.mjs";
+import AtlasNavigator from "../islands/AtlasNavigator";
 import HeroExperience from "../islands/HeroExperience";
 import AtlasMetric from "./AtlasMetric.astro";
 import AtlasRail from "./AtlasRail.astro";
@@ -32,6 +33,10 @@ interface Props {
 }
 
 const { metrics, chapters, destinations, year } = Astro.props;
+const navigatorDestinations = destinations.map(({ path, ...destination }) => ({
+  ...destination,
+  href: withBase(path),
+}));
 ---
 <section id="atlas" class="atlas-hero" data-static-hero>
   <img class="atlas-hero__static-art" src={withBase("/hero-static.webp")} alt="" aria-hidden="true" />
@@ -82,13 +87,6 @@ const { metrics, chapters, destinations, year } = Astro.props;
       </div>
       <p>六个目的地都由仓库内容生成。静态链接是完整导航源，即使没有 JavaScript 也保留全部路径。</p>
     </div>
-    <div class="atlas-destinations" data-atlas-navigator-static>
-      {destinations.map((destination) => <a class="atlas-destination" href={withBase(destination.path)}>
-        <span class="atlas-destination__code">{destination.code}</span>
-        <strong>{destination.label}</strong>
-        <p>{destination.description}</p>
-        <span class="atlas-destination__link">ENTER <span aria-hidden="true">↗</span></span>
-      </a>)}
-    </div>
+    <AtlasNavigator client:visible destinations={navigatorDestinations} />
   </div>
 </section>
