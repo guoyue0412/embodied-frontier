@@ -4,178 +4,156 @@ Date: 2026-08-19
 
 Review branch: `feat/github-visual-system`
 
-Evidence source HEAD before this report commit: `4e13f2fbe4f3adcc5ec03420636deb4afcd397bc`
+Evidence source HEAD before this report commit: `a6994a7` (`fix: close final visual acceptance gaps`)
 
-Base: `main` at `e3e6da014fe74c67b36a97dac1f6257dd67f4f54`
+Base: `origin/main` / `main` at `e3e6da014fe74c67b36a97dac1f6257dd67f4f54`
+
 GitHub remote: `https://github.com/guoyue0412/embodied-frontier.git`
 
-This is a local acceptance and review handoff. No push, pull request, merge,
-GitHub Actions run, Pages deployment, or online smoke test was executed by
-Task 12.
+This is local acceptance and review evidence. Task 12 did not push, create a
+pull request, merge, run GitHub Actions, deploy Pages, or perform an online
+smoke test.
 
 ## 1. Source audit
 
-### Architecture and scope
+The site is an Astro static build backed by typed Markdown in
+`src/content/{papers,models,datasets,projects,roadmap}`. The public output is
+14 static pages: the homepage, about, papers index, five paper detail pages,
+models, datasets, graph, roadmap, projects, and migration check. React islands
+remain limited to explicitly scoped search, reading, visual, and graph
+enhancements; static HTML and no-JavaScript fallbacks remain the source of
+usable content.
 
-- The migrated source of truth is Astro static output backed by typed Markdown
-  under `src/content/{papers,models,datasets,projects,roadmap}`.
-- The public route set is emitted as 14 static pages, including the homepage,
-  research indexes, five paper detail pages, comparison pages, graph, roadmap,
-  projects, about, and the migration check route.
-- React islands are limited to search, hero effects, procedural embodiment,
-  evidence/reading controls, and the explicitly activated knowledge graph.
-- GitHub workflows, CODEOWNERS, the PR template, deterministic static/bundle
-  checks, and the local browser artifact set are included in the reviewed
-  migration diff.
+This acceptance pass closed the remaining review findings:
 
-### Third-party provenance and license boundaries
+- Paper Markdown now safely renders HTTP(S) figures with alt/title/source
+  metadata, a native-dialog lightbox with keyboard close, and visible Mermaid
+  and formula fallbacks. The sanitizer rejects unsafe schemes, and the
+  lightbox is progressive enhancement only. A representative test fixture is
+  test-only and contains no paper claim or copied asset.
+- Comparison metadata and facts expose field/record provenance disclosures and
+  an explicit missing reason. Field-level source values come only from the
+  existing record facts; metadata without a field source is honestly labeled
+  record-level rather than field-verified. The protocol lock and mobile/desktop
+  disclosure markup remain present.
+- Knowledge graph research tracks are deterministic clusters with explicit
+  compound Cytoscape regions, deterministic positions, keyboard/path behavior,
+  click-only loading, and the complete static relationship fallback.
+- Research-track cards add a fine-pointer spotlight/depth effect with touch and
+  reduced-motion fallbacks. Verify artifact uploads run with `if: always()`,
+  and Pages build receives `PUBLIC_REPOSITORY_URL` from ${{ github.repository }}.
+  Browser QA now waits for graph readiness/node/path conditions before mouse
+  activation, with a keyboard fallback for non-ready desktop mouse paths.
 
-- React Bits `Shuffle`, `DotGrid`, and `GridDistortion` are pinned to upstream
-  revision `4e0e030193b563be6be33d928f77d0d01cefe237`; the MIT + Commons Clause
-  notice and complete license text are recorded in `THIRD_PARTY_NOTICES.md` and
-  `src/components/vendor/react-bits/LICENSE.md`.
-- `three@0.180.0` and `@types/three@0.180.0` are recorded with their upstream,
-  copyright, and MIT provenance. `three` is lazy and excluded from the shared
-  initial entry.
-- `cytoscape@3.34.1` is recorded as MIT and is dynamically imported only after
-  graph activation.
-- `gsap@3.15.0` and `@gsap/react@2.1.2` are recorded with the GreenSock
-  standard-license URL and are used through the vendored React Bits variants.
-- `public/hero-static.webp` is documented as first-party artwork. Its SHA-256
-  is `09df95ec29889453ce74223fb232ee930b7b6b040f045be507ee8497edd229f7`.
+Third-party provenance and license boundaries remain unchanged: vendored React
+Bits `Shuffle`, `DotGrid`, and `GridDistortion` are pinned to upstream
+revision `4e0e030193b563be6be33d928f77d0d01cefe237` with MIT + Commons Clause
+notice; `three@0.180.0`, `@types/three@0.180.0`, `cytoscape@3.34.1`,
+`gsap@3.15.0`, and `@gsap/react@2.1.2` have recorded
+upstream/version/copyright/license notices. No new dependency was added by
+this acceptance pass, so license notices did not require changes.
 
-### Reference-site and artifact audit
-
-The required command was run:
+The required source scan was run:
 
 ```text
-rg -n "ZhuYun97|embodied-ai-learning|hero-bg\.jpg|model\.glb" src public THIRD_PARTY_NOTICES.md
+rg -n "ZhuYun97|embodied-ai-learning|hero-bg\\.jpg|model\\.glb" src public THIRD_PARTY_NOTICES.md
 ```
 
-Result: no matches. Reference-site discussion remains only in the design and
-provenance documentation, not in runtime source, public assets, or the
-third-party notice boundary. No `hero-bg.jpg`, `model.glb`, copied reference
-asset, or reference-site runtime source was found.
+Result: no matches (exit 1). No copied reference asset, `hero-bg.jpg`,
+`model.glb`, credential, API key, private key, or runtime research API was
+found. `npm ls --all` exited 0. `git ls-files` contains no `dist/`,
+`node_modules/`, `.astro/`, `.wrangler/`, coverage, environment, log,
+source map, or archive build output. The tracked browser screenshots/report
+and first-party `public/hero-static.webp` are intentional review evidence.
 
-Additional audit results:
+Before this report commit, `git diff origin/main..HEAD --stat` reported:
 
-- `npm ls --all`: exit 0. The tree contains no missing required dependency;
-  npm reports only platform/optional dependencies as `UNMET OPTIONAL`.
-- A targeted diff scan found no concrete API key, credential, private key, or
-  secret value. Matches were policy prose, CI permission names, or dependency
-  metadata only.
-- `git ls-files` contains no `dist/`, `node_modules/`, `.astro/`, `.wrangler/`,
-  coverage, environment, log, source-map, or archive build output. The tracked
-  browser screenshots/report and first-party hero asset are intentional review
-  evidence.
-- Before adding this report, `git diff main...HEAD --stat` reported 172 changed
-  files, 21,736 insertions, and 6,747 deletions. The changed set is the
-  research-station migration, its tests/CI, provenance, and review evidence;
-  no unrelated application or credential files are present.
-- `git diff --check main...HEAD`: exit 0 with no whitespace errors.
+```text
+178 files changed, 22554 insertions(+), 6782 deletions(-)
+```
+
+The changed set is the research-station migration, its tests/CI, provenance,
+review artifacts, and the final acceptance fixes. `git diff --check` passed
+with no whitespace errors.
 
 ## 2. Build verification
 
-### Clean-room commands
+The clean-room gate was run exactly as required:
 
-```text
+```bash
 npm ci
 npm run verify
 ```
 
-`npm ci` completed successfully from the lockfile (`added 703 packages`); npm
-printed only pending optional install-script approval warnings for `esbuild`,
+`npm ci` exited 0 and installed 703 packages from the lockfile. npm reported
+only pending optional install-script approval warnings for `esbuild`,
 `fsevents`, and `sharp`.
 
-The first unprivileged `npm run verify` reached all deterministic checks but
-could not bind the local browser-QA server (`listen EPERM` on
-`127.0.0.1`). The exact same gate was rerun with local-listening permission and
-passed. This was an environment boundary, not a project assertion failure.
+`npm run verify` exited 0:
 
-### Fresh gate evidence
-
-- Content build: **PASS** — 5 papers, 3 roadmap stages, 3 projects, 3 models,
-  3 datasets; search index 5 papers; graph 11 nodes and 16 edges.
+- Content build: **PASS** — 5 papers, 3 roadmap stages, 3 projects, 3
+  models, 3 datasets; search index 5 papers; graph 11 nodes and 16 edges.
 - Astro production build: **PASS** — 14 static pages.
-- Full test suite: **PASS** — 84 passed, 0 failed, 0 cancelled, 0 skipped.
+- Node tests: **PASS** — 90 passed, 0 failed, 0 cancelled, 0 skipped.
 - ESLint: **PASS** — exit 0.
 - Static-site checker: **PASS** — 14 files, 0 errors.
-- Bundle checker: **PASS** — initial interactive gzip `100459` bytes against
-  the `122880` byte budget; `sharedIncludesThree: false` and
-  `sharedIncludesCytoscape: false`.
-- Production verification conclusion: `verify: production build, static,
-  bundle, lint, tests, and browser QA passed`.
-
-The bundle report recorded Three.js and Cytoscape as non-initial assets; the
-initial entries were the search, hero, graph shell, reading controls, and
-shared client entries.
+- Bundle checker: **PASS** — initial interactive gzip `100442` bytes against
+  the `122880` byte budget; `sharedIncludesThree: false`,
+  `sharedIncludesCytoscape: false`; Cytoscape, Three.js, and the lightbox
+  remain non-initial/lazy assets.
+- Production verifier: **PASS** — browser report failures 0 and repeatability
+  reported `4942f768838cfb4d63fa6df307dd6d70e688fd0d07371ab2510dbe6b439fc533`
+  with 5 identical screenshots.
 
 ## 3. Browser verification
 
-### Exact standalone production command
+The required standalone production sequence was also run:
 
-The required standalone sequence was run against a clean preview server:
-
-```text
+```bash
 npm run preview -- --host 127.0.0.1
 npm run qa:browser -- --base-url http://127.0.0.1:4321
 ```
 
 The preview served on `http://127.0.0.1:4321`; the browser command exited 0.
-The script's base URL is supplied by its default `SITE_URL` when the CLI flag
-is present, and the report records `siteBasePath: "/"`.
-
-### Profiles and assertions
+The final `artifacts/browser-qa/report.json` records:
 
 - Desktop: 1440×900, mouse/pointer capability.
 - Mobile touch: 360×800, touch capability.
 - Desktop reduced-motion: 1440×900 with
   `prefers-reduced-motion: reduce`.
-- Additional no-JavaScript checks covered the paper list and relationship list.
-- 33 route checks and 246 assertions: **246 passed, 0 failed**.
-- Browser `consoleErrors`: **0**; resource failures: **0**; HTTP errors:
-  **0**; report `failures`: **0**.
-- Search URL synchronization returned `2 / 5` results for the tested Chinese
-  query; graph activation passed with keyboard Space and Enter, and with touch
-  activation.
-- Mobile routes had no horizontal overflow, all visible controls met 44×44 px,
-  and no Three.js request was observed on the narrow/touch profile.
-- Cytoscape was absent before explicit graph activation and requested only
-  after activation.
-- Reduced-motion kept the static hero visible, hid the motion-only layer, and
-  reported zero continuous animations while leaving reading and graph tools
-  usable.
-- No-JavaScript paper and graph fallbacks remained visible and complete.
+- Additional no-JavaScript checks for paper and graph fallbacks.
+- 33 route checks and **252 passed assertions, 0 failures**.
+- `consoleErrors`: **0**; resource failures: **0**; HTTP errors: **0**.
+- Search URL synchronization returned 2/5 results for the tested Chinese query.
+- Graph activation passed after readiness waits, with 11 nodes and 4 path
+  entries; Cytoscape was requested only after explicit activation.
+- Mobile had no horizontal overflow, all visible controls met 44×44 px, and
+  no Three.js request was observed on the narrow/touch profile.
+- Reduced-motion kept the static hero and graph usable with no motion-only
+  requirement; no-JavaScript paper and graph fallbacks remained complete.
 
-### Screenshot evidence and visual review
+Tracked screenshots were visually inspected after the final gate. The dark
+grid/hero hierarchy, navigation, mobile composition, graph grouping controls,
+and reduced-motion static treatment were readable with no obvious clipping or
+horizontal overflow. The graph screenshot is a viewport crop of the scrollable
+graph body, not layout overflow. Headless Chrome runs with `--disable-gpu`,
+so GPU/WebGL quality still requires manual review on a normal GPU-enabled
+browser; the deterministic fallback path was exercised and passed.
 
-The report and screenshots are tracked under `artifacts/browser-qa/`:
+Screenshot SHA-256 evidence:
 
-- `desktop-home.png` — 1440×900 homepage.
-- `desktop-graph.png` — 1440×900 graph entry after activation.
-- `mobile-home.png` — 360×800 touch homepage.
-- `reduced-motion-home.png` — 1440×900 reduced-motion homepage.
-- `reduced-motion-graph.png` — 1440×900 reduced-motion graph entry.
-- `report.json` — machine-readable route, assertion, console, network, and
-  screenshot evidence.
-
-Screenshots were visually inspected. The dark-space grid, hero hierarchy,
-navigation, graph controls, touch layout, and reduced-motion static treatment
-are readable; no obvious clipping or horizontal overflow is visible. The graph
-screenshots show the expected vertical scrollbar and a viewport crop of the
-scrollable graph body, not a layout overflow.
-
-Remaining visual risk: the QA browser runs headless Chrome with
-`--disable-gpu`, so the successful GPU/WebGL rendering path is not a visual
-claim here. The deterministic fallback path was exercised and passed
-(`distortionState: fallback`, `embodimentState: fallback-error`), and the
-static hero remained available. A manual review on a normal GPU-enabled
-browser is still required before merge/deploy.
+```text
+desktop-home.png          1e3ce97a57d4b48627f744f2cb48fa83f46973aada71dacc2fd26903a5565971
+desktop-graph.png         a727942c30db521b09fcae9105af3b5d2dff2310ad9009230c3da8cd4f9cfacc
+mobile-home.png           5df89caf2497f080428cbd175325c03e0da867bf8715ffd1055661dd886a24f6
+reduced-motion-home.png   525ee87ac1a68e30a3eaec21120627b3be2a713bf7c9954a4dd111d8f691e346
+reduced-motion-graph.png  a727942c30db521b09fcae9105af3b5d2dff2310ad9009230c3da8cd4f9cfacc
+report.json               19d6b2cb8ec67a7af598878c0a72c6695d49483b6001b5da30d6f8730d8ab93a
+```
 
 ## 4. Deployment status
 
-These fields intentionally remain unexecuted; local build and browser evidence
-do not constitute remote deployment evidence.
+These are intentionally not executed by this task:
 
 | Evidence | Status |
 | --- | --- |
@@ -186,8 +164,6 @@ do not constitute remote deployment evidence.
 | GitHub Pages URL / deployment | **not executed** |
 | Online smoke test | **not executed** |
 | Merge to `main` | **not executed** |
-
-The proposed PR handoff is:
 
 ### Proposed PR title
 
@@ -201,35 +177,35 @@ feat: migrate research station to GitHub-first visual architecture
 ## Summary
 
 - Migrate the research station to Astro static output backed by typed repository Markdown.
-- Add licensed React visual islands, evidence-aware reading/comparison tools, and an explicit graph fallback.
-- Add deterministic build, accessibility, link, bundle, browser, PR, and GitHub Pages workflow gates.
+- Add safe paper figures/lightbox and Mermaid/formula fallbacks, provenance disclosures, deterministic research-track graph regions, and accessible visual fallbacks.
+- Add deterministic build, static, bundle, browser, artifact-upload, and GitHub Pages workflow gates.
 
 ## Verification
 
-- `npm ci` — passed from lockfile.
-- `npm run verify` — passed: 84/84 tests, lint, 14-page static check, 100459-byte initial interactive gzip, and browser QA.
-- Standalone preview + `npm run qa:browser -- --base-url http://127.0.0.1:4321` — passed: 246/246 assertions, 0 console errors, 0 resource/HTTP errors.
+- `npm ci` — passed from lockfile (703 packages).
+- `npm run verify` — passed: 90/90 tests, lint, 14-page static check, 100442-byte initial interactive gzip, and repeatable browser QA.
+- Standalone preview + `npm run qa:browser -- --base-url http://127.0.0.1:4321` — passed: 252/252 assertions, 0 console errors, 0 resource/HTTP errors.
 - Screenshots: `artifacts/browser-qa/{desktop-home,desktop-graph,mobile-home,reduced-motion-home,reduced-motion-graph}.png`.
 
-## Review requirements
+## Review checklist
 
-- [ ] Human review of source links, evidence states, protocol boundaries, and content claims.
+- [ ] Human review of source links, evidence states, comparison provenance/missing reasons, and protocol boundaries.
+- [ ] Human review of paper figure source/title/alt rendering, lightbox keyboard behavior, Mermaid/formula fallbacks, and sanitizer/XSS boundaries.
+- [ ] Human review of deterministic graph clusters, keyboard/path navigation, static fallback, and desktop GPU/WebGL visuals.
 - [ ] Human review of third-party provenance/licenses and first-party asset ownership.
-- [ ] Human review of desktop GPU/WebGL visuals and mobile/reduced-motion fallbacks.
-- [ ] Confirm required `verify` status check passes on GitHub.
-- [ ] Confirm deployment impact and Pages settings before merge.
+- [ ] Confirm required `verify` status check and failure-artifact upload pass on GitHub.
+- [ ] Confirm `PUBLIC_REPOSITORY_URL` and Pages settings before deployment.
 
 ## Deployment
 
-No push, PR, merge, Pages deployment, or online smoke test was performed by this local acceptance task.
-Only after manual review and passing required checks should the branch be pushed and a PR opened; merge to `main` remains a separate human-controlled action.
+No push, PR, merge, Pages deployment, or online smoke test was performed by this local acceptance task. Only after manual review and passing required checks should the branch be pushed and a PR opened; merge and deployment remain separate human-controlled actions.
 ```
 
 ### Manual review gate
 
-Do not merge or deploy based solely on this local report. Before any remote
-action, a human reviewer must inspect the factual sources and evidence states,
-license notices, the GPU-enabled visual path, mobile/reduced-motion behavior,
-the complete `main...HEAD` diff, and the GitHub workflow results. After review,
-the root agent may push and open the proposed PR; merge and Pages deployment
-remain manual and are not authorized by this Task 12 acceptance.
+Do not merge or deploy based solely on this local report. A human reviewer must
+inspect the complete `origin/main..HEAD` diff, factual source links and
+evidence states, comparison provenance, paper media safety, graph behavior,
+license notices, GPU-enabled visuals, mobile/reduced-motion behavior, and the
+GitHub workflow results. The root agent owns any later push or PR handoff;
+merge and Pages deployment remain manual and are not authorized by Task 12.
