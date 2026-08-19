@@ -348,6 +348,6 @@ git add scripts/browser-qa.mjs tests/atlas-home.test.mjs artifacts/browser-qa do
 git commit -m "test: gate atlas landing experience"
 ```
 
-- [ ] **Step 7: Independent review and PR update**
+- [x] **Step 7: Independent review and PR update**
 
 Generate a review package from the plan base to HEAD. Require no Critical or Important findings, then push the feature branch, update PR #1 with new screenshots/evidence, and wait for GitHub `verify`. Do not merge.

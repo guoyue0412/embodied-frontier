@@ -34,3 +34,5 @@ Evidence artifacts live under `artifacts/browser-qa/`, including desktop/mobile 
 ## Deployment boundary
 
 Local build and browser evidence are complete. GitHub Pages deployment is not claimed until PR #1 is manually reviewed, merged to `main`, and the Pages workflow succeeds on the public repository.
+
+PR #1 was updated with this evidence. Its required GitHub `verify` check passed in 1m49s after the feature branch was pushed. Manual review and merge remain outstanding by design.
