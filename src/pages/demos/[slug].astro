@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import DemoVideo from "../../components/static/DemoVideo.astro";
+import DemoMediaGroup from "../../components/static/DemoMediaGroup.astro";
 import { withBase } from "../../lib/site-path.mjs";
 
 export async function getStaticPaths() {
@@ -29,6 +30,10 @@ const data = demo.data;
       </header>
 
       {data.video && <figure class="demo-detail__video"><DemoVideo title={data.title} video={data.video} /><figcaption>视频为辅助演示；文字说明与证据在视频不可用时仍然完整。</figcaption></figure>}
+
+      {data.mediaGroups.length > 0 && <div class="demo-media-groups" aria-label="演示媒体">
+        {data.mediaGroups.map((group) => <DemoMediaGroup {...group} />)}
+      </div>}
 
       <div class="demo-detail__grid">
         <section aria-labelledby="demo-contributions-title">

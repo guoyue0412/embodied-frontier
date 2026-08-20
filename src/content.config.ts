@@ -110,6 +110,21 @@ const demoVideo = z.object({
   poster: demoPosterAsset,
   captions: demoCaptionAsset.optional(),
 }).refine((value) => Boolean(value.webm || value.mp4), { message: "video requires webm or mp4" });
+const demoMediaGroup = z.object({
+  title: z.string().min(1),
+  description: z.string().min(1),
+  kind: z.enum(["comparison", "single"]),
+  items: z.array(z.object({
+    label: z.string().min(1),
+    note: z.string().min(1).optional(),
+    video: demoVideo,
+  })).min(1).max(2),
+}).superRefine((group, context) => {
+  const expectedItems = group.kind === "comparison" ? 2 : 1;
+  if (group.items.length !== expectedItems) {
+    context.addIssue({ code: "custom", message: `${group.kind} media group requires ${expectedItems} item(s)`, path: ["items"] });
+  }
+});
 
 const demoDisclosure = "本页面为个人参与项目的匿名化演示或独立重建，不包含实习公司的名称、内部代码、私有数据和未公开产品信息，也不代表原公司的官方实现。";
 const demos = defineCollection({
@@ -121,6 +136,7 @@ const demos = defineCollection({
     contributions: z.array(z.string().min(1)).min(1),
     stack: z.array(z.string().min(1)).min(1),
     video: demoVideo.optional(),
+    mediaGroups: z.array(demoMediaGroup).default([]),
     evidence: z.array(z.string().min(1)).min(1),
     sources: z.array(source).default([]),
     anonymized: z.literal(true),

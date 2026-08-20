@@ -59,6 +59,15 @@ function isCytoscapeRequest(url) {
   return /(?:cytoscape|knowledgemap)/i.test(url);
 }
 
+function isExpectedMediaCancellation(url, params) {
+  if (params.canceled !== true) return false;
+  try {
+    return /\.(?:mp4|webm)$/i.test(new URL(url).pathname) && new URL(url).origin === siteUrl.origin;
+  } catch {
+    return false;
+  }
+}
+
 function portableUrl(value) {
   try {
     const url = new URL(value);
@@ -191,7 +200,10 @@ try {
     }
     if (method === "Network.loadingFailed" && capture.requestUrls.has(params.requestId)) {
       capture.pendingRequests.delete(params.requestId);
-      capture.resourceFailures.push({ url: capture.requestUrls.get(params.requestId) ?? "<unknown>", error: params.errorText, canceled: params.canceled === true });
+      const requestUrl = capture.requestUrls.get(params.requestId) ?? "<unknown>";
+      if (!isExpectedMediaCancellation(requestUrl, params)) {
+        capture.resourceFailures.push({ url: requestUrl, error: params.errorText, canceled: params.canceled === true });
+      }
       capture.lastNetworkEventAt = Date.now();
     }
     if (method === "Network.responseReceived" && currentCaptureAccepts(params, capture) && params.response.status >= 400) {
@@ -684,8 +696,9 @@ try {
   await runNavigatorInteractions(desktop.name);
   await screenshot("desktop-home", desktop.name, "/", desktop.viewport);
   await navigate("/demos", desktop.name, { height: desktop.viewport.height });
-  await runDemoLab(desktop.name, "/demos", { height: desktop.viewport.height });
   await screenshot("desktop-demos", desktop.name, "/demos", desktop.viewport);
+  const desktopDemo = await runDemoLab(desktop.name, "/demos", { height: desktop.viewport.height });
+  if (desktopDemo.detailRoute) await screenshot("desktop-wam-showcase", desktop.name, desktopDemo.detailRoute, desktop.viewport);
   await navigate("/papers", desktop.name, { height: desktop.viewport.height });
   await runSearch(desktop.name);
   await navigate("/graph", desktop.name, { height: desktop.viewport.height });
@@ -724,8 +737,9 @@ try {
   await runNavigator(mobile.name, "/", { staticMode: true });
   await screenshot("mobile-home", mobile.name, "/", mobile.viewport);
   await navigate("/demos", mobile.name, { height: mobile.viewport.height });
-  await runDemoLab(mobile.name, "/demos", { height: mobile.viewport.height });
   await screenshot("mobile-demos", mobile.name, "/demos", mobile.viewport);
+  const mobileDemo = await runDemoLab(mobile.name, "/demos", { height: mobile.viewport.height });
+  if (mobileDemo.detailRoute) await screenshot("mobile-wam-showcase", mobile.name, mobileDemo.detailRoute, mobile.viewport);
   await navigate("/graph", mobile.name, { height: mobile.viewport.height });
   const graphMobile = await runGraph(mobile.name, "/graph", "touch");
   check(mobile.name, "/graph", "activated graph controls meet 44px touch target", graphMobile.graph.allTouchSized, graphMobile.graph);
@@ -812,10 +826,11 @@ try {
         heading: document.querySelector("main h1")?.textContent?.trim() ?? "",
         bodyText,
         emptyState: Boolean(emptyState && rect?.width > 0 && rect?.height > 0) || bodyText.includes("尚无已审核并公开的 Demo"),
+        cards: document.querySelectorAll('[data-demo-card], .demo-card').length,
       scripts: document.querySelectorAll("script").length,
     };
   })()`);
-  check("no-javascript", "/demos", "Demo Lab remains readable without JavaScript", /Demo Lab|作品实验室/.test(`${noJsDemos.heading} ${noJsDemos.bodyText}`) && noJsDemos.emptyState, noJsDemos);
+  check("no-javascript", "/demos", "Demo Lab remains readable without JavaScript", /Demo Lab|作品实验室/.test(`${noJsDemos.heading} ${noJsDemos.bodyText}`) && (noJsDemos.emptyState || noJsDemos.cards > 0), noJsDemos);
   await call("Emulation.setScriptExecutionDisabled", { value: false });
 
   if (report.failures.length) process.exitCode = 1;

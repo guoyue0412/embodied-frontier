@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "siteBasePath": "/embodied-frontier",
+  "siteBasePath": "/",
   "artifactsDirectory": "artifacts/browser-qa",
   "profiles": [
     {
@@ -54,22 +54,22 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/create-embodiment-scene.HJEve4Cs.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/_astro/three.module.DZdaHwQM.js",
-        "/embodied-frontier/favicon.ico",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/GridDistortion.Qj5xHAnZ.js",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/create-embodiment-scene.HJEve4Cs.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/_astro/three.module.DZdaHwQM.js",
+        "/favicon.ico",
+        "/hero-static.webp"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -96,13 +96,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -129,13 +129,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -162,13 +162,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
-        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/papers/openvla/"
+        "/_astro/EvidenceLens.CTgYEghe.js",
+        "/_astro/ReadingProgress.BePpZiCK.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/papers/openvla/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -195,8 +195,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/models/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/models/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -223,8 +223,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/datasets/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/datasets/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -251,14 +251,14 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -285,8 +285,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/roadmap/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/roadmap/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -313,8 +313,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/projects/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/projects/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -341,8 +341,9 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -369,9 +370,9 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/about.DQcn3czC.css",
-        "/embodied-frontier/about/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/about.DQcn3czC.css",
+        "/about/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -398,21 +399,21 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/create-embodiment-scene.HJEve4Cs.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/_astro/three.module.DZdaHwQM.js",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/GridDistortion.Qj5xHAnZ.js",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/create-embodiment-scene.HJEve4Cs.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/_astro/three.module.DZdaHwQM.js",
+        "/hero-static.webp"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -439,8 +440,53 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "WAM 生成与实机展示 · 具身前沿",
+        "main": true,
+        "heading": "WAM 生成与实机展示",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/wam-generation-showcase/",
+        "/videos/wam/agibotbeta-idx005-gt.jpg",
+        "/videos/wam/agibotbeta-idx005-gt.mp4",
+        "/videos/wam/agibotbeta-idx005-pred.jpg",
+        "/videos/wam/agibotbeta-idx005-pred.mp4",
+        "/videos/wam/openarm.jpg",
+        "/videos/wam/openarm.mp4",
+        "/videos/wam/robotwinhd-idx206-gt.jpg",
+        "/videos/wam/robotwinhd-idx206-gt.mp4",
+        "/videos/wam/robotwinhd-idx206-pred.jpg",
+        "/videos/wam/robotwinhd-idx206-pred.mp4",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgogICAgPHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTMgOXY2aDRsNSA1VjRMNyA5SDN6bTEzLjUgM2MwLTEuNzctMS4wMi0zLjI5LTIuNS00LjAzdjguMDVjMS40OC0uNzMgMi41LTIuMjUgMi41LTQuMDJ6TTE0IDMuMjN2Mi4wNmMyLjg5Ljg2IDUgMy41NCA1IDYuNzFzLTIuMTEgNS44NS01IDYuNzF2Mi4wNmM0LjAxLS45MSA3LTQuNDkgNy04Ljc3cy0yLjk5LTcuODYtNy04Ljc3eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTggNXYxNGwxMS03eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -467,13 +513,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -500,14 +546,14 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -534,14 +580,14 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -568,14 +614,14 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -602,18 +648,18 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/hero-static.webp"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -640,13 +686,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -673,13 +719,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -706,13 +752,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
-        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/papers/openvla/"
+        "/_astro/EvidenceLens.CTgYEghe.js",
+        "/_astro/ReadingProgress.BePpZiCK.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/papers/openvla/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -739,8 +785,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/models/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/models/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -767,8 +813,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/datasets/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/datasets/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -795,14 +841,14 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -829,8 +875,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/roadmap/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/roadmap/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -857,8 +903,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/projects/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/projects/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -885,8 +931,9 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -913,9 +960,9 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/about.DQcn3czC.css",
-        "/embodied-frontier/about/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/about.DQcn3czC.css",
+        "/about/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -942,18 +989,18 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/hero-static.webp"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -980,8 +1027,53 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "assertions": {
+        "title": "WAM 生成与实机展示 · 具身前沿",
+        "main": true,
+        "heading": "WAM 生成与实机展示",
+        "innerWidth": 360,
+        "scrollWidth": 360,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/wam-generation-showcase/",
+        "/videos/wam/agibotbeta-idx005-gt.jpg",
+        "/videos/wam/agibotbeta-idx005-gt.mp4",
+        "/videos/wam/agibotbeta-idx005-pred.jpg",
+        "/videos/wam/agibotbeta-idx005-pred.mp4",
+        "/videos/wam/openarm.jpg",
+        "/videos/wam/openarm.mp4",
+        "/videos/wam/robotwinhd-idx206-gt.jpg",
+        "/videos/wam/robotwinhd-idx206-gt.mp4",
+        "/videos/wam/robotwinhd-idx206-pred.jpg",
+        "/videos/wam/robotwinhd-idx206-pred.mp4",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgogICAgPHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTMgOXY2aDRsNSA1VjRMNyA5SDN6bTEzLjUgM2MwLTEuNzctMS4wMi0zLjI5LTIuNS00LjAzdjguMDVjMS40OC0uNzMgMi41LTIuMjUgMi41LTQuMDJ6TTE0IDMuMjN2Mi4wNmMyLjg5Ljg2IDUgMy41NCA1IDYuNzFzLTIuMTEgNS44NS01IDYuNzF2Mi4wNmM0LjAxLS45MSA3LTQuNDkgNy04Ljc3cy0yLjk5LTcuODYtNy04Ljc3eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTggNXYxNGwxMS03eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1008,14 +1100,14 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1042,18 +1134,18 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/hero-static.webp"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1080,8 +1172,53 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
+      ],
+      "resourceFailures": [],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "assertions": {
+        "title": "WAM 生成与实机展示 · 具身前沿",
+        "main": true,
+        "heading": "WAM 生成与实机展示",
+        "innerWidth": 1440,
+        "scrollWidth": 1440,
+        "overflow": false,
+        "clippedHeaderLinks": [],
+        "clippedHeadings": [],
+        "minControlWidth": 46.890625,
+        "minControlHeight": 44,
+        "pathPrefixViolations": []
+      },
+      "consoleErrors": [],
+      "networkRequests": [
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/wam-generation-showcase/",
+        "/videos/wam/agibotbeta-idx005-gt.jpg",
+        "/videos/wam/agibotbeta-idx005-gt.mp4",
+        "/videos/wam/agibotbeta-idx005-pred.jpg",
+        "/videos/wam/agibotbeta-idx005-pred.mp4",
+        "/videos/wam/openarm.jpg",
+        "/videos/wam/openarm.mp4",
+        "/videos/wam/robotwinhd-idx206-gt.jpg",
+        "/videos/wam/robotwinhd-idx206-gt.mp4",
+        "/videos/wam/robotwinhd-idx206-pred.jpg",
+        "/videos/wam/robotwinhd-idx206-pred.mp4",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgogICAgPHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTMgOXY2aDRsNSA1VjRMNyA5SDN6bTEzLjUgM2MwLTEuNzctMS4wMi0zLjI5LTIuNS00LjAzdjguMDVjMS40OC0uNzMgMi41LTIuMjUgMi41LTQuMDJ6TTE0IDMuMjN2Mi4wNmMyLjg5Ljg2IDUgMy41NCA1IDYuNzFzLTIuMTEgNS44NS01IDYuNzF2Mi4wNmM0LjAxLS45MSA3LTQuNDkgNy04Ljc3cy0yLjk5LTcuODYtNy04Ljc3eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTggNXYxNGwxMS03eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1108,13 +1245,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1141,13 +1278,13 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
-        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/papers/openvla/"
+        "/_astro/EvidenceLens.CTgYEghe.js",
+        "/_astro/ReadingProgress.BePpZiCK.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/papers/openvla/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1174,14 +1311,14 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1208,8 +1345,8 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/papers/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/papers/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1236,9 +1373,9 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/graph/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/graph.CDK4cHh6.css",
+        "/graph/"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1265,10 +1402,10 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/index.BQSzPJIp.css",
+        "/hero-static.webp"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -1295,8 +1432,9 @@
       },
       "consoleErrors": [],
       "networkRequests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
       ],
       "resourceFailures": [],
       "httpErrors": []
@@ -2255,13 +2393,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -2285,13 +2423,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -2315,13 +2453,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -2345,13 +2483,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -2462,14 +2600,16 @@
       "details": {
         "heading": "把参与过的问题，整理成可核验的演示。",
         "gallery": true,
-        "emptyState": true,
-        "cards": 0,
-        "detailLinks": [],
+        "emptyState": false,
+        "cards": 1,
+        "detailLinks": [
+          "/demos/wam-generation-showcase/"
+        ],
         "videos": 0,
         "forbiddenFields": 0,
-        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
-        "hasRecords": false,
-        "galleryHasEmptyState": true
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。DEMO LAB更新 2026-08-19WAM 生成与实机展示WAM 媒体证据整理将用户提供的两组多视角 GT / Pred 生成片段与一段 OpenArm 双臂实机视频整理为可核验的 WAM 媒体展示。WAMVideo GenerationAgiBotBetaRoboTwinHD查看案例 →具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": true,
+        "galleryHasEmptyState": false
       }
     },
     {
@@ -2488,7 +2628,7 @@
       "passed": true,
       "details": {
         "videos": 0,
-        "hasRecords": false
+        "hasRecords": true
       }
     },
     {
@@ -2508,22 +2648,156 @@
       "details": {
         "heading": "把参与过的问题，整理成可核验的演示。",
         "gallery": true,
-        "emptyState": true,
-        "cards": 0,
-        "detailLinks": [],
+        "emptyState": false,
+        "cards": 1,
+        "detailLinks": [
+          "/demos/wam-generation-showcase/"
+        ],
         "videos": 0,
         "forbiddenFields": 0,
-        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
-        "hasRecords": false
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。DEMO LAB更新 2026-08-19WAM 生成与实机展示WAM 媒体证据整理将用户提供的两组多视角 GT / Pred 生成片段与一段 OpenArm 双臂实机视频整理为可核验的 WAM 媒体展示。WAMVideo GenerationAgiBotBetaRoboTwinHD查看案例 →具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": true
       }
     },
     {
       "profile": "desktop",
-      "route": "/demos",
-      "name": "Demo Lab detail video check is correctly gated until records exist",
+      "route": "/demos/wam-generation-showcase",
+      "name": "single main landmark",
       "passed": true,
       "details": {
-        "gated": true
+        "main": true,
+        "heading": "WAM 生成与实机展示"
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail has a visible native video when a record exists",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail video exposes accessible native controls",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
+      }
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail video sources are base-safe",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
       }
     },
     {
@@ -2920,8 +3194,8 @@
       "passed": true,
       "details": {
         "after": [
-          "/embodied-frontier/_astro/KnowledgeMap.DK6Gjcs3.js",
-          "/embodied-frontier/_astro/cytoscape.esm.DWdRIQSr.js"
+          "/_astro/KnowledgeMap.BylVr8iL.js",
+          "/_astro/cytoscape.esm.DWdRIQSr.js"
         ]
       }
     },
@@ -3957,13 +4231,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -3987,13 +4261,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4017,13 +4291,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4047,13 +4321,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4077,13 +4351,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4192,14 +4466,16 @@
       "details": {
         "heading": "把参与过的问题，整理成可核验的演示。",
         "gallery": true,
-        "emptyState": true,
-        "cards": 0,
-        "detailLinks": [],
+        "emptyState": false,
+        "cards": 1,
+        "detailLinks": [
+          "/demos/wam-generation-showcase/"
+        ],
         "videos": 0,
         "forbiddenFields": 0,
-        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
-        "hasRecords": false,
-        "galleryHasEmptyState": true
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。DEMO LAB更新 2026-08-19WAM 生成与实机展示WAM 媒体证据整理将用户提供的两组多视角 GT / Pred 生成片段与一段 OpenArm 双臂实机视频整理为可核验的 WAM 媒体展示。WAMVideo GenerationAgiBotBetaRoboTwinHD查看案例 →具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": true,
+        "galleryHasEmptyState": false
       }
     },
     {
@@ -4218,7 +4494,7 @@
       "passed": true,
       "details": {
         "videos": 0,
-        "hasRecords": false
+        "hasRecords": true
       }
     },
     {
@@ -4238,22 +4514,156 @@
       "details": {
         "heading": "把参与过的问题，整理成可核验的演示。",
         "gallery": true,
-        "emptyState": true,
-        "cards": 0,
-        "detailLinks": [],
+        "emptyState": false,
+        "cards": 1,
+        "detailLinks": [
+          "/demos/wam-generation-showcase/"
+        ],
         "videos": 0,
         "forbiddenFields": 0,
-        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
-        "hasRecords": false
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。DEMO LAB更新 2026-08-19WAM 生成与实机展示WAM 媒体证据整理将用户提供的两组多视角 GT / Pred 生成片段与一段 OpenArm 双臂实机视频整理为可核验的 WAM 媒体展示。WAMVideo GenerationAgiBotBetaRoboTwinHD查看案例 →具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": true
       }
     },
     {
       "profile": "mobile-touch",
-      "route": "/demos",
-      "name": "Demo Lab detail video check is correctly gated until records exist",
+      "route": "/demos/wam-generation-showcase",
+      "name": "single main landmark",
       "passed": true,
       "details": {
-        "gated": true
+        "main": true,
+        "heading": "WAM 生成与实机展示"
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 360,
+        "innerWidth": 360
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail has a visible native video when a record exists",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail video exposes accessible native controls",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
+      }
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail video sources are base-safe",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
       }
     },
     {
@@ -4393,8 +4803,8 @@
       "passed": true,
       "details": {
         "after": [
-          "/embodied-frontier/_astro/KnowledgeMap.DK6Gjcs3.js",
-          "/embodied-frontier/_astro/cytoscape.esm.DWdRIQSr.js"
+          "/_astro/KnowledgeMap.BylVr8iL.js",
+          "/_astro/cytoscape.esm.DWdRIQSr.js"
         ]
       }
     },
@@ -4521,13 +4931,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4551,13 +4961,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4581,13 +4991,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4611,13 +5021,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4641,13 +5051,13 @@
         "linkCount": 7,
         "uniqueLinks": 7,
         "hrefs": [
-          "/embodied-frontier/papers/",
-          "/embodied-frontier/models/",
-          "/embodied-frontier/datasets/",
-          "/embodied-frontier/graph/",
-          "/embodied-frontier/roadmap/",
-          "/embodied-frontier/projects/",
-          "/embodied-frontier/demos/"
+          "/papers/",
+          "/models/",
+          "/datasets/",
+          "/graph/",
+          "/roadmap/",
+          "/projects/",
+          "/demos/"
         ],
         "hasDemo": true,
         "nodeCount": 7,
@@ -4745,14 +5155,16 @@
       "details": {
         "heading": "把参与过的问题，整理成可核验的演示。",
         "gallery": true,
-        "emptyState": true,
-        "cards": 0,
-        "detailLinks": [],
+        "emptyState": false,
+        "cards": 1,
+        "detailLinks": [
+          "/demos/wam-generation-showcase/"
+        ],
         "videos": 0,
         "forbiddenFields": 0,
-        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
-        "hasRecords": false,
-        "galleryHasEmptyState": true
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。DEMO LAB更新 2026-08-19WAM 生成与实机展示WAM 媒体证据整理将用户提供的两组多视角 GT / Pred 生成片段与一段 OpenArm 双臂实机视频整理为可核验的 WAM 媒体展示。WAMVideo GenerationAgiBotBetaRoboTwinHD查看案例 →具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": true,
+        "galleryHasEmptyState": false
       }
     },
     {
@@ -4771,7 +5183,7 @@
       "passed": true,
       "details": {
         "videos": 0,
-        "hasRecords": false
+        "hasRecords": true
       }
     },
     {
@@ -4791,22 +5203,156 @@
       "details": {
         "heading": "把参与过的问题，整理成可核验的演示。",
         "gallery": true,
-        "emptyState": true,
-        "cards": 0,
-        "detailLinks": [],
+        "emptyState": false,
+        "cards": 1,
+        "detailLinks": [
+          "/demos/wam-generation-showcase/"
+        ],
         "videos": 0,
         "forbiddenFields": 0,
-        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
-        "hasRecords": false
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。DEMO LAB更新 2026-08-19WAM 生成与实机展示WAM 媒体证据整理将用户提供的两组多视角 GT / Pred 生成片段与一段 OpenArm 双臂实机视频整理为可核验的 WAM 媒体展示。WAMVideo GenerationAgiBotBetaRoboTwinHD查看案例 →具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "hasRecords": true
       }
     },
     {
       "profile": "desktop-reduced-motion",
-      "route": "/demos",
-      "name": "Demo Lab detail video check is correctly gated until records exist",
+      "route": "/demos/wam-generation-showcase",
+      "name": "single main landmark",
       "passed": true,
       "details": {
-        "gated": true
+        "main": true,
+        "heading": "WAM 生成与实机展示"
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "no horizontal overflow",
+      "passed": true,
+      "details": {
+        "scrollWidth": 1440,
+        "innerWidth": 1440
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "header links remain in viewport",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "headings fit within their content boxes",
+      "passed": true,
+      "details": {
+        "clipped": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "no console errors",
+      "passed": true,
+      "details": {
+        "errors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "all local resources load",
+      "passed": true,
+      "details": {
+        "resourceFailures": [],
+        "httpErrors": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "configured base prefixes internal links",
+      "passed": true,
+      "details": {
+        "violations": []
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail has a visible native video when a record exists",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail video exposes accessible native controls",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
+      }
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "name": "Demo detail video sources are base-safe",
+      "passed": true,
+      "details": {
+        "heading": "WAM 生成与实机展示",
+        "videoCount": 5,
+        "allVisible": true,
+        "allControlled": true,
+        "allPostered": true,
+        "allLabeled": true,
+        "sources": [
+          "/videos/wam/openarm.mp4",
+          "/videos/wam/agibotbeta-idx005-gt.mp4",
+          "/videos/wam/agibotbeta-idx005-pred.mp4",
+          "/videos/wam/robotwinhd-idx206-gt.mp4",
+          "/videos/wam/robotwinhd-idx206-pred.mp4"
+        ],
+        "sourcesBaseSafe": true,
+        "captions": 0,
+        "unsafeCount": 0,
+        "fallbackText": true
       }
     },
     {
@@ -5099,8 +5645,8 @@
       "passed": true,
       "details": {
         "after": [
-          "/embodied-frontier/_astro/KnowledgeMap.DK6Gjcs3.js",
-          "/embodied-frontier/_astro/cytoscape.esm.DWdRIQSr.js"
+          "/_astro/KnowledgeMap.BylVr8iL.js",
+          "/_astro/cytoscape.esm.DWdRIQSr.js"
         ]
       }
     },
@@ -5419,8 +5965,9 @@
       "passed": true,
       "details": {
         "heading": "把参与过的问题，整理成可核验的演示。",
-        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。COVERAGE GAP / NO PUBLISHED RECORDS尚无已审核并公开的 Demo。内容将在完成匿名化与媒体授权检查后发布。在用户批准具体案例与媒体之前，不展示公司、雇主、客户、成果数字或示例截图。具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
-        "emptyState": true,
+        "bodyText": "跳到正文EF具身前沿EMBODIED FRONTIER论文模型数据图谱项目路线Demo Lab / 作品实验室关于DEMO LAB / 作品实验室把参与过的问题，整理成可核验的演示。这里只发布经过匿名化、公开许可与证据检查的案例；它们展示问题、个人贡献、技术栈和边界，不构成雇佣经历时间线。DEMO LAB更新 2026-08-19WAM 生成与实机展示WAM 媒体证据整理将用户提供的两组多视角 GT / Pred 生成片段与一段 OpenArm 双臂实机视频整理为可核验的 WAM 媒体展示。WAMVideo GenerationAgiBotBetaRoboTwinHD查看案例 →具身前沿 · Embodied Frontier研究内容以仓库中的 Markdown、来源与可验证证据为准。关于本站",
+        "emptyState": false,
+        "cards": 1,
         "scripts": 0
       }
     }
@@ -5431,22 +5978,22 @@
       "profile": "desktop",
       "route": "/",
       "requests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/create-embodiment-scene.HJEve4Cs.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/_astro/three.module.DZdaHwQM.js",
-        "/embodied-frontier/favicon.ico",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/GridDistortion.Qj5xHAnZ.js",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/create-embodiment-scene.HJEve4Cs.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/_astro/three.module.DZdaHwQM.js",
+        "/favicon.ico",
+        "/hero-static.webp"
       ],
       "httpErrors": []
     },
@@ -5454,13 +6001,13 @@
       "profile": "desktop",
       "route": "/papers",
       "requests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/"
       ],
       "httpErrors": []
     },
@@ -5468,13 +6015,13 @@
       "profile": "desktop",
       "route": "/papers?q=视觉语言&status=verified",
       "requests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
       ],
       "httpErrors": []
     },
@@ -5482,13 +6029,13 @@
       "profile": "desktop",
       "route": "/papers/openvla",
       "requests": [
-        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
-        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/papers/openvla/"
+        "/_astro/EvidenceLens.CTgYEghe.js",
+        "/_astro/ReadingProgress.BePpZiCK.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/papers/openvla/"
       ],
       "httpErrors": []
     },
@@ -5496,8 +6043,8 @@
       "profile": "desktop",
       "route": "/models",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/models/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/models/"
       ],
       "httpErrors": []
     },
@@ -5505,8 +6052,8 @@
       "profile": "desktop",
       "route": "/datasets",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/datasets/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/datasets/"
       ],
       "httpErrors": []
     },
@@ -5514,14 +6061,14 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "httpErrors": []
     },
@@ -5529,8 +6076,8 @@
       "profile": "desktop",
       "route": "/roadmap",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/roadmap/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/roadmap/"
       ],
       "httpErrors": []
     },
@@ -5538,8 +6085,8 @@
       "profile": "desktop",
       "route": "/projects",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/projects/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/projects/"
       ],
       "httpErrors": []
     },
@@ -5547,8 +6094,9 @@
       "profile": "desktop",
       "route": "/demos",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
       ],
       "httpErrors": []
     },
@@ -5556,9 +6104,9 @@
       "profile": "desktop",
       "route": "/about",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/about.DQcn3czC.css",
-        "/embodied-frontier/about/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/about.DQcn3czC.css",
+        "/about/"
       ],
       "httpErrors": []
     },
@@ -5566,21 +6114,21 @@
       "profile": "desktop",
       "route": "/",
       "requests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/GridDistortion.Qj5xHAnZ.js",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/create-embodiment-scene.HJEve4Cs.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/_astro/three.module.DZdaHwQM.js",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/GridDistortion.Qj5xHAnZ.js",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/create-embodiment-scene.HJEve4Cs.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/_astro/three.module.DZdaHwQM.js",
+        "/hero-static.webp"
       ],
       "httpErrors": []
     },
@@ -5588,8 +6136,34 @@
       "profile": "desktop",
       "route": "/demos",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "requests": [
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/wam-generation-showcase/",
+        "/videos/wam/agibotbeta-idx005-gt.jpg",
+        "/videos/wam/agibotbeta-idx005-gt.mp4",
+        "/videos/wam/agibotbeta-idx005-pred.jpg",
+        "/videos/wam/agibotbeta-idx005-pred.mp4",
+        "/videos/wam/openarm.jpg",
+        "/videos/wam/openarm.mp4",
+        "/videos/wam/robotwinhd-idx206-gt.jpg",
+        "/videos/wam/robotwinhd-idx206-gt.mp4",
+        "/videos/wam/robotwinhd-idx206-pred.jpg",
+        "/videos/wam/robotwinhd-idx206-pred.mp4",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgogICAgPHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTMgOXY2aDRsNSA1VjRMNyA5SDN6bTEzLjUgM2MwLTEuNzctMS4wMi0zLjI5LTIuNS00LjAzdjguMDVjMS40OC0uNzMgMi41LTIuMjUgMi41LTQuMDJ6TTE0IDMuMjN2Mi4wNmMyLjg5Ljg2IDUgMy41NCA1IDYuNzFzLTIuMTEgNS44NS01IDYuNzF2Mi4wNmM0LjAxLS45MSA3LTQuNDkgNy04Ljc3cy0yLjk5LTcuODYtNy04Ljc3eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTggNXYxNGwxMS03eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K"
       ],
       "httpErrors": []
     },
@@ -5597,13 +6171,13 @@
       "profile": "desktop",
       "route": "/papers",
       "requests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/"
       ],
       "httpErrors": []
     },
@@ -5611,14 +6185,14 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "httpErrors": []
     },
@@ -5626,14 +6200,14 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "httpErrors": []
     },
@@ -5641,14 +6215,14 @@
       "profile": "desktop",
       "route": "/graph",
       "requests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "httpErrors": []
     },
@@ -5656,18 +6230,18 @@
       "profile": "mobile-touch",
       "route": "/",
       "requests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/hero-static.webp"
       ],
       "httpErrors": []
     },
@@ -5675,13 +6249,13 @@
       "profile": "mobile-touch",
       "route": "/papers",
       "requests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/"
       ],
       "httpErrors": []
     },
@@ -5689,13 +6263,13 @@
       "profile": "mobile-touch",
       "route": "/papers?q=视觉语言&status=verified",
       "requests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/?q=%E8%A7%86%E8%A7%89%E8%AF%AD%E8%A8%80&status=verified"
       ],
       "httpErrors": []
     },
@@ -5703,13 +6277,13 @@
       "profile": "mobile-touch",
       "route": "/papers/openvla",
       "requests": [
-        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
-        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/papers/openvla/"
+        "/_astro/EvidenceLens.CTgYEghe.js",
+        "/_astro/ReadingProgress.BePpZiCK.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/papers/openvla/"
       ],
       "httpErrors": []
     },
@@ -5717,8 +6291,8 @@
       "profile": "mobile-touch",
       "route": "/models",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/models/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/models/"
       ],
       "httpErrors": []
     },
@@ -5726,8 +6300,8 @@
       "profile": "mobile-touch",
       "route": "/datasets",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/datasets/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/datasets/"
       ],
       "httpErrors": []
     },
@@ -5735,14 +6309,14 @@
       "profile": "mobile-touch",
       "route": "/graph",
       "requests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "httpErrors": []
     },
@@ -5750,8 +6324,8 @@
       "profile": "mobile-touch",
       "route": "/roadmap",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/roadmap/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/roadmap/"
       ],
       "httpErrors": []
     },
@@ -5759,8 +6333,8 @@
       "profile": "mobile-touch",
       "route": "/projects",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/projects/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/projects/"
       ],
       "httpErrors": []
     },
@@ -5768,8 +6342,9 @@
       "profile": "mobile-touch",
       "route": "/demos",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
       ],
       "httpErrors": []
     },
@@ -5777,9 +6352,9 @@
       "profile": "mobile-touch",
       "route": "/about",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/about.DQcn3czC.css",
-        "/embodied-frontier/about/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/about.DQcn3czC.css",
+        "/about/"
       ],
       "httpErrors": []
     },
@@ -5787,18 +6362,18 @@
       "profile": "mobile-touch",
       "route": "/",
       "requests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/hero-static.webp"
       ],
       "httpErrors": []
     },
@@ -5806,8 +6381,34 @@
       "profile": "mobile-touch",
       "route": "/demos",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "requests": [
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/wam-generation-showcase/",
+        "/videos/wam/agibotbeta-idx005-gt.jpg",
+        "/videos/wam/agibotbeta-idx005-gt.mp4",
+        "/videos/wam/agibotbeta-idx005-pred.jpg",
+        "/videos/wam/agibotbeta-idx005-pred.mp4",
+        "/videos/wam/openarm.jpg",
+        "/videos/wam/openarm.mp4",
+        "/videos/wam/robotwinhd-idx206-gt.jpg",
+        "/videos/wam/robotwinhd-idx206-gt.mp4",
+        "/videos/wam/robotwinhd-idx206-pred.jpg",
+        "/videos/wam/robotwinhd-idx206-pred.mp4",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgogICAgPHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTMgOXY2aDRsNSA1VjRMNyA5SDN6bTEzLjUgM2MwLTEuNzctMS4wMi0zLjI5LTIuNS00LjAzdjguMDVjMS40OC0uNzMgMi41LTIuMjUgMi41LTQuMDJ6TTE0IDMuMjN2Mi4wNmMyLjg5Ljg2IDUgMy41NCA1IDYuNzFzLTIuMTEgNS44NS01IDYuNzF2Mi4wNmM0LjAxLS45MSA3LTQuNDkgNy04Ljc3cy0yLjk5LTcuODYtNy04Ljc3eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTggNXYxNGwxMS03eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K"
       ],
       "httpErrors": []
     },
@@ -5815,14 +6416,14 @@
       "profile": "mobile-touch",
       "route": "/graph",
       "requests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "httpErrors": []
     },
@@ -5830,18 +6431,18 @@
       "profile": "desktop-reduced-motion",
       "route": "/",
       "requests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/HeroExperience.BraepsOV.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/embodiment-runtime._urjDPUx.js",
-        "/embodied-frontier/_astro/hero-visual-runtime.DIQZmeAB.js",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/HeroExperience.BKrmUn5x.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/embodiment-runtime._urjDPUx.js",
+        "/_astro/hero-visual-runtime.DIQZmeAB.js",
+        "/_astro/index.BQSzPJIp.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/hero-static.webp"
       ],
       "httpErrors": []
     },
@@ -5849,8 +6450,34 @@
       "profile": "desktop-reduced-motion",
       "route": "/demos",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
+      ],
+      "httpErrors": []
+    },
+    {
+      "profile": "desktop-reduced-motion",
+      "route": "/demos/wam-generation-showcase",
+      "requests": [
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/wam-generation-showcase/",
+        "/videos/wam/agibotbeta-idx005-gt.jpg",
+        "/videos/wam/agibotbeta-idx005-gt.mp4",
+        "/videos/wam/agibotbeta-idx005-pred.jpg",
+        "/videos/wam/agibotbeta-idx005-pred.mp4",
+        "/videos/wam/openarm.jpg",
+        "/videos/wam/openarm.mp4",
+        "/videos/wam/robotwinhd-idx206-gt.jpg",
+        "/videos/wam/robotwinhd-idx206-gt.mp4",
+        "/videos/wam/robotwinhd-idx206-pred.jpg",
+        "/videos/wam/robotwinhd-idx206-pred.mp4",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg==",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgogICAgPHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+Cjwvc3ZnPgo=",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTMgOXY2aDRsNSA1VjRMNyA5SDN6bTEzLjUgM2MwLTEuNzctMS4wMi0zLjI5LTIuNS00LjAzdjguMDVjMS40OC0uNzMgMi41LTIuMjUgMi41LTQuMDJ6TTE0IDMuMjN2Mi4wNmMyLjg5Ljg2IDUgMy41NCA1IDYuNzFzLTIuMTEgNS44NS01IDYuNzF2Mi4wNmM0LjAxLS45MSA3LTQuNDkgNy04Ljc3cy0yLjk5LTcuODYtNy04Ljc3eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K",
+        "image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTggNXYxNGwxMS03eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K"
       ],
       "httpErrors": []
     },
@@ -5858,13 +6485,13 @@
       "profile": "desktop-reduced-motion",
       "route": "/papers",
       "requests": [
-        "/embodied-frontier/_astro/PaperExplorer.IHhAXol1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/_astro/site-path.CziSLApl.js",
-        "/embodied-frontier/papers/"
+        "/_astro/PaperExplorer.SMxRX9mZ.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/_astro/site-path.BhND2ut3.js",
+        "/papers/"
       ],
       "httpErrors": []
     },
@@ -5872,13 +6499,13 @@
       "profile": "desktop-reduced-motion",
       "route": "/papers/openvla",
       "requests": [
-        "/embodied-frontier/_astro/EvidenceLens.CTgYEghe.js",
-        "/embodied-frontier/_astro/ReadingProgress.BePpZiCK.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/papers/openvla/"
+        "/_astro/EvidenceLens.CTgYEghe.js",
+        "/_astro/ReadingProgress.BePpZiCK.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/react.B_HGnlug.js",
+        "/papers/openvla/"
       ],
       "httpErrors": []
     },
@@ -5886,14 +6513,14 @@
       "profile": "desktop-reduced-motion",
       "route": "/graph",
       "requests": [
-        "/embodied-frontier/_astro/KnowledgeGraph.CJ3Ki4K1.js",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/client.DGfagHgu.js",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/_astro/jsx-runtime.BpylDQ3P.js",
-        "/embodied-frontier/_astro/preload-helper.BU8u9P45.js",
-        "/embodied-frontier/_astro/react.B_HGnlug.js",
-        "/embodied-frontier/graph/"
+        "/_astro/KnowledgeGraph.Bjm8-xc4.js",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/client.DGfagHgu.js",
+        "/_astro/graph.CDK4cHh6.css",
+        "/_astro/jsx-runtime.BpylDQ3P.js",
+        "/_astro/preload-helper.B1BWOGD0.js",
+        "/_astro/react.B_HGnlug.js",
+        "/graph/"
       ],
       "httpErrors": []
     },
@@ -5901,8 +6528,8 @@
       "profile": "no-javascript",
       "route": "/papers",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/papers/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/papers/"
       ],
       "httpErrors": []
     },
@@ -5910,9 +6537,9 @@
       "profile": "no-javascript",
       "route": "/graph",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/graph.CDK4cHh6.css",
-        "/embodied-frontier/graph/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/graph.CDK4cHh6.css",
+        "/graph/"
       ],
       "httpErrors": []
     },
@@ -5920,10 +6547,10 @@
       "profile": "no-javascript",
       "route": "/",
       "requests": [
-        "/embodied-frontier/",
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/_astro/index.BQSzPJIp.css",
-        "/embodied-frontier/hero-static.webp"
+        "/",
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/_astro/index.BQSzPJIp.css",
+        "/hero-static.webp"
       ],
       "httpErrors": []
     },
@@ -5931,8 +6558,9 @@
       "profile": "no-javascript",
       "route": "/demos",
       "requests": [
-        "/embodied-frontier/_astro/SiteLayout.uG_hYftx.css",
-        "/embodied-frontier/demos/"
+        "/_astro/SiteLayout.BIECaBP8.css",
+        "/demos/",
+        "/videos/wam/openarm.jpg"
       ],
       "httpErrors": []
     }
@@ -5958,6 +6586,16 @@
         "height": 900
       },
       "file": "artifacts/browser-qa/desktop-demos.png"
+    },
+    {
+      "name": "desktop-wam-showcase",
+      "profile": "desktop",
+      "route": "/demos/wam-generation-showcase",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "file": "artifacts/browser-qa/desktop-wam-showcase.png"
     },
     {
       "name": "desktop-graph",
@@ -5988,6 +6626,16 @@
         "height": 800
       },
       "file": "artifacts/browser-qa/mobile-demos.png"
+    },
+    {
+      "name": "mobile-wam-showcase",
+      "profile": "mobile-touch",
+      "route": "/demos/wam-generation-showcase",
+      "viewport": {
+        "width": 360,
+        "height": 800
+      },
+      "file": "artifacts/browser-qa/mobile-wam-showcase.png"
     },
     {
       "name": "reduced-motion-home",

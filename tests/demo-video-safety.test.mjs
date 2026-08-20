@@ -16,7 +16,9 @@ test("Demo video uses native controls and base-safe media paths", async () => {
 
 test("Demo gallery cards use posters instead of playable video lists", async () => {
   const source = await readFile("src/components/static/DemoCard.astro", "utf8").catch(() => "");
-  assert.match(source, /withBase\(demo\.video\.poster\)/);
+  assert.match(source, /demo\.video\?\.poster/);
+  assert.match(source, /demo\.mediaGroups\?\.\[0\]/);
+  assert.match(source, /withBase\(poster\)/);
   assert.match(source, /<img\b/);
   assert.doesNotMatch(source, /<video\b|<iframe\b|set:html/);
 });

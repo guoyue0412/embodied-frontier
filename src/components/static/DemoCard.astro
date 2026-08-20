@@ -11,6 +11,7 @@ interface DemoData {
   stack: string[];
   updated: string;
   video?: { poster: string };
+  mediaGroups?: Array<{ items: Array<{ video: { poster: string } }> }>;
 }
 
 interface Props {
@@ -18,9 +19,10 @@ interface Props {
 }
 
 const { demo } = Astro.props;
+const poster = demo.video?.poster ?? demo.mediaGroups?.[0]?.items[0]?.video.poster;
 ---
 <article class="demo-card" data-demo-card>
-  {demo.video && <img class="demo-card__poster" src={withBase(demo.video.poster)} alt={`${demo.title} 演示预览`} loading="lazy" />}
+  {poster && <img class="demo-card__poster" src={withBase(poster)} alt={`${demo.title} 演示预览`} loading="lazy" />}
   <div class="demo-card__body">
     <div class="demo-card__meta"><span>DEMO LAB</span><time datetime={demo.updated}>更新 {demo.updated}</time></div>
     <h2><a href={withBase(`/demos/${demo.slug}/`)}>{demo.title}</a></h2>
