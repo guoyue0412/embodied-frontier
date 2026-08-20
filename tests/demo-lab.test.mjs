@@ -9,14 +9,16 @@ const base = process.env.BASE_PATH && process.env.BASE_PATH !== "/"
   : "/";
 const path = (value) => base === "/" ? `/${value.replace(/^\/+/, "")}` : `${base}${value.replace(/^\/+/, "")}`;
 
-test("Demo Lab is a primary tab with an honest empty state", async () => {
+test("Demo Lab is a primary tab with a published-card or honest empty state", async () => {
   assert.match(home, new RegExp(`href=["'][^"']*${path("/demos/").replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}["']`));
   assert.match(gallery, /Demo Lab|作品实验室/);
-  assert.match(gallery, /尚无已审核并公开的 Demo/);
   assert.match(gallery, /匿名化|媒体授权/);
   assert.equal((gallery.match(/<main\b/g) ?? []).length, 1);
   assert.equal((gallery.match(/<h1\b/g) ?? []).length, 1);
   assert.doesNotMatch(gallery, /<video\b|<iframe\b/);
+  const gallerySource = await readFile("src/pages/demos/index.astro", "utf8");
+  assert.match(gallerySource, /尚无已审核并公开的 Demo/);
+  assert.match(gallery, /data-demo-card|data-demo-empty-state/);
   await assert.rejects(access("dist/demos/not-a-demo/index.html"));
 });
 

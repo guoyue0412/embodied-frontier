@@ -1,0 +1,39 @@
+---
+import DemoVideo from "./DemoVideo.astro";
+
+interface VideoAsset {
+  poster: string;
+  webm?: string;
+  mp4?: string;
+  captions?: string;
+}
+
+interface MediaItem {
+  label: string;
+  note?: string;
+  video: VideoAsset;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  kind: "comparison" | "single";
+  items: MediaItem[];
+}
+
+const { title, description, kind, items } = Astro.props;
+const headingId = `media-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "group"}`;
+---
+<section class:list={["demo-media-group", `demo-media-group--${kind}`]} aria-labelledby={headingId}>
+  <header class="demo-media-group__header">
+    <span class="eyebrow">{kind === "comparison" ? "GT / PRED COMPARISON" : "ROBOT DEMO"}</span>
+    <h2 id={headingId}>{title}</h2>
+    <p>{description}</p>
+  </header>
+  <div class="demo-media-group__grid">
+    {items.map((item) => <figure class="demo-media-item">
+      <div class="demo-media-item__label"><strong>{item.label}</strong>{item.note && <span>{item.note}</span>}</div>
+      <DemoVideo title={`${title} · ${item.label}`} video={item.video} />
+    </figure>)}
+  </div>
+</section>

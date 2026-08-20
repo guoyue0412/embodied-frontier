@@ -16,7 +16,9 @@ test("Demo video uses native controls and base-safe media paths", async () => {
 
 test("Demo gallery cards use posters instead of playable video lists", async () => {
   const source = await readFile("src/components/static/DemoCard.astro", "utf8").catch(() => "");
-  assert.match(source, /withBase\(demo\.video\.poster\)/);
+  assert.match(source, /demo\.video\?\.poster/);
+  assert.match(source, /demo\.mediaGroups\?\.\[0\]/);
+  assert.match(source, /withBase\(poster\)/);
   assert.match(source, /<img\b/);
   assert.doesNotMatch(source, /<video\b|<iframe\b|set:html/);
 });
@@ -30,10 +32,10 @@ test("Demo media asset contracts stay under the public videos path", async () =>
 });
 
 test("public Demo media contains no Git LFS pointer files", async () => {
-  const files = await readdir("public/videos", { withFileTypes: true }).catch(() => []);
+  const files = await readdir("public/videos", { recursive: true }).catch(() => []);
   for (const file of files) {
-    if (!file.isFile()) continue;
-    const header = await readFile(`public/videos/${file.name}`, "utf8").then((value) => value.slice(0, 160));
+    if (!/\.(?:jpe?g|png|webp|mp4|webm|vtt)$/i.test(file)) continue;
+    const header = await readFile(`public/videos/${file}`, "utf8").then((value) => value.slice(0, 160));
     assert.doesNotMatch(header, /^version https:\/\/git-lfs\.github\.com\/spec\/v1\n(?:oid sha256:|size )/);
   }
 });

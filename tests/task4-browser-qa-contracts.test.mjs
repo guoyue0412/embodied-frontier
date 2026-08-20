@@ -6,7 +6,7 @@ test("Task 4 browser QA covers the Atlas and Demo Lab acceptance profiles", asyn
   const source = await readFile("scripts/browser-qa.mjs", "utf8");
 
   for (const route of ["/", "/demos"]) assert.match(source, new RegExp(`\\"${route.replace("/", "\\/")}\\"`));
-  for (const screenshot of ["desktop-home", "desktop-demos", "mobile-home", "mobile-demos", "reduced-motion-home"]) {
+  for (const screenshot of ["desktop-home", "desktop-demos", "desktop-wam-showcase", "mobile-home", "mobile-demos", "mobile-wam-showcase", "reduced-motion-home"]) {
     assert.match(source, new RegExp(`screenshot\\(\\"${screenshot}\\"`));
   }
   for (const profile of ["desktop", "mobile-touch", "desktop-reduced-motion", "no-javascript"]) assert.match(source, new RegExp(`(?:name: "${profile}"|"${profile}")`));
@@ -41,4 +41,6 @@ test("Task 4 browser QA covers the Atlas and Demo Lab acceptance profiles", asyn
   assert.match(source, /setScriptExecutionDisabled/);
   assert.match(source, /static atlas navigator retains the Demo Lab destination without JavaScript/);
   assert.match(source, /Demo Lab remains readable without JavaScript/);
+  assert.match(source, /isExpectedMediaCancellation/);
+  assert.match(source, /noJsDemos\.emptyState\s*\|\|\s*noJsDemos\.cards\s*>\s*0/);
 });
