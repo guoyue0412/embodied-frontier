@@ -31,7 +31,7 @@ The published media directory is 6.4 MiB. Posters are static JPEG files. All vid
 ## Verification
 
 - Production build: 16 static pages.
-- Automated suite: 124/124 tests passed.
+- Automated suite: 125/125 tests passed.
 - Browser QA: desktop 1440×900, mobile touch 360×800, reduced motion, and no-JavaScript profiles; no failures.
 - Repeatability: nine screenshots were byte-identical across two browser-QA runs.
 - Delivery: the production test server returned byte-range responses for MP4 metadata requests.
