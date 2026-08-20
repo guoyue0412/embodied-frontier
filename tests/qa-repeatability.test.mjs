@@ -49,3 +49,28 @@ test("browser QA disables smooth scrolling before measuring pointer targets", as
   const selectorCenter = source.match(/async function selectorCenter\(selector\) \{[\s\S]*?\n\s{2}\}/)?.[0] ?? "";
   assert.match(selectorCenter, /scrollIntoView\(\{[^}]*behavior:\s*["']instant["']/);
 });
+
+test("browser artifact comparison ignores nondeterministic browser favicon requests", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "embodied-frontier-qa-favicon-"));
+  const first = path.join(root, "first");
+  const second = path.join(root, "second");
+  try {
+    await mkdir(first, { recursive: true });
+    await mkdir(second, { recursive: true });
+    const base = {
+      schemaVersion: 2,
+      routeChecks: [{ networkRequests: ["/embodied-frontier/", "/embodied-frontier/hero-static.webp"] }],
+      networkEvidence: [{ requests: ["/embodied-frontier/", "/embodied-frontier/hero-static.webp"] }],
+    };
+    const withFavicon = {
+      ...base,
+      routeChecks: [{ networkRequests: ["/embodied-frontier/", "/embodied-frontier/favicon.ico", "/embodied-frontier/hero-static.webp"] }],
+      networkEvidence: [{ requests: ["/embodied-frontier/", "/embodied-frontier/favicon.ico", "/embodied-frontier/hero-static.webp"] }],
+    };
+    await writeFile(path.join(first, "report.json"), JSON.stringify(base));
+    await writeFile(path.join(second, "report.json"), JSON.stringify(withFavicon));
+    await compareBrowserArtifacts(first, second);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

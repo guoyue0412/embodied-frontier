@@ -4,7 +4,12 @@ import path from "node:path";
 import process from "node:process";
 
 function normalize(value, key = "") {
-  if (Array.isArray(value)) return value.map((item) => normalize(item));
+  if (Array.isArray(value)) {
+    const normalizedItems = (key === "requests" || key === "networkRequests")
+      ? value.filter((item) => typeof item !== "string" || !/\/favicon\.ico(?:[?#].*)?$/.test(item))
+      : value;
+    return normalizedItems.map((item) => normalize(item));
+  }
   if (value && typeof value === "object") {
     return Object.fromEntries(
       Object.entries(value)
